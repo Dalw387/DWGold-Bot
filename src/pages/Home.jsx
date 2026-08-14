@@ -65,7 +65,6 @@ export default function Home() {
     <>
       <section className="hero" aria-label="Vision">
         <div className="hero-copy">
-          <p className="kicker">Kiwi Vision Media</p>
           <h1 className="display">
             We build
             <br />
