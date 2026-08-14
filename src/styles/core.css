@@ -1,0 +1,96 @@
+.core {
+  --core-size: min(72vw, 42rem);
+  width: var(--core-size);
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.core-stage {
+  width: 78%;
+  aspect-ratio: 1;
+  position: relative;
+  border-radius: 50%;
+}
+
+.core-iris {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: saturate(0.92) contrast(1.05);
+  box-shadow:
+    0 0 0 1px rgba(12, 50, 38, 0.4),
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    inset 0 0 60px rgba(0, 0, 0, 0.35);
+}
+
+.core-light {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.09), transparent 26%),
+    radial-gradient(circle at 50% 50%, transparent 42%, rgba(7, 7, 7, 0.55) 72%, rgba(7, 7, 7, 0.92) 100%);
+}
+
+.core-orbit {
+  position: absolute;
+  inset: 4%;
+  pointer-events: none;
+}
+
+.core-orbit svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.core.breathe .core-stage {
+  animation: core-breathe 11s var(--ease) infinite;
+}
+
+.core.spin .core-orbit {
+  animation: core-orbit 72s linear infinite;
+}
+
+.core-agent-pip {
+  fill: var(--emerald-signal);
+}
+
+@keyframes core-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+@keyframes core-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.core.compact {
+  --core-size: min(52vw, 22rem);
+}
+
+.core.hero {
+  --core-size: min(88vw, 46rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core.breathe .core-stage,
+  .core.spin .core-orbit {
+    animation: none;
+  }
+}

@@ -1,17 +1,26 @@
 {
-"name": "dwgold-bot",
-"version": "1.0.0",
-"description": "DW Gold Trading WhatsApp education bot",
-"main": "server.js",
-"scripts": {
-"start": "node server.js"
-},
-"dependencies": {
-"dotenv": "^16.4.5",
-"express": "^4.18.2",
-"openai": "^4.56.0",
-"twilio": "^5.2.2"
+  "name": "kiwi-vision-media",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Kiwi Vision Media — cinematic digital experience",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
 }
-}
-
-

@@ -1,0 +1,235 @@
+.build-stage {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 44rem;
+}
+
+.build-stage textarea,
+.build-stage input[type="text"] {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ivory-faint);
+  padding: 0.8rem 0 1rem;
+  outline: none;
+  font-size: 1.35rem;
+  resize: none;
+}
+
+.choice-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 1.5rem;
+}
+
+.choice-list button {
+  background: none;
+  border: 0;
+  color: var(--ivory-mute);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: -0.03em;
+  padding: 0.2rem 0;
+  text-align: left;
+}
+
+.choice-list button:hover,
+.choice-list button.is-on {
+  color: var(--ivory);
+}
+
+.blueprint dl {
+  margin: 2rem 0;
+}
+
+.blueprint dt {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1.4rem;
+}
+
+.blueprint dd {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  letter-spacing: -0.02em;
+}
+
+.ask-thread {
+  min-height: 48vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.ask-bubble {
+  max-width: 36rem;
+}
+
+.ask-bubble.kiwi {
+  color: var(--ivory);
+}
+
+.ask-bubble.you {
+  color: var(--ivory-soft);
+  margin-left: auto;
+  text-align: right;
+}
+
+.ask-who {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.ask-composer {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--ivory-faint);
+  padding-bottom: 0.7rem;
+}
+
+.ask-composer textarea {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  resize: none;
+  min-height: 2.6rem;
+  font-size: 1.05rem;
+}
+
+.command-shell {
+  background: #101010;
+  min-height: 70vh;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+}
+
+.command-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory-mute);
+}
+
+.command-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.command-nav button {
+  background: none;
+  border: 0;
+  color: var(--ivory-mute);
+  cursor: pointer;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.3rem 0;
+}
+
+.command-nav button.is-on {
+  color: var(--ivory);
+}
+
+.command-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  margin: 0 0 0.8rem;
+  font-weight: 500;
+}
+
+.login-box {
+  max-width: 28rem;
+  padding: 20vh 0;
+}
+
+.login-box input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ivory-faint);
+  padding: 0.8rem 0;
+  margin: 1rem 0 1.5rem;
+  outline: none;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 1.3rem 0;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.02em;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item p {
+  color: var(--ivory-soft);
+  max-width: 38rem;
+  line-height: 1.65;
+}
+
+.legal h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 500;
+}
+
+.legal h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 2.4rem 0 0.7rem;
+}
+
+.legal p,
+.legal li {
+  color: var(--ivory-soft);
+  line-height: 1.7;
+  max-width: 42rem;
+}
+
+.process-n {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+}
+
+.process-item + .process-item {
+  margin-top: 3.5rem;
+}
+
+.price-note {
+  max-width: 32rem;
+  margin-top: 2rem;
+}
+
+.voice-note {
+  max-width: 36rem;
+}
