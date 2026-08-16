@@ -174,22 +174,22 @@ export function OperationsDesk() {
 
   return (
     <div className="space-y-10">
-      <section className="luxury-panel rounded-[2rem] p-6 sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d7c4a1]">
+      <section className="luxury-panel rounded-sm p-6 sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b4b0a8]">
           House agents
         </p>
-        <h2 className="font-display mt-3 text-2xl text-[#f6f1e8] sm:text-3xl">
+        <h2 className="font-display mt-3 text-2xl text-[#f4f3ef] sm:text-3xl">
           They draft in this tab. They do not spend ad budget.
         </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-[#e8dcc8]">
-          Six house agents run in the browser, in sequence, at no extra model
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-[#cfcbc3]">
+          Seven house agents run in the browser, in sequence, at no extra model
           cost. They write a public homepage, SEO, Facebook/Instagram ads, Google
-          Ads (not AdSense), a social week, a 14-day customer plan, and a
-          measurement plan. Live ads still
+          Ads (not AdSense), a social week, a 14-day customer plan, first replies,
+          and a measurement plan. Live ads still
           need the client’s Meta or Google account, and money paid to those
           platforms.
         </p>
-        <p className="mt-4 text-sm text-[#d7c4a1]">
+        <p className="mt-4 text-sm text-[#b4b0a8]">
           {profile.businessName
             ? `Current desk: ${profile.businessName}${profile.location ? ` · ${profile.location}` : ""}`
             : "No business loaded yet."}
@@ -208,8 +208,7 @@ export function OperationsDesk() {
           </Button>
           <Button
             type="button"
-            variant="secondary"
-            className="text-[#f6f1e8]"
+            variant="inverse"
             onClick={() => loadTrial("gold")}
             disabled={running}
           >
@@ -217,24 +216,23 @@ export function OperationsDesk() {
           </Button>
           <Button
             type="button"
-            variant="secondary"
-            className="text-[#f6f1e8]"
+            variant="inverse"
             onClick={() => loadTrial("cafe")}
             disabled={running}
           >
             Run cafe example
           </Button>
-          <ButtonLink href="/proof" variant="secondary" className="text-[#f6f1e8]">
+          <ButtonLink href="/proof" variant="inverse">
             Proof ledger
           </ButtonLink>
         </div>
         {searchParams.get("trial") === "gold" ? (
-          <p className="mt-5 text-sm leading-6 text-[#e8dcc8]" role="status">
+          <p className="mt-5 text-sm leading-6 text-[#cfcbc3]" role="status">
             DW Gold Trading owner trial is on this desk. {DW_GOLD_TRIAL_NOTES.caution}
           </p>
         ) : null}
         {message ? (
-          <p className="mt-5 text-sm leading-6 text-[#e8dcc8]" role="status">
+          <p className="mt-5 text-sm leading-6 text-[#cfcbc3]" role="status">
             {message}
           </p>
         ) : null}
@@ -249,8 +247,8 @@ export function OperationsDesk() {
         {OPERATION_AGENTS.map((agent) => {
           const status = statusFor(agent.id);
           return (
-            <li key={agent.id} className="paper-card rounded-3xl border border-stone-200 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8c6a38]">
+            <li key={agent.id} className="paper-card rounded-sm border border-stone-200 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4d5c57]">
                 {status === "working"
                   ? "Working"
                   : status === "queued"
@@ -329,13 +327,13 @@ export function OperationsDesk() {
         </section>
       ) : null}
 
-      <aside className="rounded-3xl border border-[rgba(176,137,79,0.35)] bg-[#fffaf3] p-6">
+      <aside className="rounded-sm border border-[rgba(30,58,52,0.35)] bg-[#f4f3ef] p-6">
         <h2 className="font-display text-2xl text-stone-900">DW Gold Trading trial</h2>
         <p className="mt-3 text-sm leading-6 text-stone-600">
           Companies House lists DW Gold Trading Ltd ({DW_GOLD_TRIAL_NOTES.companyNumber})
           in Alfreton, Derbyshire, under education. The site{" "}
           <a
-            className="font-semibold text-[#8c6a38] underline-offset-2 hover:underline"
+            className="font-semibold text-[#4d5c57] underline-offset-2 hover:underline"
             href={DW_GOLD_TRIAL_NOTES.website}
             rel="noreferrer"
             target="_blank"

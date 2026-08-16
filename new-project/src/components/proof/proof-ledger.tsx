@@ -58,8 +58,8 @@ export function ProofLedger() {
     <div className="space-y-10">
       <section className="grid gap-4 sm:grid-cols-5">
         {(Object.keys(counts) as ProofKind[]).map((key) => (
-          <div key={key} className="paper-card rounded-3xl border border-stone-200 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8c6a38]">
+          <div key={key} className="paper-card rounded-sm border border-stone-200 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4d5c57]">
               {PROOF_KIND_LABELS[key]}
             </p>
             <p className="font-display mt-2 text-3xl text-stone-900">{counts[key]}</p>
@@ -69,7 +69,7 @@ export function ProofLedger() {
 
       <form
         onSubmit={submit}
-        className="paper-card rounded-3xl border border-stone-200 p-6 sm:p-8"
+        className="paper-card rounded-sm border border-stone-200 p-6 sm:p-8"
       >
         <h2 className="font-display text-2xl text-stone-900">Log a real result</h2>
         <p className="mt-2 text-sm leading-6 text-stone-600">

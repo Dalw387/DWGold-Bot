@@ -41,14 +41,14 @@ export function HomepageBrief() {
   }
 
   return (
-    <div className="luxury-panel rounded-3xl p-6 sm:p-8">
-      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d7c4a1]">
+    <div className="luxury-panel rounded-sm p-6 sm:p-8">
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b4b0a8]">
         Live studio
       </p>
-      <h2 className="font-display mt-3 text-2xl text-[#f6f1e8] sm:text-3xl">
+      <h2 className="font-display mt-3 text-2xl text-[#f4f3ef] sm:text-3xl">
         Type the business. Watch a draft appear.
       </h2>
-      <label htmlFor="home-brief" className="mt-4 block text-sm text-[#e8dcc8]">
+      <label htmlFor="home-brief" className="mt-4 block text-sm text-[#cfcbc3]">
         One sentence is enough
       </label>
       <textarea
@@ -56,14 +56,14 @@ export function HomepageBrief() {
         rows={4}
         value={text}
         onChange={(event) => setText(event.target.value)}
-        className="mt-2 w-full resize-y rounded-2xl border border-[rgba(176,137,79,0.35)] bg-[#1a1714] px-4 py-3 text-sm leading-6 text-[#f6f1e8] outline-none focus:border-[#d7c4a1] focus:ring-2 focus:ring-[rgba(176,137,79,0.28)]"
+        className="mt-2 w-full resize-y rounded-2xl border border-[rgba(30,58,52,0.35)] bg-[#222221] px-4 py-3 text-sm leading-6 text-[#f4f3ef] outline-none focus:border-[#b4b0a8] focus:ring-2 focus:ring-[rgba(30,58,52,0.28)]"
       />
       <ul className="mt-3 flex flex-wrap gap-2">
         {parsed.summary.length > 0 ? (
           parsed.summary.map((item) => (
             <li
               key={item}
-              className="rounded-full border border-[rgba(176,137,79,0.3)] px-3 py-1 text-xs text-[#d7c4a1]"
+              className="rounded-sm border border-[rgba(30,58,52,0.3)] px-3 py-1 text-xs text-[#b4b0a8]"
             >
               {item}
             </li>
@@ -74,11 +74,11 @@ export function HomepageBrief() {
           </li>
         )}
       </ul>
-      <div className="mt-5 rounded-2xl border border-[rgba(176,137,79,0.25)] bg-[#241f1a] p-4">
-        <p className="text-xs uppercase tracking-[0.18em] text-[#d7c4a1]">
+      <div className="mt-5 rounded-2xl border border-[rgba(30,58,52,0.25)] bg-[#241f1a] p-4">
+        <p className="text-xs uppercase tracking-[0.18em] text-[#b4b0a8]">
           Sketch
         </p>
-        <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[#f3eee4]">
+        <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[#f4f3ef]">
           {preview?.text ?? "The sketch appears here when the sentence has enough detail."}
         </p>
       </div>
@@ -89,7 +89,7 @@ export function HomepageBrief() {
         <Button
           type="button"
           variant="secondary"
-          className="text-[#f6f1e8]"
+          className="text-[#f4f3ef]"
           onClick={() => {
             writeProfileStore(applyBrief(emptyGeneratorValues, parsed.patch));
             router.push("/operations");

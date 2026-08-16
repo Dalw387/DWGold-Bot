@@ -24,11 +24,11 @@ export function HowItWorks() {
     <section
       id="how-it-works"
       aria-labelledby="how-heading"
-      className="bg-[#efe8db] py-16 sm:py-24"
+      className="bg-[#eceae4] py-16 sm:py-24"
     >
       <Container>
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
             Method
           </p>
           <h2
@@ -47,9 +47,9 @@ export function HowItWorks() {
           {steps.map((step) => (
             <li
               key={step.number}
-              className="paper-card rounded-3xl border border-stone-200 p-6"
+              className="paper-card rounded-sm border border-stone-200 p-6"
             >
-              <p className="font-display text-sm tracking-[0.2em] text-[#8c6a38]">
+              <p className="font-display text-sm tracking-[0.2em] text-[#4d5c57]">
                 {step.number}
               </p>
               <h3 className="mt-4 font-display text-2xl text-stone-900">{step.title}</h3>

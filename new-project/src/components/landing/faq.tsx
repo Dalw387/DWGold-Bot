@@ -31,7 +31,7 @@ const items = [
 
 export function Faq() {
   return (
-    <section id="faq" aria-labelledby="faq-heading" className="bg-[#fffaf3] py-16 sm:py-24">
+    <section id="faq" aria-labelledby="faq-heading" className="bg-[#f4f3ef] py-16 sm:py-24">
       <Container>
         <h2
           id="faq-heading"

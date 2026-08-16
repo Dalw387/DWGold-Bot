@@ -51,7 +51,7 @@ export default function GuidePage() {
   return (
     <div className="mesh border-b border-stone-200">
       <Container className="max-w-3xl py-14 sm:py-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
           Simple guide
         </p>
         <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
@@ -63,8 +63,8 @@ export default function GuidePage() {
         </p>
         <ol className="mt-12 space-y-8">
           {steps.map((step) => (
-            <li key={step.n} className="paper-card rounded-3xl border border-stone-200 p-6 sm:p-8">
-              <p className="font-display text-sm tracking-[0.2em] text-[#8c6a38]">
+            <li key={step.n} className="paper-card rounded-sm border border-stone-200 p-6 sm:p-8">
+              <p className="font-display text-sm tracking-[0.2em] text-[#4d5c57]">
                 {step.n}
               </p>
               <h2 className="font-display mt-3 text-2xl text-stone-900">{step.title}</h2>

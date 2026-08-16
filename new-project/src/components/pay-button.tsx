@@ -19,7 +19,7 @@ export function PayButton({
   const [error, setError] = useState("");
   const link = stripePaymentLink();
   const label = housePriceLabel();
-  const muted = tone === "ink" ? "text-[#e8dcc8]" : "text-stone-600";
+  const muted = tone === "ink" ? "text-[#cfcbc3]" : "text-stone-600";
   const alert = tone === "ink" ? "text-[#f3c1c1]" : "text-red-800";
   const text = children ?? `Pay ${HOUSE_PRICE_SHORT} with Apple Pay or card`;
 

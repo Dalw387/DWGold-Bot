@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function PayThanksPage() {
   return (
     <Container className="max-w-2xl py-16 sm:py-24">
-      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
         Payment
       </p>
       <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-stone-900">

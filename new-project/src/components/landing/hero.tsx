@@ -5,16 +5,16 @@ import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 export function Hero() {
   return (
-    <section className="ink-hero border-b border-[rgba(176,137,79,0.25)]">
+    <section className="ink-hero border-b border-[rgba(30,58,52,0.25)]">
       <Container className="grid items-start gap-12 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d7c4a1]">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b4b0a8]">
             LocalLaunch AI · free studio · House Operations {HOUSE_PRICE_SHORT}
           </p>
-          <h1 className="font-display mt-6 max-w-xl text-4xl font-medium tracking-tight text-[#f6f1e8] sm:text-5xl lg:text-[3.55rem] lg:leading-[1.08]">
+          <h1 className="font-display mt-6 max-w-xl text-4xl font-medium tracking-tight text-[#f4f3ef] sm:text-5xl lg:text-[3.55rem] lg:leading-[1.08]">
             Write the posts. Ask for the work. Count only real enquiries.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-[#e8dcc8]">
+          <p className="mt-6 max-w-xl text-lg leading-8 text-[#cfcbc3]">
             Type the business in one sentence. Get Facebook, ads, SEO, and a
             public homepage draft you can paste today. Try it free. Pay{" "}
             {HOUSE_PRICE_SHORT} once if you want the full house desk.
@@ -23,7 +23,7 @@ export function Hero() {
             <ButtonLink href="/guide" variant="gold">
               Start in four steps
             </ButtonLink>
-            <ButtonLink href="/pay" variant="secondary" className="text-[#f6f1e8]">
+            <ButtonLink href="/pay" variant="secondary" className="text-[#f4f3ef]">
               Pay {HOUSE_PRICE_SHORT}
             </ButtonLink>
           </div>

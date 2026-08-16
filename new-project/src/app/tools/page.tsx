@@ -18,7 +18,7 @@ export default function ToolsPage() {
     <PlatformGate>
       <div className="mesh border-b border-stone-200">
         <Container className="py-14 sm:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
             Studio
           </p>
           <h1 className="font-display mt-3 max-w-3xl text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
@@ -47,18 +47,18 @@ export default function ToolsPage() {
                       <li key={tool.slug}>
                         <Link
                           href={`/tools/${tool.slug}`}
-                          className="paper-card flex h-full flex-col rounded-3xl border border-stone-200 p-6 transition hover:-translate-y-0.5 hover:border-[#b0894f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+                          className="paper-card flex h-full flex-col rounded-sm border border-stone-200 p-6 transition hover:-translate-y-0.5 hover:border-[#1e3a34] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
                         >
                           <h3 className="font-display text-2xl text-stone-900">
                             {tool.name}
                           </h3>
-                          <p className="mt-2 text-sm font-medium text-[#8c6a38]">
+                          <p className="mt-2 text-sm font-medium text-[#4d5c57]">
                             {tool.tagline}
                           </p>
                           <p className="mt-3 flex-1 text-sm leading-6 text-stone-600">
                             {tool.description}
                           </p>
-                          <p className="mt-5 text-sm font-semibold text-[#12100e]">
+                          <p className="mt-5 text-sm font-semibold text-[#191919]">
                             Open {tool.shortName}
                           </p>
                         </Link>

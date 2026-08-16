@@ -29,10 +29,10 @@ const features = [
 
 export function Features() {
   return (
-    <section id="features" aria-labelledby="features-heading" className="bg-[#fffaf3] py-16 sm:py-24">
+    <section id="features" aria-labelledby="features-heading" className="bg-[#f4f3ef] py-16 sm:py-24">
       <Container>
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
             Included
           </p>
           <h2
@@ -51,7 +51,7 @@ export function Features() {
           {features.map((feature) => (
             <li
               key={feature.title}
-              className="paper-card rounded-3xl border border-stone-200 p-6"
+              className="paper-card rounded-sm border border-stone-200 p-6"
             >
               <h3 className="font-display text-2xl text-stone-900">{feature.title}</h3>
               <p className="mt-3 text-sm leading-6 text-stone-600">{feature.body}</p>

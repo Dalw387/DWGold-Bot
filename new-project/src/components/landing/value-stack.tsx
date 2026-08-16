@@ -5,10 +5,10 @@ import { stackItems, vsAgency } from "@/lib/offer";
 
 export function ValueStack() {
   return (
-    <section id="stack" aria-labelledby="stack-heading" className="bg-[#efe8db] py-16 sm:py-24">
+    <section id="stack" aria-labelledby="stack-heading" className="bg-[#eceae4] py-16 sm:py-24">
       <Container>
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
             What {HOUSE_PRICE_SHORT} actually buys
           </p>
           <h2
@@ -24,14 +24,12 @@ export function ValueStack() {
             covers the desk. Everything after that is the return.
           </p>
         </div>
-        <ol className="mt-12 grid gap-4 md:grid-cols-2">
+        <ol className="mt-12 grid gap-8 border-t border-[#d8d4cc] pt-10 md:grid-cols-2">
           {stackItems.map((item, index) => (
-            <li key={item.item} className="paper-card rounded-3xl border border-stone-200 p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8c6a38]">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="font-display mt-3 text-xl text-stone-900">{item.item}</h3>
-              <p className="mt-2 text-sm leading-7 text-stone-600">{item.why}</p>
+            <li key={item.item}>
+              <p className="text-sm text-[#5f5c56]">{String(index + 1).padStart(2, "0")}</p>
+              <h3 className="font-display mt-2 text-xl text-[#191919]">{item.item}</h3>
+              <p className="mt-2 text-sm leading-7 text-[#5f5c56]">{item.why}</p>
             </li>
           ))}
         </ol>

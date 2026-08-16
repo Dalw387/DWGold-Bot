@@ -21,44 +21,41 @@ export default function PayPage() {
   const label = housePriceLabel();
 
   return (
-    <div className="ink-hero border-b border-[rgba(176,137,79,0.25)]">
+    <div className="border-b border-[#d8d4cc]">
       <OfferJsonLd />
       <Container className="max-w-3xl py-16 sm:py-24">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d7c4a1]">
-          Stripe checkout
-        </p>
-        <h1 className="font-display mt-4 text-4xl font-medium tracking-tight text-[#f6f1e8] sm:text-5xl">
-          Pay {HOUSE_PRICE_SHORT}. Unlock the desk that is aimed at more customers.
+        <p className="kicker">Stripe checkout</p>
+        <h1 className="font-display mt-4 text-4xl font-medium tracking-tight sm:text-5xl">
+          Pay {HOUSE_PRICE_SHORT}. Then start getting customers.
         </h1>
-        <p className="mt-5 text-base leading-7 text-[#e8dcc8]">
+        <p className="mt-5 text-base leading-7 text-[#5f5c56]">
           You leave this site and pay on Stripe. Apple Pay, Google Pay, Link, or
-          a card. The money goes to the LocalLaunch Stripe account. We never see
-          your card number. After payment, Stripe should send you back here and
-          this browser unlocks the studio.
+          a card. We never see your card number. After payment, Stripe should
+          send you back here and this browser unlocks the desk.
         </p>
-        <p className="mt-4 text-lg text-[#f6f1e8]">{label}</p>
-        <p className="mt-3 text-sm leading-6 text-[#b3a28c]">
+        <p className="mt-4 text-lg">{label}</p>
+        <p className="mt-3 text-sm leading-6 text-[#5f5c56]">
           {HOUSE_PRODUCT_DESCRIPTION}
         </p>
-        <ul className="mt-8 space-y-3 text-sm leading-6 text-[#e8dcc8]">
+        <ul className="mt-8 list-disc space-y-3 pl-5 text-sm leading-6 text-[#3a3936]">
           {includedAfterPay.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <div className="mt-10 rounded-3xl border border-[rgba(176,137,79,0.3)] p-6">
-          <h2 className="font-display text-2xl text-[#f6f1e8]">Leave your email first</h2>
-          <p className="mt-2 text-sm leading-6 text-[#e8dcc8]">
-            Optional, but useful. We save it for later products, and Stripe can
-            open with it filled in.
+        <div className="mt-10 border border-[#d8d4cc] p-6">
+          <h2 className="font-display text-2xl">Leave your email first</h2>
+          <p className="mt-2 text-sm leading-6 text-[#5f5c56]">
+            Optional. We save it for later products, and Stripe can open with it
+            filled in.
           </p>
           <div className="mt-6">
-            <EmailCapture tone="ink" source="pay" />
+            <EmailCapture source="pay" />
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
           <StripePayLink>Continue to Stripe · {HOUSE_PRICE_SHORT}</StripePayLink>
-          <ButtonLink href="/#help" variant="secondary" className="text-[#f6f1e8]">
-            Read the full offer first
+          <ButtonLink href="/#value" variant="secondary">
+            Read why it is worth {HOUSE_PRICE_SHORT}
           </ButtonLink>
         </div>
       </Container>

@@ -3,10 +3,10 @@ import { weDo, weNever, youDo } from "@/lib/offer";
 
 export function HonestSplit() {
   return (
-    <section id="split" aria-labelledby="split-heading" className="bg-[#efe8db] py-16 sm:py-24">
+    <section id="split" aria-labelledby="split-heading" className="bg-[#eceae4] py-16 sm:py-24">
       <Container>
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
             Who does what
           </p>
           <h2
@@ -23,7 +23,7 @@ export function HonestSplit() {
           </p>
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          <article className="paper-card rounded-3xl border border-stone-200 p-6 sm:p-8">
+          <article className="paper-card rounded-sm border border-stone-200 p-6 sm:p-8">
             <h3 className="font-display text-2xl text-stone-900">The platform does</h3>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-stone-600">
               {weDo.map((item) => (
@@ -31,7 +31,7 @@ export function HonestSplit() {
               ))}
             </ul>
           </article>
-          <article className="paper-card rounded-3xl border border-stone-200 p-6 sm:p-8">
+          <article className="paper-card rounded-sm border border-stone-200 p-6 sm:p-8">
             <h3 className="font-display text-2xl text-stone-900">You still do</h3>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-stone-600">
               {youDo.map((item) => (
@@ -39,9 +39,9 @@ export function HonestSplit() {
               ))}
             </ul>
           </article>
-          <article className="rounded-3xl border border-[rgba(176,137,79,0.45)] bg-[#12100e] p-6 text-[#f6f1e8] sm:p-8">
+          <article className="rounded-sm border border-[rgba(30,58,52,0.45)] bg-[#191919] p-6 text-[#f4f3ef] sm:p-8">
             <h3 className="font-display text-2xl">We never</h3>
-            <ul className="mt-5 space-y-3 text-sm leading-6 text-[#e8dcc8]">
+            <ul className="mt-5 space-y-3 text-sm leading-6 text-[#cfcbc3]">
               {weNever.map((item) => (
                 <li key={item}>{item}</li>
               ))}

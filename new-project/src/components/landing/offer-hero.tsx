@@ -1,35 +1,38 @@
 import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
+import { BrandMark } from "@/components/logo";
 import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
-import { OFFER_TAGLINE } from "@/lib/offer";
 
 export function OfferHero() {
   return (
-    <section className="ink-hero border-b border-[rgba(176,137,79,0.25)]">
-      <Container className="max-w-3xl py-16 sm:py-24">
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d7c4a1]">
-          LocalLaunch AI · {HOUSE_PRICE_SHORT} one-off
-        </p>
-        <h1 className="font-display mt-6 text-4xl font-medium tracking-tight text-[#f6f1e8] sm:text-5xl lg:text-[3.4rem] lg:leading-[1.1]">
-          Get more local customers for {HOUSE_PRICE_SHORT}. One extra job can cover the desk.
+    <section className="border-b border-[#d8d4cc]">
+      <Container className="max-w-3xl py-20 sm:py-28">
+        <BrandMark className="h-10 w-10" />
+        <p className="kicker mt-10">LocalLaunch · {HOUSE_PRICE_SHORT} once</p>
+        <h1 className="font-display mt-5 text-4xl font-medium tracking-tight text-[#191919] sm:text-5xl lg:text-[3.35rem] lg:leading-[1.12]">
+          One extra job covers the {HOUSE_PRICE_SHORT}. The next customer is money in the till.
         </h1>
-        <p className="mt-6 text-lg leading-8 text-[#e8dcc8]">
-          This is the desk that writes the words that get you found, asked,
-          followed up, and paid: a public page, posts, ads drafts, first replies,
-          referrals, phone scripts, a 14-day plan, and a ledger of real
-          enquiries. Read the offer. If you are happy, pay once on Stripe. The
-          platform unlocks in this browser. The next customer after that is the
-          return.
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-[#3a3936]">
+          A desk that writes the words a local business needs to get found,
+          asked, followed up, and paid. Read it. If it is a fit, pay once on
+          Stripe. This browser then opens the platform.
         </p>
-        <p className="mt-4 text-sm leading-6 text-[#d7c4a1]">{OFFER_TAGLINE}</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="#help" variant="gold">
-            How we help you get customers
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href="#value" variant="primary">
+            See why it is worth {HOUSE_PRICE_SHORT}
           </ButtonLink>
-          <StripePayLink variant="secondary" className="text-[#f6f1e8]">
-            I have read it · pay {HOUSE_PRICE_SHORT}
-          </StripePayLink>
+          <ButtonLink href="/sample" variant="secondary">
+            Look at a real sample
+          </ButtonLink>
+        </div>
+        <p className="mt-8 max-w-xl text-sm leading-6 text-[#5f5c56]">
+          Not a monthly retainer. Not ad spend. Not a promise of a full diary.
+          If one extra job, visit, or booking comes from this desk, the{" "}
+          {HOUSE_PRICE_SHORT} is already behind you.
+        </p>
+        <div className="mt-8">
+          <StripePayLink variant="ghost">Pay {HOUSE_PRICE_SHORT} on Stripe</StripePayLink>
         </div>
       </Container>
     </section>

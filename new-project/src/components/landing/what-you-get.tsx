@@ -6,49 +6,51 @@ export function WhatYouGet() {
     <section
       id="what-you-get"
       aria-labelledby="get-heading"
-      className="bg-[#efe8db] py-16 sm:py-24"
+      className="border-y border-[#d8d4cc] py-16 sm:py-24"
     >
       <Container>
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
-            What you get after you pay
-          </p>
+          <p className="kicker">What you get after you pay</p>
           <h2
             id="get-heading"
-            className="font-display mt-3 text-3xl font-medium tracking-tight text-stone-900 sm:text-5xl"
+            className="font-display mt-4 text-3xl font-medium tracking-tight sm:text-5xl"
           >
-            The whole platform. Every room. Every agent. Aimed at customers.
+            Twenty-two rooms. Seven agents. One set of facts.
           </h2>
-          <p className="mt-4 text-base leading-7 text-stone-600">
-            You type the business once. Name, type, town, and offer. Those facts
-            feed every room. You can fill an example, or tell the concierge a
-            sentence. Then generate, edit, copy, or download. Nothing is sent to
-            a paid AI company.
+          <p className="mt-4 text-base leading-7 text-[#5f5c56]">
+            Type the business once. Name, type, town, and offer. Those facts
+            feed every room. Generate, edit, copy, or download. Nothing is sent
+            to a paid AI company.
           </p>
         </div>
-        <h3 className="font-display mt-12 text-2xl text-stone-900">Every drafting room</h3>
-        <ul className="mt-6 grid gap-4 md:grid-cols-2">
+        <h3 className="font-display mt-14 text-2xl">Drafting rooms</h3>
+        <dl className="mt-6 divide-y divide-[#d8d4cc] border-y border-[#d8d4cc]">
           {rooms.map((room) => (
-            <li key={room.name} className="paper-card rounded-3xl border border-stone-200 p-5 sm:p-6">
-              <h4 className="font-display text-xl text-stone-900">{room.name}</h4>
-              <p className="mt-2 text-sm leading-7 text-stone-600">{room.help}</p>
-            </li>
+            <div
+              key={room.name}
+              className="grid gap-2 py-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]"
+            >
+              <dt className="font-medium text-[#191919]">{room.name}</dt>
+              <dd className="text-sm leading-7 text-[#5f5c56]">{room.help}</dd>
+            </div>
           ))}
-        </ul>
-        <h3 className="font-display mt-14 text-2xl text-stone-900">Seven house agents</h3>
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-stone-600">
-          House Operations runs the agents in a queue in this browser tab. They
-          draft. They do not spend. Press one button for all seven, or run one
-          agent at a time.
+        </dl>
+        <h3 className="font-display mt-14 text-2xl">House agents</h3>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5f5c56]">
+          House Operations runs them in this browser tab. They draft. They do
+          not spend. Press one button for all seven, or run one at a time.
         </p>
-        <ul className="mt-6 grid gap-4 lg:grid-cols-3 md:grid-cols-2">
+        <dl className="mt-6 divide-y divide-[#d8d4cc] border-y border-[#d8d4cc]">
           {agents.map((agent) => (
-            <li key={agent.name} className="paper-card rounded-3xl border border-stone-200 p-5">
-              <h4 className="font-display text-lg text-stone-900">{agent.name}</h4>
-              <p className="mt-2 text-sm leading-6 text-stone-600">{agent.help}</p>
-            </li>
+            <div
+              key={agent.name}
+              className="grid gap-2 py-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]"
+            >
+              <dt className="font-medium text-[#191919]">{agent.name}</dt>
+              <dd className="text-sm leading-7 text-[#5f5c56]">{agent.help}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </Container>
     </section>
   );

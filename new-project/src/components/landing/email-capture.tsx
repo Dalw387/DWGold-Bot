@@ -18,7 +18,7 @@ export function EmailCapture({
   const [message, setMessage] = useState("");
   const ink = tone === "ink";
   const field = ink
-    ? "mt-2 w-full rounded-xl border border-[rgba(176,137,79,0.35)] bg-[#1a1714] px-3.5 py-2.5 text-sm text-[#f6f1e8]"
+    ? "mt-2 w-full rounded-xl border border-[rgba(30,58,52,0.35)] bg-[#222221] px-3.5 py-2.5 text-sm text-[#f4f3ef]"
     : "mt-2 w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-900";
 
   async function onSubmit(event: FormEvent) {
@@ -59,7 +59,7 @@ export function EmailCapture({
   return (
     <form onSubmit={(event) => void onSubmit(event)} noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className={`text-sm font-medium ${ink ? "text-[#f6f1e8]" : "text-stone-900"}`}>
+        <label className={`text-sm font-medium ${ink ? "text-[#f4f3ef]" : "text-stone-900"}`}>
           Name <span className={ink ? "text-[#b3a28c]" : "text-stone-500"}>(optional)</span>
           <input
             name="name"
@@ -69,7 +69,7 @@ export function EmailCapture({
             className={field}
           />
         </label>
-        <label className={`text-sm font-medium ${ink ? "text-[#f6f1e8]" : "text-stone-900"}`}>
+        <label className={`text-sm font-medium ${ink ? "text-[#f4f3ef]" : "text-stone-900"}`}>
           Email
           <input
             name="email"
@@ -82,7 +82,7 @@ export function EmailCapture({
           />
         </label>
       </div>
-      <label className={`mt-4 flex items-start gap-3 text-sm leading-6 ${ink ? "text-[#e8dcc8]" : "text-stone-600"}`}>
+      <label className={`mt-4 flex items-start gap-3 text-sm leading-6 ${ink ? "text-[#cfcbc3]" : "text-stone-600"}`}>
         <input
           type="checkbox"
           checked={consent}
@@ -105,7 +105,7 @@ export function EmailCapture({
                 ? "text-[#f3c1c1]"
                 : "text-red-800"
               : ink
-                ? "text-[#d7c4a1]"
+                ? "text-[#b4b0a8]"
                 : "text-stone-600"
           }`}
           role="status"

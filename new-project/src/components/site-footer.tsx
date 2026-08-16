@@ -14,12 +14,11 @@ import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import { TOOLS } from "@/lib/tools";
 
 const publicExplore = [
-  { href: "/#help", label: "How we help" },
-  { href: "/#value", label: "Value" },
-  { href: "/#stack", label: "What you buy" },
-  { href: "/#what-you-get", label: "What you get" },
-  { href: "/#email", label: "Email list" },
+  { href: "/#value", label: "Why £197" },
+  { href: "/#what-you-get", label: "Included" },
+  { href: "/sample", label: "Sample" },
   { href: "/guide", label: "How it works" },
+  { href: "/#email", label: "Email list" },
   { href: "/pay", label: `Pay ${HOUSE_PRICE_SHORT}` },
 ];
 
@@ -45,7 +44,7 @@ export function SiteFooter() {
   const explore = access.unlocked ? memberExplore : publicExplore;
 
   return (
-    <footer className="border-t border-[rgba(176,137,79,0.25)] bg-[#fffaf3]">
+    <footer className="border-t border-[rgba(30,58,52,0.25)] bg-[#f4f3ef]">
       <Container className="grid gap-10 py-12 md:grid-cols-[1.1fr_1fr_1fr]">
         <div>
           <Logo compact />
@@ -63,7 +62,7 @@ export function SiteFooter() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm text-stone-600 hover:text-[#8c6a38] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+                  className="text-sm text-stone-600 hover:text-[#4d5c57] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
                 >
                   {link.label}
                 </Link>
@@ -81,7 +80,7 @@ export function SiteFooter() {
                 {access.unlocked ? (
                   <Link
                     href={`/tools/${tool.slug}`}
-                    className="text-sm text-stone-600 hover:text-[#8c6a38] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+                    className="text-sm text-stone-600 hover:text-[#4d5c57] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
                   >
                     {tool.shortName}
                   </Link>

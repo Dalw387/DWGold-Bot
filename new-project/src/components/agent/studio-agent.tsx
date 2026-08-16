@@ -123,16 +123,16 @@ export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" })
       id={variant === "dock" ? "studio-agent-panel" : "house-concierge"}
       className={
         variant === "page"
-          ? "flex min-h-[32rem] flex-col overflow-hidden rounded-[2rem] border border-[rgba(176,137,79,0.35)] bg-[#fffaf3] shadow-2xl"
-          : "fixed right-4 bottom-20 z-50 flex h-[min(32rem,70vh)] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-[rgba(176,137,79,0.35)] bg-[#fffaf3] shadow-2xl"
+          ? "flex min-h-[32rem] flex-col overflow-hidden border border-[#d8d4cc] bg-[#f4f3ef]"
+          : "fixed right-4 bottom-20 z-50 flex h-[min(32rem,70vh)] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden border border-[#d8d4cc] bg-[#f4f3ef]"
       }
       aria-labelledby={titleId}
     >
-      <header className="border-b border-[rgba(176,137,79,0.25)] bg-[#12100e] px-5 py-4 text-[#f6f1e8]">
+      <header className="border-b border-[#d8d4cc] bg-[#191919] px-5 py-4 text-[#f4f3ef]">
         <h2 id={titleId} className="font-display text-xl">
           {variant === "page" ? "House concierge" : "Studio assistant"}
         </h2>
-        <p className="mt-1 text-xs text-[#e8dcc8]">
+        <p className="mt-1 text-xs text-[#cfcbc3]">
           Browser-only helper. No paid AI model is called. {variant === "dock" ? "Shortcut: Ctrl or Cmd + K." : ""}
         </p>
       </header>
@@ -142,8 +142,8 @@ export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" })
             key={line.id}
             className={`whitespace-pre-wrap rounded-2xl px-3 py-2 text-sm leading-6 ${
               line.role === "agent"
-                ? "bg-[#f3eee4] text-stone-800"
-                : "ml-6 bg-[#12100e] text-[#f6f1e8]"
+                ? "bg-[#f4f3ef] text-stone-800"
+                : "ml-6 bg-[#191919] text-[#f4f3ef]"
             }`}
           >
             {line.text}
@@ -172,7 +172,7 @@ export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" })
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
           placeholder="DW Gold Trading is gold trading education in Alfreton. Run the house agents."
-          className="w-full resize-none rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-[#b0894f] focus:ring-2 focus:ring-[rgba(176,137,79,0.25)]"
+          className="w-full resize-none rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-[#1e3a34] focus:ring-2 focus:ring-[rgba(30,58,52,0.25)]"
         />
         <div className="mt-2 flex justify-end">
           <Button type="submit" className="px-4 py-2">
@@ -191,7 +191,7 @@ export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" })
     <div className="no-print">
       <button
         type="button"
-        className="fixed right-4 bottom-4 z-50 rounded-full border border-[rgba(176,137,79,0.45)] bg-[#12100e] px-4 py-3 text-sm font-semibold text-[#f6f1e8] shadow-lg hover:bg-[#1c1916] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+        className="fixed right-4 bottom-4 z-50 border border-[#191919] bg-[#191919] px-4 py-3 text-sm font-semibold text-[#f4f3ef] hover:bg-[#2a2a28] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#191919]"
         aria-expanded={open}
         aria-controls="studio-agent-panel"
         onClick={() => setOpen((value) => !value)}

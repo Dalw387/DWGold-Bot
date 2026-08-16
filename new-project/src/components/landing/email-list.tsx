@@ -3,10 +3,10 @@ import { EmailCapture } from "@/components/landing/email-capture";
 
 export function EmailList() {
   return (
-    <section id="email" aria-labelledby="email-heading" className="bg-[#efe8db] py-16 sm:py-24">
+    <section id="email" aria-labelledby="email-heading" className="bg-[#eceae4] py-16 sm:py-24">
       <Container className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
             Stay on the list
           </p>
           <h2
@@ -21,7 +21,7 @@ export function EmailList() {
             not sell the list.
           </p>
         </div>
-        <div className="paper-card rounded-3xl border border-stone-200 p-6 sm:p-8">
+        <div className="paper-card rounded-sm border border-stone-200 p-6 sm:p-8">
           <EmailCapture source="homepage" />
         </div>
       </Container>

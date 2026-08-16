@@ -4,11 +4,11 @@ import { TOOLS } from "@/lib/tools";
 
 export function ToolsBand() {
   return (
-    <section id="tools" aria-labelledby="tools-heading" className="bg-[#fffaf3] py-16 sm:py-24">
+    <section id="tools" aria-labelledby="tools-heading" className="bg-[#f4f3ef] py-16 sm:py-24">
       <Container>
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
               The house toolkit
             </p>
             <h2
@@ -25,7 +25,7 @@ export function ToolsBand() {
           </div>
           <Link
             href="/tools"
-            className="text-sm font-semibold text-[#8c6a38] hover:text-[#12100e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+            className="text-sm font-semibold text-[#4d5c57] hover:text-[#191919] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
           >
             View the full toolkit
           </Link>
@@ -35,14 +35,14 @@ export function ToolsBand() {
             <li key={tool.slug}>
               <Link
                 href={`/tools/${tool.slug}`}
-                className="paper-card flex h-full flex-col rounded-3xl border border-stone-200 p-5 transition hover:-translate-y-0.5 hover:border-[#b0894f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+                className="paper-card flex h-full flex-col rounded-sm border border-stone-200 p-5 transition hover:-translate-y-0.5 hover:border-[#1e3a34] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8c6a38]">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4d5c57]">
                   {tool.category}
                 </p>
                 <h3 className="mt-2 font-display text-xl text-stone-900">{tool.name}</h3>
                 <p className="mt-2 flex-1 text-sm leading-6 text-stone-600">{tool.tagline}</p>
-                <p className="mt-4 text-sm font-semibold text-[#12100e]">Open</p>
+                <p className="mt-4 text-sm font-semibold text-[#191919]">Open</p>
               </Link>
             </li>
           ))}

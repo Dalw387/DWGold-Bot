@@ -4,7 +4,7 @@ import { Faq } from "@/components/landing/faq";
 import { HelpBusiness } from "@/components/landing/help-business";
 import { HonestSplit } from "@/components/landing/honest-split";
 import { OfferHero } from "@/components/landing/offer-hero";
-import { ValueForMoney } from "@/components/landing/value-for-money";
+import { OneJobCover } from "@/components/landing/one-job-cover";
 import { ValueStack } from "@/components/landing/value-stack";
 import { WeekWithUs } from "@/components/landing/week-with-us";
 import { WhatYouGet } from "@/components/landing/what-you-get";
@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <OfferJsonLd />
       <OfferHero />
-      <ValueForMoney />
+      <OneJobCover />
       <ValueStack />
       <HelpBusiness />
       <WhatYouGet />

@@ -16,11 +16,9 @@ import {
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const publicLinks = [
-  { href: "/#help", label: "How we help" },
-  { href: "/#value", label: "Value" },
-  { href: "/#stack", label: "What you buy" },
-  { href: "/#what-you-get", label: "What you get" },
-  { href: "/#email", label: "Email list" },
+  { href: "/#value", label: "Why £197" },
+  { href: "/#what-you-get", label: "Included" },
+  { href: "/sample", label: "Sample" },
   { href: "/guide", label: "How it works" },
 ];
 
@@ -69,7 +67,7 @@ export function SiteHeader() {
   const links = access.unlocked ? memberLinks : publicLinks;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[rgba(176,137,79,0.28)] bg-[#fffaf3]/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[#d8d4cc] bg-[#f4f3ef]/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
@@ -82,9 +80,9 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-full px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f] ${
+                className={`rounded-sm px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34] ${
                   active
-                    ? "bg-[#12100e] text-[#f6f1e8]"
+                    ? "bg-[#191919] text-[#f4f3ef]"
                     : "text-stone-600 hover:text-stone-900"
                 }`}
               >
@@ -109,7 +107,7 @@ export function SiteHeader() {
         </nav>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-700 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-stone-200 bg-white text-stone-700 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
@@ -129,13 +127,13 @@ export function SiteHeader() {
         </button>
       </Container>
       {open ? (
-        <div id={menuId} className="border-t border-stone-200 bg-[#fffaf3] md:hidden">
+        <div id={menuId} className="border-t border-stone-200 bg-[#f4f3ef] md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-3 text-base font-medium text-stone-800 hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+                className="rounded-xl px-3 py-3 text-base font-medium text-stone-800 hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

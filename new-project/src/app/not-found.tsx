@@ -14,13 +14,13 @@ export default function NotFound() {
       <p className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <Link
           href="/"
-          className="rounded-full bg-[#12100e] px-5 py-3 text-sm font-semibold text-[#f6f1e8] hover:bg-[#1d1915] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+          className="rounded-sm bg-[#191919] px-5 py-3 text-sm font-semibold text-[#f4f3ef] hover:bg-[#2a2a28] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
         >
           Back to homepage
         </Link>
         <Link
           href="/operations"
-          className="rounded-full border border-[rgba(176,137,79,0.45)] bg-white px-5 py-3 text-sm font-semibold text-stone-900 hover:border-[#b0894f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
+          className="rounded-sm border border-[rgba(30,58,52,0.45)] bg-white px-5 py-3 text-sm font-semibold text-stone-900 hover:border-[#1e3a34] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
         >
           House Operations
         </Link>

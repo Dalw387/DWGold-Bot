@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import { Newsreader, Source_Sans_3 } from "next/font/google";
 import { StudioAgent } from "@/components/agent/studio-agent";
-import { GoldCursor } from "@/components/luxury/gold-cursor";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { StickyPayBar } from "@/components/landing/sticky-pay-bar";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-source-sans",
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-newsreader",
   display: "swap",
-  axes: ["SOFT", "WONK"],
 });
 
 export const metadata: Metadata = {
@@ -24,16 +23,16 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000",
   ),
   title: {
-    default: "LocalLaunch AI — house marketing studio for small businesses",
-    template: "%s | LocalLaunch AI",
+    default: "LocalLaunch — a customer-getting desk for local businesses",
+    template: "%s | LocalLaunch",
   },
   description:
-    "How LocalLaunch helps a local business get more customers. Pay £197 once. Twenty-two rooms, seven agents, a 14-day plan, and a proof ledger.",
-  applicationName: "LocalLaunch AI",
+    "Pay £197 once. Get the words, the plan, and the desk to win more local customers. One extra job can cover it.",
+  applicationName: "LocalLaunch",
   openGraph: {
-    title: "LocalLaunch AI",
+    title: "LocalLaunch",
     description:
-      "Get more local customers for £197 once. Twenty-two rooms, seven agents, a 14-day plan. Proof is real enquiries, not likes.",
+      "A £197 desk for local businesses. One extra job can cover it. The next customer is the return.",
     locale: "en_GB",
     type: "website",
   },
@@ -43,13 +42,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-GB"
-      className={`${plusJakarta.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${sourceSans.variable} ${newsreader.variable} h-full antialiased`}
     >
-      <body className="relative flex min-h-full flex-col bg-background font-sans text-stone-900">
-        <GoldCursor />
+      <body className="relative flex min-h-full flex-col bg-background pb-20 font-sans text-[#191919] md:pb-0">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:shadow focus:outline-2 focus:outline-offset-2 focus:outline-[#b0894f]"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:outline-2 focus:outline-offset-2 focus:outline-[#1e3a34]"
         >
           Skip to content
         </a>
@@ -58,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <StickyPayBar />
         <StudioAgent />
       </body>
     </html>

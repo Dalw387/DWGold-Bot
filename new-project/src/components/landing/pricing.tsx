@@ -25,10 +25,10 @@ const house = [
 
 export function Pricing() {
   return (
-    <section id="pricing" aria-labelledby="pricing-heading" className="bg-[#fffaf3] py-16 sm:py-24">
+    <section id="pricing" aria-labelledby="pricing-heading" className="bg-[#f4f3ef] py-16 sm:py-24">
       <Container>
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
             Pricing
           </p>
           <h2
@@ -45,8 +45,8 @@ export function Pricing() {
           </p>
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <article className="paper-card rounded-[2rem] border border-stone-200 p-8 sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8c6a38]">
+          <article className="paper-card rounded-sm border border-stone-200 p-8 sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#4d5c57]">
               Complimentary
             </p>
             <h3 className="font-display mt-3 text-4xl text-stone-900">Studio</h3>
@@ -65,20 +65,20 @@ export function Pricing() {
               Start without paying
             </ButtonLink>
           </article>
-          <article className="rounded-[2rem] border border-[rgba(176,137,79,0.45)] bg-[#12100e] p-8 text-[#f6f1e8] sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d7c4a1]">
+          <article className="rounded-sm border border-[rgba(30,58,52,0.45)] bg-[#191919] p-8 text-[#f4f3ef] sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b4b0a8]">
               Paid in Stripe
             </p>
             <h3 className="font-display mt-3 text-4xl">House Operations</h3>
-            <p className="mt-2 text-4xl font-medium text-[#f6f1e8]">{HOUSE_PRICE_SHORT}</p>
-            <p className="mt-1 text-sm text-[#d7c4a1]">One-off</p>
-            <p className="mt-3 text-sm text-[#e8dcc8]">
+            <p className="mt-2 text-4xl font-medium text-[#f4f3ef]">{HOUSE_PRICE_SHORT}</p>
+            <p className="mt-1 text-sm text-[#b4b0a8]">One-off</p>
+            <p className="mt-3 text-sm text-[#cfcbc3]">
               Apple Pay, Google Pay, Link, or card. You pay on Stripe. We do not
               store card numbers here.
             </p>
             <ul className="mt-8 grid gap-3 text-sm leading-6 sm:grid-cols-2">
               {house.map((item) => (
-                <li key={item} className="border-t border-[rgba(176,137,79,0.2)] pt-3">
+                <li key={item} className="border-t border-[rgba(30,58,52,0.2)] pt-3">
                   {item}
                 </li>
               ))}

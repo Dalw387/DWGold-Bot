@@ -17,7 +17,7 @@ export function StripePayLink({
 }: {
   children: ReactNode;
   className?: string;
-  variant?: "primary" | "secondary" | "ghost" | "gold";
+  variant?: "primary" | "secondary" | "ghost" | "gold" | "inverse";
 }) {
   const email = useSyncExternalStore(
     subscribeLeadEmail,
