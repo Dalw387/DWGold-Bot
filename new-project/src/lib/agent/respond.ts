@@ -104,7 +104,7 @@ export function respondToMessage(
     }
     return {
       reply: profileReady(profile)
-        ? `House Operations is the desk for SEO, ads, social, and a measurement plan.${liveSketch(profile)}\n\nI will open the desk. The agents draft in this tab. They do not spend ad budget.`
+        ? `House Operations is the desk for SEO, ads, social, replies, and a measurement plan.${liveSketch(profile)}\n\nI will open the desk. The agents draft in this tab. They do not spend ad budget.`
         : "House Operations can run once we have a name, type, town, and offer. Load the DW Gold Trading trial on that page if this is the owner test, or tell me the business here.",
       goTo: "/operations",
     };

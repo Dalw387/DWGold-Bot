@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PlatformGate } from "@/components/access/platform-gate";
 import { Container } from "@/components/container";
+import { ROOM_COUNT_TITLE } from "@/lib/counts";
 import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "Studio",
   description:
-    "Nineteen drafting rooms: social, listings, SEO, ads, referrals, follow-ups, print, phone, and a 14-day customer plan.",
+    "Twenty-two drafting rooms: social, listings, SEO, ads, referrals, first replies, follow-ups, print, phone, and a 14-day customer plan.",
 };
 
 const categories = ["Customers", "Growth", "Social", "Listings", "Planning", "Website"] as const;
@@ -21,13 +22,13 @@ export default function ToolsPage() {
             Studio
           </p>
           <h1 className="font-display mt-3 max-w-3xl text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
-            Nineteen drafting rooms. One set of facts.
+            {ROOM_COUNT_TITLE} drafting rooms. One set of facts.
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
             Every tool uses the same details: templates, no paid AI, and no
-            invented awards. House Operations sits above this toolkit for SEO,
-            ads agents, and a proof plan. Your form stays in this browser tab so
-            you can hop between rooms.
+            invented awards. {ROOM_COUNT_TITLE} rooms sit under House Operations
+            for SEO, ads, replies, and a proof plan. Your form stays in this
+            browser tab so you can hop between rooms.
           </p>
           <div className="mt-12 space-y-12">
             {categories.map((category) => {

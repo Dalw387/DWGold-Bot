@@ -1,6 +1,12 @@
 import { generateAdsCopy } from "@/lib/copy/ads";
 import { generateContentPlan } from "@/lib/copy/content-plan";
-import { generateCustomerPlan } from "@/lib/copy/outreach";
+import {
+  generateAfterJob,
+  generateCustomerPlan,
+  generateEnquiryReplies,
+  generateFollowUps,
+  generateQuietWeek,
+} from "@/lib/copy/outreach";
 import { generatePublicHomepage } from "@/lib/copy/public-site";
 import { generateSeoBriefs } from "@/lib/copy/seo";
 import type { GeneratedPost, GeneratorFormValues } from "@/lib/types";
@@ -47,6 +53,13 @@ export const OPERATION_AGENTS = [
     summary:
       "A 14-day plan and a daily habit for getting real enquiries, not likes.",
   },
+  {
+    id: "replies",
+    name: "Reply agent",
+    short: "Replies",
+    summary:
+      "First reply to an enquiry, after-the-job thank you, and a calm way to fill a quiet week.",
+  },
 ] as const;
 
 export type OperationAgentId = (typeof OPERATION_AGENTS)[number]["id"];
@@ -91,6 +104,13 @@ export function runOperationAgent(
       ];
     case "customers":
       return generateCustomerPlan(values);
+    case "replies":
+      return [
+        ...generateEnquiryReplies(values),
+        ...generateFollowUps(values).slice(0, 1),
+        ...generateAfterJob(values),
+        ...generateQuietWeek(values).slice(0, 1),
+      ];
     default: {
       const exhaustive: never = agentId;
       throw new Error(`Unknown agent: ${exhaustive}`);

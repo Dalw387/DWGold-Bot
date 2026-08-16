@@ -61,10 +61,6 @@ export default function PayPage() {
             Read the full offer first
           </ButtonLink>
         </div>
-        <p className="mt-8 text-sm leading-6 text-[#b3a28c]">
-          In the Stripe Payment Link, set “After payment” to your live site’s
-          /pay/thanks page. That is the door into the platform.
-        </p>
       </Container>
     </div>
   );

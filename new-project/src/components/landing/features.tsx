@@ -14,7 +14,7 @@ const features = [
     body: "Log real enquiries, calls, visits, and sales. Zero is an honest week. We will not invent a customer count.",
   },
   {
-    title: "Thirteen drafting rooms",
+    title: "Twenty-two drafting rooms",
     body: "Facebook, Instagram, listings, WhatsApp, email, website, notices, reviews, SEO, ads copy, and a full campaign pack.",
   },
   {

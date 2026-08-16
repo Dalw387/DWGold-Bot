@@ -47,6 +47,10 @@ export const helpPoints = [
     body: "Most new work for a local business comes from someone who already met you, or from a neighbour they told. The desk writes referral asks, calm follow-ups, window cards, phone and voicemail scripts, and introductions to nearby businesses — plus a 14-day plan of what to do so strangers can actually enquire.",
   },
   {
+    title: "Win the job in the first reply",
+    body: "A stranger who messages you is already warmer than a like. The enquiry room writes the first reply, the honest price-question reply, and the booking reply. After the job, it writes the thank-you, the review ask, and the one-neighbour referral. If the phone is quiet, it writes a true ‘we have space’ note — no fake last slots.",
+  },
+  {
     title: "Count only real people",
     body: "The proof ledger is five columns: enquiry, message, call, visit, sale. You type the row. The number moves. That is the whole proof system. We will not publish a customer count we did not watch you type.",
   },
@@ -129,6 +133,18 @@ export const rooms = [
     name: "14-day customer plan",
     help: "A fortnight of actions: public page, listing, posts, referrals, follow-ups, ads pointed at an open door, and a ledger of real people.",
   },
+  {
+    name: "Enquiry reply",
+    help: "The first reply that wins or loses the job: repeat what they asked, ask for the facts that change the quote, and make booking a small true step. No invented prices.",
+  },
+  {
+    name: "After the job",
+    help: "Thank-you the same day, a review ask that is easy to refuse, and a one-neighbour referral. This is how one customer becomes two.",
+  },
+  {
+    name: "Quiet week fill",
+    help: "An honest ‘we have space’ post, a note for people who already know you, and a seven-step list for a silent phone. No fake last slots.",
+  },
 ];
 
 export const agents = [
@@ -156,6 +172,10 @@ export const agents = [
     name: "Customers agent",
     help: "A 14-day plan and a daily habit for getting real enquiries, not likes. This is the work that turns drafts into customers.",
   },
+  {
+    name: "Reply agent",
+    help: "First reply to an enquiry, a calm follow-up, after-the-job thank you, and a quiet-week note. This is the desk for turning a message into a customer.",
+  },
 ];
 
 export const week = [
@@ -165,7 +185,7 @@ export const week = [
   },
   {
     day: "The same sitting",
-    body: "You get a public homepage draft, SEO starting points, Facebook/Instagram ads copy, Google Ads lines, a social week, and a list of what to log. Copy or download the pack. Edit anything that is not true.",
+    body: "You get a public homepage draft, SEO starting points, Facebook/Instagram ads copy, Google Ads lines, a social week, enquiry replies, after-the-job notes, a quiet-week fill, and a list of what to log. Copy or download the pack. Edit anything that is not true.",
   },
   {
     day: "This week",
@@ -183,8 +203,9 @@ export const weDo = [
   "Write local SEO starting points and a Google Business checklist",
   "Write Facebook/Instagram and Google Ads drafts and a campaign structure",
   "Write referral asks, follow-ups, window cards, phone scripts, and neighbour introductions",
+  "Write the first reply to an enquiry, the after-the-job thank you, and an honest quiet-week fill",
   "Write a 14-day customer-getting plan and a daily 20-minute habit",
-  "Queue six house agents in your browser, at no extra model cost",
+  "Queue seven house agents in your browser, at no extra model cost",
   "Give you a concierge that reads a sentence and fills the studio",
   "Give you a proof ledger that only counts rows you type",
   "Let you copy, edit, preview, and download everything",
@@ -209,10 +230,10 @@ export const weNever = [
 ];
 
 export const includedAfterPay = [
-  "The full studio: nineteen drafting rooms, copy, preview, and download",
-  "Referral, follow-up, print, phone, neighbour, and 14-day customer-getting rooms",
+  "The full studio: twenty-two drafting rooms, copy, preview, and download",
+  "Referral, follow-up, print, phone, neighbour, enquiry reply, after-the-job, quiet-week, and 14-day customer-getting rooms",
   "The house concierge, in the browser",
-  "House Operations: six agents including a Customers agent",
+  "House Operations: seven agents including Customers and Reply",
   "A public homepage draft so ads are not sent to a login wall",
   "The proof ledger for real enquiries only",
   "Use it on this browser after Stripe sends you back. Ad spend at Facebook or Google is extra and paid to them",
@@ -221,14 +242,73 @@ export const includedAfterPay = [
 export const valuePoints = [
   {
     title: "One payment, not a monthly retainer",
-    body: "A typical local marketing retainer for copy and ‘content’ often runs into hundreds of pounds a month, and you still post the work yourself. LocalLaunch is £197 once. You keep using the desk.",
+    body: "A typical local marketing retainer for copy and ‘content’ often runs into hundreds of pounds a month, and you still post the work yourself. LocalLaunch is £197 once. You keep using the desk whenever the offer changes.",
   },
   {
     title: "Built to get you customers, not likes",
-    body: "Every room points at an enquiry: a public page, a listing, a post that asks, a referral, a follow-up, a window card, a phone greeting, a neighbour introduction, a 14-day plan, and a ledger of real people. Likes are not the product.",
+    body: "Every room points at an enquiry: a public page, a listing, a post that asks, a first reply that can win the job, a referral, a follow-up, a window card, a phone greeting, a neighbour introduction, a 14-day plan, and a ledger of real people. Likes are not the product.",
   },
   {
     title: "One new customer pays for the desk",
-    body: "If this desk helps you win a single extra job, visit, or booking that you would have missed, the £197 is already behind you. We will not invent that job. We will give you the words and the fortnight of actions that make it possible.",
+    body: "If this desk helps you win a single extra job, visit, or booking that you would have missed, the £197 is already behind you. The next customer is profit. We will not invent that job. We will give you the words and the fortnight of actions that make it possible.",
   },
+];
+
+export const stackItems = [
+  {
+    item: "A public page a stranger can actually read",
+    why: "Google and Facebook cannot send you customers if the first screen is a login.",
+  },
+  {
+    item: "Posts, listing updates, WhatsApp, and email from the same facts",
+    why: "So you have something true to publish this week, not a blank box.",
+  },
+  {
+    item: "Ads copy for Facebook, Instagram, and Google Ads",
+    why: "You still set the budget. You do not pay an agency to write the first draft.",
+  },
+  {
+    item: "The words that turn a message into a paying customer",
+    why: "First reply, price-question reply, booking reply, follow-up, thank-you, review ask, referral.",
+  },
+  {
+    item: "Print, phone, and neighbour introductions",
+    why: "Passers-by and nearby shops still send work. Most desks never write this.",
+  },
+  {
+    item: "A 14-day plan, a quiet-week list, and a proof ledger",
+    why: "So you know what to do on Monday, and you only count real people.",
+  },
+];
+
+export const vsAgency = [
+  {
+    other: "A local copywriter for a day of posts",
+    typical: "Often £250–£400 for a day, then you are back to a blank page next month.",
+    here: "Twenty-two rooms you can run again whenever the offer changes.",
+  },
+  {
+    other: "A monthly social retainer",
+    typical: "Often hundreds of pounds a month, and you still have to post the work.",
+    here: `${HOUSE_PRICE_SHORT} once. You stay the publisher. You keep the desk.`,
+  },
+  {
+    other: "Ads copy inside a media-buyer package",
+    typical: "Usually bundled into a retainer, plus the ad spend on top.",
+    here: "Drafts included. Spend stays with Facebook or Google, on a budget you choose.",
+  },
+  {
+    other: "A consultant’s two-week plan",
+    typical: "A workshop or a generic PDF that never names your town.",
+    here: "A 14-day plan built from your name, town, and offer, plus the replies that close the work.",
+  },
+];
+
+export const firstHour = [
+  "Open House Operations and type the real business — or run a trial if you are testing the desk.",
+  "Press Run all house agents. Download or copy the pack. Strike out anything that is not true.",
+  "Paste the public homepage onto a URL anyone can open. Ads and Google are wasted on a login wall.",
+  "Send one first-reply or follow-up to a real person who already asked. That is often the cheapest customer.",
+  "Ask one happy customer, privately, to send one neighbour who actually needs the work.",
+  "Log whatever happens — including zero — on the proof ledger. That is how you see if the words are working.",
 ];

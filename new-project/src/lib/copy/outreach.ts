@@ -233,3 +233,138 @@ export function generateCustomerPlan(values: GeneratorFormValues): GeneratedPost
     },
   ];
 }
+
+export function generateEnquiryReplies(values: GeneratorFormValues): GeneratedPost[] {
+  const seed = hashSeed(values, "enquiry-reply");
+  const ctx = buildContext(values, seed);
+
+  return [
+    {
+      id: "first",
+      label: "First reply to a written enquiry",
+      summary: "Answer fast. Repeat what they asked. Do not invent a price.",
+      text: joinParagraphs(
+        `Hello, this is ${ctx.name} in ${ctx.location}. Thank you for getting in touch.`,
+        `You asked about ${ctx.offer}. I have read that. If I have missed a detail, tell me and I will correct it.`,
+        pick(
+          [
+            `I can confirm what is actually available once I know a little more: what you need, roughly when, and the best way to reach you. Then we can decide if ${ctx.aType} is a genuine fit.`,
+            `Next step is a short, true conversation — not a brochure. Tell me what you need from ${ctx.offer}, and I will say what we can and cannot do.`,
+          ],
+          seed,
+          4,
+        ),
+        ctx.cta,
+      ),
+    },
+    {
+      id: "price",
+      label: "If they ask for a price first",
+      summary: "Do not invent a figure. Ask for the facts that change the quote.",
+      text: joinParagraphs(
+        `Hello from ${ctx.name}.`,
+        `I do not want to guess a price for ${ctx.offer} in a first message. The honest version depends on what you actually need.`,
+        `Reply with the job, the timing, and any constraint that matters. Then I will confirm a real figure, or tell you if we are not the right ${ctx.type}.`,
+        ctx.cta,
+      ),
+    },
+    {
+      id: "book",
+      label: "If they want to visit or book",
+      summary: "Make the next step small and true. No fake ‘last slot today’.",
+      text: joinParagraphs(
+        `Yes — we can look at a time for ${ctx.offer}.`,
+        `Send two windows that work for you. I will confirm what is actually free, or offer the next honest option.`,
+        `If you prefer a call first, say so. ${ctx.name}, ${ctx.location}. ${ctx.cta}`,
+      ),
+    },
+  ];
+}
+
+export function generateAfterJob(values: GeneratorFormValues): GeneratedPost[] {
+  const seed = hashSeed(values, "after-job");
+  const ctx = buildContext(values, seed);
+
+  return [
+    {
+      id: "thanks",
+      label: "Thank-you after the work",
+      summary: "Send it the same day. No invented discount for a review.",
+      text: joinParagraphs(
+        `Thank you for choosing ${ctx.name} in ${ctx.location}.`,
+        `I hope ${ctx.offer} was useful. If anything was unclear or not right, reply to this message and we will sort it privately.`,
+        `If it was as expected, the most useful next step is simply to come back when you next need ${ctx.aType}. ${ctx.cta}`,
+      ),
+    },
+    {
+      id: "review",
+      label: "Soft review ask after the job",
+      summary: "Easy to refuse. Never pay for a star.",
+      text: joinParagraphs(
+        `If you are happy to leave an honest review of ${ctx.name}, that helps neighbours decide. If you would rather not, that is fine.`,
+        `If something went wrong, please tell us here instead of surprising us in public. We would rather fix it.`,
+        ctx.cta,
+      ),
+    },
+    {
+      id: "referral",
+      label: "Same-day referral line",
+      summary: "One neighbour who actually needs the work. Not a broadcast.",
+      text: joinParagraphs(
+        `If you know one person nearby who actually needs ${ctx.offer}, you are welcome to pass ${ctx.name} on. There is nothing in it for you except helping them.`,
+        `If nobody comes to mind, ignore this. ${ctx.cta}`,
+      ),
+    },
+  ];
+}
+
+export function generateQuietWeek(values: GeneratorFormValues): GeneratedPost[] {
+  const seed = hashSeed(values, "quiet-week");
+  const ctx = buildContext(values, seed);
+
+  return [
+    {
+      id: "space",
+      label: "Honest ‘we have space’ post",
+      summary: "Say you can take work. Do not invent a last slot or a rush.",
+      text: joinParagraphs(
+        `${ctx.name} is ${ctx.aType} in ${ctx.location}.`,
+        pick(
+          [
+            `This week we can take enquiries about ${ctx.offer}. That is the whole update. If you need this work, ask. If you do not, scroll on.`,
+            `The diary is not full. If you have been meaning to ask about ${ctx.offer}, this is a fair week to do it. We will not pretend there is a queue.`,
+          ],
+          seed,
+          5,
+        ),
+        ctx.cta,
+      ),
+    },
+    {
+      id: "existing",
+      label: "Note to people who already know you",
+      summary: "WhatsApp or email for existing customers only. Not a bought list.",
+      text: joinParagraphs(
+        `Hello from ${ctx.name} in ${ctx.location}.`,
+        `If you already use us, this is a quiet note: we can help again with ${ctx.offer}. If a neighbour has been asking you about ${ctx.aType}, you can send them our way.`,
+        `No need to reply if nothing is needed. ${ctx.cta}`,
+      ),
+    },
+    {
+      id: "actions",
+      label: "If the phone is quiet today",
+      summary: "A work list. Not a slogan. Do these before you boost a post.",
+      text: [
+        `Quiet-day list for ${ctx.name} (${ctx.type}, ${ctx.location}).`,
+        "1. Answer every unread enquiry before you write a new post.",
+        "2. Follow up one person who asked and went quiet. Once.",
+        "3. Ask one happy customer, privately, to send one real neighbour.",
+        "4. Check the public page still loads without a login, and still matches the offer.",
+        "5. Put a true window or counter line up, or take a stale one down.",
+        `6. If you run ads, confirm they still point at that public page and still talk about ${ctx.offer}.`,
+        "7. Log whatever actually happened in the proof ledger, including zero.",
+        "Do not invent scarcity. Do not buy fake reviews. Change the page or the offer if the week stays empty.",
+      ].join("\n\n"),
+    },
+  ];
+}

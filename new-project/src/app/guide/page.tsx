@@ -30,7 +30,7 @@ const steps = [
   {
     n: "3",
     title: "Use the platform in this browser",
-    body: "Stripe should send you back. Then open House Operations, type the business, run the agents, and use any of the thirteen rooms. The concierge can fill the form from a sentence.",
+    body: "Stripe should send you back. Then open House Operations, type the business, run the seven agents, and use any of the twenty-two rooms. Start with the first-reply and 14-day plan if you want customers this fortnight. The concierge can fill the form from a sentence.",
     href: "/pay",
     label: "Go to checkout",
     pay: false,

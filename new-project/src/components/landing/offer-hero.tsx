@@ -12,13 +12,15 @@ export function OfferHero() {
           LocalLaunch AI · {HOUSE_PRICE_SHORT} one-off
         </p>
         <h1 className="font-display mt-6 text-4xl font-medium tracking-tight text-[#f6f1e8] sm:text-5xl lg:text-[3.4rem] lg:leading-[1.1]">
-          Get more local customers for {HOUSE_PRICE_SHORT}. Not a monthly retainer.
+          Get more local customers for {HOUSE_PRICE_SHORT}. One extra job can cover the desk.
         </h1>
         <p className="mt-6 text-lg leading-8 text-[#e8dcc8]">
-          This desk writes the words that get you found, asked, followed up, and
-          counted: posts, ads drafts, a public page, referrals, phone scripts, a
-          14-day plan, and a ledger of real enquiries. Read the offer. If you
-          are happy, pay once on Stripe. The platform unlocks in this browser.
+          This is the desk that writes the words that get you found, asked,
+          followed up, and paid: a public page, posts, ads drafts, first replies,
+          referrals, phone scripts, a 14-day plan, and a ledger of real
+          enquiries. Read the offer. If you are happy, pay once on Stripe. The
+          platform unlocks in this browser. The next customer after that is the
+          return.
         </p>
         <p className="mt-4 text-sm leading-6 text-[#d7c4a1]">{OFFER_TAGLINE}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">

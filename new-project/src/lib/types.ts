@@ -112,7 +112,10 @@ export type ToolSlug =
   | "window-card"
   | "phone-script"
   | "neighbour-intro"
-  | "customer-plan";
+  | "customer-plan"
+  | "enquiry-reply"
+  | "after-job"
+  | "quiet-week";
 
 export interface GeneratorFormValues {
   businessName: string;

@@ -7,10 +7,13 @@ import { generateInstagramCaptions } from "@/lib/copy/instagram";
 import { generateNotices } from "@/lib/copy/notice";
 import { generatePublicHomepage } from "@/lib/copy/public-site";
 import {
+  generateAfterJob,
   generateCustomerPlan,
+  generateEnquiryReplies,
   generateFollowUps,
   generateNeighbourIntros,
   generatePhoneScripts,
+  generateQuietWeek,
   generateReferralAsks,
   generateWindowCards,
 } from "@/lib/copy/outreach";
@@ -56,6 +59,9 @@ export function generateCampaignPack(values: GeneratorFormValues): GeneratedPost
     first("Phone", generatePhoneScripts(values)),
     first("Neighbour", generateNeighbourIntros(values)),
     first("14-day plan", generateCustomerPlan(values)),
+    first("Enquiry reply", generateEnquiryReplies(values)),
+    first("After the job", generateAfterJob(values)),
+    first("Quiet week", generateQuietWeek(values)),
   ].filter((item): item is GeneratedPost => Boolean(item));
 
   return [

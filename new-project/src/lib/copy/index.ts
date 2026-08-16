@@ -7,10 +7,13 @@ import { generateGoogleBusinessPosts } from "@/lib/copy/google-business";
 import { generateInstagramCaptions } from "@/lib/copy/instagram";
 import { generateNotices } from "@/lib/copy/notice";
 import {
+  generateAfterJob,
   generateCustomerPlan,
+  generateEnquiryReplies,
   generateFollowUps,
   generateNeighbourIntros,
   generatePhoneScripts,
+  generateQuietWeek,
   generateReferralAsks,
   generateWindowCards,
 } from "@/lib/copy/outreach";
@@ -65,6 +68,12 @@ export function generateForTool(
       return generateNeighbourIntros(values);
     case "customer-plan":
       return generateCustomerPlan(values);
+    case "enquiry-reply":
+      return generateEnquiryReplies(values);
+    case "after-job":
+      return generateAfterJob(values);
+    case "quiet-week":
+      return generateQuietWeek(values);
     default: {
       const exhaustive: never = slug;
       throw new Error(`Unknown tool: ${exhaustive}`);

@@ -6,7 +6,7 @@ import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 const complimentary = [
   "Concierge in the browser",
   "Type a sentence, watch a draft appear",
-  "Thirteen rooms, including a full campaign pack",
+  "Twenty-two rooms, including a full campaign pack",
   "Facebook, Instagram, Google listing, WhatsApp, email",
   "SEO, ads copy, review replies, public homepage copy",
   "Seven-day plan, notices, copy and download",

@@ -35,10 +35,10 @@ export function WhatYouGet() {
             </li>
           ))}
         </ul>
-        <h3 className="font-display mt-14 text-2xl text-stone-900">Six house agents</h3>
+        <h3 className="font-display mt-14 text-2xl text-stone-900">Seven house agents</h3>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-stone-600">
           House Operations runs the agents in a queue in this browser tab. They
-          draft. They do not spend. Press one button for all five, or run one
+          draft. They do not spend. Press one button for all seven, or run one
           agent at a time.
         </p>
         <ul className="mt-6 grid gap-4 lg:grid-cols-3 md:grid-cols-2">

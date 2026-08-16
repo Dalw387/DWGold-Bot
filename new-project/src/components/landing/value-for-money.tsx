@@ -19,7 +19,8 @@ export function ValueForMoney() {
           <p className="mt-4 text-base leading-7 text-stone-600">
             We will not invent a diary of bookings. We will give you a full
             desk whose only job is to help strangers become enquiries, and
-            enquiries become work you can log.
+            enquiries become work you can invoice. One extra customer covers
+            the {HOUSE_PRICE_SHORT}. The ones after that are the return.
           </p>
         </div>
         <ul className="mt-12 grid gap-6 lg:grid-cols-3">

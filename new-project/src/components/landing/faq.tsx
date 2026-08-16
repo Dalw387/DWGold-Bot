@@ -1,14 +1,15 @@
 import { Container } from "@/components/container";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
+import { AGENT_COUNT_WORDS, ROOM_COUNT_WORDS } from "@/lib/counts";
 
 const items = [
   {
     q: "What am I actually buying?",
-    a: `${HOUSE_PRICE_SHORT} once, paid on Stripe. That unlocks nineteen drafting rooms, six house agents, the concierge, a 14-day customer-getting plan, and the proof ledger. It is not Facebook or Google ad spend. It is not a promise of a full diary. It is the desk that helps you get more local customers.`,
+    a: `${HOUSE_PRICE_SHORT} once, paid on Stripe. That unlocks ${ROOM_COUNT_WORDS} drafting rooms, ${AGENT_COUNT_WORDS} house agents, the concierge, a 14-day customer-getting plan, enquiry replies, after-the-job notes, a quiet-week fill, and the proof ledger. It is not Facebook or Google ad spend. It is not a promise of a full diary. It is the desk that helps you get more local customers.`,
   },
   {
     q: "Will this get me more customers?",
-    a: "That is the aim. The work is: a public page strangers can read, posts and ads drafts, referrals, follow-ups, print and phone, a fortnight of actions, and a ledger of real enquiries. You still publish. One extra job can cover the £197. We will not invent that job.",
+    a: "That is the aim. The work is: a public page strangers can read, posts and ads drafts, the first reply that can win the job, referrals, follow-ups, print and phone, a fortnight of actions, and a ledger of real enquiries. You still publish. One extra job can cover the £197. The next one is the return. We will not invent that job.",
   },
   {
     q: "Do I get in straight after I pay?",

@@ -243,6 +243,42 @@ export const TOOLS: ToolDefinition[] = [
     resultTitle: "Customer-getting plan",
     extraHint: "Log real enquiries as you go. Zero is still a true week.",
   },
+  {
+    slug: "enquiry-reply",
+    name: "Enquiry reply",
+    shortName: "First reply",
+    tagline: "Win the job in the first message, without inventing a price.",
+    description:
+      "Most local work is won or lost in the first reply. These drafts answer fast, repeat what they asked, and make the next step small and true.",
+    category: "Customers",
+    generateLabel: "Generate enquiry replies",
+    resultTitle: "Enquiry reply drafts",
+    extraHint: "Do not paste a price you have not calculated.",
+  },
+  {
+    slug: "after-job",
+    name: "After the job",
+    shortName: "After-job",
+    tagline: "Thank-you, honest review ask, and a same-day referral.",
+    description:
+      "The cheapest new customer is often the next one after a job well done. Thank them, invite a true review, and ask for one neighbour who actually needs the work.",
+    category: "Customers",
+    generateLabel: "Generate after-job notes",
+    resultTitle: "After-job drafts",
+    extraHint: "Never pay for a five-star review.",
+  },
+  {
+    slug: "quiet-week",
+    name: "Quiet week fill",
+    shortName: "Quiet week",
+    tagline: "Honest ways to fill a quiet diary. No fake last slots.",
+    description:
+      "When the phone is quiet, most businesses boost a post. This room writes a true ‘we have space’ note, a message for existing customers, and a seven-step work list.",
+    category: "Customers",
+    generateLabel: "Generate quiet-week drafts",
+    resultTitle: "Quiet-week drafts",
+    extraHint: "Do the work list before you spend on ads.",
+  },
 ];
 
 export function getTool(slug: string): ToolDefinition | undefined {

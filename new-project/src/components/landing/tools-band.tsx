@@ -15,7 +15,7 @@ export function ToolsBand() {
               id="tools-heading"
               className="font-display mt-3 text-3xl font-medium tracking-tight text-stone-900 sm:text-5xl"
             >
-              Thirteen rooms. One set of facts.
+              Twenty-two rooms. One set of facts.
             </h2>
             <p className="mt-4 text-base leading-7 text-stone-600">
               Start with Facebook if that is your main channel, or open House
