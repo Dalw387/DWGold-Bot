@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
 import { AdaptiveLead } from "@/components/landing/adaptive-lead";
