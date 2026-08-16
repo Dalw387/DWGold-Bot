@@ -11,16 +11,16 @@ export default function AppleIcon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#050812",
+          background: "#050611",
           position: "relative",
         }}
       >
-        <div style={{ position: "absolute", left: 48, top: 58, width: 10, height: 86, background: "#AEB9C8" }} />
-        <div style={{ position: "absolute", left: 48, top: 58, width: 54, height: 10, background: "#AEB9C8" }} />
-        <div style={{ position: "absolute", left: 98, top: 36, width: 44, height: 10, background: "#3475FF", transform: "rotate(-32deg)" }} />
-        <div style={{ position: "absolute", left: 44, top: 138, width: 18, height: 18, borderRadius: 18, background: "#DCE4EC" }} />
-        <div style={{ position: "absolute", left: 126, top: 28, width: 22, height: 22, borderRadius: 22, background: "#3475FF" }} />
-        <div style={{ position: "absolute", left: 44, top: 54, width: 16, height: 16, borderRadius: 16, background: "#36D8FF" }} />
+        <div style={{ position: "absolute", left: 42, top: 52, width: 12, height: 92, background: "#49E6FF" }} />
+        <div style={{ position: "absolute", left: 42, top: 52, width: 62, height: 12, background: "#8B5CFF" }} />
+        <div style={{ position: "absolute", left: 78, top: 128, width: 64, height: 12, background: "#E447D1" }} />
+        <div style={{ position: "absolute", left: 130, top: 48, width: 12, height: 92, background: "#E447D1" }} />
+        <div style={{ position: "absolute", left: 124, top: 36, width: 24, height: 24, borderRadius: 24, background: "#FF4DB8" }} />
+        <div style={{ position: "absolute", left: 36, top: 132, width: 22, height: 22, borderRadius: 22, background: "#49E6FF" }} />
       </div>
     ),
     size,

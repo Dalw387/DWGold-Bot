@@ -26,28 +26,24 @@ export function SiteFooter() {
   }, []);
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/8 bg-navy">
+    <footer className="relative overflow-hidden border-t border-cyan/10 bg-void">
       <p
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-10 left-0 font-display text-[22vw] leading-none text-white/[0.035]"
       >
         LocalLaunch
       </p>
-      <Container className="relative py-16 sm:py-24">
-          <p className="font-display max-w-3xl display-2 text-ice">
-          Your competition isn’t waiting for AI.
-        </p>
-        <p className="mt-4 max-w-xl text-lg text-slate">Build the capability before it becomes the expectation.</p>
+      <Container className="relative py-16 sm:py-20">
         {access.unlocked ? (
           <Link
             href="/operations"
-            className="mt-8 inline-flex text-sm font-semibold text-cobalt hover:text-cyan"
+            className="inline-flex text-sm font-semibold text-cyan hover:text-ice"
           >
             Open House Operations →
           </Link>
         ) : (
-            <StripePayLink className="mt-8" arrow>
-            Build My AI Team
+          <StripePayLink arrow>
+            Build my AI team
           </StripePayLink>
         )}
         <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">

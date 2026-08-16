@@ -9,7 +9,7 @@ import {
 } from "@/lib/nano-growth";
 
 const DEFAULT_LEAD =
-  "Named specialists that find customers, run advertising, keep social alive, answer enquiries and book appointments. A marketing department for trades, clinics, estate agents, and professional services — ready whenever you are.";
+  "Six named specialists for leads, appointments, reviews, advertising, social and search — working from the same business context.";
 
 function lineForAgents(agents: string[]): string {
   const joined = agents.join(" ");
@@ -39,6 +39,6 @@ export function AdaptiveLead() {
   }, []);
 
   return (
-    <p className="mt-6 max-w-xl text-lg leading-8 text-slate sm:text-[1.2rem]">{lineForAgents(nano.agents)}</p>
+    <p className="prose-narrow mt-6 text-lg leading-8 text-slate sm:text-[1.15rem]">{lineForAgents(nano.agents)}</p>
   );
 }

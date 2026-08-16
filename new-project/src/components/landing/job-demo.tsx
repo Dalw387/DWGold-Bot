@@ -91,7 +91,7 @@ export function JobDemo() {
   const job = jobs[index] ?? jobs[0];
 
   return (
-    <section id="how" aria-labelledby="demo-heading" className="border-b border-border py-20 sm:py-28">
+    <section id="how" aria-labelledby="demo-heading" className="py-20 sm:py-28">
       <ViewportSignal kind="demo" />
       <Container>
         <p className="kicker">
@@ -117,15 +117,15 @@ export function JobDemo() {
               onClick={() => void run(i)}
               className={`rounded-2xl border px-4 py-4 text-left text-sm leading-6 transition duration-200 ${
                 index === i
-                  ? "border-cobalt/50 bg-cobalt/10 text-ice"
-                  : "border-white/10 bg-elevated text-slate hover:border-cobalt/30"
+                  ? "border-magenta/40 bg-magenta/10 text-ice"
+                  : "border-white/10 bg-elevated text-slate hover:border-cyan/30"
               }`}
             >
               {item.prompt}
             </button>
           ))}
         </div>
-        <div className="titanium mt-8 rounded-[1.5rem] p-6 sm:p-8">
+        <div className="glass-lit mt-8 rounded-[1.5rem] p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-slate">{job.prompt}</p>
             <Button type="button" onClick={() => void run(index)} arrow>

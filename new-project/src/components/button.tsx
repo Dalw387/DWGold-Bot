@@ -5,15 +5,15 @@ type Variant = "primary" | "secondary" | "ghost" | "gold" | "inverse";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-cobalt text-ice hover:-translate-y-px hover:bg-[#4b84ff] focus-visible:outline-cyan",
+    "bg-[linear-gradient(100deg,#49E6FF_0%,#5277FF_55%,#8B5CFF_100%)] text-void hover:-translate-y-px hover:shadow-[0_12px_32px_rgb(73_230_255_/_0.28)] focus-visible:outline-cyan",
   gold:
-    "bg-cobalt text-ice hover:-translate-y-px hover:bg-[#4b84ff] focus-visible:outline-cyan",
+    "bg-[linear-gradient(100deg,#49E6FF_0%,#5277FF_55%,#8B5CFF_100%)] text-void hover:-translate-y-px hover:shadow-[0_12px_32px_rgb(228_71_209_/_0.22)] focus-visible:outline-magenta",
   secondary:
-    "border border-titanium/35 bg-transparent text-ice hover:border-titanium/70 hover:bg-white/4 focus-visible:outline-cobalt",
+    "border border-cyan/30 bg-void/40 text-ice hover:border-magenta/50 hover:bg-white/4 focus-visible:outline-cyan",
   inverse:
-    "border border-white/20 bg-transparent text-ice hover:bg-ice hover:text-midnight focus-visible:outline-ice",
+    "border border-white/20 bg-transparent text-ice hover:bg-ice hover:text-void focus-visible:outline-ice",
   ghost:
-    "text-slate hover:bg-white/5 hover:text-ice focus-visible:outline-cobalt",
+    "text-slate hover:bg-white/5 hover:text-ice focus-visible:outline-cyan",
 };
 
 const base =

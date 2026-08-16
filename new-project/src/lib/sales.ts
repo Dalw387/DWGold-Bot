@@ -1,3 +1,4 @@
+import { AGENT_COLOURS } from "@/lib/agent-identity";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import {
   buyingStage,
@@ -22,6 +23,8 @@ export type Specialist = {
   deskHref: string;
   slug: string;
   complementary: SpecialistId[];
+  colour: string;
+  desk: string;
 };
 
 export const specialists: Specialist[] = [
@@ -37,6 +40,8 @@ export const specialists: Specialist[] = [
     deskHref: "/tools/customer-plan",
     slug: "ai-lead-generation-agent",
     complementary: ["charlie", "max"],
+    colour: AGENT_COLOURS.alex,
+    desk: "Leads",
   },
   {
     id: "max",
@@ -50,6 +55,8 @@ export const specialists: Specialist[] = [
     deskHref: "/tools/ads-copy",
     slug: "ai-google-ads-agent",
     complementary: ["scout", "alex"],
+    colour: AGENT_COLOURS.max,
+    desk: "Advertising",
   },
   {
     id: "sophie",
@@ -63,6 +70,8 @@ export const specialists: Specialist[] = [
     deskHref: "/tools/facebook-post-generator",
     slug: "ai-social-media-agent",
     complementary: ["grace", "alex"],
+    colour: AGENT_COLOURS.sophie,
+    desk: "Social",
   },
   {
     id: "charlie",
@@ -76,6 +85,8 @@ export const specialists: Specialist[] = [
     deskHref: "/tools/enquiry-reply",
     slug: "ai-appointment-setter",
     complementary: ["grace", "alex"],
+    colour: AGENT_COLOURS.charlie,
+    desk: "Appointments",
   },
   {
     id: "grace",
@@ -89,6 +100,8 @@ export const specialists: Specialist[] = [
     deskHref: "/tools/google-review-desk",
     slug: "ai-customer-service-agent",
     complementary: ["charlie", "sophie"],
+    colour: AGENT_COLOURS.grace,
+    desk: "Customers",
   },
   {
     id: "scout",
@@ -102,6 +115,8 @@ export const specialists: Specialist[] = [
     deskHref: "/tools/seo-brief",
     slug: "ai-search-visibility-agent",
     complementary: ["max", "alex"],
+    colour: AGENT_COLOURS.scout,
+    desk: "Search",
   },
 ];
 

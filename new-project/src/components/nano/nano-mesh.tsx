@@ -124,11 +124,11 @@ export function NanoMesh() {
   }, []);
 
   return (
-    <div className="titanium relative overflow-hidden rounded-[1.5rem]">
-      <canvas ref={ref} className="block min-h-[340px] w-full" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-midnight via-midnight/70 to-transparent p-6">
+    <div className="relative h-full min-h-[340px] overflow-visible">
+      <canvas ref={ref} className="block min-h-[340px] w-full lg:min-h-[420px]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#060814] via-[#060814]/70 to-transparent p-6">
         <p className="font-display text-xl text-ice">Every interaction creates another opportunity.</p>
-        <p className="mt-1 text-xs uppercase tracking-[0.22em] text-cyan/70">Powered by Nano Growth™</p>
+        <p className="mt-1 text-xs uppercase tracking-[0.22em] text-cyan/80">Powered by Nano Growth™</p>
         <p className="mt-3 max-w-md text-xs leading-5 text-slate">
           1 customer → interactions → shares → visitors → leads → customers. A visualisation of the
           loop. Not a live count of other people’s businesses.

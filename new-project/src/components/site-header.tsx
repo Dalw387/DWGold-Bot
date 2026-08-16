@@ -16,7 +16,7 @@ import {
 import { openBuildTeam } from "@/lib/sales";
 
 const publicLinks = [
-  { href: "/#nano", label: "Nano Growth" },
+  { href: "/#control", label: "Control Centre" },
   { href: "/#agents", label: "AI Team" },
   { href: "/#solutions", label: "Industries" },
   { href: "/audit", label: "Score" },
@@ -68,8 +68,8 @@ export function SiteHeader() {
   const links = access.unlocked ? memberLinks : publicLinks;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-titanium/15 bg-[#050812]/80 backdrop-blur-xl">
-      <Container className="flex h-[4.25rem] items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 border-b border-cyan/10 bg-[#050611]/72 backdrop-blur-2xl">
+      <Container className="flex h-[4.75rem] items-center justify-between gap-4">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {links.map((link) => {
@@ -115,7 +115,7 @@ export function SiteHeader() {
         </button>
       </Container>
       {open ? (
-        <div id={menuId} className="border-t border-white/8 bg-midnight md:hidden">
+        <div id={menuId} className="border-t border-white/8 bg-void md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link

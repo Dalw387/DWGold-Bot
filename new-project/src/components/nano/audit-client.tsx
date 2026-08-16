@@ -111,9 +111,9 @@ Run yours: ${origin}/audit?r=${code}`;
       ) : null}
 
       {done ? (
-        <div className="titanium mt-12 rounded-[1.5rem] p-8">
+        <div className="glass-lit mt-12 rounded-[1.5rem] p-8">
           <p className="label">Your LocalLaunch score</p>
-          <p className="font-display mt-3 text-6xl text-ice">{total}/100</p>
+          <p className="font-display mt-3 text-6xl text-cyan">{total}/100</p>
           <dl className="mt-6 grid gap-2 text-sm text-slate">
             <div className="flex justify-between">
               <dt>Lead response</dt>

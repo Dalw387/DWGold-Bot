@@ -1,31 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --midnight: #050812;
-  --navy: #081426;
-  --elevated: #0d1c30;
-  --cobalt: #3475ff;
-  --indigo: #725cff;
-  --cyan: #36d8ff;
-  --magenta: #e94ccf;
-  --titanium: #aeb9c8;
-  --silver: #dce4ec;
-  --ice: #f5f8fc;
-  --slate: #9aa3b5;
-  --emerald: #3dffc5;
-  --background: #050812;
-  --foreground: #f5f8fc;
-  --muted: #9aa3b5;
-  --accent: #3475ff;
-  --card: #0d1c30;
-  --border: rgb(174 185 200 / 0.18);
-  --ink: #050812;
-  --paper: #f5f8fc;
-  --wash: #081426;
-  --on-ink: #f5f8fc;
-  --on-ink-muted: #9aa3b5;
-  --glow: rgb(52 117 255 / 0.28);
-  --radius: 1rem;
+  --void: #050611;
+  --midnight: #080a18;
+  --navy: #0c1024;
+  --elevated: #11152b;
+  --cyan: #49e6ff;
+  --electric: #5277ff;
+  --cobalt: #5277ff;
+  --violet: #8b5cff;
+  --indigo: #8b5cff;
+  --magenta: #e447d1;
+  --pink: #ff4db8;
+  --alex: #49e6ff;
+  --charlie: #956bff;
+  --grace: #ff6ba8;
+  --max: #5685ff;
+  --sophie: #e54fd1;
+  --scout: #55e6c1;
+  --ice: #f4f7ff;
+  --silver: #d7def0;
+  --titanium: #9aa6c2;
+  --slate: #8b95b2;
+  --emerald: #55e6c1;
+  --background: #050611;
+  --foreground: #f4f7ff;
+  --muted: #8b95b2;
+  --accent: #49e6ff;
+  --card: #11152b;
+  --border: rgb(73 230 255 / 0.14);
+  --ink: #050611;
+  --paper: #f4f7ff;
+  --wash: #080a18;
+  --on-ink: #f4f7ff;
+  --on-ink-muted: #8b95b2;
+  --glow: rgb(73 230 255 / 0.28);
+  --radius: 1.1rem;
 }
 
 @theme inline {
@@ -39,76 +49,94 @@
   --color-paper: var(--paper);
   --color-wash: var(--wash);
   --color-cobalt: var(--cobalt);
+  --color-electric: var(--electric);
   --color-indigo: var(--indigo);
   --color-cyan: var(--cyan);
   --color-emerald: var(--emerald);
   --color-magenta: var(--magenta);
+  --color-pink: var(--pink);
+  --color-violet: var(--violet);
   --color-navy: var(--navy);
   --color-elevated: var(--elevated);
   --color-ice: var(--ice);
   --color-midnight: var(--midnight);
+  --color-void: var(--void);
   --color-slate: var(--slate);
   --color-titanium: var(--titanium);
   --color-silver: var(--silver);
+  --color-alex: var(--alex);
+  --color-charlie: var(--charlie);
+  --color-grace: var(--grace);
+  --color-max: var(--max);
+  --color-sophie: var(--sophie);
+  --color-scout: var(--scout);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-manrope);
+  --font-display: var(--font-syne);
+  --font-serif: var(--font-instrument);
 }
 
 html {
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 5.75rem;
 }
 
 body {
-  background-color: var(--midnight);
+  background-color: var(--void);
   color: var(--ice);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "ss01" on, "cv11" on;
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 ::selection {
-  background: rgb(52 117 255 / 0.35);
+  background: rgb(228 71 209 / 0.35);
   color: var(--ice);
 }
 
 .font-display {
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  font-optical-sizing: auto;
-  letter-spacing: -0.03em;
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.04em;
   line-height: 1.08;
   overflow: visible;
 }
 
+.font-serif {
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+}
+
 .display-1 {
-  font-size: clamp(2.6rem, 6vw, 5.75rem);
-  font-weight: 560;
-  letter-spacing: -0.035em;
-  line-height: 1.04;
-  padding-block: 0.08em;
+  font-size: clamp(2.7rem, 6.4vw, 5.9rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  padding-block: 0.1em;
 }
 
 .display-2 {
-  font-size: clamp(2rem, 4.2vw, 3.75rem);
-  font-weight: 560;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.85rem, 3.6vw, 3.35rem);
+  font-weight: 700;
+  letter-spacing: -0.038em;
   line-height: 1.08;
-  padding-block: 0.06em;
+  padding-block: 0.08em;
 }
 
 .display-3 {
-  font-size: clamp(1.35rem, 2vw, 2rem);
-  font-weight: 560;
-  letter-spacing: -0.025em;
-  line-height: 1.16;
+  font-size: clamp(1.28rem, 1.8vw, 1.85rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+}
+
+.prose-narrow {
+  max-width: 38rem;
 }
 
 .label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--titanium);
+  color: var(--cyan);
 }
 
 .grain {
@@ -116,74 +144,114 @@ body {
   position: fixed;
   inset: 0;
   z-index: 70;
-  opacity: 0.035;
+  opacity: 0.045;
   mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .kicker {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  gap: 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--titanium);
+  color: var(--cyan);
 }
 
 .kicker-dot {
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.42rem;
+  height: 0.42rem;
   border-radius: 999px;
-  background: var(--cyan);
-  box-shadow: 0 0 10px var(--cyan);
+  background: var(--magenta);
+  box-shadow: 0 0 12px var(--magenta);
+}
+
+.glass {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.055), rgb(8 10 24 / 0.72));
+  border: 1px solid rgb(73 230 255 / 0.16);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    0 28px 80px rgb(0 0 0 / 0.45);
+  backdrop-filter: blur(18px);
+}
+
+.glass-lit {
+  background:
+    linear-gradient(165deg, rgb(73 230 255 / 0.12), rgb(139 92 255 / 0.08) 38%, rgb(8 10 24 / 0.82));
+  border: 1px solid rgb(73 230 255 / 0.28);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 0 0 1px rgb(228 71 209 / 0.08),
+    0 36px 100px rgb(82 119 255 / 0.16);
+  backdrop-filter: blur(20px);
 }
 
 .titanium {
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.045), rgb(13 28 48 / 0.88));
-  border: 1px solid rgb(174 185 200 / 0.28);
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(12 16 36 / 0.78));
+  border: 1px solid rgb(73 230 255 / 0.16);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.08),
-    0 24px 80px rgb(0 0 0 / 0.28);
+    0 24px 80px rgb(0 0 0 / 0.4);
 }
 
 .titanium-lit {
   background:
-    linear-gradient(180deg, rgb(52 117 255 / 0.12), rgb(13 28 48 / 0.92) 42%);
-  border: 1px solid rgb(174 185 200 / 0.38);
+    linear-gradient(180deg, rgb(73 230 255 / 0.14), rgb(17 21 43 / 0.88) 46%);
+  border: 1px solid rgb(73 230 255 / 0.32);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.1),
-    0 0 0 1px rgb(52 117 255 / 0.08),
-    0 30px 90px rgb(52 117 255 / 0.1);
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 0 0 1px rgb(139 92 255 / 0.12),
+    0 30px 90px rgb(73 230 255 / 0.12);
 }
 
 .surface {
-  background: rgb(13 28 48 / 0.72);
-  border: 1px solid rgb(174 185 200 / 0.14);
+  background: rgb(17 21 43 / 0.72);
+  border: 1px solid rgb(73 230 255 / 0.12);
 }
 
 .surface-lit {
-  background: rgb(13 28 48 / 0.88);
-  border: 1px solid rgb(52 117 255 / 0.28);
+  background: rgb(17 21 43 / 0.88);
+  border: 1px solid rgb(73 230 255 / 0.28);
+}
+
+.os-shell {
+  background:
+    linear-gradient(180deg, rgb(17 21 43 / 0.92), rgb(5 6 17 / 0.94));
+  border: 1px solid rgb(73 230 255 / 0.18);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.08),
+    0 40px 120px rgb(0 0 0 / 0.55),
+    0 0 80px rgb(139 92 255 / 0.08);
+}
+
+.document-surface {
+  background:
+    linear-gradient(180deg, #f7f4ee, #efe8db);
+  color: #1b1a16;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 18px 40px rgb(0 0 0 / 0.28);
 }
 
 .field {
   margin-top: 0.5rem;
   width: 100%;
-  min-height: 3.25rem;
+  min-height: 3.15rem;
   border-radius: 0.75rem;
-  border: 1px solid rgb(174 185 200 / 0.28);
-  background: rgb(8 20 38 / 0.9);
+  border: 1px solid rgb(73 230 255 / 0.2);
+  background: rgb(5 6 17 / 0.78);
   padding: 0.85rem 1rem;
   color: var(--ice);
   outline: none;
 }
 
 .field:focus {
-  border-color: rgb(52 117 255 / 0.7);
-  box-shadow: 0 0 0 3px rgb(52 117 255 / 0.18);
+  border-color: rgb(73 230 255 / 0.7);
+  box-shadow: 0 0 0 3px rgb(73 230 255 / 0.16);
 }
 
 .marquee-track {
@@ -201,29 +269,78 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.16) 48%, transparent 62%);
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.18) 48%, transparent 62%);
   transform: translateX(-120%);
 }
 
 .core {
   background:
-    radial-gradient(circle at 35% 30%, #fff 0, #dce4ec 16%, #3475ff 48%, #081426 74%);
+    radial-gradient(circle at 35% 30%, #fff 0, #49e6ff 18%, #5277ff 46%, #8b5cff 68%, #050611 86%);
   box-shadow:
-    0 0 40px rgb(52 117 255 / 0.45),
-    0 0 90px rgb(54 216 255 / 0.16);
+    0 0 36px rgb(73 230 255 / 0.5),
+    0 0 80px rgb(228 71 209 / 0.22);
 }
 
 .logo-draw .path {
-  stroke-dasharray: 80;
+  stroke-dasharray: 90;
   stroke-dashoffset: 0;
 }
 
 .signature-text {
-  background-image: linear-gradient(100deg, #f5f8fc 0%, #dce4ec 38%, #36d8ff 100%);
+  background-image: linear-gradient(100deg, #49e6ff 0%, #8b5cff 46%, #e447d1 100%);
   background-size: 180% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.band-hero {
+  background:
+    radial-gradient(900px 420px at 18% 12%, rgb(73 230 255 / 0.16), transparent 58%),
+    radial-gradient(700px 380px at 88% 18%, rgb(82 119 255 / 0.12), transparent 55%),
+    linear-gradient(180deg, #050611, #080a18);
+}
+
+.band-control {
+  background:
+    radial-gradient(1000px 520px at 50% 0%, rgb(139 92 255 / 0.14), transparent 62%),
+    radial-gradient(640px 360px at 8% 80%, rgb(73 230 255 / 0.08), transparent 55%),
+    #050611;
+}
+
+.band-team {
+  background:
+    radial-gradient(820px 460px at 82% 18%, rgb(228 71 209 / 0.12), transparent 58%),
+    radial-gradient(700px 400px at 12% 70%, rgb(73 230 255 / 0.08), transparent 55%),
+    #080a18;
+}
+
+.band-industries {
+  background:
+    radial-gradient(900px 400px at 20% 0%, rgb(85 230 193 / 0.08), transparent 55%),
+    #050611;
+}
+
+.band-nano {
+  background:
+    radial-gradient(1100px 560px at 38% 40%, rgb(73 230 255 / 0.1), transparent 60%),
+    radial-gradient(700px 420px at 90% 70%, rgb(228 71 209 / 0.1), transparent 58%),
+    #060814;
+}
+
+.band-pricing {
+  background:
+    radial-gradient(800px 420px at 50% 0%, rgb(73 230 255 / 0.12), transparent 60%),
+    #050611;
+}
+
+.band-close {
+  background:
+    linear-gradient(135deg, #050611 0%, #0c1638 28%, #2a1760 52%, #6b1d72 76%, #e447d1 100%);
+}
+
+.faq-open {
+  box-shadow: 0 0 24px rgb(73 230 255 / 0.12);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -240,7 +357,7 @@ body {
   }
 
   .logo-draw .path {
-    stroke-dashoffset: 80;
+    stroke-dashoffset: 90;
     animation: draw 1000ms ease-out forwards;
   }
 
@@ -265,6 +382,19 @@ body {
   .pulse-line {
     stroke-dasharray: 4 10;
     animation: dash 6s linear infinite;
+  }
+
+  .signal-travel {
+    stroke-dasharray: 6 18;
+    animation: dash 2.8s linear infinite;
+  }
+
+  .mesh-breathe {
+    animation: mesh-glow 6s ease-in-out infinite;
+  }
+
+  .signature-text {
+    animation: sheen 8s ease-in-out infinite;
   }
 }
 
@@ -332,18 +462,30 @@ body {
 @keyframes breathe {
   0%,
   100% {
-    opacity: 0.7;
+    opacity: 0.78;
     transform: scale(1);
   }
   50% {
     opacity: 1;
-    transform: scale(1.04);
+    transform: scale(1.045);
   }
 }
 
 @keyframes dash {
   to {
     stroke-dashoffset: -80;
+  }
+}
+
+@keyframes mesh-glow {
+  0%,
+  100% {
+    filter: saturate(1);
+    opacity: 0.92;
+  }
+  50% {
+    filter: saturate(1.2);
+    opacity: 1;
   }
 }
 
@@ -354,7 +496,10 @@ body {
   .kicker-dot,
   .btn-shine::after,
   .node-breathe,
-  .pulse-line {
+  .pulse-line,
+  .signal-travel,
+  .mesh-breathe,
+  .signature-text {
     animation: none !important;
   }
 

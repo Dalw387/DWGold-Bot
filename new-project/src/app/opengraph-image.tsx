@@ -14,19 +14,19 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#050812",
-          color: "#F5F8FF",
+          background: "linear-gradient(135deg, #050611 0%, #0c1638 40%, #2a1760 72%, #e447d1 100%)",
+          color: "#F4F7FF",
           padding: 72,
         }}
       >
-        <div style={{ display: "flex", fontSize: 22, letterSpacing: 4, color: "#9BA9BE" }}>
-          LOCALLAUNCH
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 22, letterSpacing: 4, color: "#49E6FF" }}>
+          LOCALLAUNCH · AI WORKFORCE
         </div>
-        <div style={{ fontSize: 58, lineHeight: 1.05, maxWidth: 980, fontWeight: 500 }}>
+        <div style={{ fontSize: 58, lineHeight: 1.05, maxWidth: 980, fontWeight: 600 }}>
           Meet the AI team that grows your business.
         </div>
-        <div style={{ fontSize: 22, color: "#9BA9BE" }}>
-          Trades · clinics · estate agents · professional services · £197 once
+        <div style={{ fontSize: 22, color: "#D7DEF0" }}>
+          Six specialists · 24 work rooms · £197 once
         </div>
       </div>
     ),

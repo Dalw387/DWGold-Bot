@@ -40,28 +40,36 @@ export function Faq() {
   const [open, setOpen] = useState<string | null>(items[0]?.q ?? null);
 
   return (
-    <section id="faq" aria-labelledby="faq-heading" className="py-24 sm:py-32">
-      <Container className="max-w-3xl">
-        <h2 id="faq-heading" className="font-display display-2 text-ice">
-          Straight answers.
-        </h2>
-        <p className="mt-4 text-base leading-7 text-slate">The important stuff, without the sales pitch.</p>
-        <div className="mt-10 divide-y divide-white/10 border-y border-white/10">
+    <section id="faq" aria-labelledby="faq-heading" className="py-20 sm:py-24">
+      <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,0.62fr)]">
+        <div>
+          <p className="kicker">
+            <span className="kicker-dot" aria-hidden="true" />
+            Straight answers
+          </p>
+          <h2 id="faq-heading" className="font-display display-2 mt-6 text-ice">
+            {HOUSE_PRICE_SHORT}. One payment.
+            No mystery.
+          </h2>
+        </div>
+        <div className="divide-y divide-white/8 border-y border-white/8">
           {items.map((item) => {
             const expanded = open === item.q;
             return (
-              <div key={item.q} className="py-5">
+              <div key={item.q} className={`py-5 ${expanded ? "faq-open" : ""}`}>
                 <button
                   type="button"
                   className="flex w-full items-start justify-between gap-6 text-left"
                   aria-expanded={expanded}
                   onClick={() => setOpen(expanded ? null : item.q)}
                 >
-                  <span className="font-display text-xl text-ice">{item.q}</span>
-                  <span className="text-titanium">{expanded ? "–" : "+"}</span>
+                  <span className={`font-display text-xl ${expanded ? "text-cyan" : "text-ice"}`}>
+                    {item.q}
+                  </span>
+                  <span className={expanded ? "text-magenta" : "text-titanium"}>{expanded ? "–" : "+"}</span>
                 </button>
                 {expanded ? (
-                  <p className="mt-3 max-w-[46rem] text-sm leading-7 text-slate">{item.a}</p>
+                  <p className="mt-3 max-w-[40rem] text-sm leading-7 text-slate">{item.a}</p>
                 ) : null}
               </div>
             );

@@ -13,12 +13,13 @@ export function Atmosphere() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return undefined;
 
-    const dots = Array.from({ length: 42 }, () => ({
+    const dots = Array.from({ length: 56 }, (_, i) => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.1 + 0.25,
-      s: Math.random() * 0.08 + 0.02,
-      a: Math.random() * 0.28 + 0.08,
+      r: Math.random() * 1.15 + 0.2,
+      s: Math.random() * 0.09 + 0.02,
+      a: Math.random() * 0.32 + 0.08,
+      hue: i % 5,
     }));
 
     let raf = 0;
@@ -31,16 +32,24 @@ export function Atmosphere() {
       canvas.style.height = `${window.innerHeight}px`;
     }
 
+    function colour(hue: number, a: number) {
+      if (hue === 0) return `rgba(73, 230, 255, ${a})`;
+      if (hue === 1) return `rgba(139, 92, 255, ${a})`;
+      if (hue === 2) return `rgba(228, 71, 209, ${a})`;
+      if (hue === 3) return `rgba(82, 119, 255, ${a})`;
+      return `rgba(255, 77, 184, ${a * 0.7})`;
+    }
+
     function draw() {
       if (!canvas || !ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const w = canvas.width;
       const h = canvas.height;
       for (const dot of dots) {
-        dot.y -= dot.s / 1400;
+        dot.y -= dot.s / 1500;
         if (dot.y < 0) dot.y = 1;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(174, 185, 200, ${dot.a})`;
+        ctx.fillStyle = colour(dot.hue, dot.a);
         ctx.arc(dot.x * w, dot.y * h, dot.r * window.devicePixelRatio, 0, Math.PI * 2);
         ctx.fill();
       }
@@ -58,10 +67,10 @@ export function Atmosphere() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
-      <div className="absolute -left-1/4 top-[-18%] h-[58vw] w-[58vw] rounded-full bg-[#3475ff]/18 blur-[140px]" />
-      <div className="absolute right-[-12%] top-[8%] h-[36vw] w-[36vw] rounded-full bg-[#36d8ff]/10 blur-[130px]" />
-      <div className="absolute bottom-[-22%] left-[28%] h-[32vw] w-[40vw] rounded-full bg-[#725cff]/8 blur-[150px]" />
-      <canvas ref={ref} className="absolute inset-0 opacity-70" />
+      <div className="absolute left-[-18%] top-[-22%] h-[42vw] w-[42vw] rounded-full bg-cyan/12 blur-[140px]" />
+      <div className="absolute right-[-16%] top-[6%] h-[28vw] w-[28vw] rounded-full bg-violet/16 blur-[130px]" />
+      <div className="absolute bottom-[-18%] left-[18%] h-[26vw] w-[34vw] rounded-full bg-magenta/10 blur-[150px]" />
+      <canvas ref={ref} className="absolute inset-0 opacity-80" />
     </div>
   );
 }

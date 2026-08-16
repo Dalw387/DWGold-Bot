@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Instrument_Serif, Inter, Syne } from "next/font/google";
 import { StudioAgent } from "@/components/agent/studio-agent";
 import { Atmosphere } from "@/components/landing/atmosphere";
 import { NanoBoot } from "@/components/nano/nano-boot";
@@ -15,9 +15,16 @@ const inter = Inter({
   display: "swap",
 });
 
-const manrope = Manrope({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-syne",
+  display: "swap",
+});
+
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-instrument",
   display: "swap",
 });
 
@@ -45,7 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${manrope.variable} h-full antialiased`}
+      className={`${inter.variable} ${syne.variable} ${instrument.variable} h-full antialiased`}
     >
       <body className="relative flex min-h-full flex-col bg-background pb-24 font-sans text-foreground md:pb-0">
         <Atmosphere />

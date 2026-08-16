@@ -1,3 +1,5 @@
+import { AGENT_COLOURS } from "@/lib/agent-identity";
+
 export const integrations = [
   "Google Ads",
   "Meta",
@@ -20,6 +22,8 @@ export const workforceAgents = [
     doesNot: "Does not scrape the internet or invent a list of strangers.",
     metric: "14-day customer plan included",
     deskHref: "/tools/customer-plan",
+    colour: AGENT_COLOURS.alex,
+    desk: "Leads",
   },
   {
     slug: "ai-google-ads-agent",
@@ -31,6 +35,8 @@ export const workforceAgents = [
     doesNot: "Does not log into Ads Manager or spend budget.",
     metric: "Google + Meta drafts",
     deskHref: "/tools/ads-copy",
+    colour: AGENT_COLOURS.max,
+    desk: "Advertising",
   },
   {
     slug: "ai-social-media-agent",
@@ -42,6 +48,8 @@ export const workforceAgents = [
     doesNot: "Does not publish or watch live DMs.",
     metric: "Eight Facebook styles",
     deskHref: "/tools/facebook-post-generator",
+    colour: AGENT_COLOURS.sophie,
+    desk: "Social",
   },
   {
     slug: "ai-appointment-setter",
@@ -53,6 +61,8 @@ export const workforceAgents = [
     doesNot: "Does not sit on your live phone or book a diary unaided.",
     metric: "First-reply pack",
     deskHref: "/tools/enquiry-reply",
+    colour: AGENT_COLOURS.charlie,
+    desk: "Appointments",
   },
   {
     slug: "ai-customer-service-agent",
@@ -64,6 +74,8 @@ export const workforceAgents = [
     doesNot: "Does not send SMS or log into Google for you.",
     metric: "Review + missed-call desk",
     deskHref: "/tools/google-review-desk",
+    colour: AGENT_COLOURS.grace,
+    desk: "Customers",
   },
   {
     slug: "ai-search-visibility-agent",
@@ -75,6 +87,8 @@ export const workforceAgents = [
     doesNot: "Does not promise ChatGPT citations or a ranking.",
     metric: "Public page, no login wall",
     deskHref: "/tools/seo-brief",
+    colour: AGENT_COLOURS.scout,
+    desk: "Search",
   },
 ];
 
