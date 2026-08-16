@@ -70,7 +70,13 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/8 bg-[#050611]/70 backdrop-blur-2xl">
       <Container className="flex h-20 items-center justify-between gap-6">
-        <Logo />
+        <div className="flex items-center gap-6">
+          <Logo />
+          <p className="hidden items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-scout xl:flex">
+            <span className="status-dot" />
+            Live workforce
+          </p>
+        </div>
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {links.map((link) => {
             const active =

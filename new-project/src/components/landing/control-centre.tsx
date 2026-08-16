@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BrandMark } from "@/components/logo";
 import { AGENT_COLOURS, DEMO_ENQUIRY, DEMO_WORKSPACE, colourForAgent } from "@/lib/agent-identity";
 import { generateForTool } from "@/lib/copy";
@@ -114,6 +114,20 @@ export function ControlCentre() {
   const [navId, setNavId] = useState<NavId>("overview");
   const [agentFilter, setAgentFilter] = useState<SpecialistId | "all">("all");
   const [selectedId, setSelectedId] = useState("charlie");
+  const [clock, setClock] = useState("--:--:--");
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setClock(
+        new Date().toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        }),
+      );
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, []);
 
   const visible = useMemo(() => {
     return activities.filter((item) => {
@@ -160,8 +174,11 @@ export function ControlCentre() {
                 <p className="text-[0.62rem] uppercase tracking-[0.16em] text-cyan">Control Centre</p>
               </div>
             </div>
-            <p className="rounded-full border border-magenta/30 bg-magenta/10 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-pink">
-              Demo workspace
+            <p className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-magenta/30 bg-magenta/10 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-pink">
+                Demo workspace
+              </span>
+              <span className="font-mono text-[0.68rem] tabular-nums text-cyan">{clock}</span>
             </p>
           </div>
 

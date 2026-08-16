@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Inter, Syne } from "next/font/google";
 import { StudioAgent } from "@/components/agent/studio-agent";
 import { Atmosphere } from "@/components/landing/atmosphere";
+import { ScrollTheatre } from "@/components/landing/scroll-theatre";
 import { NanoBoot } from "@/components/nano/nano-boot";
 import { SalesGuide } from "@/components/sales/sales-guide";
 import { SiteFooter } from "@/components/site-footer";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="relative flex min-h-full flex-col bg-background pb-24 font-sans text-foreground md:pb-0">
         <Atmosphere />
+        <ScrollTheatre />
         <NanoBoot />
         <div className="grain" aria-hidden="true" />
         <a

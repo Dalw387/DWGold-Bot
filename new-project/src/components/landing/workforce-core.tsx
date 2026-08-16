@@ -19,7 +19,7 @@ export function WorkforceCore({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
     const id = window.setInterval(() => {
       setCycle((current) => (current + 1) % WORKFORCE_CORE.length);
-    }, 2800);
+    }, 2600);
     return () => window.clearInterval(id);
   }, []);
 
@@ -31,6 +31,8 @@ export function WorkforceCore({
           agent,
           x: 50 + Math.cos(angle) * 39,
           y: 50 + Math.sin(angle) * 39,
+          nx: 50 + Math.cos(((index + 1) / WORKFORCE_CORE.length) * Math.PI * 2 - Math.PI / 2) * 39,
+          ny: 50 + Math.sin(((index + 1) / WORKFORCE_CORE.length) * Math.PI * 2 - Math.PI / 2) * 39,
           float: floats[index] ?? "float-a",
         };
       }),
@@ -41,14 +43,14 @@ export function WorkforceCore({
   const focused = WORKFORCE_CORE.find((agent) => agent.name === focusedName) ?? WORKFORCE_CORE[0];
 
   return (
-    <figure className="relative mx-auto min-h-[30rem] w-full max-w-[36rem] pb-16 sm:min-h-[36rem]">
+    <figure className="relative mx-auto min-h-[26rem] w-full max-w-[38rem] pb-4 sm:min-h-[36rem] sm:pb-16">
       <div className="hud-scan rounded-[2rem]" aria-hidden="true" />
-      <div className="ring orbit h-[22rem] w-[22rem] border border-dashed border-cyan/20 sm:h-[28rem] sm:w-[28rem]" />
-      <div className="ring orbit-rev h-[15.5rem] w-[15.5rem] border border-violet/25 sm:h-[20rem] sm:w-[20rem]" />
-      <div className="ring h-[9.5rem] w-[9.5rem] border border-magenta/20 sm:h-[12rem] sm:w-[12rem]" />
+      <div className="ring orbit h-[18rem] w-[18rem] border border-dashed border-cyan/25 sm:h-[28rem] sm:w-[28rem]" />
+      <div className="ring orbit-rev h-[12.5rem] w-[12.5rem] border border-violet/30 sm:h-[20rem] sm:w-[20rem]" />
+      <div className="ring h-[8rem] w-[8rem] border border-magenta/25 sm:h-[12rem] sm:w-[12rem]" />
 
       <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-        {satellites.map(({ agent, x, y }) => {
+        {satellites.map(({ agent, x, y, nx, ny }) => {
           const on = focused?.name === agent.name;
           const colour = colourForAgent(agent.id);
           return (
@@ -62,21 +64,46 @@ export function WorkforceCore({
                 strokeWidth={on ? 0.55 : 0.22}
                 className={on ? "signal-travel" : ""}
               />
-              <circle r={on ? 1.35 : 0.85} fill={colour} opacity={on ? 1 : 0.55}>
-                <animateMotion
-                  dur={on ? "1.6s" : "3.4s"}
-                  repeatCount="indefinite"
-                  path={`M50,50 L${x},${y}`}
-                />
+              <line
+                x1={x}
+                y1={y}
+                x2={nx}
+                y2={ny}
+                stroke="rgba(228,71,209,0.14)"
+                strokeWidth="0.18"
+                className="pulse-line"
+              />
+              <circle r={on ? 1.4 : 0.85} fill={colour} opacity={on ? 1 : 0.55}>
+                <animateMotion dur={on ? "1.45s" : "3.2s"} repeatCount="indefinite" path={`M50,50 L${x},${y}`} />
               </circle>
             </g>
           );
         })}
       </svg>
 
-      <div className="core node-breathe absolute left-1/2 top-1/2 z-10 grid h-[5.6rem] w-[5.6rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full sm:h-[6.6rem] sm:w-[6.6rem]">
-        <BrandMark className="h-11 w-11 sm:h-12 sm:w-12" />
+      <div className="core node-breathe absolute left-1/2 top-1/2 z-10 grid h-[5rem] w-[5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full sm:h-[6.6rem] sm:w-[6.6rem]">
+        <BrandMark className="h-10 w-10 sm:h-12 sm:w-12" />
       </div>
+
+      {satellites.map(({ agent, x, y }) => {
+        const on = focused?.name === agent.name;
+        const colour = colourForAgent(agent.id);
+        return (
+          <button
+            key={`${agent.id}-node`}
+            type="button"
+            className="absolute z-20 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full md:hidden"
+            style={{
+              left: `${x}%`,
+              top: `${y}%`,
+              background: colour,
+              boxShadow: on ? `0 0 18px ${colour}` : `0 0 8px ${colour}`,
+            }}
+            aria-label={`${agent.name}, ${agent.desk}`}
+            onClick={() => setHover(agent.name)}
+          />
+        );
+      })}
 
       {satellites.map(({ agent, x, y, float }) => {
         const on = focused?.name === agent.name;
@@ -85,7 +112,7 @@ export function WorkforceCore({
           <Link
             key={agent.id}
             href={`/${agent.slug}`}
-            className={`absolute z-20 w-[7.6rem] -translate-x-1/2 -translate-y-1/2 rounded-2xl border px-2.5 py-2 text-left backdrop-blur-md transition sm:w-[8.6rem] ${float} ${
+            className={`absolute z-20 hidden w-[8.6rem] -translate-x-1/2 -translate-y-1/2 rounded-2xl border px-2.5 py-2 text-left backdrop-blur-md transition md:block ${float} ${
               on ? "bg-void/85 text-ice" : "bg-void/55 text-titanium hover:text-ice"
             }`}
             style={{
@@ -115,7 +142,28 @@ export function WorkforceCore({
         );
       })}
 
-      <figcaption className="absolute inset-x-0 bottom-0 text-center">
+      <div className="relative z-20 mt-[19rem] grid grid-cols-2 gap-2 md:hidden">
+        {WORKFORCE_CORE.map((agent) => {
+          const on = focused?.name === agent.name;
+          const colour = colourForAgent(agent.id);
+          return (
+            <button
+              key={agent.id}
+              type="button"
+              onClick={() => setHover(agent.name)}
+              className={`rounded-xl border px-3 py-2 text-left ${on ? "bg-void/80 text-ice" : "bg-void/40 text-titanium"}`}
+              style={{ borderColor: on ? colour : "rgba(73,230,255,0.16)" }}
+            >
+              <span className="block text-sm font-semibold">{agent.name}</span>
+              <span className="text-[0.58rem] uppercase tracking-[0.12em]" style={{ color: colour }}>
+                {on ? agent.doing : agent.desk}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <figcaption className="relative mt-4 text-center md:absolute md:inset-x-0 md:bottom-0 md:mt-0">
         <p className="label" style={{ color: colourForAgent(focused?.id ?? "alex") }}>
           {focused?.name} · {focused?.desk}
         </p>

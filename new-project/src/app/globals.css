@@ -339,8 +339,23 @@ body {
     linear-gradient(135deg, #050611 0%, #0c1638 28%, #2a1760 52%, #6b1d72 76%, #e447d1 100%);
 }
 
-.faq-open {
-  box-shadow: 0 0 24px rgb(73 230 255 / 0.12);
+.theatre {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.theatre.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aurora {
+  transform-origin: center;
+}
+
+.aurora-delay {
+  transform-origin: center;
 }
 
 .ring {
@@ -472,6 +487,14 @@ body {
   .live-cascade {
     animation: cascade 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  .aurora {
+    animation: aurora-drift 18s ease-in-out infinite alternate;
+  }
+
+  .aurora-delay {
+    animation: aurora-drift 22s ease-in-out infinite alternate-reverse;
+  }
 }
 
 @keyframes marquee {
@@ -536,6 +559,15 @@ body {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(4%, 6%, 0) scale(1.08);
   }
 }
 
@@ -641,8 +673,16 @@ body {
   .hud-scan,
   .feed-in,
   .status-dot,
-  .live-cascade {
+  .live-cascade,
+  .aurora,
+  .aurora-delay {
     animation: none !important;
+  }
+
+  .theatre,
+  .theatre.is-in {
+    opacity: 1;
+    transform: none;
   }
 
   .logo-draw .path {

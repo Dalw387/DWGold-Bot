@@ -8,7 +8,7 @@ import { openBuildTeam } from "@/lib/sales";
 export function WorkforceHero() {
   return (
     <section className="band-hero relative min-h-[100svh] overflow-x-hidden">
-      <Container className="relative z-10 grid items-center gap-10 py-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-8 lg:py-16">
+      <Container className="relative z-10 grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-6 lg:py-16">
         <div className="reveal">
           <p className="kicker">
             <span className="kicker-dot" aria-hidden="true" />
@@ -31,8 +31,16 @@ export function WorkforceHero() {
               Watch the team work
             </ButtonLink>
           </div>
+          <p className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-titanium">
+            <span className="status-dot" />
+            6 specialists online
+            <span className="text-white/20">·</span>
+            Demo workspace
+            <span className="text-white/20">·</span>
+            They write. You send.
+          </p>
         </div>
-        <div className="reveal min-h-[28rem] sm:min-h-[34rem]" style={{ animationDelay: "140ms" }}>
+        <div className="reveal min-h-[26rem] sm:min-h-[34rem]" style={{ animationDelay: "140ms" }}>
           <WorkforceCore />
         </div>
       </Container>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Container } from "@/components/container";
 import { ViewportSignal } from "@/components/nano/viewport-signal";
 import { StripePayLink } from "@/components/pay/stripe-pay-link";
@@ -17,6 +18,8 @@ const extras = [
 ];
 
 export function TeamPricing() {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
   return (
     <section id="pricing" aria-labelledby="pricing-heading" className="band-pricing py-24 sm:py-32">
       <ViewportSignal kind="pricing" />
@@ -32,7 +35,17 @@ export function TeamPricing() {
           The full writing house: six specialists, twenty-four work rooms, one
           connected workspace. We will not invent monthly tiers we cannot run.
         </p>
-        <article className="glass-lit relative mt-12 overflow-hidden rounded-[1.8rem] p-8 sm:p-12">
+        <article
+          className="glass-lit relative mt-12 overflow-hidden rounded-[1.8rem] p-8 sm:p-12"
+          onPointerMove={(event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
+            const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
+            setTilt({ x, y });
+          }}
+          onPointerLeave={() => setTilt({ x: 0, y: 0 })}
+          style={{ transform: `perspective(1200px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)` }}
+        >
           <p className="font-display text-[clamp(4.2rem,10vw,7.5rem)] leading-none tracking-tight text-ice">
             {HOUSE_PRICE_SHORT}
           </p>

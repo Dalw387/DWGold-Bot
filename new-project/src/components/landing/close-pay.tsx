@@ -18,6 +18,9 @@ export function ClosePay() {
         <h2 id="pay-heading" className="font-display display-1 mt-6 text-ice">
           Give them something worth working on.
         </h2>
+        <p className="mt-5 max-w-lg text-lg text-silver">
+          Six specialists. One payment. The work starts when you do.
+        </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
           <StripePayLink arrow>Build my AI team — {HOUSE_PRICE_SHORT}</StripePayLink>
           <ButtonLink href="/#control" variant="secondary">

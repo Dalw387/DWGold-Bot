@@ -18,6 +18,7 @@ export default function PayPage() {
     <div className="border-b border-border">
       <OfferJsonLd />
       <Container className="max-w-2xl py-16 sm:py-24">
+        <div className="glass-lit rounded-[1.6rem] p-8 sm:p-10">
         <p className="kicker">
           <span className="kicker-dot" aria-hidden="true" />
           Ready to put the team to work?
@@ -46,6 +47,7 @@ export default function PayPage() {
             <li>04 Start building customer-getting drafts.</li>
           </ol>
         </details>
+        </div>
       </Container>
     </div>
   );
