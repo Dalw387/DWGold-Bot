@@ -84,6 +84,16 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/#nano" className="text-sm text-slate hover:text-ice">
+                  Nano Growth
+                </Link>
+              </li>
+              <li>
+                <Link href="/audit" className="text-sm text-slate hover:text-ice">
+                  AI marketing score
+                </Link>
+              </li>
+              <li>
                 <Link href="/sample" className="text-sm text-slate hover:text-ice">
                   Sample
                 </Link>

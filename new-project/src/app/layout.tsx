@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Inter, Syne } from "next/font/google";
 import { StudioAgent } from "@/components/agent/studio-agent";
 import { Atmosphere } from "@/components/landing/atmosphere";
+import { NanoBoot } from "@/components/nano/nano-boot";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StickyPayBar } from "@/components/landing/sticky-pay-bar";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="relative flex min-h-full flex-col bg-background pb-24 font-sans text-foreground md:pb-0">
         <Atmosphere />
+        <NanoBoot />
         <div className="grain" aria-hidden="true" />
         <a
           href="#main"

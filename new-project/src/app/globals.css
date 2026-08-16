@@ -236,9 +236,60 @@ body {
     0 0 90px rgb(77 240 255 / 0.25);
 }
 
-.reveal {
-  opacity: 1;
-  transform: none;
+.hud-grid {
+  background-image:
+    linear-gradient(rgb(77 240 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(77 240 255 / 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.hud-scan {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgb(77 240 255 / 0.12) 48%, transparent 52%);
+  mix-blend-mode: screen;
+}
+
+.hud-bracket {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: rgb(77 240 255 / 0.7);
+  border-style: solid;
+}
+
+.hud-radar {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(28rem, 88%);
+  height: min(28rem, 88%);
+  translate: -50% -50%;
+  border-radius: 999px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0 72%,
+    rgb(77 240 255 / 0.16) 86%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hud-scan {
+    animation: scan 3.6s linear infinite;
+  }
+
+  .hud-arc {
+    animation: spin-slow 14s linear infinite;
+  }
+
+  .hud-radar {
+    animation: spin-slow 5.5s linear infinite;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -430,12 +481,18 @@ body {
   }
 }
 
-@keyframes aurora {
+@keyframes scan {
   from {
-    transform: translate3d(-6%, -4%, 0) scale(1);
+    transform: translateY(-100%);
   }
   to {
-    transform: translate3d(8%, 6%, 0) scale(1.12);
+    transform: translateY(100%);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -455,7 +512,10 @@ body {
   .glow-card::before,
   .aurora,
   .aurora-2,
-  .btn-shine::after {
+  .btn-shine::after,
+  .hud-scan,
+  .hud-arc,
+  .hud-radar {
     animation: none !important;
   }
 

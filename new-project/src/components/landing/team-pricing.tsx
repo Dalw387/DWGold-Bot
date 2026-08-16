@@ -1,4 +1,5 @@
 import { Container } from "@/components/container";
+import { ViewportSignal } from "@/components/nano/viewport-signal";
 import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import { AGENT_COUNT_WORDS, ROOM_COUNT_WORDS } from "@/lib/counts";
@@ -7,6 +8,7 @@ import { includedAfterPay } from "@/lib/offer";
 export function TeamPricing() {
   return (
     <section id="pricing" aria-labelledby="pricing-heading" className="border-b border-border py-20 sm:py-28">
+      <ViewportSignal kind="pricing" />
       <Container>
         <p className="kicker">
           <span className="kicker-dot" aria-hidden="true" />

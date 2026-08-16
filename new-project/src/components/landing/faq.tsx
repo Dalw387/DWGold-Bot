@@ -40,6 +40,10 @@ const items = [
     a: "No. Grace writes the SMS and email, and shows you how to copy your Google review link. You paste the link and send it to people you actually helped. Tools such as Birdeye or Podium will send the texts for you, usually for hundreds of pounds a month. We do not log into Google.",
   },
   {
+    q: "What is Nano Growth™?",
+    a: "The shared intelligence under the desks. Clicks on this site become first-party signals in your browser. One set of facts feeds every agent. After you pay, the proof ledger remembers real enquiries. The AI marketing score is a shareable card, not a Google ranking. Nano Growth does not log into Ads Manager, does not buy fake clicks, and does not guarantee that a post goes viral.",
+  },
+  {
     q: "Is this a live AI model?",
     a: "The concierge and the drafts run from templates in your browser, so the desk can stay a one-off price. Same facts in, same words out. That is how we give you a lot for £197 instead of a monthly software bill.",
   },

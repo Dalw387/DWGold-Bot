@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
+import { SignalTracker } from "@/components/nano/signal-tracker";
 import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { generateForTool } from "@/lib/copy";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
@@ -47,6 +48,7 @@ export default function SamplePage() {
 
   return (
     <div className="border-b border-border">
+      <SignalTracker kind="sample" />
       <Container className="max-w-3xl py-16 sm:py-24">
         <p className="kicker">Sample · not a customer story</p>
         <h1 className="font-display mt-4 text-4xl font-medium tracking-tight sm:text-5xl">

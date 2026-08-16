@@ -37,12 +37,28 @@ export function Atmosphere() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const w = canvas.width;
       const h = canvas.height;
-      for (const dot of dots) {
-        dot.y -= dot.s / 1200;
-        if (dot.y < 0) dot.y = 1;
+      for (let i = 0; i < dots.length; i += 1) {
+        const a = dots[i];
+        if (!a) continue;
+        a.y -= a.s / 1200;
+        if (a.y < 0) a.y = 1;
+        for (let j = i + 1; j < dots.length; j += 1) {
+          const b = dots[j];
+          if (!b) continue;
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist > 0.12) continue;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(125, 211, 252, ${0.09 - dist * 0.45})`;
+          ctx.lineWidth = 0.7 * window.devicePixelRatio;
+          ctx.moveTo(a.x * w, a.y * h);
+          ctx.lineTo(b.x * w, b.y * h);
+          ctx.stroke();
+        }
         ctx.beginPath();
-        ctx.fillStyle = `rgba(180, 160, 255, ${dot.a})`;
-        ctx.arc(dot.x * w, dot.y * h, dot.r * window.devicePixelRatio, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(180, 160, 255, ${a.a})`;
+        ctx.arc(a.x * w, a.y * h, a.r * window.devicePixelRatio, 0, Math.PI * 2);
         ctx.fill();
       }
       frame += 1;

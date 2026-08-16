@@ -16,9 +16,10 @@ import {
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const publicLinks = [
+  { href: "/#nano", label: "Nano Growth" },
   { href: "/#agents", label: "Agents" },
   { href: "/#solutions", label: "Solutions" },
-  { href: "/#results", label: "Results" },
+  { href: "/audit", label: "Score" },
   { href: "/#pricing", label: "Pricing" },
 ];
 

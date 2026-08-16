@@ -8,6 +8,7 @@ import {
   hydrateLeadEmail,
   subscribeLeadEmail,
 } from "@/lib/lead-email";
+import { recordSignal } from "@/lib/nano-growth";
 import { stripePaymentLink } from "@/lib/payments";
 
 export function StripePayLink({
@@ -35,7 +36,14 @@ export function StripePayLink({
   if (!href) return null;
 
   return (
-    <ButtonAnchor href={href} variant={variant} className={className} rel="noreferrer" arrow={arrow}>
+    <ButtonAnchor
+      href={href}
+      variant={variant}
+      className={className}
+      rel="noreferrer"
+      arrow={arrow}
+      onClick={() => recordSignal("cta", "stripe")}
+    >
       {children}
     </ButtonAnchor>
   );

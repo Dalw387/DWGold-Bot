@@ -21,8 +21,8 @@ export function AgentBento() {
         </h2>
         <p className="mt-5 max-w-xl text-base leading-7 text-slate">
           Not a caption generator. A department: find, advertise, engage,
-          qualify, follow, and count. Each specialist has a job a business
-          owner already has a name for.
+          qualify, follow, and count. Click a specialist to read a real draft
+          from that desk. After you pay, the same desk writes it from your facts.
         </p>
         <div className="mt-14 grid gap-4 lg:grid-cols-3">
           {lead ? (
@@ -37,6 +37,7 @@ export function AgentBento() {
               <p className="mt-5 max-w-lg text-sm leading-7 text-slate">{lead.does}</p>
               <p className="mt-3 max-w-lg text-sm leading-7 text-slate">{lead.doesNot}</p>
               <p className="mt-8 text-sm font-medium text-ice">{lead.metric}</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.14em] text-cyan">See a real draft →</p>
             </Link>
           ) : null}
           {rest.map((agent) => (

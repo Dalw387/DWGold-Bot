@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
+import { ViewportSignal } from "@/components/nano/viewport-signal";
 
 function pounds(n: number): string {
   return new Intl.NumberFormat("en-GB", {
@@ -35,6 +36,7 @@ export function RoiCalculator() {
 
   return (
     <section id="calculator" aria-labelledby="roi-heading" className="border-b border-border py-20 sm:py-28">
+      <ViewportSignal kind="calculator" />
       <Container className="grid items-start gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
         <div>
           <p className="kicker">

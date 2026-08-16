@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/button";
 import { Container } from "@/components/container";
 import { generateForTool } from "@/lib/copy";
+import { recordSignal } from "@/lib/nano-growth";
+import { ViewportSignal } from "@/components/nano/viewport-signal";
 import { DEFAULT_FACEBOOK_STYLES, type GeneratorFormValues } from "@/lib/types";
 
 const jobs: { prompt: string; values: GeneratorFormValues }[] = [
@@ -75,6 +77,7 @@ export function JobDemo() {
     const reply = generateForTool("enquiry-reply", job.values)[0];
     const ads = generateForTool("ads-copy", job.values)[0];
     const plan = generateForTool("customer-plan", job.values)[0];
+    recordSignal("demo", job.values.businessType);
     setOutput(
       [
         reply ? { label: "Appointment Agent · first reply", text: reply.text } : null,
@@ -89,6 +92,7 @@ export function JobDemo() {
 
   return (
     <section id="how" aria-labelledby="demo-heading" className="border-b border-border py-20 sm:py-28">
+      <ViewportSignal kind="demo" />
       <Container>
         <p className="kicker">
           <span className="kicker-dot" aria-hidden="true" />

@@ -19,6 +19,7 @@ export const workforceAgents = [
     does: "Writes the 14-day plan, referral asks, neighbour introductions and follow-ups so every lead you already have is worked.",
     doesNot: "Does not scrape the internet or invent a list of strangers.",
     metric: "14-day customer plan included",
+    deskHref: "/tools/customer-plan",
   },
   {
     slug: "ai-google-ads-agent",
@@ -29,6 +30,7 @@ export const workforceAgents = [
     does: "Writes Google Ads and Meta ads copy, headlines, and a campaign structure you paste into your own accounts.",
     doesNot: "Does not log into Ads Manager or spend budget.",
     metric: "Google + Meta drafts",
+    deskHref: "/tools/ads-copy",
   },
   {
     slug: "ai-social-media-agent",
@@ -39,6 +41,7 @@ export const workforceAgents = [
     does: "Writes Facebook posts, Instagram captions, listing updates, WhatsApp notes and a seven-day starting plan.",
     doesNot: "Does not publish or watch live DMs.",
     metric: "Eight Facebook styles",
+    deskHref: "/tools/facebook-post-generator",
   },
   {
     slug: "ai-appointment-setter",
@@ -49,6 +52,7 @@ export const workforceAgents = [
     does: "Writes the first reply, the booking reply, phone lines, voicemail and the missed-call text.",
     doesNot: "Does not sit on your live phone or book a diary unaided.",
     metric: "First-reply pack",
+    deskHref: "/tools/enquiry-reply",
   },
   {
     slug: "ai-customer-service-agent",
@@ -59,6 +63,7 @@ export const workforceAgents = [
     does: "Writes Google review asks, calm replies, closed voicemail and off-hours texts so a missed call is not a lost job.",
     doesNot: "Does not send SMS or log into Google for you.",
     metric: "Review + missed-call desk",
+    deskHref: "/tools/google-review-desk",
   },
   {
     slug: "ai-search-visibility-agent",
@@ -69,6 +74,7 @@ export const workforceAgents = [
     does: "Writes a public homepage, local titles, search themes and a Google Business checklist.",
     doesNot: "Does not promise ChatGPT citations or a ranking.",
     metric: "Public page, no login wall",
+    deskHref: "/tools/seo-brief",
   },
 ];
 

@@ -11,14 +11,18 @@ import { RoiCalculator } from "@/components/landing/roi-calculator";
 import { StarterPath } from "@/components/landing/starter-path";
 import { TeamPricing } from "@/components/landing/team-pricing";
 import { WorkforceHero } from "@/components/landing/workforce-hero";
+import { GrowthLayer } from "@/components/nano/growth-layer";
+import { SignalTracker } from "@/components/nano/signal-tracker";
 import { OfferJsonLd } from "@/components/pay/offer-json-ld";
 
 export default function Home() {
   return (
     <>
       <OfferJsonLd />
+      <SignalTracker kind="home" />
       <WorkforceHero />
       <MotionTicker />
+      <GrowthLayer />
       <AgentBento />
       <Industries />
       <StarterPath />
