@@ -21,30 +21,30 @@ export default function PayPage() {
   const label = housePriceLabel();
 
   return (
-    <div className="border-b border-[#d8d4cc]">
+    <div className="border-b border-border">
       <OfferJsonLd />
       <Container className="max-w-3xl py-16 sm:py-24">
         <p className="kicker">Stripe checkout</p>
         <h1 className="font-display mt-4 text-4xl font-medium tracking-tight sm:text-5xl">
           Pay {HOUSE_PRICE_SHORT}. Then start getting customers.
         </h1>
-        <p className="mt-5 text-base leading-7 text-[#5f5c56]">
+        <p className="mt-5 text-base leading-7 text-muted">
           You leave this site and pay on Stripe. Apple Pay, Google Pay, Link, or
           a card. We never see your card number. After payment, Stripe should
           send you back here and this browser unlocks the desk.
         </p>
         <p className="mt-4 text-lg">{label}</p>
-        <p className="mt-3 text-sm leading-6 text-[#5f5c56]">
+        <p className="mt-3 text-sm leading-6 text-muted">
           {HOUSE_PRODUCT_DESCRIPTION}
         </p>
-        <ul className="mt-8 list-disc space-y-3 pl-5 text-sm leading-6 text-[#3a3936]">
+        <ul className="mt-8 list-disc space-y-3 pl-5 text-sm leading-6 text-foreground">
           {includedAfterPay.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <div className="mt-10 border border-[#d8d4cc] p-6">
+        <div className="mt-10 border border-border p-6">
           <h2 className="font-display text-2xl">Leave your email first</h2>
-          <p className="mt-2 text-sm leading-6 text-[#5f5c56]">
+          <p className="mt-2 text-sm leading-6 text-muted">
             Optional. We save it for later products, and Stripe can open with it
             filled in.
           </p>

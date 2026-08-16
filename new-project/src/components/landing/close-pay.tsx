@@ -11,12 +11,10 @@ export function ClosePay() {
   return (
     <section id="pay" aria-labelledby="pay-heading" className="ink-hero py-16 sm:py-24">
       <Container className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#b4b0a8]">
-          If you are happy
-        </p>
+        <p className="kicker !text-[#a8a59e]">If you are happy</p>
         <h2
           id="pay-heading"
-          className="font-display mt-4 text-3xl font-medium tracking-tight text-[#f4f3ef] sm:text-5xl"
+          className="font-display mt-4 text-3xl font-medium tracking-tight text-paper sm:text-5xl"
         >
           Pay {HOUSE_PRICE_SHORT} on Stripe. Then come inside and start getting customers.
         </h2>
@@ -26,7 +24,7 @@ export function ClosePay() {
           your card number. After payment, Stripe should send you back. This
           browser then unlocks the platform.
         </p>
-        <p className="mt-4 text-lg text-[#f4f3ef]">{label}</p>
+        <p className="mt-4 text-lg text-paper">{label}</p>
         <ul className="mt-8 space-y-3 text-sm leading-7 text-[#cfcbc3]">
           {includedAfterPay.map((item) => (
             <li key={item}>{item}</li>

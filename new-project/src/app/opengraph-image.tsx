@@ -14,8 +14,8 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f4f3ef",
-          color: "#191919",
+          background: "#f7f6f2",
+          color: "#0c0c0c",
           padding: 72,
         }}
       >
@@ -24,7 +24,7 @@ export default function OpenGraphImage() {
             style={{
               width: 40,
               height: 40,
-              background: "#191919",
+              background: "#0c0c0c",
               display: "flex",
               position: "relative",
             }}
@@ -36,7 +36,7 @@ export default function OpenGraphImage() {
                 top: 7,
                 width: 8,
                 height: 26,
-                background: "#f4f3ef",
+                background: "#f7f6f2",
               }}
             />
             <div
@@ -46,17 +46,17 @@ export default function OpenGraphImage() {
                 top: 25,
                 width: 20,
                 height: 8,
-                background: "#f4f3ef",
+                background: "#f7f6f2",
               }}
             />
           </div>
           <div style={{ fontSize: 28, letterSpacing: -0.5 }}>LocalLaunch</div>
         </div>
-        <div style={{ fontSize: 56, lineHeight: 1.15, maxWidth: 920 }}>
-          One extra job can cover £197. The next customer is the return.
+        <div style={{ fontSize: 52, lineHeight: 1.12, maxWidth: 960 }}>
+          You run the business. The desk writes the next customer.
         </div>
-        <div style={{ fontSize: 22, color: "#5f5c56" }}>
-          A customer-getting desk for local businesses.
+        <div style={{ fontSize: 22, color: "#5c5a55" }}>
+          £197 once. Named desks for leads, ads, social, appointments, reviews and search.
         </div>
       </div>
     ),

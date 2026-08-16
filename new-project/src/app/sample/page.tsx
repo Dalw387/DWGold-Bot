@@ -21,11 +21,11 @@ function SampleCard({
 }) {
   const clipped = text.length > 900 ? `${text.slice(0, 900).trim()}…` : text;
   return (
-    <article className="border-t border-[#d8d4cc] py-8">
-      <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#5f5c56]">
+    <article className="border-t border-border py-8">
+      <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">
         {label}
       </h2>
-      <pre className="mt-4 whitespace-pre-wrap font-sans text-base leading-7 text-[#191919]">
+      <pre className="mt-4 whitespace-pre-wrap font-sans text-base leading-7 text-foreground">
         {clipped}
       </pre>
     </article>
@@ -46,13 +46,13 @@ export default function SamplePage() {
   const plan = generateForTool("customer-plan", values)[0];
 
   return (
-    <div className="border-b border-[#d8d4cc]">
+    <div className="border-b border-border">
       <Container className="max-w-3xl py-16 sm:py-24">
         <p className="kicker">Sample · not a customer story</p>
         <h1 className="font-display mt-4 text-4xl font-medium tracking-tight sm:text-5xl">
           This is what the desk writes for a cafe in Falmouth.
         </h1>
-        <p className="mt-5 text-base leading-7 text-[#5f5c56]">
+        <p className="mt-5 text-base leading-7 text-muted">
           Harbour & Hearth is an example we built so you can read the work
           before you pay. Yours uses your name, town, and offer. Nothing here
           is a testimonial, a ranking, or a promise of bookings.

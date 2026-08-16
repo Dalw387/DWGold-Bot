@@ -7,31 +7,29 @@ import { OperationsDesk } from "@/components/operations/operations-desk";
 export const metadata: Metadata = {
   title: "House Operations",
   description:
-    "SEO, Facebook ads drafts, Google Ads drafts, a week of social starting points, and a proof plan. They draft work. They do not invent results.",
+    "Named desks for search, ads, social, leads, appointments, reviews and proof. They draft work. They do not invent results.",
 };
 
 export default function OperationsPage() {
   return (
     <PlatformGate>
-      <div className="mesh border-b border-stone-200">
+      <div className="mesh border-b border-border">
         <Container className="py-14 sm:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
-            House Operations
-          </p>
-          <h1 className="font-display mt-3 max-w-3xl text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
-            SEO, ads drafts, reviews, replies, and a 14-day customer plan
+          <p className="kicker">House Operations</p>
+          <h1 className="font-display mt-3 max-w-3xl text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+            Scout, Max, Mia, Sophie, Alex, Charlie, Grace and Quinn
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
-            Eight agents write in this browser tab: a public homepage, local SEO,
-            Facebook/Instagram ads, Google Ads (not AdSense), a week of social
-            starting points, a 14-day customer-getting plan, first replies,
-            Google review and missed-call packs, and what to log as proof. They
-            do not spend your ad budget. Type the business, or run a trial, then
-            press Run all house agents. Start with the Reviews agent if you want
-            the two jobs that pay first.
+          <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
+            Eight named desks write in this browser tab: a public homepage,
+            local SEO, Facebook/Instagram ads, Google Ads (not AdSense), a week
+            of social starting points, a 14-day customer-getting plan, first
+            replies, Google review and missed-call packs, and what to log as
+            proof. They do not spend your ad budget. Type the business, or run a
+            trial, then press Run all desks. Start with Grace if you want the
+            two jobs that pay first.
           </p>
           <div className="mt-12">
-            <Suspense fallback={<p className="text-sm text-stone-600">Opening the desk.</p>}>
+            <Suspense fallback={<p className="text-sm text-muted">Opening the desk.</p>}>
               <OperationsDesk />
             </Suspense>
           </div>

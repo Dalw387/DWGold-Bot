@@ -5,15 +5,15 @@ type Variant = "primary" | "secondary" | "ghost" | "gold" | "inverse";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-[#191919] text-[#f4f3ef] hover:bg-[#2a2a28] focus-visible:outline-[#1e3a34]",
+    "bg-ink text-paper hover:bg-[#1c1c1c] focus-visible:outline-accent",
   gold:
-    "bg-[#1e3a34] text-[#f4f3ef] hover:bg-[#162e29] focus-visible:outline-[#1e3a34]",
+    "bg-accent text-paper hover:bg-[#0f2623] focus-visible:outline-accent",
   secondary:
-    "border border-[#191919] bg-transparent text-inherit hover:bg-[#191919] hover:text-[#f4f3ef] focus-visible:outline-[#1e3a34]",
+    "border border-ink bg-transparent text-inherit hover:bg-ink hover:text-paper focus-visible:outline-accent",
   inverse:
-    "border border-[#f4f3ef] bg-transparent text-[#f4f3ef] hover:bg-[#f4f3ef] hover:text-[#191919] focus-visible:outline-[#f4f3ef]",
+    "border border-paper bg-transparent text-paper hover:bg-paper hover:text-ink focus-visible:outline-paper",
   ghost:
-    "text-[#3a3936] hover:bg-[#eceae4] focus-visible:outline-[#1e3a34]",
+    "text-muted hover:bg-wash focus-visible:outline-accent",
 };
 
 const base =

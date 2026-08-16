@@ -9,4 +9,4 @@ export const HOUSE_PRICE_LABEL = "£197 one-off";
 export const HOUSE_PRICE_SHORT = "£197";
 export const HOUSE_PRODUCT_NAME = "LocalLaunch House Operations";
 export const HOUSE_PRODUCT_DESCRIPTION =
-  "The full LocalLaunch platform: twenty-four drafting rooms, eight house agents, a Google review desk, off-hours missed-call texts, a 14-day customer plan, a concierge, and a proof ledger. Pay £197 once on Stripe. Aimed at more local customers. Ad spend at Facebook or Google is separate.";
+  "The full LocalLaunch platform: twenty-four drafting rooms, eight named desks (leads, appointments, social, Google Ads, Meta ads, search, reviews, proof), a Google review desk, off-hours missed-call texts, a 14-day customer plan, a concierge, and a proof ledger. Pay £197 once on Stripe. Aimed at more local customers. Ad spend at Facebook or Google is separate.";

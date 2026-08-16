@@ -1,5 +1,18 @@
 {
   "name": "LocalLaunch AI",
   "install": "cd new-project\nnpm ci",
-  "start": "cd new-project\nnpm run dev -- --hostname 0.0.0.0 --port 3000"
+  "start": "cd new-project\nnpm run dev -- --hostname 0.0.0.0 --port 3000",
+  "ports": [
+    {
+      "name": "LocalLaunch preview",
+      "port": 3000
+    }
+  ],
+  "terminals": [
+    {
+      "name": "LocalLaunch",
+      "command": "cd new-project && npm run dev -- --hostname 0.0.0.0 --port 3000",
+      "description": "Live website preview on port 3000"
+    }
+  ]
 }

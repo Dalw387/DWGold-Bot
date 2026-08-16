@@ -1,42 +1,54 @@
 import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
-import { BrandMark } from "@/components/logo";
+import { ProductStage } from "@/components/landing/product-stage";
 import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
+import { tradesWeFit } from "@/lib/desk-team";
 
 export function OfferHero() {
   return (
-    <section className="border-b border-[#d8d4cc]">
-      <Container className="max-w-3xl py-20 sm:py-28">
-        <BrandMark className="h-10 w-10" />
-        <p className="kicker mt-10">LocalLaunch · {HOUSE_PRICE_SHORT} once</p>
-        <h1 className="font-display mt-5 text-4xl font-medium tracking-tight text-[#191919] sm:text-5xl lg:text-[3.35rem] lg:leading-[1.12]">
-          One extra job covers the {HOUSE_PRICE_SHORT}. The next customer is money in the till.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-[#3a3936]">
-          A desk that writes the words a local business needs to get found,
-          asked, followed up, and paid. Read it. If it is a fit, pay once on
-          Stripe. This browser then opens the platform.
-        </p>
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="#value" variant="primary">
-            See why it is worth {HOUSE_PRICE_SHORT}
-          </ButtonLink>
-          <ButtonLink href="#start" variant="secondary">
-            The two jobs that pay first
-          </ButtonLink>
+    <section className="border-b border-border">
+      <Container className="py-16 sm:py-24 lg:py-28">
+        <p className="kicker">{HOUSE_PRICE_SHORT} once · not a monthly retainer</p>
+        <div className="mt-6 grid items-end gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] lg:gap-16">
+          <div>
+            <h1 className="font-display text-[2.35rem] font-medium leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.65rem] lg:leading-[1.06]">
+              You run the business. The desk writes the next customer.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
+              Named desks for leads, advertising, social, appointments, reviews
+              and search. They write in this browser. You send the work. One
+              extra job covers the {HOUSE_PRICE_SHORT}.
+            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="#team" variant="primary">
+                Meet the desks
+              </ButtonLink>
+              <ButtonLink href="#start" variant="secondary">
+                The two jobs that pay first
+              </ButtonLink>
+            </div>
+            <p className="mt-8 max-w-lg text-sm leading-6 text-muted">
+              Not an AI that finds leads while you sleep. Not a robot on your
+              phone. Not ad spend. The product worth the money is the full
+              customer-getting pack — written, ready to send, yours to keep.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <StripePayLink variant="ghost">
+                Pay {HOUSE_PRICE_SHORT} on Stripe
+              </StripePayLink>
+              <ButtonLink href="/sample" variant="ghost">
+                Read a real sample
+              </ButtonLink>
+            </div>
+          </div>
+          <ProductStage />
         </div>
-        <p className="mt-8 max-w-xl text-sm leading-6 text-[#5f5c56]">
-          Not a monthly retainer. Not ad spend. Not a promise of a full diary.
-          If one extra job, visit, or booking comes from this desk, the{" "}
-          {HOUSE_PRICE_SHORT} is already behind you.
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <StripePayLink variant="ghost">Pay {HOUSE_PRICE_SHORT} on Stripe</StripePayLink>
-          <ButtonLink href="/sample" variant="ghost">
-            Look at a real sample
-          </ButtonLink>
-        </div>
+        <ul className="mt-16 flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-8 text-sm text-muted">
+          {tradesWeFit.map((trade) => (
+            <li key={trade}>{trade}</li>
+          ))}
+        </ul>
       </Container>
     </section>
   );

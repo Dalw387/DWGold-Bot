@@ -30,7 +30,7 @@ const steps = [
   {
     n: "3",
     title: "Use the platform in this browser",
-    body: "Stripe should send you back. Then open House Operations, type the business, and start with the Reviews agent: Google review ask and missed-call texts. Then run the rest of the eight agents and use any of the twenty-four rooms. The concierge can fill the form from a sentence.",
+    body: "Stripe should send you back. Then open House Operations, type the business, and start with Grace: Google review ask and missed-call texts. Then run the rest of the eight desks and use any of the twenty-four rooms. The concierge can fill the form from a sentence.",
     href: "/pay",
     label: "Go to checkout",
     pay: false,
@@ -49,26 +49,24 @@ export default function GuidePage() {
   const link = stripePaymentLink();
 
   return (
-    <div className="mesh border-b border-stone-200">
+    <div className="mesh border-b border-border">
       <Container className="max-w-3xl py-14 sm:py-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
-          Simple guide
-        </p>
-        <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
+        <p className="kicker">Simple guide</p>
+        <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
           Read it. Pay if you are happy. Then use the desk.
         </h1>
-        <p className="mt-4 text-base leading-7 text-stone-600">
+        <p className="mt-4 text-base leading-7 text-muted">
           There is nothing for us to set up for each customer. You use the
           website. We do not log into your ads accounts.
         </p>
         <ol className="mt-12 space-y-8">
           {steps.map((step) => (
-            <li key={step.n} className="paper-card rounded-sm border border-stone-200 p-6 sm:p-8">
-              <p className="font-display text-sm tracking-[0.2em] text-[#4d5c57]">
+            <li key={step.n} className="paper-card rounded-sm border border-border p-6 sm:p-8">
+              <p className="font-display text-sm tracking-[0.2em] text-muted">
                 {step.n}
               </p>
-              <h2 className="font-display mt-3 text-2xl text-stone-900">{step.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-stone-600">{step.body}</p>
+              <h2 className="font-display mt-3 text-2xl text-foreground">{step.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted">{step.body}</p>
               {step.pay && link ? (
                 <ButtonAnchor href={link} className="mt-6" variant="gold" rel="noreferrer">
                   {step.label}

@@ -15,8 +15,8 @@ export function HouseReturnMarker() {
   }, [params]);
 
   return (
-    <p className="mt-4 text-sm leading-6 text-stone-600">
-      This browser is now unlocked. Open the studio and run the house agents.
+    <p className="mt-4 text-sm leading-6 text-muted">
+      This browser is now unlocked. Open the studio and run the named desks.
       Keep using this same phone or computer. We have not verified the payment
       on a server yet, so do not treat this screen as a tax receipt.
     </p>

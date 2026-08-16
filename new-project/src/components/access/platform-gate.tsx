@@ -26,7 +26,7 @@ export function PlatformGate({ children }: { children: ReactNode }) {
   if (!access.hydrated) {
     return (
       <Container className="py-16">
-        <p className="text-sm text-[#5f5c56]">Opening the desk.</p>
+        <p className="text-sm text-muted">Opening the desk.</p>
       </Container>
     );
   }
@@ -36,14 +36,14 @@ export function PlatformGate({ children }: { children: ReactNode }) {
   const link = stripePaymentLink();
 
   return (
-    <div className="border-b border-[#d8d4cc]">
+    <div className="border-b border-border">
       <Container className="max-w-2xl py-16 sm:py-24">
         <p className="kicker">Members’ desk</p>
         <h1 className="font-display mt-4 text-4xl font-medium tracking-tight sm:text-5xl">
           Pay {HOUSE_PRICE_SHORT} to come inside
         </h1>
-        <p className="mt-5 text-base leading-7 text-[#5f5c56]">
-          The studio, the house agents, the concierge, and the proof ledger open
+        <p className="mt-5 text-base leading-7 text-muted">
+          The studio, the named desks, the concierge, and the proof ledger open
           after Stripe takes payment. Read the offer, or look at the Falmouth
           sample, then pay if it is a fit.
         </p>

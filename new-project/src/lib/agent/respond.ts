@@ -81,13 +81,15 @@ export function respondToMessage(
   ) {
     return {
       reply:
-        "I will open House Operations on the DW Gold Trading owner trial. The public site currently greets people with a login wall — the SEO agent will draft a page strangers can actually read. Do not promise trading profits. Log only real enquiries.",
+        "I will open House Operations on the DW Gold Trading owner trial. The public site currently greets people with a login wall — Scout will draft a page strangers can actually read. Do not promise trading profits. Log only real enquiries.",
       goTo: "/operations?trial=gold&run=1",
     };
   }
 
   if (
     lower.includes("house agent") ||
+    lower.includes("named desk") ||
+    lower.includes("run the desk") ||
     lower.includes("operations") ||
     lower.includes("run the house") ||
     lower.includes("facebook ads") ||
@@ -104,7 +106,7 @@ export function respondToMessage(
     }
     return {
       reply: profileReady(profile)
-        ? `House Operations is the desk for SEO, ads, social, replies, and a measurement plan.${liveSketch(profile)}\n\nI will open the desk. The agents draft in this tab. They do not spend ad budget.`
+        ? `House Operations is the desk for Scout, Max, Mia, Sophie, Alex, Charlie, Grace and Quinn.${liveSketch(profile)}\n\nI will open the desk. They draft in this tab. They do not spend ad budget.`
         : "House Operations can run once we have a name, type, town, and offer. Load the DW Gold Trading trial on that page if this is the owner test, or tell me the business here.",
       goTo: "/operations",
     };

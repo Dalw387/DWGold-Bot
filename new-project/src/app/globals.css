@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f3ef;
-  --foreground: #191919;
-  --muted: #5f5c56;
-  --accent: #1e3a34;
-  --card: #fafaf7;
-  --border: #d8d4cc;
-  --ink: #191919;
-  --paper: #f4f3ef;
-  --on-ink: #f4f3ef;
-  --on-ink-muted: #b4b0a8;
+  --background: #f7f6f2;
+  --foreground: #0c0c0c;
+  --muted: #5c5a55;
+  --accent: #16332f;
+  --card: #fffcf8;
+  --border: #ddd9d0;
+  --ink: #0c0c0c;
+  --paper: #f7f6f2;
+  --on-ink: #f7f6f2;
+  --on-ink-muted: #a8a59e;
+  --wash: #efece6;
 }
 
 @theme inline {
@@ -18,7 +19,12 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --font-sans: var(--font-source-sans);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-wash: var(--wash);
+  --font-sans: var(--font-inter);
   --font-display: var(--font-newsreader);
 }
 
@@ -29,12 +35,13 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" on, "cv11" on;
 }
 
 ::selection {
-  background: #191919;
-  color: #f4f3ef;
+  background: var(--ink);
+  color: var(--on-ink);
 }
 
 .font-display {
@@ -59,7 +66,7 @@ body {
 
 .luxury-panel {
   background: var(--ink);
-  border: 1px solid rgb(255 255 255 / 0.12);
+  border: 1px solid rgb(255 255 255 / 0.1);
 }
 
 .paper-card {
@@ -74,9 +81,22 @@ body {
 .kicker {
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.hairline {
+  height: 1px;
+  background: var(--foreground);
+  opacity: 0.12;
+}
+
+.product-frame {
+  background: var(--ink);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06),
+    0 28px 80px rgb(12 12 12 / 0.18);
 }
 
 .marquee-track {

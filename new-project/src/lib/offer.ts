@@ -1,6 +1,6 @@
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
-export const OFFER_TAGLINE = `Pay ${HOUSE_PRICE_SHORT} once. Walk out with a full customer-getting desk.`;
+export const OFFER_TAGLINE = `Pay ${HOUSE_PRICE_SHORT} once. Walk out with a full customer-getting team of desks.`;
 
 export const problems = [
   {
@@ -17,7 +17,7 @@ export const problems = [
   },
   {
     title: "Ads sent to a locked page waste money.",
-    body: "If the first screen of your site is a login wall, Facebook and Google send people to a closed door. The SEO agent drafts a public homepage a stranger can actually read. You still paste it onto a public URL. Until that page exists, paid ads cannot convert.",
+    body: "If the first screen of your site is a login wall, Facebook and Google send people to a closed door. Scout drafts a public homepage a stranger can actually read. You still paste it onto a public URL. Until that page exists, paid ads cannot convert.",
   },
 ];
 
@@ -157,35 +157,35 @@ export const rooms = [
 
 export const agents = [
   {
-    name: "SEO agent",
-    help: "Writes a public homepage (no login wall), local titles, search themes, and a Google Business checklist. Use this first if strangers currently hit a locked screen.",
+    name: "Scout — Search desk",
+    help: "Writes a public homepage (no login wall), local titles, search themes, and a Google Business checklist. Use this first if strangers currently hit a locked screen. Scout does not get you cited in ChatGPT.",
   },
   {
-    name: "Facebook ads agent",
-    help: "Primary text, headlines, and a structure for Facebook and Instagram ads. You still build the campaign in Meta.",
+    name: "Mia — Meta ads desk",
+    help: "Primary text, headlines, and a structure for Facebook and Instagram ads. You still build the campaign in Meta. Mia does not spend budget.",
   },
   {
-    name: "Google Ads agent",
-    help: "Responsive search ad lines and keyword themes. This is Google Ads, the thing you pay to reach customers. It is not AdSense, which shows other people’s ads on your site.",
+    name: "Max — Google Ads desk",
+    help: "Responsive search ad lines and keyword themes. This is Google Ads, the thing you pay to reach customers. It is not AdSense. Max does not log into Google Ads.",
   },
   {
-    name: "Social agent",
-    help: "A seven-day set of starting posts from the same facts as the rest of the house.",
+    name: "Sophie — Social desk",
+    help: "A seven-day set of starting posts from the same facts as the rest of the house. Sophie does not publish or watch Instagram DMs.",
   },
   {
-    name: "Proof agent",
+    name: "Quinn — Proof desk",
     help: "A measurement plan: what to log this week so you can show real enquiries instead of likes.",
   },
   {
-    name: "Customers agent",
-    help: "A 14-day plan and a daily habit for getting real enquiries, not likes. This is the work that turns drafts into customers.",
+    name: "Alex — Lead desk",
+    help: "A 14-day plan and a daily habit for getting real enquiries, not likes. This is the work that turns drafts into customers. Alex does not scrape the internet for prospects.",
   },
   {
-    name: "Reply agent",
-    help: "First reply to an enquiry, a calm follow-up, after-the-job thank you, and a quiet-week note. This is the desk for turning a message into a customer.",
+    name: "Charlie — Appointment desk",
+    help: "First reply to an enquiry, a calm follow-up, after-the-job thank you, and a quiet-week note. Charlie does not answer the live phone or book a diary.",
   },
   {
-    name: "Reviews agent",
+    name: "Grace — Front desk",
     help: "Google review pack after the job, calm replies, and missed-call texts. The two starter jobs every local business understands. You still send them.",
   },
 ];
@@ -193,11 +193,11 @@ export const agents = [
 export const week = [
   {
     day: "After you pay",
-    body: "Stripe takes the £197. You come back to this site. This browser unlocks the platform. Open House Operations, type the business (or run the owner trial), and press Run all house agents.",
+    body: "Stripe takes the £197. You come back to this site. This browser unlocks the platform. Open House Operations, type the business (or run the owner trial), and press Run all desks.",
   },
   {
     day: "The same sitting",
-    body: "You get a public homepage draft, SEO starting points, Facebook/Instagram ads copy, Google Ads lines, a social week, enquiry replies, after-the-job notes, a quiet-week fill, and a list of what to log. Copy or download the pack. Edit anything that is not true.",
+    body: "Scout, Max, Mia, Sophie, Alex, Charlie, Grace and Quinn write the pack: public homepage, SEO starting points, ads copy, a social week, enquiry replies, after-the-job notes, a quiet-week fill, and a list of what to log. Copy or download. Edit anything that is not true.",
   },
   {
     day: "This week",
@@ -218,7 +218,7 @@ export const weDo = [
   "Write the first reply to an enquiry, the after-the-job thank you, and an honest quiet-week fill",
   "Write the Google review ask, how to copy the review link, and the missed-call / off-hours texts",
   "Write a 14-day customer-getting plan and a daily 20-minute habit",
-  "Queue eight house agents in your browser, at no extra model cost",
+  "Queue eight named desks in your browser, at no extra model cost",
   "Give you a concierge that reads a sentence and fills the studio",
   "Give you a proof ledger that only counts rows you type",
   "Let you copy, edit, preview, and download everything",
@@ -242,7 +242,8 @@ export const weNever = [
   "Store your card number — Stripe takes the payment",
   "Treat likes, views, or AdSense as customers",
   "Answer the phone, send SMS, or log into Google Business for you",
-  "Replace a receptionist, or pretend a template is a live voice agent",
+  "Replace a receptionist, scrape leads, or pretend a template is a live voice agent",
+  "Get you cited in ChatGPT, Gemini, or Google AI Overviews — that is not this product",
 ];
 
 export const includedAfterPay = [
@@ -250,7 +251,7 @@ export const includedAfterPay = [
   "Google review desk and off-hours missed-call texts — the two jobs that pay first",
   "Referral, follow-up, print, phone, neighbour, enquiry reply, after-the-job, quiet-week, and 14-day customer-getting rooms",
   "The house concierge, in the browser",
-  "House Operations: eight agents including Reviews, Customers, and Reply",
+  "House Operations: eight named desks including Grace (reviews), Alex (leads), and Charlie (appointments)",
   "A public homepage draft so ads are not sent to a login wall",
   "The proof ledger for real enquiries only",
   "Use it on this browser after Stripe sends you back. Ad spend at Facebook or Google is extra and paid to them",
@@ -263,7 +264,7 @@ export const valuePoints = [
   },
   {
     title: "Built to get you customers, not likes",
-    body: "Every room points at an enquiry: a public page, a listing, a post that asks, a first reply that can win the job, a referral, a follow-up, a window card, a phone greeting, a neighbour introduction, a 14-day plan, and a ledger of real people. Likes are not the product.",
+    body: "Every desk points at an enquiry: a public page, a listing, a post that asks, a first reply that can win the job, a referral, a follow-up, a window card, a phone greeting, a neighbour introduction, a 14-day plan, and a ledger of real people. Likes are not the product. Neither is a caption generator on its own.",
   },
   {
     title: "One new customer pays for the desk",
@@ -302,7 +303,7 @@ export const vsAgency = [
   {
     other: "A local copywriter for a day of posts",
     typical: "Often £250–£400 for a day, then you are back to a blank page next month.",
-    here: "Twenty-two rooms you can run again whenever the offer changes.",
+    here: "Every drafting room, to run again whenever the offer changes.",
   },
   {
     other: "A monthly social retainer",
@@ -328,9 +329,9 @@ export const vsAgency = [
 
 export const firstHour = [
   "Open House Operations and type the real business — or run a trial if you are testing the desk.",
-  "Run the Reviews agent first. That is the Google review ask and the missed-call texts. Copy them.",
+  "Run Grace first. That is the Google review ask and the missed-call texts. Copy them.",
   "Paste your real Google review link into the SMS. Send it to one person you actually helped today.",
   "Save the missed-call text in your phone notes. The next time a call rings off, send it within a minute.",
-  "Then run the rest of the house agents. Paste the public homepage onto a URL anyone can open.",
+  "Then run the rest of the desks. Paste the public homepage onto a URL anyone can open.",
   "Log whatever happens — including zero — on the proof ledger. That is how you see if the words are working.",
 ];

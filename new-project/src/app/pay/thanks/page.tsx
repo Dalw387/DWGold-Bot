@@ -8,19 +8,17 @@ import { firstHour } from "@/lib/offer";
 export const metadata: Metadata = {
   title: "You are in",
   description:
-    "Returned from Stripe. The LocalLaunch platform is unlocked in this browser. Run the house agents and log only real enquiries.",
+    "Returned from Stripe. The LocalLaunch platform is unlocked in this browser. Run the named desks and log only real enquiries.",
 };
 
 export default function PayThanksPage() {
   return (
     <Container className="max-w-2xl py-16 sm:py-24">
-      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4d5c57]">
-        Payment
-      </p>
-      <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-stone-900">
+      <p className="kicker">Payment</p>
+      <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-foreground">
         You are inside. Start getting customers.
       </h1>
-      <p className="mt-4 text-base leading-7 text-stone-600">
+      <p className="mt-4 text-base leading-7 text-muted">
         If Stripe took the £197, this browser now opens the platform. Spend the
         next hour on the list below. Type your business, or run the owner trial,
         then publish only what is true. This page does not invent a lead count.
@@ -28,8 +26,8 @@ export default function PayThanksPage() {
       <Suspense>
         <HouseReturnMarker />
       </Suspense>
-      <h2 className="font-display mt-10 text-2xl text-stone-900">Your first hour</h2>
-      <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-7 text-stone-600">
+      <h2 className="font-display mt-10 text-2xl text-foreground">Your first hour</h2>
+      <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-7 text-muted">
         {firstHour.map((step) => (
           <li key={step}>{step}</li>
         ))}

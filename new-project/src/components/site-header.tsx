@@ -16,7 +16,7 @@ import {
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const publicLinks = [
-  { href: "/#value", label: "Why £197" },
+  { href: "/#team", label: "The desks" },
   { href: "/#start", label: "Start here" },
   { href: "/#what-you-get", label: "Included" },
   { href: "/sample", label: "Sample" },
@@ -68,8 +68,8 @@ export function SiteHeader() {
   const links = access.unlocked ? memberLinks : publicLinks;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#d8d4cc] bg-[#f4f3ef]/95 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
+      <Container className="flex h-[4.25rem] items-center justify-between gap-4">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {links.map((link) => {
@@ -81,10 +81,10 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-sm px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34] ${
+                className={`rounded-sm px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                   active
-                    ? "bg-[#191919] text-[#f4f3ef]"
-                    : "text-stone-600 hover:text-stone-900"
+                    ? "bg-ink text-paper"
+                    : "text-muted hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -108,7 +108,7 @@ export function SiteHeader() {
         </nav>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-stone-200 bg-white text-stone-700 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-border bg-card text-foreground md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
@@ -128,13 +128,13 @@ export function SiteHeader() {
         </button>
       </Container>
       {open ? (
-        <div id={menuId} className="border-t border-stone-200 bg-[#f4f3ef] md:hidden">
+        <div id={menuId} className="border-t border-border bg-background md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-3 text-base font-medium text-stone-800 hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a34]"
+                className="rounded-sm px-3 py-3 text-base font-medium text-foreground hover:bg-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

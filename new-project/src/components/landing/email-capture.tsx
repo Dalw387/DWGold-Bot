@@ -18,8 +18,8 @@ export function EmailCapture({
   const [message, setMessage] = useState("");
   const ink = tone === "ink";
   const field = ink
-    ? "mt-2 w-full rounded-xl border border-[rgba(30,58,52,0.35)] bg-[#222221] px-3.5 py-2.5 text-sm text-[#f4f3ef]"
-    : "mt-2 w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-900";
+    ? "mt-2 w-full rounded-sm border border-white/15 bg-[#161616] px-3.5 py-2.5 text-sm text-paper"
+    : "mt-2 w-full rounded-sm border border-border bg-card px-3.5 py-2.5 text-sm text-foreground";
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -59,8 +59,8 @@ export function EmailCapture({
   return (
     <form onSubmit={(event) => void onSubmit(event)} noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className={`text-sm font-medium ${ink ? "text-[#f4f3ef]" : "text-stone-900"}`}>
-          Name <span className={ink ? "text-[#b3a28c]" : "text-stone-500"}>(optional)</span>
+        <label className={`text-sm font-medium ${ink ? "text-paper" : "text-foreground"}`}>
+          Name <span className={ink ? "text-[#a8a59e]" : "text-muted"}>(optional)</span>
           <input
             name="name"
             autoComplete="name"
@@ -69,7 +69,7 @@ export function EmailCapture({
             className={field}
           />
         </label>
-        <label className={`text-sm font-medium ${ink ? "text-[#f4f3ef]" : "text-stone-900"}`}>
+        <label className={`text-sm font-medium ${ink ? "text-paper" : "text-foreground"}`}>
           Email
           <input
             name="email"
@@ -82,7 +82,7 @@ export function EmailCapture({
           />
         </label>
       </div>
-      <label className={`mt-4 flex items-start gap-3 text-sm leading-6 ${ink ? "text-[#cfcbc3]" : "text-stone-600"}`}>
+      <label className={`mt-4 flex items-start gap-3 text-sm leading-6 ${ink ? "text-[#cfcbc3]" : "text-muted"}`}>
         <input
           type="checkbox"
           checked={consent}
@@ -106,7 +106,7 @@ export function EmailCapture({
                 : "text-red-800"
               : ink
                 ? "text-[#b4b0a8]"
-                : "text-stone-600"
+                : "text-muted"
           }`}
           role="status"
         >

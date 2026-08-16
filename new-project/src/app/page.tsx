@@ -1,10 +1,13 @@
 import { ClosePay } from "@/components/landing/close-pay";
+import { DeskTeam } from "@/components/landing/desk-team";
 import { EmailList } from "@/components/landing/email-list";
 import { Faq } from "@/components/landing/faq";
 import { HelpBusiness } from "@/components/landing/help-business";
 import { HonestSplit } from "@/components/landing/honest-split";
 import { OfferHero } from "@/components/landing/offer-hero";
 import { OneJobCover } from "@/components/landing/one-job-cover";
+import { OutcomesStrip } from "@/components/landing/outcomes-strip";
+import { Pipeline } from "@/components/landing/pipeline";
 import { StarterPath } from "@/components/landing/starter-path";
 import { ValueStack } from "@/components/landing/value-stack";
 import { WeekWithUs } from "@/components/landing/week-with-us";
@@ -16,8 +19,11 @@ export default function Home() {
     <>
       <OfferJsonLd />
       <OfferHero />
-      <OneJobCover />
+      <OutcomesStrip />
+      <DeskTeam />
       <StarterPath />
+      <Pipeline />
+      <OneJobCover />
       <ValueStack />
       <HelpBusiness />
       <WhatYouGet />

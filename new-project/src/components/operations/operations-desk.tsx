@@ -108,7 +108,7 @@ export function OperationsDesk() {
     const clean = sanitiseFormValues(values ?? getProfileSnapshot());
     const errors = validateGeneratorForm(clean, "seo-brief");
     if (hasFieldErrors(errors)) {
-      setMessage("Add a name, type, town, and offer before the house agents can work.");
+      setMessage("Add a name, type, town, and offer before the desks can work.");
       return;
     }
     writeProfileStore(clean);
@@ -175,21 +175,21 @@ export function OperationsDesk() {
   return (
     <div className="space-y-10">
       <section className="luxury-panel rounded-sm p-6 sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b4b0a8]">
-          House agents
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#a8a59e]">
+          Named desks
         </p>
-        <h2 className="font-display mt-3 text-2xl text-[#f4f3ef] sm:text-3xl">
+        <h2 className="font-display mt-3 text-2xl text-paper sm:text-3xl">
           They draft in this tab. They do not spend ad budget.
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-[#cfcbc3]">
-          Eight house agents run in the browser, in sequence, at no extra model
-          cost. They write a public homepage, SEO, Facebook/Instagram ads, Google
-          Ads (not AdSense), a social week, a 14-day customer plan, first replies,
-          Google review and missed-call packs, and a measurement plan. Live ads still
-          need the client’s Meta or Google account, and money paid to those
-          platforms.
+          Eight named desks run in the browser, in sequence, at no extra model
+          cost. Scout writes the public page. Max and Mia write ads copy.
+          Sophie writes the social week. Alex writes the lead plan. Charlie
+          writes replies. Grace writes reviews and missed-call texts. Quinn
+          writes what to log. Live ads still need the client’s Meta or Google
+          account, and money paid to those platforms.
         </p>
-        <p className="mt-4 text-sm text-[#b4b0a8]">
+        <p className="mt-4 text-sm text-[#a8a59e]">
           {profile.businessName
             ? `Current desk: ${profile.businessName}${profile.location ? ` · ${profile.location}` : ""}`
             : "No business loaded yet."}
@@ -204,7 +204,7 @@ export function OperationsDesk() {
             onClick={() => void runAgents(OPERATION_AGENTS.map((agent) => agent.id))}
             disabled={running || !ready}
           >
-            {running ? "Agents working" : "Run all house agents"}
+            {running ? "Desks working" : "Run all desks"}
           </Button>
           <Button
             type="button"
@@ -247,8 +247,8 @@ export function OperationsDesk() {
         {OPERATION_AGENTS.map((agent) => {
           const status = statusFor(agent.id);
           return (
-            <li key={agent.id} className="paper-card rounded-sm border border-stone-200 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4d5c57]">
+            <li key={agent.id} className="paper-card rounded-sm border border-border p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                 {status === "working"
                   ? "Working"
                   : status === "queued"
@@ -259,8 +259,16 @@ export function OperationsDesk() {
                         ? "Needs a retry"
                         : "Ready"}
               </p>
-              <h3 className="font-display mt-2 text-xl text-stone-900">{agent.name}</h3>
-              <p className="mt-2 text-sm leading-6 text-stone-600">{agent.summary}</p>
+              <div className="mt-3 flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="flex h-9 w-9 items-center justify-center bg-ink font-display text-sm text-paper"
+                >
+                  {agent.persona.slice(0, 1)}
+                </span>
+                <h3 className="font-display text-xl text-foreground">{agent.name}</h3>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-muted">{agent.summary}</p>
               <Button
                 type="button"
                 variant="ghost"
@@ -268,7 +276,7 @@ export function OperationsDesk() {
                 disabled={running}
                 onClick={() => void runAgents([agent.id])}
               >
-                Run this agent
+                Run this desk
               </Button>
             </li>
           );
@@ -279,8 +287,8 @@ export function OperationsDesk() {
         <section>
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <h2 className="font-display text-3xl text-stone-900">Agent output</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600">
+              <h2 className="font-display text-3xl text-foreground">Desk output</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
                 Edit, copy, or download. Then publish or paste into Ads Manager
                 yourself. Log real enquiries on the proof page. Output stays in
                 this browser tab if you move around the site.
@@ -327,13 +335,13 @@ export function OperationsDesk() {
         </section>
       ) : null}
 
-      <aside className="rounded-sm border border-[rgba(30,58,52,0.35)] bg-[#f4f3ef] p-6">
-        <h2 className="font-display text-2xl text-stone-900">DW Gold Trading trial</h2>
-        <p className="mt-3 text-sm leading-6 text-stone-600">
+      <aside className="rounded-sm border border-border bg-wash p-6">
+        <h2 className="font-display text-2xl text-foreground">DW Gold Trading trial</h2>
+        <p className="mt-3 text-sm leading-6 text-muted">
           Companies House lists DW Gold Trading Ltd ({DW_GOLD_TRIAL_NOTES.companyNumber})
           in Alfreton, Derbyshire, under education. The site{" "}
           <a
-            className="font-semibold text-[#4d5c57] underline-offset-2 hover:underline"
+            className="font-semibold text-accent underline-offset-2 hover:underline"
             href={DW_GOLD_TRIAL_NOTES.website}
             rel="noreferrer"
             target="_blank"
@@ -341,7 +349,7 @@ export function OperationsDesk() {
             dwgoldtrading.com
           </a>{" "}
           currently shows a login wall to the public, so ads and search cannot
-          convert until a public page exists. The SEO agent now drafts that page.
+          convert until a public page exists. Scout now drafts that page.
           {` ${DW_GOLD_TRIAL_NOTES.caution}`}
         </p>
       </aside>

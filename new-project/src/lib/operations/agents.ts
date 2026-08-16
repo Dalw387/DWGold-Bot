@@ -17,56 +17,64 @@ import type { GeneratedPost, GeneratorFormValues } from "@/lib/types";
 export const OPERATION_AGENTS = [
   {
     id: "seo",
-    name: "SEO agent",
-    short: "Search",
+    persona: "Scout",
+    name: "Scout — Search desk",
+    short: "Scout",
     summary:
-      "Public homepage (no login), local titles, search themes, and a Google Business checklist.",
+      "Public homepage (no login), local titles, search themes, and a Google Business checklist. Does not rank you in ChatGPT.",
   },
   {
     id: "facebook-ads",
-    name: "Facebook ads agent",
-    short: "Meta",
+    persona: "Mia",
+    name: "Mia — Meta ads desk",
+    short: "Mia",
     summary:
-      "Primary text, headlines, and a campaign structure for Facebook and Instagram ads.",
+      "Primary text, headlines, and a campaign structure for Facebook and Instagram ads. You still build the campaign in Meta.",
   },
   {
     id: "google-ads",
-    name: "Google Ads agent",
-    short: "Search ads",
+    persona: "Max",
+    name: "Max — Google Ads desk",
+    short: "Max",
     summary:
-      "Responsive search ad lines and keyword themes. Not AdSense.",
+      "Responsive search ad lines and keyword themes. This is Google Ads, not AdSense. Max does not spend budget.",
   },
   {
     id: "social",
-    name: "Social agent",
-    short: "Social",
-    summary: "A seven-day set of starting posts from the same facts.",
+    persona: "Sophie",
+    name: "Sophie — Social desk",
+    short: "Sophie",
+    summary: "A seven-day set of starting posts from the same facts. Sophie does not publish or watch DMs.",
   },
   {
     id: "measurement",
-    name: "Proof agent",
-    short: "Proof",
+    persona: "Quinn",
+    name: "Quinn — Proof desk",
+    short: "Quinn",
     summary:
       "A measurement plan: what to log, so later you can show real enquiries instead of likes.",
   },
   {
     id: "customers",
-    name: "Customers agent",
-    short: "Customers",
+    persona: "Alex",
+    name: "Alex — Lead desk",
+    short: "Alex",
     summary:
-      "A 14-day plan and a daily habit for getting real enquiries, not likes.",
+      "A 14-day plan and a daily habit for getting real enquiries, not likes. Alex does not scrape leads.",
   },
   {
     id: "replies",
-    name: "Reply agent",
-    short: "Replies",
+    persona: "Charlie",
+    name: "Charlie — Appointment desk",
+    short: "Charlie",
     summary:
-      "First reply to an enquiry, after-the-job thank you, and a calm way to fill a quiet week.",
+      "First reply to an enquiry, after-the-job thank you, and a calm way to fill a quiet week. Charlie does not answer the live phone.",
   },
   {
     id: "reviews",
-    name: "Reviews agent",
-    short: "Reviews",
+    persona: "Grace",
+    name: "Grace — Front desk",
+    short: "Grace",
     summary:
       "Google review SMS and email after the job, how to copy the review link, calm replies, and the missed-call texts. You still send them.",
   },
