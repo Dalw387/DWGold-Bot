@@ -5,8 +5,11 @@ import {
   generateCustomerPlan,
   generateEnquiryReplies,
   generateFollowUps,
+  generateGoogleReviewDesk,
+  generateOffHours,
   generateQuietWeek,
 } from "@/lib/copy/outreach";
+import { generateReviewReplies } from "@/lib/copy/review-reply";
 import { generatePublicHomepage } from "@/lib/copy/public-site";
 import { generateSeoBriefs } from "@/lib/copy/seo";
 import type { GeneratedPost, GeneratorFormValues } from "@/lib/types";
@@ -60,6 +63,13 @@ export const OPERATION_AGENTS = [
     summary:
       "First reply to an enquiry, after-the-job thank you, and a calm way to fill a quiet week.",
   },
+  {
+    id: "reviews",
+    name: "Reviews agent",
+    short: "Reviews",
+    summary:
+      "Google review SMS and email after the job, how to copy the review link, calm replies, and the missed-call texts. You still send them.",
+  },
 ] as const;
 
 export type OperationAgentId = (typeof OPERATION_AGENTS)[number]["id"];
@@ -110,6 +120,12 @@ export function runOperationAgent(
         ...generateFollowUps(values).slice(0, 1),
         ...generateAfterJob(values),
         ...generateQuietWeek(values).slice(0, 1),
+      ];
+    case "reviews":
+      return [
+        ...generateGoogleReviewDesk(values),
+        ...generateReviewReplies(values),
+        ...generateOffHours(values).slice(0, 2),
       ];
     default: {
       const exhaustive: never = agentId;

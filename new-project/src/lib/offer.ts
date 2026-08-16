@@ -32,7 +32,7 @@ export const helpPoints = [
   },
   {
     title: "Ask for the work, not for fake praise",
-    body: "Review requests make it easy to say no, and invite a private message if something went wrong. Review replies stay calm: thank-you, mixed, and concern. Notices cover a window, Facebook, and email from the same change. You still check dates, prices, and times before anything goes public.",
+    body: "Review requests make it easy to say no, and invite a private message if something went wrong. The Google review desk adds the SMS and email after the job, plus how to copy your real Google link. You send it. Review replies stay calm: thank-you, mixed, and concern. You still check dates, prices, and times before anything goes public.",
   },
   {
     title: "Draft ads without spending a penny in this studio",
@@ -145,6 +145,14 @@ export const rooms = [
     name: "Quiet week fill",
     help: "An honest ‘we have space’ post, a note for people who already know you, and a seven-step list for a silent phone. No fake last slots.",
   },
+  {
+    name: "Google review desk",
+    help: "The ask that agencies charge monthly for: SMS and email after the job, how to copy your Google review link, and Google’s rules. You send the message. We do not log into Google.",
+  },
+  {
+    name: "Off-hours and missed calls",
+    help: "Closed voicemail, a same-day missed-call text, a morning callback, and a hours check. This is not a robot answering your phone. It is the words so the next missed call is not a lost job.",
+  },
 ];
 
 export const agents = [
@@ -176,6 +184,10 @@ export const agents = [
     name: "Reply agent",
     help: "First reply to an enquiry, a calm follow-up, after-the-job thank you, and a quiet-week note. This is the desk for turning a message into a customer.",
   },
+  {
+    name: "Reviews agent",
+    help: "Google review pack after the job, calm replies, and missed-call texts. The two starter jobs every local business understands. You still send them.",
+  },
 ];
 
 export const week = [
@@ -204,8 +216,9 @@ export const weDo = [
   "Write Facebook/Instagram and Google Ads drafts and a campaign structure",
   "Write referral asks, follow-ups, window cards, phone scripts, and neighbour introductions",
   "Write the first reply to an enquiry, the after-the-job thank you, and an honest quiet-week fill",
+  "Write the Google review ask, how to copy the review link, and the missed-call / off-hours texts",
   "Write a 14-day customer-getting plan and a daily 20-minute habit",
-  "Queue seven house agents in your browser, at no extra model cost",
+  "Queue eight house agents in your browser, at no extra model cost",
   "Give you a concierge that reads a sentence and fills the studio",
   "Give you a proof ledger that only counts rows you type",
   "Let you copy, edit, preview, and download everything",
@@ -216,6 +229,7 @@ export const youDo = [
   "Check every line before you publish",
   "Post on Facebook, Instagram, Google, WhatsApp, email, and your own website",
   "Paste ads into Meta or Google yourself, and pay those platforms for any spend",
+  "Send the review ask and the missed-call text from your own phone",
   "Put the public homepage on a URL that does not require a login",
   "Log real enquiries in the ledger",
 ];
@@ -227,13 +241,16 @@ export const weNever = [
   "Call a paid AI company with your facts — drafts are templates in this browser",
   "Store your card number — Stripe takes the payment",
   "Treat likes, views, or AdSense as customers",
+  "Answer the phone, send SMS, or log into Google Business for you",
+  "Replace a receptionist, or pretend a template is a live voice agent",
 ];
 
 export const includedAfterPay = [
-  "The full studio: twenty-two drafting rooms, copy, preview, and download",
+  "The full studio: twenty-four drafting rooms, copy, preview, and download",
+  "Google review desk and off-hours missed-call texts — the two jobs that pay first",
   "Referral, follow-up, print, phone, neighbour, enquiry reply, after-the-job, quiet-week, and 14-day customer-getting rooms",
   "The house concierge, in the browser",
-  "House Operations: seven agents including Customers and Reply",
+  "House Operations: eight agents including Reviews, Customers, and Reply",
   "A public homepage draft so ads are not sent to a login wall",
   "The proof ledger for real enquiries only",
   "Use it on this browser after Stripe sends you back. Ad spend at Facebook or Google is extra and paid to them",
@@ -268,8 +285,8 @@ export const stackItems = [
     why: "You still set the budget. You do not pay an agency to write the first draft.",
   },
   {
-    item: "The words that turn a message into a paying customer",
-    why: "First reply, price-question reply, booking reply, follow-up, thank-you, review ask, referral.",
+    item: "Google reviews and missed-call texts",
+    why: "The two jobs that pay first. You send them. We do not pretend to be a robot receptionist.",
   },
   {
     item: "Print, phone, and neighbour introductions",
@@ -298,17 +315,22 @@ export const vsAgency = [
     here: "Drafts included. Spend stays with Facebook or Google, on a budget you choose.",
   },
   {
-    other: "A consultant’s two-week plan",
-    typical: "A workshop or a generic PDF that never names your town.",
-    here: "A 14-day plan built from your name, town, and offer, plus the replies that close the work.",
+    other: "Birdeye, Podium, or similar review software",
+    typical: "Often £250–£500 a month, on a contract, to send the texts for you.",
+    here: `${HOUSE_PRICE_SHORT} once. We write the Google review ask and how to copy the link. You send it from your phone.`,
+  },
+  {
+    other: "A voice-AI receptionist agency",
+    typical: "Often thousands up front, then a monthly fee, to answer the live phone.",
+    here: "We write the missed-call text and the closed voicemail. We do not pick up the phone. If you later want a live bot, that is a different product.",
   },
 ];
 
 export const firstHour = [
   "Open House Operations and type the real business — or run a trial if you are testing the desk.",
-  "Press Run all house agents. Download or copy the pack. Strike out anything that is not true.",
-  "Paste the public homepage onto a URL anyone can open. Ads and Google are wasted on a login wall.",
-  "Send one first-reply or follow-up to a real person who already asked. That is often the cheapest customer.",
-  "Ask one happy customer, privately, to send one neighbour who actually needs the work.",
+  "Run the Reviews agent first. That is the Google review ask and the missed-call texts. Copy them.",
+  "Paste your real Google review link into the SMS. Send it to one person you actually helped today.",
+  "Save the missed-call text in your phone notes. The next time a call rings off, send it within a minute.",
+  "Then run the rest of the house agents. Paste the public homepage onto a URL anyone can open.",
   "Log whatever happens — including zero — on the proof ledger. That is how you see if the words are working.",
 ];

@@ -1,5 +1,6 @@
 import { Container } from "@/components/container";
 import { agents, rooms } from "@/lib/offer";
+import { AGENT_COUNT_TITLE, ROOM_COUNT_TITLE } from "@/lib/counts";
 
 export function WhatYouGet() {
   return (
@@ -15,7 +16,7 @@ export function WhatYouGet() {
             id="get-heading"
             className="font-display mt-4 text-3xl font-medium tracking-tight sm:text-5xl"
           >
-            Twenty-two rooms. Seven agents. One set of facts.
+            {ROOM_COUNT_TITLE} rooms. {AGENT_COUNT_TITLE} agents. One set of facts.
           </h2>
           <p className="mt-4 text-base leading-7 text-[#5f5c56]">
             Type the business once. Name, type, town, and offer. Those facts

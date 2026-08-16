@@ -279,6 +279,30 @@ export const TOOLS: ToolDefinition[] = [
     resultTitle: "Quiet-week drafts",
     extraHint: "Do the work list before you spend on ads.",
   },
+  {
+    slug: "google-review-desk",
+    name: "Google review desk",
+    shortName: "Reviews",
+    tagline: "Ask after the job. You send the text. We write it.",
+    description:
+      "SMS, email, how to copy your Google review link, and Google’s actual rules. This does not text anyone, and it does not log into Google.",
+    category: "Customers",
+    generateLabel: "Generate Google review pack",
+    resultTitle: "Google review drafts",
+    extraHint: "Never pay for a star. Ask honestly, not only the happy ones.",
+  },
+  {
+    slug: "off-hours",
+    name: "Off-hours and missed calls",
+    shortName: "Off-hours",
+    tagline: "The words for when you cannot pick up. Not a robot receptionist.",
+    description:
+      "Closed voicemail, a same-day missed-call text, a morning callback, and a hours check for Google. You still send the text from your own phone.",
+    category: "Customers",
+    generateLabel: "Generate off-hours drafts",
+    resultTitle: "Off-hours drafts",
+    extraHint: "Only text a number that actually rang you.",
+  },
 ];
 
 export function getTool(slug: string): ToolDefinition | undefined {

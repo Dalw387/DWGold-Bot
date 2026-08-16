@@ -2,7 +2,7 @@
 
 A £197 one-off marketing desk aimed at more local customers.
 
-The public site explains the offer. After the customer pays on Stripe, this browser unlocks twenty-two drafting rooms, seven house agents, a concierge, and a proof ledger.
+The public site explains the offer. After the customer pays on Stripe, this browser unlocks twenty-four drafting rooms, eight house agents, a concierge, and a proof ledger.
 
 ## Run locally
 

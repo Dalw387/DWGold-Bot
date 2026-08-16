@@ -182,10 +182,10 @@ export function OperationsDesk() {
           They draft in this tab. They do not spend ad budget.
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-[#cfcbc3]">
-          Seven house agents run in the browser, in sequence, at no extra model
+          Eight house agents run in the browser, in sequence, at no extra model
           cost. They write a public homepage, SEO, Facebook/Instagram ads, Google
           Ads (not AdSense), a social week, a 14-day customer plan, first replies,
-          and a measurement plan. Live ads still
+          Google review and missed-call packs, and a measurement plan. Live ads still
           need the client’s Meta or Google account, and money paid to those
           platforms.
         </p>

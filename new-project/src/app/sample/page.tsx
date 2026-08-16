@@ -41,6 +41,8 @@ export default function SamplePage() {
   })[0];
   const reply = generateForTool("enquiry-reply", values)[0];
   const referral = generateForTool("referral-ask", values)[0];
+  const review = generateForTool("google-review-desk", values)[0];
+  const missed = generateForTool("off-hours", values)[1];
   const plan = generateForTool("customer-plan", values)[0];
 
   return (
@@ -59,6 +61,8 @@ export default function SamplePage() {
         {facebook ? <SampleCard label="Facebook draft" text={facebook.text} /> : null}
         {reply ? <SampleCard label="First reply to an enquiry" text={reply.text} /> : null}
         {referral ? <SampleCard label="Referral ask" text={referral.text} /> : null}
+        {review ? <SampleCard label="Google review SMS (you send this)" text={review.text} /> : null}
+        {missed ? <SampleCard label="Missed-call text (you send this)" text={missed.text} /> : null}
         {plan ? <SampleCard label="Start of the 14-day plan" text={plan.text} /> : null}
         <div className="mt-12 flex flex-col gap-3 sm:flex-row">
           <StripePayLink>Pay {HOUSE_PRICE_SHORT} on Stripe</StripePayLink>

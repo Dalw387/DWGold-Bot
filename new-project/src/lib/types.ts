@@ -115,7 +115,9 @@ export type ToolSlug =
   | "customer-plan"
   | "enquiry-reply"
   | "after-job"
-  | "quiet-week";
+  | "quiet-week"
+  | "google-review-desk"
+  | "off-hours";
 
 export interface GeneratorFormValues {
   businessName: string;

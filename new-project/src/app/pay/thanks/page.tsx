@@ -38,11 +38,11 @@ export default function PayThanksPage() {
         <ButtonLink href="/operations" variant="gold">
           Open House Operations
         </ButtonLink>
-        <ButtonLink href="/tools" variant="secondary">
-          Open the studio
+        <ButtonLink href="/tools/google-review-desk" variant="secondary">
+          Google review desk
         </ButtonLink>
-        <ButtonLink href="/proof" variant="secondary">
-          Open the proof ledger
+        <ButtonLink href="/tools/off-hours" variant="secondary">
+          Off-hours texts
         </ButtonLink>
       </div>
     </Container>

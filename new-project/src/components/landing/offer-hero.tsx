@@ -22,8 +22,8 @@ export function OfferHero() {
           <ButtonLink href="#value" variant="primary">
             See why it is worth {HOUSE_PRICE_SHORT}
           </ButtonLink>
-          <ButtonLink href="/sample" variant="secondary">
-            Look at a real sample
+          <ButtonLink href="#start" variant="secondary">
+            The two jobs that pay first
           </ButtonLink>
         </div>
         <p className="mt-8 max-w-xl text-sm leading-6 text-[#5f5c56]">
@@ -31,8 +31,11 @@ export function OfferHero() {
           If one extra job, visit, or booking comes from this desk, the{" "}
           {HOUSE_PRICE_SHORT} is already behind you.
         </p>
-        <div className="mt-8">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <StripePayLink variant="ghost">Pay {HOUSE_PRICE_SHORT} on Stripe</StripePayLink>
+          <ButtonLink href="/sample" variant="ghost">
+            Look at a real sample
+          </ButtonLink>
         </div>
       </Container>
     </section>

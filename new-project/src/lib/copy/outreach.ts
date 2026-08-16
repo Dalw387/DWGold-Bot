@@ -204,7 +204,7 @@ export function generateCustomerPlan(values: GeneratorFormValues): GeneratedPost
         "Day 1: Complete or tidy the Google Business Profile: name, town, category, photos you actually took.",
         "Day 2: Post one Facebook neighbourhood update. Ask a real question. Reply to every comment yourself.",
         "Day 3: Send a WhatsApp or email only to people who already know you. Tell them you are taking enquiries.",
-        "Day 4: Ask one happy customer, privately, to send one neighbour who actually needs this work.",
+        "Day 4: Ask one happy customer, privately, to send one neighbour who actually needs this work. Same day, send the Google review SMS if the job was real — paste your own review link first.",
         "Day 5: Put a true window card or counter card up. Take it down when it is stale.",
         "Day 6: Follow up anyone who enquired and went quiet. Once. Then stop chasing.",
         "Day 7: Log the week in the proof ledger. If it is zero, that is the result. Change the page or the offer, not the counting rules.",
@@ -364,6 +364,114 @@ export function generateQuietWeek(values: GeneratorFormValues): GeneratedPost[] 
         `6. If you run ads, confirm they still point at that public page and still talk about ${ctx.offer}.`,
         "7. Log whatever actually happened in the proof ledger, including zero.",
         "Do not invent scarcity. Do not buy fake reviews. Change the page or the offer if the week stays empty.",
+      ].join("\n\n"),
+    },
+  ];
+}
+
+export function generateGoogleReviewDesk(values: GeneratorFormValues): GeneratedPost[] {
+  const seed = hashSeed(values, "google-reviews");
+  const ctx = buildContext(values, seed);
+
+  return [
+    {
+      id: "sms",
+      label: "SMS after the job",
+      summary: "You send this. We do not text anyone from this site. Paste your Google review link first.",
+      text: joinParagraphs(
+        `Hi, this is ${ctx.name} in ${ctx.location}. Thank you for using us for ${ctx.offer}.`,
+        pick(
+          [
+            `If you are willing, an honest Google review helps neighbours decide. Paste your review link here before you send: [YOUR GOOGLE REVIEW LINK]. If something was not right, reply to this text instead of surprising us in public.`,
+            `A short honest Google review is useful if the work was as expected. Add your Google review link here: [YOUR GOOGLE REVIEW LINK]. No pressure. If we got something wrong, tell us on this thread.`,
+          ],
+          seed,
+          2,
+        ),
+      ),
+    },
+    {
+      id: "email",
+      label: "Email after the job",
+      summary: "For customers you already email. Same rule: honest ask, private path if unhappy.",
+      text: joinParagraphs(
+        `Subject: A quiet ask from ${ctx.name}`,
+        `Hello, thank you for choosing ${ctx.name} in ${ctx.location} for ${ctx.offer}.`,
+        `If you have a minute, an honest review on Google helps people nearby. Add the link before you send: [YOUR GOOGLE REVIEW LINK].`,
+        `If the job was not right, reply to this email. We would rather fix it than collect a star.`,
+        ctx.cta,
+      ),
+    },
+    {
+      id: "link-howto",
+      label: "How to get your Google review link",
+      summary: "A checklist. This desk cannot log into Google for you.",
+      text: [
+        `Google review link for ${ctx.name} (${ctx.location}).`,
+        "1. On your phone, open Google Maps and search the exact business name.",
+        "2. Open your listing. Use Share, or Ask for reviews in Google Business Profile, and copy the link.",
+        "3. Paste that link into the SMS or email above, replacing [YOUR GOOGLE REVIEW LINK].",
+        "4. Send only to people you actually helped. One message. No bought list.",
+        "We cannot connect to Google from this site. You copy the link. You send the message.",
+      ].join("\n\n"),
+    },
+    {
+      id: "policy",
+      label: "What Google actually allows",
+      summary: "Do not pay for stars. Do not only send happy people to Google.",
+      text: joinParagraphs(
+        `Rules for ${ctx.name} when asking for reviews:`,
+        "Do not pay, discount, or gift anyone for a five-star review.",
+        "Do not send only satisfied customers to Google while hiding unhappy ones. That is review gating. Ask honestly. If they were unhappy, invite a private message — but do not block them from Google.",
+        "Do not write the review for them. Do not invent jobs that did not happen.",
+        `If they would rather not review ${ctx.offer}, that is fine.`,
+      ),
+    },
+  ];
+}
+
+export function generateOffHours(values: GeneratorFormValues): GeneratedPost[] {
+  const seed = hashSeed(values, "off-hours");
+  const ctx = buildContext(values, seed);
+
+  return [
+    {
+      id: "closed-voicemail",
+      label: "Voicemail when you are closed",
+      summary: "Record this on your real phone. This site does not answer calls.",
+      text: joinParagraphs(
+        `You have reached ${ctx.name}, ${ctx.aType} in ${ctx.location}. We are closed right now.`,
+        `Leave your name, number, and whether this is about ${ctx.offer}. We will call you back in opening hours.`,
+        "If it cannot wait, say so in the message.",
+      ),
+    },
+    {
+      id: "missed-now",
+      label: "Missed-call text, same day",
+      summary: "Send from your phone to the number that just rang. Only if they called you.",
+      text: `Hello, ${ctx.name} in ${ctx.location}. We missed your call — we were with a customer. If you still need ${ctx.offer}, reply with a good time and we will come back to you. ${ctx.cta}`,
+    },
+    {
+      id: "morning",
+      label: "Morning callback text",
+      summary: "For a call that came in overnight. Send it when you open, not at midnight.",
+      text: joinParagraphs(
+        `Good morning, this is ${ctx.name} in ${ctx.location}.`,
+        `We saw a call while we were closed. If you still need ${ctx.offer}, reply here or we can ring you. ${ctx.cta}`,
+      ),
+    },
+    {
+      id: "hours-check",
+      label: "Hours check for Google",
+      summary: "A reminder, not a login. Wrong hours on Google lose the next call.",
+      text: [
+        `Off-hours checklist for ${ctx.name} in ${ctx.location}.`,
+        "1. Open your Google Business Profile. Check the hours are still true.",
+        "2. Record the closed voicemail on the number people actually ring.",
+        "3. Save the missed-call text in your phone notes so you can send it in under a minute.",
+        "4. When you open, return every overnight message before you post on Facebook.",
+        `Topic people are ringing about: ${ctx.offer}.`,
+        "This desk writes the words. It does not pick up the phone, and it does not send the text for you.",
       ].join("\n\n"),
     },
   ];

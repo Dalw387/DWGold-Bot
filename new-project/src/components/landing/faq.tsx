@@ -24,6 +24,14 @@ const items = [
     a: "So we can tell you about LocalLaunch and later products, and so Stripe can open with your address already filled. We do not sell the list. You can ask to be removed.",
   },
   {
+    q: "Is this an AI receptionist?",
+    a: "No. We write the missed-call text, the closed voicemail, and the morning callback. You send them from your own phone. We do not answer live calls, book a diary from a voice bot, or replace a receptionist. Firms that do that often charge thousands up front and a monthly fee. This desk is the words, for £197 once.",
+  },
+  {
+    q: "Will you send the Google review texts for me?",
+    a: "No. The Reviews agent writes the SMS and email, and shows you how to copy your Google review link. You paste the link and send it to people you actually helped. Tools such as Birdeye or Podium will send the texts for you, usually for hundreds of pounds a month. We do not log into Google.",
+  },
+  {
     q: "Is this a live AI model?",
     a: "The concierge and the drafts run from templates in your browser, so the desk can stay a one-off price. Same facts in, same words out.",
   },

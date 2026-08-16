@@ -11,7 +11,9 @@ import {
   generateCustomerPlan,
   generateEnquiryReplies,
   generateFollowUps,
+  generateGoogleReviewDesk,
   generateNeighbourIntros,
+  generateOffHours,
   generatePhoneScripts,
   generateQuietWeek,
   generateReferralAsks,
@@ -62,6 +64,8 @@ export function generateCampaignPack(values: GeneratorFormValues): GeneratedPost
     first("Enquiry reply", generateEnquiryReplies(values)),
     first("After the job", generateAfterJob(values)),
     first("Quiet week", generateQuietWeek(values)),
+    first("Google reviews", generateGoogleReviewDesk(values)),
+    first("Off-hours", generateOffHours(values)),
   ].filter((item): item is GeneratedPost => Boolean(item));
 
   return [

@@ -11,7 +11,9 @@ import {
   generateCustomerPlan,
   generateEnquiryReplies,
   generateFollowUps,
+  generateGoogleReviewDesk,
   generateNeighbourIntros,
+  generateOffHours,
   generatePhoneScripts,
   generateQuietWeek,
   generateReferralAsks,
@@ -74,6 +76,10 @@ export function generateForTool(
       return generateAfterJob(values);
     case "quiet-week":
       return generateQuietWeek(values);
+    case "google-review-desk":
+      return generateGoogleReviewDesk(values);
+    case "off-hours":
+      return generateOffHours(values);
     default: {
       const exhaustive: never = slug;
       throw new Error(`Unknown tool: ${exhaustive}`);

@@ -5,6 +5,7 @@ import { HelpBusiness } from "@/components/landing/help-business";
 import { HonestSplit } from "@/components/landing/honest-split";
 import { OfferHero } from "@/components/landing/offer-hero";
 import { OneJobCover } from "@/components/landing/one-job-cover";
+import { StarterPath } from "@/components/landing/starter-path";
 import { ValueStack } from "@/components/landing/value-stack";
 import { WeekWithUs } from "@/components/landing/week-with-us";
 import { WhatYouGet } from "@/components/landing/what-you-get";
@@ -16,6 +17,7 @@ export default function Home() {
       <OfferJsonLd />
       <OfferHero />
       <OneJobCover />
+      <StarterPath />
       <ValueStack />
       <HelpBusiness />
       <WhatYouGet />
