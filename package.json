@@ -1,17 +1,18 @@
 {
-"name": "dwgold-bot",
-"version": "1.0.0",
-"description": "DW Gold Trading WhatsApp education bot",
-"main": "server.js",
-"scripts": {
-"start": "node server.js"
-},
-"dependencies": {
-"dotenv": "^16.4.5",
-"express": "^4.18.2",
-"openai": "^4.56.0",
-"twilio": "^5.2.2"
+  "name": "dw-gold-trading-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "DW Gold Trading WhatsApp education bot using Twilio and Railway",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "twilio": "^5.3.0"
+  }
 }
-}
-
-

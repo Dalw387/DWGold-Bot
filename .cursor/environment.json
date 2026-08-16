@@ -1,0 +1,17 @@
+{
+  "name": "DW Gold Trading WhatsApp Bot",
+  "install": "npm install",
+  "terminals": [
+    {
+      "name": "server",
+      "command": "npm start",
+      "description": "Runs the DW Gold Trading Express education bot on http://localhost:3000 (GET /, POST /test, POST /whatsapp)."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web",
+      "port": 3000
+    }
+  ]
+}
