@@ -24,17 +24,20 @@ export default function PayPage() {
     <div className="border-b border-border">
       <OfferJsonLd />
       <Container className="max-w-3xl py-16 sm:py-24">
-        <p className="kicker">Stripe checkout</p>
-        <h1 className="font-display mt-4 text-4xl font-medium tracking-tight sm:text-5xl">
-          Pay {HOUSE_PRICE_SHORT}. Then start getting customers.
+        <p className="kicker">
+          <span className="kicker-dot" aria-hidden="true" />
+          Stripe checkout
+        </p>
+        <h1 className="font-display mt-6 text-4xl font-medium tracking-tight text-ice sm:text-6xl">
+          Build your AI team. {HOUSE_PRICE_SHORT} once.
         </h1>
-        <p className="mt-5 text-base leading-7 text-muted">
+        <p className="mt-5 text-base leading-7 text-slate">
           You leave this site and pay on Stripe. Apple Pay, Google Pay, Link, or
           a card. We never see your card number. After payment, Stripe should
           send you back here and this browser unlocks the desk.
         </p>
         <p className="mt-4 text-lg">{label}</p>
-        <p className="mt-3 text-sm leading-6 text-muted">
+        <p className="mt-3 text-sm leading-6 text-slate">
           {HOUSE_PRODUCT_DESCRIPTION}
         </p>
         <ul className="mt-8 list-disc space-y-3 pl-5 text-sm leading-6 text-foreground">
@@ -42,9 +45,9 @@ export default function PayPage() {
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <div className="mt-10 border border-border p-6">
-          <h2 className="font-display text-2xl">Leave your email first</h2>
-          <p className="mt-2 text-sm leading-6 text-muted">
+        <div className="surface mt-10 rounded-2xl p-6">
+          <h2 className="font-display text-2xl text-ice">Leave your email first</h2>
+          <p className="mt-2 text-sm leading-6 text-slate">
             Optional. We save it for later products, and Stripe can open with it
             filled in.
           </p>
@@ -53,7 +56,7 @@ export default function PayPage() {
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <StripePayLink>Continue to Stripe · {HOUSE_PRICE_SHORT}</StripePayLink>
+          <StripePayLink arrow>Build my AI team · {HOUSE_PRICE_SHORT}</StripePayLink>
           <ButtonLink href="/#value" variant="secondary">
             Read why it is worth {HOUSE_PRICE_SHORT}
           </ButtonLink>

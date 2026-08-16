@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { commercialSlugs } from "@/lib/commercial-pages";
 import { TOOLS } from "@/lib/tools";
 
 function siteUrl(): string {
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/concierge",
     "/proof",
     "/pay",
+    ...commercialSlugs.map((slug) => `/${slug}`),
     ...TOOLS.map((tool) => `/tools/${tool.slug}`),
   ];
   return paths.map((path) => ({

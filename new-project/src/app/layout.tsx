@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { Instrument_Serif, Inter, Syne } from "next/font/google";
 import { StudioAgent } from "@/components/agent/studio-agent";
+import { Atmosphere } from "@/components/landing/atmosphere";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StickyPayBar } from "@/components/landing/sticky-pay-bar";
@@ -12,9 +13,16 @@ const inter = Inter({
   display: "swap",
 });
 
-const newsreader = Newsreader({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-newsreader",
+  variable: "--font-syne",
+  display: "swap",
+});
+
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-instrument",
   display: "swap",
 });
 
@@ -23,16 +31,16 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000",
   ),
   title: {
-    default: "LocalLaunch — a customer-getting desk for local businesses",
+    default: "LocalLaunch — the AI marketing workforce for modern business",
     template: "%s | LocalLaunch",
   },
   description:
-    "Pay £197 once. Named desks that write the work to find customers, advertise, reply, book, and ask for reviews. You send it. One extra job can cover it.",
+    "An AI marketing team for small and mid-sized businesses. Leads, advertising, social, appointments, reviews and search — a department that is ready whenever you are. £197 once.",
   applicationName: "LocalLaunch",
   openGraph: {
-    title: "LocalLaunch",
+    title: "LocalLaunch — AI marketing workforce",
     description:
-      "A £197 desk for local businesses. You run the business. The desk writes the next customer-getting job.",
+      "Meet the AI team that grows your business. Built for trades, clinics, estate agents, and professional services.",
     locale: "en_GB",
     type: "website",
   },
@@ -42,12 +50,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${newsreader.variable} h-full antialiased`}
+      className={`${inter.variable} ${syne.variable} ${instrument.variable} h-full antialiased`}
     >
-      <body className="relative flex min-h-full flex-col bg-background pb-20 font-sans text-foreground md:pb-0">
+      <body className="relative flex min-h-full flex-col bg-background pb-24 font-sans text-foreground md:pb-0">
+        <Atmosphere />
+        <div className="grain" aria-hidden="true" />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:outline-2 focus:outline-offset-2 focus:outline-accent"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-elevated focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:outline-2 focus:outline-offset-2 focus:outline-cobalt"
         >
           Skip to content
         </a>

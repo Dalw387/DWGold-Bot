@@ -1,34 +1,32 @@
 import { ClosePay } from "@/components/landing/close-pay";
-import { DeskTeam } from "@/components/landing/desk-team";
+import { AgentBento } from "@/components/landing/agent-bento";
+import { Capability } from "@/components/landing/capability";
 import { EmailList } from "@/components/landing/email-list";
 import { Faq } from "@/components/landing/faq";
-import { HelpBusiness } from "@/components/landing/help-business";
 import { HonestSplit } from "@/components/landing/honest-split";
-import { OfferHero } from "@/components/landing/offer-hero";
-import { OneJobCover } from "@/components/landing/one-job-cover";
-import { OutcomesStrip } from "@/components/landing/outcomes-strip";
-import { Pipeline } from "@/components/landing/pipeline";
+import { Industries } from "@/components/landing/industries";
+import { JobDemo } from "@/components/landing/job-demo";
+import { MotionTicker } from "@/components/landing/motion-ticker";
+import { RoiCalculator } from "@/components/landing/roi-calculator";
 import { StarterPath } from "@/components/landing/starter-path";
-import { ValueStack } from "@/components/landing/value-stack";
-import { WeekWithUs } from "@/components/landing/week-with-us";
-import { WhatYouGet } from "@/components/landing/what-you-get";
+import { TeamPricing } from "@/components/landing/team-pricing";
+import { WorkforceHero } from "@/components/landing/workforce-hero";
 import { OfferJsonLd } from "@/components/pay/offer-json-ld";
 
 export default function Home() {
   return (
     <>
       <OfferJsonLd />
-      <OfferHero />
-      <OutcomesStrip />
-      <DeskTeam />
+      <WorkforceHero />
+      <MotionTicker />
+      <AgentBento />
+      <Industries />
       <StarterPath />
-      <Pipeline />
-      <OneJobCover />
-      <ValueStack />
-      <HelpBusiness />
-      <WhatYouGet />
-      <WeekWithUs />
+      <Capability />
+      <RoiCalculator />
+      <JobDemo />
       <HonestSplit />
+      <TeamPricing />
       <EmailList />
       <Faq />
       <ClosePay />

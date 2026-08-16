@@ -1,17 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f6f2;
-  --foreground: #0c0c0c;
-  --muted: #5c5a55;
-  --accent: #16332f;
-  --card: #fffcf8;
-  --border: #ddd9d0;
-  --ink: #0c0c0c;
-  --paper: #f7f6f2;
-  --on-ink: #f7f6f2;
-  --on-ink-muted: #a8a59e;
-  --wash: #efece6;
+  --midnight: #03010a;
+  --navy: #07041a;
+  --elevated: #0e0a24;
+  --cobalt: #4d6fff;
+  --indigo: #8b5cff;
+  --cyan: #4df0ff;
+  --magenta: #ff5ad9;
+  --ice: #f7f4ff;
+  --slate: #b7b0d0;
+  --emerald: #3dffc5;
+  --background: #03010a;
+  --foreground: #f7f4ff;
+  --muted: #b7b0d0;
+  --accent: #4d6fff;
+  --card: #0e0a24;
+  --border: rgb(183 176 208 / 0.16);
+  --ink: #03010a;
+  --paper: #f7f4ff;
+  --wash: #07041a;
+  --on-ink: #f7f4ff;
+  --on-ink-muted: #b7b0d0;
+  --glow: rgb(139 92 255 / 0.35);
+  --radius: 1rem;
 }
 
 @theme inline {
@@ -24,8 +36,19 @@
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-wash: var(--wash);
+  --color-cobalt: var(--cobalt);
+  --color-indigo: var(--indigo);
+  --color-cyan: var(--cyan);
+  --color-emerald: var(--emerald);
+  --color-magenta: var(--magenta);
+  --color-navy: var(--navy);
+  --color-elevated: var(--elevated);
+  --color-ice: var(--ice);
+  --color-midnight: var(--midnight);
+  --color-slate: var(--slate);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-newsreader);
+  --font-display: var(--font-syne);
+  --font-serif: var(--font-instrument);
 }
 
 html {
@@ -33,26 +56,108 @@ html {
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--midnight);
+  color: var(--ice);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "ss01" on, "cv11" on;
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--on-ink);
+  background: rgb(139 92 255 / 0.4);
+  color: var(--ice);
 }
 
 .font-display {
-  font-family: var(--font-newsreader), ui-serif, Georgia, "Times New Roman", serif;
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
   font-optical-sizing: auto;
+  letter-spacing: -0.05em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+.font-serif {
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  font-style: italic;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.signature {
+  background-image: linear-gradient(90deg, #4d6fff 0%, #8b5cff 42%, #ff5ad9 72%, #4df0ff 100%);
+}
+
+.signature-text {
+  background-image: linear-gradient(100deg, #9bb6ff 0%, #c084fc 38%, #ff5ad9 68%, #4df0ff 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-light {
+  background: transparent;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(139 92 255 / 0.35);
+  background: rgb(14 10 36 / 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #efe9ff;
+}
+
+.kicker-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #4df0ff;
+  box-shadow: 0 0 12px #4df0ff, 0 0 24px #8b5cff;
+}
+
+.surface {
+  background: rgb(14 10 36 / 0.78);
+  border: 1px solid rgb(183 176 208 / 0.14);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.35);
+}
+
+.surface-lit {
+  background:
+    linear-gradient(180deg, rgb(139 92 255 / 0.18), rgb(14 10 36 / 0.88) 46%);
+  border: 1px solid rgb(139 92 255 / 0.38);
+  box-shadow:
+    0 0 0 1px rgb(77 111 255 / 0.12),
+    0 0 80px rgb(139 92 255 / 0.16);
+}
+
+.glow-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(from var(--spin, 0deg), #4d6fff, #8b5cff, #ff5ad9, #4df0ff, #4d6fff);
+  opacity: 0.55;
+  filter: blur(0.5px);
 }
 
 .mesh {
@@ -60,43 +165,34 @@ body {
 }
 
 .ink-hero {
-  background: var(--ink);
-  color: var(--on-ink);
+  background: var(--navy);
+  color: var(--ice);
 }
 
 .luxury-panel {
-  background: var(--ink);
-  border: 1px solid rgb(255 255 255 / 0.1);
+  background:
+    linear-gradient(180deg, rgb(139 92 255 / 0.14), transparent 42%),
+    var(--elevated);
+  border: 1px solid rgb(183 176 208 / 0.14);
 }
 
 .paper-card {
-  background: var(--card);
+  background: var(--elevated);
 }
 
 .gold-rule {
   height: 1px;
-  background: var(--border);
-}
-
-.kicker {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.hairline {
-  height: 1px;
-  background: var(--foreground);
-  opacity: 0.12;
+  background: linear-gradient(90deg, transparent, rgb(139 92 255 / 0.7), rgb(77 240 255 / 0.5), transparent);
 }
 
 .product-frame {
-  background: var(--ink);
+  background: rgb(8 5 24 / 0.72);
+  border: 1px solid rgb(183 176 208 / 0.16);
+  backdrop-filter: blur(22px);
   box-shadow:
-    0 0 0 1px rgb(255 255 255 / 0.06),
-    0 28px 80px rgb(12 12 12 / 0.18);
+    0 0 0 1px rgb(139 92 255 / 0.16),
+    0 40px 120px rgb(77 111 255 / 0.18),
+    inset 0 1px 0 rgb(255 255 255 / 0.08);
 }
 
 .marquee-track {
@@ -105,9 +201,122 @@ body {
   width: max-content;
 }
 
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.28) 48%, transparent 62%);
+  transform: translateX(-120%);
+}
+
+.scene {
+  perspective: 1100px;
+}
+
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  border: 1px solid rgb(139 92 255 / 0.28);
+  transform: translate(-50%, -50%) rotateX(66deg);
+  box-shadow: 0 0 24px rgb(77 240 255 / 0.08);
+}
+
+.core {
+  background:
+    radial-gradient(circle at 35% 30%, #fff 0, #c4b5ff 18%, #4d6fff 46%, #1a1038 72%);
+  box-shadow:
+    0 0 40px rgb(139 92 255 / 0.65),
+    0 0 90px rgb(77 240 255 / 0.25);
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .signature-text {
+    animation: sheen 7s ease-in-out infinite;
+  }
+
+  .kicker-dot {
+    animation: pulse-dot 1.8s ease-in-out infinite;
+  }
+
   .marquee-track {
-    animation: marquee 42s linear infinite;
+    animation: marquee 32s linear infinite;
+  }
+
+  .orbit {
+    animation: orbit 36s linear infinite;
+  }
+
+  .orbit-rev {
+    animation: orbit 52s linear infinite reverse;
+  }
+
+  .pulse-line {
+    stroke-dasharray: 4 12;
+    animation: dash 5s linear infinite;
+  }
+
+  .node-breathe {
+    animation: breathe 3.4s ease-in-out infinite;
+  }
+
+  .float-a {
+    animation: float 5.5s ease-in-out infinite;
+  }
+
+  .float-b {
+    animation: float 6.4s ease-in-out infinite reverse;
+  }
+
+  .float-c {
+    animation: float 7.2s ease-in-out infinite;
+  }
+
+  .logo-draw .node {
+    animation: node-in 900ms ease-out both;
+  }
+
+  .logo-draw .path {
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: draw 1000ms ease-out forwards;
+  }
+
+  .btn-shine:hover::after {
+    animation: shine 700ms ease;
+  }
+
+  .glow-card::before {
+    animation: spin-border 8s linear infinite;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .aurora {
+    animation: aurora 18s ease-in-out infinite alternate;
+  }
+
+  .aurora-2 {
+    animation: aurora 22s ease-in-out infinite alternate-reverse;
   }
 }
 
@@ -120,15 +329,157 @@ body {
   }
 }
 
+@keyframes orbit {
+  from {
+    transform: translate(-50%, -50%) rotateX(66deg) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotateX(66deg) rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -80;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes node-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.55;
+  }
+}
+
+@keyframes shine {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes spin-border {
+  to {
+    --spin: 360deg;
+  }
+}
+
+@property --spin {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes aurora {
+  from {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(8%, 6%, 0) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit,
+  .orbit-rev,
+  .pulse-line,
+  .node-breathe,
+  .marquee-track,
+  .logo-draw .path,
+  .logo-draw .node,
+  .signature-text,
+  .kicker-dot,
+  .float-a,
+  .float-b,
+  .float-c,
+  .glow-card::before,
+  .aurora,
+  .aurora-2,
+  .btn-shine::after {
+    animation: none !important;
+  }
+
+  .logo-draw .path {
+    stroke-dashoffset: 0;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media print {
   header,
   footer,
   form,
-  .no-print {
+  .no-print,
+  .grain {
     display: none !important;
   }
 
   main {
     background: white;
+    color: black;
   }
 }

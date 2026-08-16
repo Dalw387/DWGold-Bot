@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useSyncExternalStore } from "react";
 import { Container } from "@/components/container";
 import { Logo } from "@/components/logo";
+import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import {
   getAccessSnapshot,
   getServerAccessSnapshot,
@@ -11,24 +12,7 @@ import {
   subscribeAccess,
 } from "@/lib/access-storage";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
-import { TOOLS } from "@/lib/tools";
-
-const publicExplore = [
-  { href: "/#team", label: "The desks" },
-  { href: "/#what-you-get", label: "Included" },
-  { href: "/sample", label: "Sample" },
-  { href: "/guide", label: "How it works" },
-  { href: "/#email", label: "Email list" },
-  { href: "/pay", label: `Pay ${HOUSE_PRICE_SHORT}` },
-];
-
-const memberExplore = [
-  { href: "/tools", label: "Studio" },
-  { href: "/operations", label: "House Operations" },
-  { href: "/concierge", label: "Concierge" },
-  { href: "/proof", label: "Proof ledger" },
-  { href: "/guide", label: "How it works" },
-];
+import { industries, workforceAgents } from "@/lib/workforce";
 
 export function SiteFooter() {
   const access = useSyncExternalStore(
@@ -41,61 +25,94 @@ export function SiteFooter() {
     hydrateAccessStore();
   }, []);
 
-  const explore = access.unlocked ? memberExplore : publicExplore;
-
   return (
-    <footer className="border-t border-border bg-background">
-      <Container className="grid gap-10 py-14 md:grid-cols-[1.1fr_1fr_1fr]">
-        <div>
-          <Logo compact />
-          <p className="mt-4 max-w-md text-sm leading-6 text-muted">
-            LocalLaunch is a {HOUSE_PRICE_SHORT} one-off marketing desk for
-            small businesses. Named desks write the work to find customers,
-            advertise, reply, book, and ask for reviews. You send it. Agents
-            draft. They do not spend ad budget.
-          </p>
-        </div>
-        <nav aria-label="Footer">
-          <p className="text-sm font-semibold text-foreground">Explore</p>
-          <ul className="mt-4 space-y-2">
-            {explore.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm text-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  {link.label}
+    <footer className="relative overflow-hidden border-t border-white/8 bg-navy">
+      <p
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-10 left-0 font-display text-[22vw] leading-none text-white/[0.035]"
+      >
+        LocalLaunch
+      </p>
+      <Container className="relative py-16 sm:py-24">
+        <p className="font-display max-w-3xl text-4xl font-medium leading-[1.05] text-ice sm:text-6xl">
+          Your competition isn’t going to wait for AI.
+        </p>
+        <p className="mt-4 max-w-xl text-lg text-slate">Neither should you.</p>
+        {access.unlocked ? (
+          <Link
+            href="/operations"
+            className="mt-8 inline-flex text-sm font-semibold text-cobalt hover:text-cyan"
+          >
+            Open House Operations →
+          </Link>
+        ) : (
+          <StripePayLink className="mt-8" arrow>
+            Build my AI team · {HOUSE_PRICE_SHORT}
+          </StripePayLink>
+        )}
+        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <nav aria-label="Agents">
+            <p className="text-sm font-semibold text-ice">Agents</p>
+            <ul className="mt-4 space-y-2">
+              {workforceAgents.map((agent) => (
+                <li key={agent.slug}>
+                  <Link href={`/${agent.slug}`} className="text-sm text-slate hover:text-ice">
+                    {agent.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav aria-label="Industries">
+            <p className="text-sm font-semibold text-ice">Industries</p>
+            <ul className="mt-4 space-y-2">
+              {industries.map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/${item.slug}`} className="text-sm text-slate hover:text-ice">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav aria-label="Company">
+            <p className="text-sm font-semibold text-ice">Company</p>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="/guide" className="text-sm text-slate hover:text-ice">
+                  How it works
                 </Link>
               </li>
-            ))}
-          </ul>
-        </nav>
-        <nav aria-label={access.unlocked ? "Studio rooms" : "Included rooms"}>
-          <p className="text-sm font-semibold text-foreground">
-            {access.unlocked ? "Studio rooms" : "Included after you pay"}
-          </p>
-          <ul className="mt-4 space-y-2">
-            {TOOLS.map((tool) => (
-              <li key={tool.slug}>
-                {access.unlocked ? (
-                  <Link
-                    href={`/tools/${tool.slug}`}
-                    className="text-sm text-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                  >
-                    {tool.shortName}
-                  </Link>
-                ) : (
-                  <span className="text-sm text-muted">{tool.shortName}</span>
-                )}
+              <li>
+                <Link href="/sample" className="text-sm text-slate hover:text-ice">
+                  Sample
+                </Link>
               </li>
-            ))}
-          </ul>
-        </nav>
+              <li>
+                <Link href="/#pricing" className="text-sm text-slate hover:text-ice">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/pay" className="text-sm text-slate hover:text-ice">
+                  Pay {HOUSE_PRICE_SHORT}
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <div>
+            <Logo compact />
+            <p className="mt-4 text-sm leading-6 text-slate">
+              LocalLaunch is the AI marketing workforce for small and mid-sized
+              businesses. {HOUSE_PRICE_SHORT} once. Agents draft. You send.
+            </p>
+          </div>
+        </div>
       </Container>
-      <div className="border-t border-border">
-        <Container className="flex flex-col gap-2 py-6 text-xs leading-5 text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="relative border-t border-white/8">
+        <Container className="flex flex-col gap-2 py-6 text-xs leading-5 text-slate sm:flex-row sm:justify-between">
           <p>LocalLaunch. {HOUSE_PRICE_SHORT} one-off. Pay, then use the desk.</p>
-          <p>Review every draft before you publish. Do not add claims you cannot support.</p>
+          <p>Review every draft before you publish.</p>
         </Container>
       </div>
     </footer>

@@ -51,15 +51,15 @@ export function Faq() {
       <Container>
         <h2
           id="faq-heading"
-          className="font-display text-3xl font-medium tracking-tight text-foreground sm:text-5xl"
+          className="font-display text-4xl font-medium tracking-tight text-ice sm:text-5xl"
         >
           Straight answers before you pay
         </h2>
         <dl className="mt-10 divide-y divide-border border-y border-border">
           {items.map((item) => (
             <div key={item.q} className="grid gap-3 py-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]">
-              <dt className="font-display text-xl text-foreground">{item.q}</dt>
-              <dd className="text-sm leading-7 text-muted">{item.a}</dd>
+              <dt className="font-display text-xl text-ice">{item.q}</dt>
+              <dd className="text-sm leading-7 text-slate">{item.a}</dd>
             </div>
           ))}
         </dl>

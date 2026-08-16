@@ -11,7 +11,7 @@ export default function Icon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#0c0c0c",
+          background: "#050816",
         }}
       >
         <div
@@ -19,19 +19,19 @@ export default function Icon() {
             position: "absolute",
             left: 8,
             top: 6,
-            width: 6,
+            width: 3,
             height: 20,
-            background: "#f7f6f2",
+            background: "#326BFF",
           }}
         />
         <div
           style={{
             position: "absolute",
             left: 8,
-            top: 20,
+            top: 23,
             width: 16,
-            height: 6,
-            background: "#f7f6f2",
+            height: 3,
+            background: "#39D9FF",
           }}
         />
       </div>

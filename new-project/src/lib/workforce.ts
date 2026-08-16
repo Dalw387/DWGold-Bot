@@ -1,0 +1,101 @@
+export const integrations = [
+  "Google Ads",
+  "Meta",
+  "Instagram",
+  "Facebook",
+  "WhatsApp",
+  "Google Business",
+  "Calendar copy",
+  "CRM-ready drafts",
+];
+
+export const workforceAgents = [
+  {
+    slug: "ai-lead-generation-agent",
+    name: "Alex",
+    title: "Lead Agent",
+    kicker: "Never stop prospecting.",
+    size: "large" as const,
+    does: "Writes the 14-day plan, referral asks, neighbour introductions and follow-ups so every lead you already have is worked.",
+    doesNot: "Does not scrape the internet or invent a list of strangers.",
+    metric: "14-day customer plan included",
+  },
+  {
+    slug: "ai-google-ads-agent",
+    name: "Max",
+    title: "Ads Agent",
+    kicker: "Every pound accountable.",
+    size: "medium" as const,
+    does: "Writes Google Ads and Meta ads copy, headlines, and a campaign structure you paste into your own accounts.",
+    doesNot: "Does not log into Ads Manager or spend budget.",
+    metric: "Google + Meta drafts",
+  },
+  {
+    slug: "ai-social-media-agent",
+    name: "Sophie",
+    title: "Social Agent",
+    kicker: "Always present. Everywhere.",
+    size: "medium" as const,
+    does: "Writes Facebook posts, Instagram captions, listing updates, WhatsApp notes and a seven-day starting plan.",
+    doesNot: "Does not publish or watch live DMs.",
+    metric: "Eight Facebook styles",
+  },
+  {
+    slug: "ai-appointment-setter",
+    name: "Charlie",
+    title: "Appointment Agent",
+    kicker: "Turn interest into meetings.",
+    size: "medium" as const,
+    does: "Writes the first reply, the booking reply, phone lines, voicemail and the missed-call text.",
+    doesNot: "Does not sit on your live phone or book a diary unaided.",
+    metric: "First-reply pack",
+  },
+  {
+    slug: "ai-customer-service-agent",
+    name: "Grace",
+    title: "Customer Agent",
+    kicker: "Every enquiry answered.",
+    size: "medium" as const,
+    does: "Writes Google review asks, calm replies, closed voicemail and off-hours texts so a missed call is not a lost job.",
+    doesNot: "Does not send SMS or log into Google for you.",
+    metric: "Review + missed-call desk",
+  },
+  {
+    slug: "ai-search-visibility-agent",
+    name: "Scout",
+    title: "Search Agent",
+    kicker: "Be visible where customers look.",
+    size: "medium" as const,
+    does: "Writes a public homepage, local titles, search themes and a Google Business checklist.",
+    doesNot: "Does not promise ChatGPT citations or a ranking.",
+    metric: "Public page, no login wall",
+  },
+];
+
+export const industries = [
+  {
+    slug: "ai-marketing-for-roofers",
+    name: "Roofers and trades",
+    intent: "Missed calls and Google reviews are the jobs that pay first.",
+  },
+  {
+    slug: "ai-marketing-for-dentists",
+    name: "Clinics and dentists",
+    intent: "Enquiries, appointments and a public page patients can actually read.",
+  },
+  {
+    slug: "ai-marketing-for-estate-agents",
+    name: "Estate agents",
+    intent: "Listings, follow-ups and ads copy pointed at an open door.",
+  },
+  {
+    slug: "ai-marketing-for-builders",
+    name: "Builders and home improvement",
+    intent: "Neighbour introductions, window cards and a 14-day plan for quiet weeks.",
+  },
+  {
+    slug: "ai-marketing-for-solicitors",
+    name: "Legal and financial services",
+    intent: "Professional copy, cautious claims, and the first reply that wins the instruction.",
+  },
+];

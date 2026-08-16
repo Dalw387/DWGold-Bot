@@ -16,11 +16,10 @@ import {
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const publicLinks = [
-  { href: "/#team", label: "The desks" },
-  { href: "/#start", label: "Start here" },
-  { href: "/#what-you-get", label: "Included" },
-  { href: "/sample", label: "Sample" },
-  { href: "/guide", label: "How it works" },
+  { href: "/#agents", label: "Agents" },
+  { href: "/#solutions", label: "Solutions" },
+  { href: "/#results", label: "Results" },
+  { href: "/#pricing", label: "Pricing" },
 ];
 
 const memberLinks = [
@@ -68,7 +67,7 @@ export function SiteHeader() {
   const links = access.unlocked ? memberLinks : publicLinks;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#03010a]/70 backdrop-blur-2xl">
       <Container className="flex h-[4.25rem] items-center justify-between gap-4">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
@@ -81,10 +80,8 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-sm px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-                  active
-                    ? "bg-ink text-paper"
-                    : "text-muted hover:text-foreground"
+                className={`rounded-lg px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt ${
+                  active ? "text-ice" : "text-slate hover:text-ice"
                 }`}
               >
                 {link.label}
@@ -92,49 +89,38 @@ export function SiteHeader() {
             );
           })}
           {access.unlocked ? (
-            <Button
-              type="button"
-              variant="ghost"
-              className="px-3 py-2"
-              onClick={() => openStudioAgent()}
-            >
+            <Button type="button" variant="ghost" className="px-3 py-2" onClick={() => openStudioAgent()}>
               Assistant
             </Button>
           ) : (
-            <ButtonLink href="/pay" variant="gold" className="ml-1 px-4 py-2">
-              Pay {HOUSE_PRICE_SHORT}
+            <ButtonLink href="/pay" variant="gold" className="ml-2 px-4 py-2" arrow>
+              Build my AI team
             </ButtonLink>
           )}
         </nav>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-border bg-card text-foreground md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/12 bg-elevated text-ice md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <span aria-hidden="true" className="flex flex-col items-center gap-1.5">
-            <span
-              className={`block h-0.5 w-5 rounded bg-current transition ${open ? "translate-y-2 rotate-45" : ""}`}
-            />
-            <span
-              className={`block h-0.5 w-5 rounded bg-current transition ${open ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block h-0.5 w-5 rounded bg-current transition ${open ? "-translate-y-2 -rotate-45" : ""}`}
-            />
+            <span className={`block h-0.5 w-5 bg-current transition ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-current transition ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-current transition ${open ? "-translate-y-2 -rotate-45" : ""}`} />
           </span>
         </button>
       </Container>
       {open ? (
-        <div id={menuId} className="border-t border-border bg-background md:hidden">
+        <div id={menuId} className="border-t border-white/8 bg-midnight md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-sm px-3 py-3 text-base font-medium text-foreground hover:bg-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="rounded-lg px-3 py-3 text-base font-medium text-ice hover:bg-white/5"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -152,13 +138,8 @@ export function SiteHeader() {
                 Ask the assistant
               </Button>
             ) : (
-              <ButtonLink
-                href="/pay"
-                variant="gold"
-                className="mt-1"
-                onClick={() => setOpen(false)}
-              >
-                Pay {HOUSE_PRICE_SHORT}
+              <ButtonLink href="/pay" variant="gold" className="mt-1" arrow onClick={() => setOpen(false)}>
+                Build my AI team · {HOUSE_PRICE_SHORT}
               </ButtonLink>
             )}
           </Container>

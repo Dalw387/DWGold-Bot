@@ -11,7 +11,7 @@ export default function AppleIcon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#0c0c0c",
+          background: "#050816",
         }}
       >
         <div
@@ -19,19 +19,19 @@ export default function AppleIcon() {
             position: "absolute",
             left: 44,
             top: 34,
-            width: 34,
+            width: 16,
             height: 112,
-            background: "#f7f6f2",
+            background: "#326BFF",
           }}
         />
         <div
           style={{
             position: "absolute",
             left: 44,
-            top: 112,
+            top: 130,
             width: 92,
-            height: 34,
-            background: "#f7f6f2",
+            height: 16,
+            background: "#39D9FF",
           }}
         />
       </div>
