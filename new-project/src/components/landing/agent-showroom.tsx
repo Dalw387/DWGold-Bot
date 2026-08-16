@@ -24,7 +24,7 @@ const workflow: {
 
 export function AgentShowroom() {
   const [active, setActive] = useState<SpecialistId>("charlie");
-  const [lit, setLit] = useState(0);
+  const [lit, setLit] = useState(1);
   const spec = specialists.find((s) => s.id === active) ?? specialists[0];
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
