@@ -90,9 +90,9 @@ export const TOOLS: ToolDefinition[] = [
     slug: "website-blurb",
     name: "Website about copy",
     shortName: "Website",
-    tagline: "Homepage, about, and a footer line.",
+    tagline: "Public homepage, about, and a footer line.",
     description:
-      "Plain website wording that introduces the business without fake awards or visitor numbers.",
+      "Plain website wording a stranger can read without logging in, plus about and footer lines. No fake awards or visitor numbers.",
     category: "Website",
     generateLabel: "Generate website copy",
     resultTitle: "Website drafts",

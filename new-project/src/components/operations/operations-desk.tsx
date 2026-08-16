@@ -1,16 +1,33 @@
 "use client";
 
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button, ButtonLink } from "@/components/button";
 import { ResultCard } from "@/components/tools/result-card";
 import { copyText } from "@/lib/clipboard";
 import { packDrafts, downloadText } from "@/lib/download";
 import { DW_GOLD_TRIAL, DW_GOLD_TRIAL_NOTES, EXAMPLE_PROFILE } from "@/lib/example-profile";
 import {
+  getHouseSnapshot,
+  getServerHouseSnapshot,
+  hydrateHouseStore,
+  subscribeHouse,
+} from "@/lib/house-membership";
+import {
   OPERATION_AGENTS,
   runOperationAgent,
   type OperationAgentId,
 } from "@/lib/operations/agents";
+import {
+  clearOpsResults,
+  getOpsSnapshot,
+  getServerOpsSnapshot,
+  hydrateOpsStore,
+  patchOpsResults,
+  subscribeOps,
+  writeOpsResults,
+  type OpsResults,
+} from "@/lib/ops-storage";
 import {
   getProfileSnapshot,
   getServerProfileSnapshot,
@@ -19,38 +36,49 @@ import {
   writeProfileStore,
 } from "@/lib/profile-storage";
 import { sanitiseFormValues, validateGeneratorForm, hasFieldErrors } from "@/lib/validation";
-import type { GeneratedPost } from "@/lib/types";
+import type { GeneratedPost, GeneratorFormValues } from "@/lib/types";
 
 type JobStatus = "idle" | "queued" | "working" | "done" | "error";
 
-interface JobState {
-  status: JobStatus;
-  posts: GeneratedPost[];
+function cloneTrial(kind: "cafe" | "gold"): GeneratorFormValues {
+  const source = kind === "gold" ? DW_GOLD_TRIAL : EXAMPLE_PROFILE;
+  return { ...source, facebookStyles: [...source.facebookStyles] };
 }
 
-const idleJobs = (): Record<OperationAgentId, JobState> => {
-  const next = {} as Record<OperationAgentId, JobState>;
-  for (const agent of OPERATION_AGENTS) {
-    next[agent.id] = { status: "idle", posts: [] };
-  }
-  return next;
-};
-
 export function OperationsDesk() {
+  const searchParams = useSearchParams();
   const profile = useSyncExternalStore(
     subscribeProfile,
     getProfileSnapshot,
     getServerProfileSnapshot,
   );
-  const [jobs, setJobs] = useState(idleJobs);
+  const stored = useSyncExternalStore(subscribeOps, getOpsSnapshot, getServerOpsSnapshot);
+  const house = useSyncExternalStore(subscribeHouse, getHouseSnapshot, getServerHouseSnapshot);
+  const [progress, setProgress] = useState<Partial<Record<OperationAgentId, JobStatus>>>({});
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [running, setRunning] = useState(false);
   const [copied, setCopied] = useState(false);
   const [message, setMessage] = useState("");
+  const booted = useRef(false);
 
   useEffect(() => {
     hydrateProfileStore();
-  }, []);
+    hydrateOpsStore();
+    hydrateHouseStore();
+    if (booted.current) return;
+    booted.current = true;
+    const trial = searchParams.get("trial");
+    const shouldRun = searchParams.get("run") === "1";
+    if (trial !== "gold") return;
+    const values = cloneTrial("gold");
+    writeProfileStore(values);
+    if (!shouldRun) return;
+    const next = {} as OpsResults;
+    for (const agent of OPERATION_AGENTS) {
+      next[agent.id] = runOperationAgent(agent.id, values);
+    }
+    writeOpsResults(next);
+  }, [searchParams]);
 
   const ready = useMemo(
     () => !hasFieldErrors(validateGeneratorForm(profile, "seo-brief")),
@@ -60,25 +88,24 @@ export function OperationsDesk() {
   const allPosts = useMemo(
     () =>
       OPERATION_AGENTS.flatMap((agent) =>
-        jobs[agent.id].posts.map((post) => ({
+        (stored[agent.id] ?? []).map((post) => ({
           ...post,
           id: `${agent.id}-${post.id}`,
           label: `${agent.short}: ${post.label}`,
         })),
       ),
-    [jobs],
+    [stored],
   );
 
-  function patchJob(id: OperationAgentId, patch: Partial<JobState>) {
-    setJobs((current) => ({
-      ...current,
-      [id]: { ...current[id], ...patch },
-    }));
+  function statusFor(id: OperationAgentId): JobStatus {
+    if (progress[id]) return progress[id];
+    if ((stored[id] ?? []).length > 0) return "done";
+    return "idle";
   }
 
-  async function runAgents(ids: OperationAgentId[]) {
+  async function runAgents(ids: OperationAgentId[], values?: GeneratorFormValues) {
     if (running) return;
-    const clean = sanitiseFormValues(profile);
+    const clean = sanitiseFormValues(values ?? getProfileSnapshot());
     const errors = validateGeneratorForm(clean, "seo-brief");
     if (hasFieldErrors(errors)) {
       setMessage("Add a name, type, town, and offer before the house agents can work.");
@@ -94,36 +121,40 @@ export function OperationsDesk() {
       }
       return next;
     });
-    setJobs((current) => {
+    setProgress((current) => {
       const next = { ...current };
-      for (const id of ids) next[id] = { status: "queued", posts: [] };
+      for (const id of ids) next[id] = "queued";
       return next;
     });
 
     for (const [index, id] of ids.entries()) {
-      patchJob(id, { status: "working" });
+      setProgress((current) => ({ ...current, [id]: "working" }));
       await new Promise((resolve) => window.setTimeout(resolve, 420 + index * 180));
       try {
         const posts = runOperationAgent(id, clean);
-        patchJob(id, { status: "done", posts });
+        patchOpsResults(id, posts);
+        setProgress((current) => ({ ...current, [id]: "done" }));
       } catch {
-        patchJob(id, { status: "error", posts: [] });
+        setProgress((current) => ({ ...current, [id]: "error" }));
       }
     }
     setRunning(false);
   }
 
   function loadTrial(kind: "cafe" | "gold") {
-    writeProfileStore(
-      kind === "gold"
-        ? { ...DW_GOLD_TRIAL, facebookStyles: [...DW_GOLD_TRIAL.facebookStyles] }
-        : { ...EXAMPLE_PROFILE, facebookStyles: [...EXAMPLE_PROFILE.facebookStyles] },
-    );
-    setJobs(idleJobs());
+    const values = cloneTrial(kind);
+    writeProfileStore(values);
+    clearOpsResults();
+    setProgress({});
+    setDrafts({});
     setMessage(
       kind === "gold"
         ? `Loaded the DW Gold Trading owner trial. ${DW_GOLD_TRIAL_NOTES.caution}`
         : "Loaded the Harbour & Hearth example. It is labelled as a preview, not a live cafe.",
+    );
+    void runAgents(
+      OPERATION_AGENTS.map((agent) => agent.id),
+      values,
     );
   }
 
@@ -152,14 +183,18 @@ export function OperationsDesk() {
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-[#e8dcc8]">
           Five house agents run in the browser, in sequence, at no extra model
-          cost. They write SEO, Facebook/Instagram ads, Google Ads (not AdSense),
-          a social week, and a measurement plan. Live ads still need the client’s
-          Meta or Google account, and money paid to those platforms.
+          cost. They write a public homepage, SEO, Facebook/Instagram ads, Google
+          Ads (not AdSense), a social week, and a measurement plan. Live ads still
+          need the client’s Meta or Google account, and money paid to those
+          platforms.
         </p>
         <p className="mt-4 text-sm text-[#d7c4a1]">
           {profile.businessName
             ? `Current desk: ${profile.businessName}${profile.location ? ` · ${profile.location}` : ""}`
             : "No business loaded yet."}
+          {house.returnedFromCheckout
+            ? " · This tab returned from Stripe (not verified on the server yet)."
+            : ""}
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button
@@ -170,16 +205,33 @@ export function OperationsDesk() {
           >
             {running ? "Agents working" : "Run all house agents"}
           </Button>
-          <Button type="button" variant="secondary" className="text-[#f6f1e8]" onClick={() => loadTrial("gold")}>
-            Load DW Gold Trading trial
+          <Button
+            type="button"
+            variant="secondary"
+            className="text-[#f6f1e8]"
+            onClick={() => loadTrial("gold")}
+            disabled={running}
+          >
+            Run DW Gold Trading trial
           </Button>
-          <Button type="button" variant="secondary" className="text-[#f6f1e8]" onClick={() => loadTrial("cafe")}>
-            Load cafe example
+          <Button
+            type="button"
+            variant="secondary"
+            className="text-[#f6f1e8]"
+            onClick={() => loadTrial("cafe")}
+            disabled={running}
+          >
+            Run cafe example
           </Button>
           <ButtonLink href="/proof" variant="secondary" className="text-[#f6f1e8]">
             Proof ledger
           </ButtonLink>
         </div>
+        {searchParams.get("trial") === "gold" ? (
+          <p className="mt-5 text-sm leading-6 text-[#e8dcc8]" role="status">
+            DW Gold Trading owner trial is on this desk. {DW_GOLD_TRIAL_NOTES.caution}
+          </p>
+        ) : null}
         {message ? (
           <p className="mt-5 text-sm leading-6 text-[#e8dcc8]" role="status">
             {message}
@@ -187,24 +239,24 @@ export function OperationsDesk() {
         ) : null}
         {!ready && !message ? (
           <p className="mt-5 text-sm text-[#b3a28c]">
-            Fill the studio, ask the assistant, or load a trial first.
+            Fill the studio, ask the assistant, or run a trial first.
           </p>
         ) : null}
       </section>
 
       <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         {OPERATION_AGENTS.map((agent) => {
-          const job = jobs[agent.id];
+          const status = statusFor(agent.id);
           return (
             <li key={agent.id} className="paper-card rounded-3xl border border-stone-200 p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8c6a38]">
-                {job.status === "working"
+                {status === "working"
                   ? "Working"
-                  : job.status === "queued"
+                  : status === "queued"
                     ? "Queued"
-                    : job.status === "done"
+                    : status === "done"
                       ? "Done"
-                      : job.status === "error"
+                      : status === "error"
                         ? "Needs a retry"
                         : "Ready"}
               </p>
@@ -231,7 +283,8 @@ export function OperationsDesk() {
               <h2 className="font-display text-3xl text-stone-900">Agent output</h2>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600">
                 Edit, copy, or download. Then publish or paste into Ads Manager
-                yourself. Log real enquiries on the proof page.
+                yourself. Log real enquiries on the proof page. Output stays in
+                this browser tab if you move around the site.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -248,9 +301,9 @@ export function OperationsDesk() {
                     packDrafts(
                       `House Operations — ${profile.businessName}`,
                       allPosts.map((post) => ({
-          label: post.label,
-          text: drafts[post.id] ?? post.text,
-        })),
+                        label: post.label,
+                        text: drafts[post.id] ?? post.text,
+                      })),
                     ),
                   )
                 }
@@ -278,7 +331,7 @@ export function OperationsDesk() {
       <aside className="rounded-3xl border border-[rgba(176,137,79,0.35)] bg-[#fffaf3] p-6">
         <h2 className="font-display text-2xl text-stone-900">DW Gold Trading trial</h2>
         <p className="mt-3 text-sm leading-6 text-stone-600">
-          Companies House lists DW Gold Trading Ltd ( {DW_GOLD_TRIAL_NOTES.companyNumber} )
+          Companies House lists DW Gold Trading Ltd ({DW_GOLD_TRIAL_NOTES.companyNumber})
           in Alfreton, Derbyshire, under education. The site{" "}
           <a
             className="font-semibold text-[#8c6a38] underline-offset-2 hover:underline"
@@ -288,8 +341,9 @@ export function OperationsDesk() {
           >
             dwgoldtrading.com
           </a>{" "}
-          exists; the public homepage currently shows a login wall, so this trial
-          does not scrape or invent page copy. {DW_GOLD_TRIAL_NOTES.caution}
+          currently shows a login wall to the public, so ads and search cannot
+          convert until a public page exists. The SEO agent now drafts that page.
+          {` ${DW_GOLD_TRIAL_NOTES.caution}`}
         </p>
       </aside>
     </div>

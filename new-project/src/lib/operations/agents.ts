@@ -1,5 +1,6 @@
 import { generateAdsCopy } from "@/lib/copy/ads";
 import { generateContentPlan } from "@/lib/copy/content-plan";
+import { generatePublicHomepage } from "@/lib/copy/public-site";
 import { generateSeoBriefs } from "@/lib/copy/seo";
 import type { GeneratedPost, GeneratorFormValues } from "@/lib/types";
 
@@ -9,7 +10,7 @@ export const OPERATION_AGENTS = [
     name: "SEO agent",
     short: "Search",
     summary:
-      "Local titles, search themes, Google Business checklist, and a page brief.",
+      "Public homepage (no login), local titles, search themes, and a Google Business checklist.",
   },
   {
     id: "facebook-ads",
@@ -48,7 +49,7 @@ export function runOperationAgent(
 ): GeneratedPost[] {
   switch (agentId) {
     case "seo":
-      return generateSeoBriefs(values);
+      return [...generatePublicHomepage(values), ...generateSeoBriefs(values)];
     case "facebook-ads":
       return generateAdsCopy(values).filter((post) =>
         post.id.startsWith("fb") || post.id === "structure",

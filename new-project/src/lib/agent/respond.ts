@@ -1,4 +1,7 @@
-import { parseBrief } from "@/lib/agent/parse-brief";
+import { applyBrief, parseBrief } from "@/lib/agent/parse-brief";
+import { generateFacebookPosts } from "@/lib/copy/facebook";
+import { generatePublicHomepage } from "@/lib/copy/public-site";
+import { generateSeoBriefs } from "@/lib/copy/seo";
 import { TOOLS } from "@/lib/tools";
 import type { GeneratorFormValues } from "@/lib/types";
 
@@ -17,6 +20,22 @@ function profileReady(profile: GeneratorFormValues): boolean {
   );
 }
 
+function liveSketch(profile: GeneratorFormValues): string {
+  const facebook = generateFacebookPosts({
+    ...profile,
+    facebookStyles: ["short"],
+    length: "short",
+  })[0];
+  const site = generatePublicHomepage(profile)[0];
+  const seo = generateSeoBriefs(profile)[0];
+  const parts = [
+    facebook ? `Facebook sketch\n${facebook.text}` : "",
+    site ? `Public homepage sketch\n${site.text}` : "",
+    seo ? `Search title\n${seo.text}` : "",
+  ].filter(Boolean);
+  return `\n\n${parts.join("\n\n")}`;
+}
+
 export function respondToMessage(
   message: string,
   profile: GeneratorFormValues,
@@ -33,7 +52,7 @@ export function respondToMessage(
   if (/^(hi|hello|hey|help|what can you do)\b/.test(lower)) {
     return {
       reply:
-        "I am the LocalLaunch house concierge. I run in your browser. I can fill the studio, open SEO or ads drafts, send you to House Operations, or explain Stripe checkout (Apple Pay, Google Pay, Link, and card). I will not invent leads.",
+        "I am the LocalLaunch house concierge. I run in your browser. Tell me the business and I will sketch a public homepage and a Facebook line here. I can also open House Operations, the proof ledger, or Stripe checkout. I will not invent leads.",
     };
   }
 
@@ -58,7 +77,16 @@ export function respondToMessage(
 
   if (
     lower.includes("dw gold") ||
-    lower.includes("gold trading") ||
+    lower.includes("gold trading")
+  ) {
+    return {
+      reply:
+        "I will open House Operations on the DW Gold Trading owner trial. The public site currently greets people with a login wall — the SEO agent will draft a page strangers can actually read. Do not promise trading profits. Log only real enquiries.",
+      goTo: "/operations?trial=gold&run=1",
+    };
+  }
+
+  if (
     lower.includes("house agent") ||
     lower.includes("operations") ||
     lower.includes("run the house") ||
@@ -76,7 +104,7 @@ export function respondToMessage(
     }
     return {
       reply: profileReady(profile)
-        ? "House Operations is the desk for SEO, Facebook/Instagram ads, Google Ads, social, and a measurement plan. The agents draft in this tab. They do not spend ad budget. I will open the desk."
+        ? `House Operations is the desk for SEO, ads, social, and a measurement plan.${liveSketch(profile)}\n\nI will open the desk. The agents draft in this tab. They do not spend ad budget.`
         : "House Operations can run once we have a name, type, town, and offer. Load the DW Gold Trading trial on that page if this is the owner test, or tell me the business here.",
       goTo: "/operations",
     };
@@ -85,7 +113,7 @@ export function respondToMessage(
   if (lower.includes("campaign") || lower.includes("full pack") || lower.includes("everything")) {
     return {
       reply: profileReady(profile)
-        ? "The full campaign pack uses the same facts across social, email, SEO, and ads. Opening it now."
+        ? `The full campaign pack uses the same facts across a public homepage, social, email, SEO, and ads.${liveSketch(profile)}`
         : "I still need a name, type, town, and offer before I can open the campaign pack.",
       goTo: profileReady(profile) ? "/tools/campaign-pack" : undefined,
     };
@@ -113,12 +141,11 @@ export function respondToMessage(
     }
   }
 
-  if (lower.includes("generate") || lower.includes("write posts") || lower.includes("make drafts")) {
+  if (lower.includes("generate") || lower.includes("write posts") || lower.includes("make drafts") || lower.includes("sketch")) {
     if (profileReady(profile)) {
       return {
-        reply:
-          "Your details look complete enough to draft. Open Facebook Post Studio, or House Operations if you want SEO and ads as well.",
-        goTo: "/tools/facebook-post-generator",
+        reply: `Here is a live sketch from the details in this tab.${liveSketch(profile)}\n\nOpen House Operations for the full SEO and ads desk, or Facebook Post Studio for more social styles.`,
+        goTo: "/operations",
       };
     }
     return {
@@ -129,8 +156,10 @@ export function respondToMessage(
 
   const parsed = parseBrief(text);
   if (parsed.summary.length > 0) {
+    const next = applyBrief(profile, parsed.patch);
+    const sketch = profileReady(next) ? liveSketch(next) : "";
     return {
-      reply: `I have taken this from what you wrote:\n${parsed.summary.map((line) => `• ${line}`).join("\n")}\n\nI will add it to the studio. Check it, then generate. I will not invent prices, reviews, awards, or leads.`,
+      reply: `I have taken this from what you wrote:\n${parsed.summary.map((line) => `• ${line}`).join("\n")}${sketch}\n\nI will add it to the studio. Check it, then generate. I will not invent prices, reviews, awards, or leads.`,
       patch: parsed.patch,
     };
   }

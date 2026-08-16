@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Container } from "@/components/container";
 import { OperationsDesk } from "@/components/operations/operations-desk";
 import { PayButton } from "@/components/pay-button";
@@ -30,7 +31,9 @@ export default function OperationsPage() {
           <PayButton>Pay for House Operations</PayButton>
         </div>
         <div className="mt-12">
-          <OperationsDesk />
+          <Suspense fallback={<p className="text-sm text-stone-600">Opening the desk.</p>}>
+            <OperationsDesk />
+          </Suspense>
         </div>
       </Container>
     </div>

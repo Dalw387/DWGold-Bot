@@ -5,6 +5,7 @@ import { generateFacebookPosts } from "@/lib/copy/facebook";
 import { generateGoogleBusinessPosts } from "@/lib/copy/google-business";
 import { generateInstagramCaptions } from "@/lib/copy/instagram";
 import { generateNotices } from "@/lib/copy/notice";
+import { generatePublicHomepage } from "@/lib/copy/public-site";
 import { generateReviewReplies } from "@/lib/copy/review-reply";
 import { generateReviewRequests } from "@/lib/copy/review-request";
 import { generateSeoBriefs } from "@/lib/copy/seo";
@@ -28,6 +29,7 @@ function first(
 
 export function generateCampaignPack(values: GeneratorFormValues): GeneratedPost[] {
   const pieces = [
+    first("Public site", generatePublicHomepage(values)),
     first("Facebook", generateFacebookPosts(values)),
     first("Instagram", generateInstagramCaptions(values)),
     first("Google listing", generateGoogleBusinessPosts(values)),

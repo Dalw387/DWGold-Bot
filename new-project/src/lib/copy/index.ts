@@ -9,6 +9,7 @@ import { generateNotices } from "@/lib/copy/notice";
 import { generateReviewReplies } from "@/lib/copy/review-reply";
 import { generateReviewRequests } from "@/lib/copy/review-request";
 import { generateSeoBriefs } from "@/lib/copy/seo";
+import { generatePublicHomepage } from "@/lib/copy/public-site";
 import { generateWebsiteBlurbs } from "@/lib/copy/website-blurb";
 import { generateWhatsAppMessages } from "@/lib/copy/whatsapp";
 import type { GeneratedPost, GeneratorFormValues, ToolSlug } from "@/lib/types";
@@ -31,7 +32,7 @@ export function generateForTool(
     case "review-request":
       return generateReviewRequests(values);
     case "website-blurb":
-      return generateWebsiteBlurbs(values);
+      return [...generatePublicHomepage(values), ...generateWebsiteBlurbs(values)];
     case "notice":
       return generateNotices(values);
     case "email-update":
