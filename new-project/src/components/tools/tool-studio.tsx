@@ -146,7 +146,7 @@ export function ToolStudio({ tool }: { tool: ToolDefinition }) {
     <div className="border-b border-stone-200">
       <Container className="py-12 sm:py-16">
         <p className="text-sm font-semibold uppercase tracking-wider text-[#8c6a38]">
-          {tool.category} · free tool
+          Studio · drafting room
         </p>
         <h1 className="font-display mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
           {tool.name}

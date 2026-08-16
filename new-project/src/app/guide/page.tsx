@@ -1,46 +1,53 @@
 import type { Metadata } from "next";
-import { ButtonLink } from "@/components/button";
+import { ButtonAnchor, ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
+import { stripePaymentLink } from "@/lib/payments";
 
 export const metadata: Metadata = {
-  title: "How to use LocalLaunch",
+  title: "How LocalLaunch works",
   description:
-    "Plain steps: try the free studio, run House Operations, pay £197 in Stripe if you want the paid desk, and log real enquiries.",
+    "Read the offer, pay £197 on Stripe, then use the studio, house agents, and proof ledger in this browser.",
 };
 
 const steps = [
   {
     n: "1",
-    title: "Try it free",
-    body: "Open the studio. Press Fill example, then generate. You get Facebook drafts, captions, emails, and more. Nothing is sent to a paid AI company. Check every line before you post.",
-    href: "/tools/facebook-post-generator",
-    label: "Open Facebook Post Studio",
+    title: "Read what we actually do",
+    body: "The homepage is the offer. How we help your business, every room, every agent, who does what, and what we never do. Take your time. If it is not a fit, do not pay.",
+    href: "/#help",
+    label: "Read how we help",
+    pay: false,
   },
   {
     n: "2",
-    title: "Run the house agents",
-    body: "House Operations writes SEO, ads drafts, a public homepage, and a week of social starting points. Press “Run DW Gold Trading trial” to see it on a real business, or fill your own details first.",
-    href: "/operations?trial=gold&run=1",
-    label: "Run the DW Gold trial",
+    title: "Pay £197 on Stripe if you are happy",
+    body: `One-off, Apple Pay or card. That is how you get inside. It is not Facebook or Google ad spend. The money goes to the LocalLaunch Stripe account.`,
+    href: "/pay",
+    label: `Pay ${HOUSE_PRICE_SHORT}`,
+    pay: true,
   },
   {
     n: "3",
-    title: "Pay only if you want the paid desk",
-    body: `The studio stays £0. House Operations is ${HOUSE_PRICE_SHORT} one-off, paid on Stripe with Apple Pay or card. That is for the desk and the ledger, not for Facebook or Google ad spend.`,
+    title: "Use the platform in this browser",
+    body: "Stripe should send you back. Then open House Operations, type the business, run the agents, and use any of the thirteen rooms. The concierge can fill the form from a sentence.",
     href: "/pay",
-    label: `Pay ${HOUSE_PRICE_SHORT}`,
+    label: "Go to checkout",
+    pay: false,
   },
   {
     n: "4",
-    title: "Prove it with real people",
-    body: "When someone actually enquires, log it on the proof page. Likes do not count. A quiet week with zero rows is still an honest week.",
-    href: "/proof",
-    label: "Open the proof ledger",
+    title: "Publish, then log real people",
+    body: "You post the words. When someone actually enquires, log it on the proof page. Likes do not count. A quiet week with zero rows is still an honest week.",
+    href: "/#split",
+    label: "See who does what",
+    pay: false,
   },
 ];
 
 export default function GuidePage() {
+  const link = stripePaymentLink();
+
   return (
     <div className="mesh border-b border-stone-200">
       <Container className="max-w-3xl py-14 sm:py-20">
@@ -48,11 +55,11 @@ export default function GuidePage() {
           Simple guide
         </p>
         <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
-          Four steps. No jargon.
+          Read it. Pay if you are happy. Then use the desk.
         </h1>
         <p className="mt-4 text-base leading-7 text-stone-600">
-          LocalLaunch writes marketing words from the facts you type. You stay
-          the person who posts. We do not invent customers.
+          There is nothing for us to set up for each customer. You use the
+          website. We do not log into your ads accounts.
         </p>
         <ol className="mt-12 space-y-8">
           {steps.map((step) => (
@@ -62,9 +69,15 @@ export default function GuidePage() {
               </p>
               <h2 className="font-display mt-3 text-2xl text-stone-900">{step.title}</h2>
               <p className="mt-3 text-sm leading-7 text-stone-600">{step.body}</p>
-              <ButtonLink href={step.href} className="mt-6">
-                {step.label}
-              </ButtonLink>
+              {step.pay && link ? (
+                <ButtonAnchor href={link} className="mt-6" variant="gold" rel="noreferrer">
+                  {step.label}
+                </ButtonAnchor>
+              ) : (
+                <ButtonLink href={step.href} className="mt-6">
+                  {step.label}
+                </ButtonLink>
+              )}
             </li>
           ))}
         </ol>

@@ -6,4 +6,4 @@ export const HOUSE_PRICE_LABEL = "£197 one-off";
 export const HOUSE_PRICE_SHORT = "£197";
 export const HOUSE_PRODUCT_NAME = "LocalLaunch House Operations";
 export const HOUSE_PRODUCT_DESCRIPTION =
-  "SEO, ads and social drafts plus a proof ledger for real enquiries. Complimentary studio stays free. Ad spend at Facebook or Google is separate and paid to those platforms.";
+  "The full LocalLaunch platform: thirteen drafting rooms, five house agents, a concierge, and a proof ledger. Pay £197 once on Stripe. Ad spend at Facebook or Google is separate and paid to those platforms.";

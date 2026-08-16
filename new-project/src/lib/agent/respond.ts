@@ -62,7 +62,7 @@ export function respondToMessage(
   ) {
     return {
       reply:
-        "House Operations is £197 one-off. You pay on Stripe with Apple Pay, Google Pay, Link, or a card. The money goes to the LocalLaunch Stripe account. The free studio stays free. I will take you to the pay page.",
+        "House Operations is £197 one-off. You pay on Stripe with Apple Pay, Google Pay, Link, or a card. After payment, this browser unlocks the platform. The money goes to the LocalLaunch Stripe account. I will take you to the pay page.",
       goTo: "/pay",
     };
   }

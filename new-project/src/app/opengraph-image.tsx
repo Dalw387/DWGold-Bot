@@ -26,7 +26,7 @@ export default function OpenGraphImage() {
           Quiet words. House agents. Honest proof.
         </div>
         <div style={{ fontSize: 24, color: "#e8dcc8" }}>
-          Studio complimentary · House Operations paid in Stripe
+          Read the offer. Pay £197. Use the desk.
         </div>
       </div>
     ),

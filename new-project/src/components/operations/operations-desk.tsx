@@ -193,7 +193,7 @@ export function OperationsDesk() {
             ? `Current desk: ${profile.businessName}${profile.location ? ` · ${profile.location}` : ""}`
             : "No business loaded yet."}
           {house.returnedFromCheckout
-            ? " · This tab returned from Stripe (not verified on the server yet)."
+            ? " · This browser unlocked after Stripe."
             : ""}
         </p>
         <div className="mt-6 flex flex-wrap gap-3">

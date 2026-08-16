@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     template: "%s | LocalLaunch AI",
   },
   description:
-    "Free drafting studio for local businesses, plus House Operations for £197: SEO, ads copy, social drafts, and a proof ledger. Pay on Stripe with Apple Pay, Google Pay, Link, or card.",
+    "How LocalLaunch helps a local business get found, asked, and counted. Read the offer, pay £197 on Stripe, then use the studio, house agents, and proof ledger.",
   applicationName: "LocalLaunch AI",
   openGraph: {
     title: "LocalLaunch AI",
     description:
-      "Free marketing drafts for local businesses. House Operations is £197 one-off on Stripe. Proof is a ledger of real enquiries, not a slogan.",
+      "Read how LocalLaunch helps your business. Pay £197 once on Stripe. Then use the platform in your browser. Proof is a ledger of real enquiries, not a slogan.",
     locale: "en_GB",
     type: "website",
   },

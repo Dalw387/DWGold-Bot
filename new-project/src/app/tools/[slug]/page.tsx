@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { PlatformGate } from "@/components/access/platform-gate";
 import { ToolStudio } from "@/components/tools/tool-studio";
 import { getTool, TOOLS } from "@/lib/tools";
 
@@ -23,5 +24,9 @@ export default async function ToolPage({ params }: PageProps<"/tools/[slug]">) {
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) notFound();
-  return <ToolStudio tool={tool} />;
+  return (
+    <PlatformGate>
+      <ToolStudio tool={tool} />
+    </PlatformGate>
+  );
 }

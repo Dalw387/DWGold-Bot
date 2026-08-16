@@ -2,19 +2,31 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { openStudioAgent } from "@/components/agent/studio-agent";
 import { Container } from "@/components/container";
 import { Button, ButtonLink } from "@/components/button";
 import { Logo } from "@/components/logo";
+import {
+  getAccessSnapshot,
+  getServerAccessSnapshot,
+  hydrateAccessStore,
+  subscribeAccess,
+} from "@/lib/access-storage";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
-const links = [
+const publicLinks = [
+  { href: "/#help", label: "How we help" },
+  { href: "/#what-you-get", label: "What you get" },
   { href: "/guide", label: "How it works" },
-  { href: "/tools", label: "Tools" },
+  { href: "/#faq", label: "Questions" },
+];
+
+const memberLinks = [
+  { href: "/tools", label: "Studio" },
   { href: "/operations", label: "Operations" },
   { href: "/proof", label: "Proof" },
-  { href: "/#pricing", label: "Pricing" },
+  { href: "/concierge", label: "Concierge" },
 ];
 
 export function SiteHeader() {
@@ -22,6 +34,15 @@ export function SiteHeader() {
   const menuId = useId();
   const [open, setOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
+  const access = useSyncExternalStore(
+    subscribeAccess,
+    getAccessSnapshot,
+    getServerAccessSnapshot,
+  );
+
+  useEffect(() => {
+    hydrateAccessStore();
+  }, []);
 
   if (menuPath !== pathname) {
     setMenuPath(pathname);
@@ -42,6 +63,8 @@ export function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const links = access.unlocked ? memberLinks : publicLinks;
 
   return (
     <header className="sticky top-0 z-40 border-b border-[rgba(176,137,79,0.28)] bg-[#fffaf3]/90 backdrop-blur">
@@ -67,17 +90,20 @@ export function SiteHeader() {
               </Link>
             );
           })}
-          <Button
-            type="button"
-            variant="ghost"
-            className="px-3 py-2"
-            onClick={() => openStudioAgent()}
-          >
-            Assistant
-          </Button>
-          <ButtonLink href="/pay" variant="gold" className="ml-1 px-4 py-2">
-            Pay {HOUSE_PRICE_SHORT}
-          </ButtonLink>
+          {access.unlocked ? (
+            <Button
+              type="button"
+              variant="ghost"
+              className="px-3 py-2"
+              onClick={() => openStudioAgent()}
+            >
+              Assistant
+            </Button>
+          ) : (
+            <ButtonLink href="/pay" variant="gold" className="ml-1 px-4 py-2">
+              Pay {HOUSE_PRICE_SHORT}
+            </ButtonLink>
+          )}
         </nav>
         <button
           type="button"
@@ -113,24 +139,27 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={() => {
-                setOpen(false);
-                openStudioAgent();
-              }}
-            >
-              Ask the assistant
-            </Button>
-            <ButtonLink
-              href="/pay"
-              variant="gold"
-              className="mt-1"
-              onClick={() => setOpen(false)}
-            >
-              Pay {HOUSE_PRICE_SHORT}
-            </ButtonLink>
+            {access.unlocked ? (
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => {
+                  setOpen(false);
+                  openStudioAgent();
+                }}
+              >
+                Ask the assistant
+              </Button>
+            ) : (
+              <ButtonLink
+                href="/pay"
+                variant="gold"
+                className="mt-1"
+                onClick={() => setOpen(false)}
+              >
+                Pay {HOUSE_PRICE_SHORT}
+              </ButtonLink>
+            )}
           </Container>
         </div>
       ) : null}

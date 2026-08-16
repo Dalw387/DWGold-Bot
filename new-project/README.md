@@ -1,16 +1,8 @@
 # LocalLaunch AI
 
-Complimentary studio for small-business marketing drafts, plus House Operations.
+A £197 one-off marketing desk for small businesses.
 
-This version includes:
-
-- A quieter, more expensive-looking public site
-- A house concierge and studio assistant
-- Thirteen template rooms, including a campaign pack, SEO brief, and ads copy
-- House Operations agents for SEO, Meta ads, Google Ads, social, and measurement
-- A proof ledger that only counts rows you type
-- An owner trial for DW Gold Trading Ltd
-- Stripe Payment Link checkout for House Operations (£197 one-off)
+The public site explains the offer in detail. After the customer pays on Stripe, this browser unlocks the platform: thirteen drafting rooms, five house agents, a concierge, and a proof ledger.
 
 The studio does not call a paid AI API. House agents draft in the browser. They do not place ads or invent leads.
 
@@ -30,7 +22,9 @@ House Operations is **£197 one-off**, paid on the live Payment Link:
 
 https://buy.stripe.com/4gM14ndrHburaZpfZV48001
 
-That URL is public (it is a checkout page, not a secret key) and is already wired into the site. Apple Pay, Google Pay, Link, and cards appear on Stripe’s page when those methods are enabled on the Stripe account.
+That URL is public (it is a checkout page, not a secret key) and is already wired into the site.
+
+**Required for the “come inside” step:** in the Stripe Payment Link, set **After payment** to `{your live site}/pay/thanks`. That page unlocks the platform in the customer’s browser.
 
 Optional environment overrides (Vercel → Project → Environment Variables):
 
@@ -40,20 +34,11 @@ Optional environment overrides (Vercel → Project → Environment Variables):
 - `STRIPE_SECRET_KEY` plus `STRIPE_PRICE_ID_HOUSE` — only if you later switch from Payment Link to Checkout Sessions
 - `STRIPE_APPLE_PAY_DOMAIN_ASSOCIATION` — only needed for Apple Pay on a custom domain, not for `buy.stripe.com`
 
-In the Stripe Payment Link, set **After payment** to `{your live site}/pay/thanks` once the site has a public address.
-
 Copy `.env.example` to `.env.local` for local values.
 
 ## Go live
 
 The app lives in the `new-project` folder. On Vercel, import the GitHub repo and set the root directory to `new-project`.
-
-```bash
-cd new-project
-npx vercel --yes
-```
-
-Use `npx vercel --prod` when you want the production alias.
 
 ## Scripts
 

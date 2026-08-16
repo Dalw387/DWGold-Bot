@@ -52,7 +52,7 @@ export function generateCampaignPack(values: GeneratorFormValues): GeneratedPost
       text: [
         `Campaign pack for ${values.businessName} (${values.businessType}, ${values.location}).`,
         `Offer used: ${values.offer}.`,
-        "Each card is a starting draft from the complimentary studio. Edit facts before you publish or spend.",
+        "Each card is a starting draft from the studio. Edit facts before you publish or spend.",
         "This pack does not place ads, change your website, or record leads. Use House Operations and the proof ledger for that next step.",
       ].join("\n\n"),
     },

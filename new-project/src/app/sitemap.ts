@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/concierge",
     "/proof",
     "/pay",
-    "/pay/thanks",
     ...TOOLS.map((tool) => `/tools/${tool.slug}`),
   ];
   return paths.map((path) => ({

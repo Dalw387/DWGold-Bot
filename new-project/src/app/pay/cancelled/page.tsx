@@ -14,15 +14,15 @@ export default function PayCancelledPage() {
         Checkout cancelled
       </h1>
       <p className="mt-4 text-base leading-7 text-stone-600">
-        No payment was taken. The complimentary studio is still free. House
-        Operations is ready when you want to try Stripe again.
+        No payment was taken. The platform stays locked until Stripe takes the
+        £197. You can read the offer again, then pay when you are ready.
       </p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <ButtonLink href="/pay" variant="gold">
           Return to pay
         </ButtonLink>
-        <ButtonLink href="/tools" variant="secondary">
-          Use the free studio
+        <ButtonLink href="/#help" variant="secondary">
+          Read how we help
         </ButtonLink>
       </div>
     </Container>

@@ -6,6 +6,12 @@ import { Button } from "@/components/button";
 import { applyBrief } from "@/lib/agent/parse-brief";
 import { respondToMessage } from "@/lib/agent/respond";
 import {
+  getAccessSnapshot,
+  getServerAccessSnapshot,
+  hydrateAccessStore,
+  subscribeAccess,
+} from "@/lib/access-storage";
+import {
   getProfileSnapshot,
   getServerProfileSnapshot,
   hydrateProfileStore,
@@ -33,6 +39,11 @@ export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" })
     getProfileSnapshot,
     getServerProfileSnapshot,
   );
+  const access = useSyncExternalStore(
+    subscribeAccess,
+    getAccessSnapshot,
+    getServerAccessSnapshot,
+  );
   const [open, setOpen] = useState(variant === "page");
   const [draft, setDraft] = useState("");
   const [lines, setLines] = useState<ChatLine[]>([
@@ -50,6 +61,7 @@ export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" })
 
   useEffect(() => {
     hydrateProfileStore();
+    hydrateAccessStore();
   }, []);
 
   useEffect(() => {
@@ -173,6 +185,7 @@ export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" })
 
   if (variant === "page") return panel;
   if (pathname === "/concierge") return null;
+  if (!access.unlocked) return null;
 
   return (
     <div className="no-print">

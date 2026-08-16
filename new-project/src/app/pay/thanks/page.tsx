@@ -5,34 +5,34 @@ import { Container } from "@/components/container";
 import { HouseReturnMarker } from "@/components/pay/house-return-marker";
 
 export const metadata: Metadata = {
-  title: "Payment received",
+  title: "You are in",
   description:
-    "Returned from Stripe. Next: run the house agents and log real enquiries. This page does not invent results.",
+    "Returned from Stripe. The LocalLaunch platform is unlocked in this browser. Run the house agents and log only real enquiries.",
 };
 
 export default function PayThanksPage() {
   return (
     <Container className="max-w-2xl py-16 sm:py-24">
       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6a38]">
-        Stripe
+        Payment
       </p>
       <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-stone-900">
-        If Stripe took the payment, start here
+        You are inside. Start the desk.
       </h1>
       <p className="mt-4 text-base leading-7 text-stone-600">
-        Next: run the house agents on the real business, publish only what is
-        true, then log each real enquiry. This page does not invent a lead count
-        or a ranking.
+        If Stripe took the £197, this browser now opens the platform. Type your
+        business, or run the owner trial, then publish only what is true. This
+        page does not invent a lead count.
       </p>
       <Suspense>
         <HouseReturnMarker />
       </Suspense>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <ButtonLink href="/operations?trial=gold&run=1" variant="gold">
-          Run the DW Gold Trading trial
-        </ButtonLink>
-        <ButtonLink href="/operations" variant="secondary">
+        <ButtonLink href="/operations" variant="gold">
           Open House Operations
+        </ButtonLink>
+        <ButtonLink href="/tools" variant="secondary">
+          Open the studio
         </ButtonLink>
         <ButtonLink href="/proof" variant="secondary">
           Open the proof ledger
