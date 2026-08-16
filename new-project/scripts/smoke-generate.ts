@@ -1,4 +1,5 @@
 import { applyBrief, parseBrief } from "../src/lib/agent/parse-brief";
+import { STRIPE_PRODUCT_ID } from "../src/lib/commerce";
 import { generateForTool } from "../src/lib/copy";
 import { DW_GOLD_TRIAL, EXAMPLE_PROFILE } from "../src/lib/example-profile";
 import {
@@ -83,6 +84,11 @@ assert(
 assert(
   link.includes("client_reference_id=locallaunch-house"),
   "Payment Link should tag House Operations for Stripe reporting",
+);
+
+assert(
+  STRIPE_PRODUCT_ID === "prod_V5E5a3f90B0MfT",
+  `Unexpected Stripe product id: ${STRIPE_PRODUCT_ID}`,
 );
 
 runProfile("Harbour & Hearth", EXAMPLE_PROFILE);

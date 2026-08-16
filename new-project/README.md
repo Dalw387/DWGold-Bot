@@ -12,11 +12,15 @@ npm install
 npm run dev
 ```
 
-## Stripe (already wired)
+## Stripe (live)
+
+The DW Gold Trading Stripe account is live. Product **LocalLaunch House Operations** is Active at **£197.00** (`prod_V5E5a3f90B0MfT`).
 
 Payment Link: https://buy.stripe.com/4gM14ndrHburaZpfZV48001
 
-The site shows **£197 one-off** to match that link. If you change the amount in Stripe, change `NEXT_PUBLIC_HOUSE_PRICE_LABEL` to match. Do not show £179 if Stripe still charges £197.
+The site shows **£197 one-off** to match that product. If you change the amount in Stripe, change `NEXT_PUBLIC_HOUSE_PRICE_LABEL` to match. Do not show £179 if Stripe still charges £197.
+
+You can tidy the Stripe product name to `LocalLaunch House Operations` so it matches the site on receipts.
 
 ### Make the payment actually let people in
 
@@ -26,6 +30,10 @@ The site shows **£197 one-off** to match that link. If you change the amount in
 3. Turn on Apple Pay, Google Pay, Link, and cards on that link if they are not already on.
 
 Until After payment points at `/pay/thanks`, people pay but may stay on Stripe’s receipt instead of coming inside.
+
+### Finish payouts
+
+If Stripe still shows **Managed Payments · Needs info**, complete that setup guide. Cards can take payment while that is unfinished, but the money may sit in Stripe until identity and bank details are done.
 
 ## Email list
 
