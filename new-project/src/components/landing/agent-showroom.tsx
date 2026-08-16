@@ -76,6 +76,11 @@ export function AgentShowroom() {
         </p>
 
         <div className="glass mt-14 overflow-hidden rounded-[1.6rem] p-5 sm:p-8">
+          <div className="mb-6 h-px overflow-hidden bg-white/8">
+            <span className="load-bar block h-px w-full">
+              <span />
+            </span>
+          </div>
           <p className="label">Customer enquiry</p>
           <p className="mt-3 max-w-2xl font-serif text-2xl leading-snug text-ice sm:text-3xl">
             “{DEMO_ENQUIRY}”

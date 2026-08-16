@@ -163,16 +163,32 @@ export function JobDemo() {
           you pay.
         </p>
         <div className="glass-lit mt-10 overflow-hidden rounded-[1.6rem] p-4 sm:p-6">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <p className="flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-cyan">
+              <span className="hidden items-center gap-1.5 sm:flex" aria-hidden="true">
+                <span className="traffic bg-[#ff5f57] text-[#ff5f57]" />
+                <span className="traffic bg-[#febc2e] text-[#febc2e]" />
+                <span className="traffic bg-[#28c840] text-[#28c840]" />
+              </span>
+              Command console
+            </p>
+            <p className="flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-scout">
+              <span className="status-dot" />
+              {running ? "Executing" : "Ready"}
+            </p>
+          </div>
           <label className="block">
             <span className="label">Command input</span>
-            <input
-              value={typed}
-              onChange={(event) => {
-                setTyped(event.target.value);
-                setRunning(true);
-              }}
-              className="field font-display text-lg"
-            />
+            <span className="relative block">
+              <input
+                value={typed}
+                onChange={(event) => {
+                  setTyped(event.target.value);
+                  setRunning(true);
+                }}
+                className="field font-display text-lg"
+              />
+            </span>
           </label>
           <div className="mt-4 flex flex-wrap gap-2">
             {jobs.map((item, i) => (

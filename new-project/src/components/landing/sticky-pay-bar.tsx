@@ -28,6 +28,7 @@ export function StickyPayBar() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-cyan/20 bg-void/90 backdrop-blur-xl md:hidden">
+      <div className="header-hairline header-hairline-top" aria-hidden="true" />
       <div className="flex items-center justify-between gap-3 px-4 py-3">
         <p className="text-sm leading-5 text-ice">
           {HOUSE_PRICE_SHORT} once. Unlock the team.

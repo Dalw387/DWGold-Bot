@@ -7,6 +7,7 @@ import { AGENT_COLOURS, DEMO_ENQUIRY, DEMO_WORKSPACE, colourForAgent } from "@/l
 import { generateForTool } from "@/lib/copy";
 import { specialists, type SpecialistId } from "@/lib/sales";
 import type { ToolSlug } from "@/lib/types";
+import { TypedText } from "@/components/landing/typed-text";
 
 type NavId =
   | "overview"
@@ -113,11 +114,13 @@ const navToAgent: Partial<Record<NavId, SpecialistId>> = {
 export function ControlCentre() {
   const [navId, setNavId] = useState<NavId>("overview");
   const [agentFilter, setAgentFilter] = useState<SpecialistId | "all">("all");
-  const [selectedId, setSelectedId] = useState("charlie");
+  const [selectedId, setSelectedId] = useState("enquiry");
   const [clock, setClock] = useState("--:--:--");
+  const [playHead, setPlayHead] = useState(1);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    const id = window.setInterval(() => {
+    function tick() {
       setClock(
         new Date().toLocaleTimeString("en-GB", {
           hour: "2-digit",
@@ -125,9 +128,24 @@ export function ControlCentre() {
           second: "2-digit",
         }),
       );
-    }, 1000);
+    }
+    tick();
+    const id = window.setInterval(tick, 1000);
     return () => window.clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    if (paused) return undefined;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      const id = window.setTimeout(() => setPlayHead(activities.length), 0);
+      return () => window.clearTimeout(id);
+    }
+    const id = window.setInterval(() => {
+      setPlayHead((current) => (current >= activities.length ? 1 : current + 1));
+    }, 2100);
+    return () => window.clearInterval(id);
+  }, [paused]);
 
   const visible = useMemo(() => {
     return activities.filter((item) => {
@@ -140,10 +158,14 @@ export function ControlCentre() {
     });
   }, [agentFilter, navId]);
 
-  const selected = activities.find((item) => item.id === selectedId) ?? activities[1];
+  const selectedIdResolved = paused
+    ? selectedId
+    : (activities[Math.max(playHead, 1) - 1]?.id ?? selectedId);
+  const selected = activities.find((item) => item.id === selectedIdResolved) ?? activities[1];
   const spec = selected && selected.agent !== "system" ? specialists.find((s) => s.id === selected.agent) : undefined;
   const draft =
     selected?.tool ? generateForTool(selected.tool, DEMO_WORKSPACE)[0] : undefined;
+  const playing = paused ? visible : visible.slice(0, Math.max(playHead, 1));
 
   return (
     <section id="control" aria-labelledby="control-heading" className="band-control py-20 sm:py-28">
@@ -168,6 +190,11 @@ export function ControlCentre() {
           <div className="hud-scan" aria-hidden="true" />
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-cyan/10 px-4 py-3 sm:px-5">
             <div className="flex items-center gap-3">
+              <span className="hidden items-center gap-1.5 sm:flex" aria-hidden="true">
+                <span className="traffic bg-[#ff5f57] text-[#ff5f57]" />
+                <span className="traffic bg-[#febc2e] text-[#febc2e]" />
+                <span className="traffic bg-[#28c840] text-[#28c840]" />
+              </span>
               <BrandMark className="h-7 w-7" />
               <div>
                 <p className="font-display text-sm text-ice">LocalLaunch</p>
@@ -178,7 +205,10 @@ export function ControlCentre() {
               <span className="rounded-full border border-magenta/30 bg-magenta/10 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-pink">
                 Demo workspace
               </span>
-              <span className="font-mono text-[0.68rem] tabular-nums text-cyan">{clock}</span>
+              <span className="flex items-center gap-2 rounded-full border border-cyan/20 px-3 py-1 font-mono text-[0.68rem] tabular-nums text-cyan">
+                <span className="status-dot" />
+                {clock}
+              </span>
             </p>
           </div>
 
@@ -193,6 +223,7 @@ export function ControlCentre() {
                       key={item.id}
                       type="button"
                       onClick={() => {
+                        setPaused(true);
                         setNavId(item.id);
                         const mapped = navToAgent[item.id];
                         if (mapped) {
@@ -238,15 +269,18 @@ export function ControlCentre() {
                 </div>
               ) : (
                 <ul>
-                  {visible.map((item, index) => {
-                    const on = item.id === selectedId;
+                  {playing.map((item, index) => {
+                    const on = item.id === selectedIdResolved;
                     const colour = item.agent === "system" ? AGENT_COLOURS.alex : colourForAgent(item.agent);
                     const who = item.agent === "system" ? "SYSTEM" : item.agent.toUpperCase();
                     return (
-                      <li key={item.id} className="feed-in" style={{ animationDelay: `${index * 120}ms` }}>
+                      <li key={item.id} className="feed-in" style={{ animationDelay: `${index * 80}ms` }}>
                         <button
                           type="button"
-                          onClick={() => setSelectedId(item.id)}
+                          onClick={() => {
+                            setPaused(true);
+                            setSelectedId(item.id);
+                          }}
                           className={`flex w-full items-start gap-4 border-t border-white/5 px-4 py-3.5 text-left transition ${
                             on ? "bg-white/6" : "hover:bg-white/3"
                           }`}
@@ -277,7 +311,10 @@ export function ControlCentre() {
                     ) : null}
                   </div>
                   <pre className="max-h-56 overflow-auto whitespace-pre-wrap px-4 py-4 font-sans text-sm leading-7 text-[#1b1a16]">
-                    {draft.text.length > 720 ? `${draft.text.slice(0, 720).trim()}…` : draft.text}
+                    <TypedText
+                      key={selectedIdResolved}
+                      text={draft.text.length > 720 ? `${draft.text.slice(0, 720).trim()}…` : draft.text}
+                    />
                   </pre>
                 </article>
               ) : selected?.note ? (
@@ -297,6 +334,7 @@ export function ControlCentre() {
                       <button
                         type="button"
                         onClick={() => {
+                          setPaused(true);
                           setAgentFilter(on ? "all" : agent.id);
                           setNavId("overview");
                           const first = activities.find((row) => row.agent === agent.id);
@@ -311,9 +349,14 @@ export function ControlCentre() {
                           <span className="block text-sm text-ice">{agent.name}</span>
                           <span className="text-[0.68rem] uppercase tracking-[0.12em] text-titanium">{agent.desk}</span>
                         </span>
-                        <span className="flex items-center gap-1.5 text-[0.62rem] uppercase tracking-[0.12em] text-scout">
-                          <span className="status-dot" style={{ background: agent.colour, boxShadow: `0 0 10px ${agent.colour}` }} />
-                          Active
+                        <span className="flex flex-col items-end gap-1.5 text-[0.62rem] uppercase tracking-[0.12em] text-scout">
+                          <span className="flex items-center gap-1.5">
+                            <span className="status-dot" style={{ background: agent.colour, boxShadow: `0 0 10px ${agent.colour}` }} />
+                            Active
+                          </span>
+                          <span className="load-bar w-16">
+                            <span style={{ background: agent.colour }} />
+                          </span>
                         </span>
                       </button>
                     </li>

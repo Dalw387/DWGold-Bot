@@ -13,6 +13,7 @@ import {
   hydrateAccessStore,
   subscribeAccess,
 } from "@/lib/access-storage";
+import { colourForAgent, WORKFORCE_CORE } from "@/lib/agent-identity";
 import { openBuildTeam } from "@/lib/sales";
 
 const publicLinks = [
@@ -35,6 +36,7 @@ export function SiteHeader() {
   const menuId = useId();
   const [open, setOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
+  const [live, setLive] = useState(0);
   const access = useSyncExternalStore(
     subscribeAccess,
     getAccessSnapshot,
@@ -43,6 +45,14 @@ export function SiteHeader() {
 
   useEffect(() => {
     hydrateAccessStore();
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = window.setInterval(() => {
+      setLive((current) => (current + 1) % WORKFORCE_CORE.length);
+    }, 2800);
+    return () => window.clearInterval(id);
   }, []);
 
   if (menuPath !== pathname) {
@@ -69,12 +79,13 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/8 bg-[#050611]/70 backdrop-blur-2xl">
+      <div className="header-hairline" aria-hidden="true" />
       <Container className="flex h-20 items-center justify-between gap-6">
         <div className="flex items-center gap-6">
           <Logo />
-          <p className="hidden items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-scout xl:flex">
-            <span className="status-dot" />
-            Live workforce
+          <p className="hidden items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] xl:flex" style={{ color: colourForAgent(WORKFORCE_CORE[live]?.id ?? "scout") }}>
+            <span className="status-dot" style={{ background: colourForAgent(WORKFORCE_CORE[live]?.id ?? "scout"), boxShadow: `0 0 10px ${colourForAgent(WORKFORCE_CORE[live]?.id ?? "scout")}` }} />
+            {WORKFORCE_CORE[live]?.name} · {WORKFORCE_CORE[live]?.doing.replace("…", "")}
           </p>
         </div>
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">

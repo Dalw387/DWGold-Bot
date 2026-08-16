@@ -36,7 +36,7 @@ export function StarterPath() {
           {starters.map((item) => (
             <li
               key={item.who}
-              className="glass rounded-[1.4rem] p-6 sm:p-8"
+              className="glass rounded-[1.4rem] p-6 transition hover:border-cyan/30 sm:p-8"
               style={{ boxShadow: `inset 3px 0 0 ${item.colour}` }}
             >
               <p className="label" style={{ color: item.colour }}>

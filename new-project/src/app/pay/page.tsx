@@ -18,7 +18,8 @@ export default function PayPage() {
     <div className="border-b border-border">
       <OfferJsonLd />
       <Container className="max-w-2xl py-16 sm:py-24">
-        <div className="glass-lit rounded-[1.6rem] p-8 sm:p-10">
+        <div className="glass-lit relative overflow-hidden rounded-[1.6rem] p-8 sm:p-10">
+        <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-cyan/20 blur-3xl" aria-hidden="true" />
         <p className="kicker">
           <span className="kicker-dot" aria-hidden="true" />
           Ready to put the team to work?

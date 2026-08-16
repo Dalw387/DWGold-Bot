@@ -45,6 +45,8 @@ export function WorkforceCore({
   return (
     <figure className="relative mx-auto min-h-[26rem] w-full max-w-[38rem] pb-4 sm:min-h-[36rem] sm:pb-16">
       <div className="hud-scan rounded-[2rem]" aria-hidden="true" />
+      <div className="core-pulse" aria-hidden="true" />
+      <div className="core-pulse core-pulse-delay" aria-hidden="true" />
       <div className="ring orbit h-[18rem] w-[18rem] border border-dashed border-cyan/25 sm:h-[28rem] sm:w-[28rem]" />
       <div className="ring orbit-rev h-[12.5rem] w-[12.5rem] border border-violet/30 sm:h-[20rem] sm:w-[20rem]" />
       <div className="ring h-[8rem] w-[8rem] border border-magenta/25 sm:h-[12rem] sm:w-[12rem]" />
@@ -82,7 +84,7 @@ export function WorkforceCore({
       </svg>
 
       <div className="core node-breathe absolute left-1/2 top-1/2 z-10 grid h-[5rem] w-[5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full sm:h-[6.6rem] sm:w-[6.6rem]">
-        <BrandMark className="h-10 w-10 sm:h-12 sm:w-12" />
+        <BrandMark className="h-10 w-10 sm:h-12 sm:w-12" animated />
       </div>
 
       {satellites.map(({ agent, x, y }) => {

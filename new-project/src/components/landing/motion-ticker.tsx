@@ -52,9 +52,11 @@ function Track({
 export function MotionTicker() {
   return (
     <div className="no-print relative overflow-hidden border-y border-cyan/15 bg-black/35">
-      <Track items={industries} />
-      <div className="border-t border-white/8">
-        <Track items={live} reverse />
+      <div className="ticker-fade">
+        <Track items={industries} />
+        <div className="border-t border-white/8">
+          <Track items={live} reverse />
+        </div>
       </div>
     </div>
   );

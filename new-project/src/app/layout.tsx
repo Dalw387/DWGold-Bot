@@ -57,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="relative flex min-h-full flex-col bg-background pb-24 font-sans text-foreground md:pb-0">
         <Atmosphere />
+        <div className="vignette" aria-hidden="true" />
         <ScrollTheatre />
         <NanoBoot />
         <div className="grain" aria-hidden="true" />

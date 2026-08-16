@@ -53,8 +53,9 @@ export function Atmosphere() {
       const w = canvas.width;
       const h = canvas.height;
       const dpr = window.devicePixelRatio;
-      const glow = ctx.createRadialGradient(mouse.x * w, mouse.y * h, 0, mouse.x * w, mouse.y * h, 220 * dpr);
-      glow.addColorStop(0, "rgba(73, 230, 255, 0.07)");
+      const glow = ctx.createRadialGradient(mouse.x * w, mouse.y * h, 0, mouse.x * w, mouse.y * h, 320 * dpr);
+      glow.addColorStop(0, "rgba(73, 230, 255, 0.12)");
+      glow.addColorStop(0.45, "rgba(139, 92, 255, 0.05)");
       glow.addColorStop(1, "rgba(73, 230, 255, 0)");
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, w, h);
@@ -62,8 +63,20 @@ export function Atmosphere() {
       for (let i = 0; i < dots.length; i += 1) {
         const a = dots[i];
         if (!a) continue;
+        a.x += (mouse.x - a.x) * 0.0018;
         a.y -= a.s / 1600;
         if (a.y < 0) a.y = 1;
+        const mx = a.x - mouse.x;
+        const my = a.y - mouse.y;
+        const mouseDist = Math.hypot(mx, my);
+        if (mouseDist < 0.18) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(228, 71, 209, ${0.16 - mouseDist * 0.7})`;
+          ctx.lineWidth = 1.1 * dpr;
+          ctx.moveTo(a.x * w, a.y * h);
+          ctx.lineTo(mouse.x * w, mouse.y * h);
+          ctx.stroke();
+        }
         for (let j = i + 1; j < dots.length; j += 1) {
           const b = dots[j];
           if (!b) continue;
@@ -72,7 +85,7 @@ export function Atmosphere() {
           const dist = Math.hypot(dx, dy);
           if (dist > 0.14) continue;
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(73, 230, 255, ${0.12 - dist * 0.6})`;
+          ctx.strokeStyle = `rgba(73, 230, 255, ${0.16 - dist * 0.7})`;
           ctx.lineWidth = 0.8 * dpr;
           ctx.moveTo(a.x * w, a.y * h);
           ctx.lineTo(b.x * w, b.y * h);

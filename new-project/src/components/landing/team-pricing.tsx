@@ -46,6 +46,14 @@ export function TeamPricing() {
           onPointerLeave={() => setTilt({ x: 0, y: 0 })}
           style={{ transform: `perspective(1200px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)` }}
         >
+          <div
+            className="pointer-events-none absolute -right-10 -top-16 h-56 w-56 rounded-full bg-cyan/20 blur-3xl"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute -bottom-20 -left-8 h-48 w-48 rounded-full bg-magenta/18 blur-3xl"
+            aria-hidden="true"
+          />
           <p className="font-display text-[clamp(4.2rem,10vw,7.5rem)] leading-none tracking-tight text-ice">
             {HOUSE_PRICE_SHORT}
           </p>

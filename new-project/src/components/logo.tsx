@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useId } from "react";
 
 export function BrandMark({
   className = "h-10 w-10",
@@ -7,6 +10,7 @@ export function BrandMark({
   className?: string;
   animated?: boolean;
 }) {
+  const gid = `ll-mark-${useId().replace(/:/g, "")}`;
   return (
     <svg
       viewBox="0 0 32 32"
@@ -14,7 +18,7 @@ export function BrandMark({
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="ll-mark" x1="6" y1="28" x2="27" y2="5" gradientUnits="userSpaceOnUse">
+        <linearGradient id={gid} x1="6" y1="28" x2="27" y2="5" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#49E6FF" />
           <stop offset="48%" stopColor="#8B5CFF" />
           <stop offset="100%" stopColor="#E447D1" />
@@ -24,7 +28,7 @@ export function BrandMark({
         className="path"
         d="M7 26 V9 H18"
         fill="none"
-        stroke="url(#ll-mark)"
+        stroke={`url(#${gid})`}
         strokeWidth="2.05"
         strokeLinecap="square"
         strokeLinejoin="miter"
@@ -33,7 +37,7 @@ export function BrandMark({
         className="path"
         d="M14 24 H26 V8"
         fill="none"
-        stroke="url(#ll-mark)"
+        stroke={`url(#${gid})`}
         strokeWidth="2.05"
         strokeLinecap="square"
         strokeLinejoin="miter"
