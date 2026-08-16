@@ -15,9 +15,10 @@ import { TOOLS } from "@/lib/tools";
 
 const publicExplore = [
   { href: "/#help", label: "How we help" },
+  { href: "/#value", label: "Value" },
   { href: "/#what-you-get", label: "What you get" },
+  { href: "/#email", label: "Email list" },
   { href: "/guide", label: "How it works" },
-  { href: "/#faq", label: "Questions" },
   { href: "/pay", label: `Pay ${HOUSE_PRICE_SHORT}` },
 ];
 

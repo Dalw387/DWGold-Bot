@@ -1,11 +1,11 @@
-import { ButtonAnchor, ButtonLink } from "@/components/button";
+import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
+import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import { includedAfterPay } from "@/lib/offer";
-import { housePriceLabel, stripePaymentLink } from "@/lib/payments";
+import { housePriceLabel } from "@/lib/payments";
 
 export function ClosePay() {
-  const link = stripePaymentLink();
   const label = housePriceLabel();
 
   return (
@@ -18,7 +18,7 @@ export function ClosePay() {
           id="pay-heading"
           className="font-display mt-4 text-3xl font-medium tracking-tight text-[#f6f1e8] sm:text-5xl"
         >
-          Pay {HOUSE_PRICE_SHORT} on Stripe. Then come inside.
+          Pay {HOUSE_PRICE_SHORT} on Stripe. Then come inside and start getting customers.
         </h2>
         <p className="mt-5 text-base leading-7 text-[#e8dcc8]">
           Apple Pay, Google Pay, Link, or a card. You leave this page and pay on
@@ -33,11 +33,7 @@ export function ClosePay() {
           ))}
         </ul>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-          {link ? (
-            <ButtonAnchor href={link} variant="gold" rel="noreferrer">
-              Continue to Stripe · {HOUSE_PRICE_SHORT}
-            </ButtonAnchor>
-          ) : null}
+          <StripePayLink>Continue to Stripe · {HOUSE_PRICE_SHORT}</StripePayLink>
           <ButtonLink href="/pay" variant="secondary" className="text-[#f6f1e8]">
             Full checkout page
           </ButtonLink>

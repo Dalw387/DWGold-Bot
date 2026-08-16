@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, ButtonAnchor } from "@/components/button";
+import { Button } from "@/components/button";
+import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import { housePriceLabel, stripePaymentLink } from "@/lib/payments";
 
@@ -44,9 +45,7 @@ export function PayButton({
   return (
     <div className={className}>
       {link ? (
-        <ButtonAnchor href={link} variant="gold" rel="noreferrer">
-          {text}
-        </ButtonAnchor>
+        <StripePayLink>{text}</StripePayLink>
       ) : (
         <Button type="button" variant="gold" onClick={() => void startCheckout()} disabled={busy}>
           {busy ? "Opening Stripe" : text}

@@ -6,6 +6,14 @@ import { generateGoogleBusinessPosts } from "@/lib/copy/google-business";
 import { generateInstagramCaptions } from "@/lib/copy/instagram";
 import { generateNotices } from "@/lib/copy/notice";
 import { generatePublicHomepage } from "@/lib/copy/public-site";
+import {
+  generateCustomerPlan,
+  generateFollowUps,
+  generateNeighbourIntros,
+  generatePhoneScripts,
+  generateReferralAsks,
+  generateWindowCards,
+} from "@/lib/copy/outreach";
 import { generateReviewReplies } from "@/lib/copy/review-reply";
 import { generateReviewRequests } from "@/lib/copy/review-request";
 import { generateSeoBriefs } from "@/lib/copy/seo";
@@ -42,6 +50,12 @@ export function generateCampaignPack(values: GeneratorFormValues): GeneratedPost
     first("Review reply", generateReviewReplies(values)),
     first("Notice", generateNotices(values)),
     first("Week plan", generateContentPlan(values)),
+    first("Referral", generateReferralAsks(values)),
+    first("Follow-up", generateFollowUps(values)),
+    first("Print", generateWindowCards(values)),
+    first("Phone", generatePhoneScripts(values)),
+    first("Neighbour", generateNeighbourIntros(values)),
+    first("14-day plan", generateCustomerPlan(values)),
   ].filter((item): item is GeneratedPost => Boolean(item));
 
   return [

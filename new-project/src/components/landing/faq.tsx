@@ -1,9 +1,14 @@
 import { Container } from "@/components/container";
+import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const items = [
   {
     q: "What am I actually buying?",
-    a: "£197 once, paid on Stripe. That unlocks the LocalLaunch platform in this browser: thirteen drafting rooms, five house agents, the concierge, and the proof ledger. It is not Facebook or Google ad spend. It is not a promise of new customers.",
+    a: `${HOUSE_PRICE_SHORT} once, paid on Stripe. That unlocks nineteen drafting rooms, six house agents, the concierge, a 14-day customer-getting plan, and the proof ledger. It is not Facebook or Google ad spend. It is not a promise of a full diary. It is the desk that helps you get more local customers.`,
+  },
+  {
+    q: "Will this get me more customers?",
+    a: "That is the aim. The work is: a public page strangers can read, posts and ads drafts, referrals, follow-ups, print and phone, a fortnight of actions, and a ledger of real enquiries. You still publish. One extra job can cover the £197. We will not invent that job.",
   },
   {
     q: "Do I get in straight after I pay?",
@@ -14,16 +19,12 @@ const items = [
     a: "They draft the ads and the campaign structure. They do not log into Ads Manager, spend money, or invent results. Live ads need your Meta or Google account, and that spend is paid to those platforms.",
   },
   {
-    q: "Is Google AdSense part of this?",
-    a: "No. AdSense shows other people’s ads on your site. It will not fill your diary. House Operations drafts Google Ads (search) and Facebook/Instagram ads.",
+    q: "Why collect my email?",
+    a: "So we can tell you about LocalLaunch and later products, and so Stripe can open with your address already filled. We do not sell the list. You can ask to be removed.",
   },
   {
     q: "Is this a live AI model?",
-    a: "The concierge and the drafts run from templates in your browser, so the desk can stay a one-off price. Same facts in, same words out. A connected model can be added later without changing how you enter a name, town, and offer.",
-  },
-  {
-    q: "How do you prove it helps the business?",
-    a: "The proof ledger. Log each real enquiry, call, visit, or sale. Zero is allowed. We will not publish fake customer numbers.",
+    a: "The concierge and the drafts run from templates in your browser, so the desk can stay a one-off price. Same facts in, same words out.",
   },
 ];
 

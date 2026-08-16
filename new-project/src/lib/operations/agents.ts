@@ -1,5 +1,6 @@
 import { generateAdsCopy } from "@/lib/copy/ads";
 import { generateContentPlan } from "@/lib/copy/content-plan";
+import { generateCustomerPlan } from "@/lib/copy/outreach";
 import { generatePublicHomepage } from "@/lib/copy/public-site";
 import { generateSeoBriefs } from "@/lib/copy/seo";
 import type { GeneratedPost, GeneratorFormValues } from "@/lib/types";
@@ -38,6 +39,13 @@ export const OPERATION_AGENTS = [
     short: "Proof",
     summary:
       "A measurement plan: what to log, so later you can show real enquiries instead of likes.",
+  },
+  {
+    id: "customers",
+    name: "Customers agent",
+    short: "Customers",
+    summary:
+      "A 14-day plan and a daily habit for getting real enquiries, not likes.",
   },
 ] as const;
 
@@ -81,6 +89,8 @@ export function runOperationAgent(
           ].join("\n\n"),
         },
       ];
+    case "customers":
+      return generateCustomerPlan(values);
     default: {
       const exhaustive: never = agentId;
       throw new Error(`Unknown agent: ${exhaustive}`);

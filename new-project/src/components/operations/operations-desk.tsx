@@ -182,9 +182,10 @@ export function OperationsDesk() {
           They draft in this tab. They do not spend ad budget.
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-[#e8dcc8]">
-          Five house agents run in the browser, in sequence, at no extra model
+          Six house agents run in the browser, in sequence, at no extra model
           cost. They write a public homepage, SEO, Facebook/Instagram ads, Google
-          Ads (not AdSense), a social week, and a measurement plan. Live ads still
+          Ads (not AdSense), a social week, a 14-day customer plan, and a
+          measurement plan. Live ads still
           need the client’s Meta or Google account, and money paid to those
           platforms.
         </p>
@@ -244,7 +245,7 @@ export function OperationsDesk() {
         ) : null}
       </section>
 
-      <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {OPERATION_AGENTS.map((agent) => {
           const status = statusFor(agent.id);
           return (

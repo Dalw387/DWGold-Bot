@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useSyncExternalStore, type ReactNode } from "react";
-import { ButtonAnchor, ButtonLink } from "@/components/button";
+import { ButtonLink } from "@/components/button";
+import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { Container } from "@/components/container";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import {
@@ -50,9 +51,7 @@ export function PlatformGate({ children }: { children: ReactNode }) {
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
           {link ? (
-            <ButtonAnchor href={link} variant="gold" rel="noreferrer">
-              Continue to Stripe · {HOUSE_PRICE_SHORT}
-            </ButtonAnchor>
+            <StripePayLink>Continue to Stripe · {HOUSE_PRICE_SHORT}</StripePayLink>
           ) : null}
           <ButtonLink href="/#help" variant="secondary" className="text-[#f6f1e8]">
             Read how we help first

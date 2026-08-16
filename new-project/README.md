@@ -1,10 +1,8 @@
 # LocalLaunch AI
 
-A £197 one-off marketing desk for small businesses.
+A £197 one-off marketing desk aimed at more local customers.
 
-The public site explains the offer in detail. After the customer pays on Stripe, this browser unlocks the platform: thirteen drafting rooms, five house agents, a concierge, and a proof ledger.
-
-The studio does not call a paid AI API. House agents draft in the browser. They do not place ads or invent leads.
+The public site explains the offer. After the customer pays on Stripe, this browser unlocks nineteen drafting rooms, six house agents, a concierge, and a proof ledger.
 
 ## Run locally
 
@@ -14,36 +12,51 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+## Stripe (already wired)
 
-## Stripe
+Payment Link: https://buy.stripe.com/4gM14ndrHburaZpfZV48001
 
-House Operations is **£197 one-off**, paid on the live Payment Link:
+The site shows **£197 one-off** to match that link. If you change the amount in Stripe, change `NEXT_PUBLIC_HOUSE_PRICE_LABEL` to match. Do not show £179 if Stripe still charges £197.
 
-https://buy.stripe.com/4gM14ndrHburaZpfZV48001
+### Make the payment actually let people in
 
-That URL is public (it is a checkout page, not a secret key) and is already wired into the site.
+1. Open the Payment Link in Stripe.
+2. Set **After payment** to `{your live site}/pay/thanks`  
+   Example: `https://your-site.vercel.app/pay/thanks`
+3. Turn on Apple Pay, Google Pay, Link, and cards on that link if they are not already on.
 
-**Required for the “come inside” step:** in the Stripe Payment Link, set **After payment** to `{your live site}/pay/thanks`. That page unlocks the platform in the customer’s browser.
+Until After payment points at `/pay/thanks`, people pay but may stay on Stripe’s receipt instead of coming inside.
 
-Optional environment overrides (Vercel → Project → Environment Variables):
+## Email list
 
-- `NEXT_PUBLIC_STRIPE_PAYMENT_LINK` — only if the Payment Link URL changes
-- `NEXT_PUBLIC_HOUSE_PRICE_LABEL` — only if the amount on the site must match a new Stripe price
-- `NEXT_PUBLIC_SITE_URL` — the public site URL (used in sitemap and Open Graph)
-- `STRIPE_SECRET_KEY` plus `STRIPE_PRICE_ID_HOUSE` — only if you later switch from Payment Link to Checkout Sessions
-- `STRIPE_APPLE_PAY_DOMAIN_ASSOCIATION` — only needed for Apple Pay on a custom domain, not for `buy.stripe.com`
+The homepage and pay page collect emails (with consent). They are saved on the server in `data/leads.json` (not committed to git). A copy is also emailed to `LEADS_NOTIFY_EMAIL` (defaults to nftdee@gmail.com).
 
-Copy `.env.example` to `.env.local` for local values.
+On Vercel, set:
 
-## Go live
+- `OWNER_LEADS_KEY` — a secret you invent
+- Then open `https://your-site.vercel.app/owner/leads?key=that-secret`
+- Download CSV from that page so you keep a copy (serverless files can reset)
 
-The app lives in the `new-project` folder. On Vercel, import the GitHub repo and set the root directory to `new-project`.
+Paying customers also leave their email in **Stripe**.
+
+## Go live on Vercel
+
+1. Go to [vercel.com](https://vercel.com) and sign in with the GitHub account that owns `Dalw387/DWGold-Bot`.
+2. **Add New** → **Project** → import `Dalw387/DWGold-Bot`.
+3. Set **Root Directory** to `new-project`.
+4. Environment variables (optional but useful):
+   - `NEXT_PUBLIC_SITE_URL` = `https://your-chosen-name.vercel.app`
+   - `OWNER_LEADS_KEY` = a long random password
+   - `LEADS_NOTIFY_EMAIL` = your inbox
+5. Deploy.
+6. Copy the live URL.
+7. In Stripe, set After payment to `{that URL}/pay/thanks`.
+
+The Payment Link is already live. The website is live once Vercel finishes that deploy.
 
 ## Scripts
 
 - `npm run dev` — development server (webpack)
 - `npm run lint` — ESLint
 - `npm run build` — production build
-- `npm start` — serve the production build
 - `npm run smoke` — generate drafts for every tool and house agent

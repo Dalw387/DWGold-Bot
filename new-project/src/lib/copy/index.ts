@@ -6,6 +6,14 @@ import { generateFacebookPosts } from "@/lib/copy/facebook";
 import { generateGoogleBusinessPosts } from "@/lib/copy/google-business";
 import { generateInstagramCaptions } from "@/lib/copy/instagram";
 import { generateNotices } from "@/lib/copy/notice";
+import {
+  generateCustomerPlan,
+  generateFollowUps,
+  generateNeighbourIntros,
+  generatePhoneScripts,
+  generateReferralAsks,
+  generateWindowCards,
+} from "@/lib/copy/outreach";
 import { generateReviewReplies } from "@/lib/copy/review-reply";
 import { generateReviewRequests } from "@/lib/copy/review-request";
 import { generateSeoBriefs } from "@/lib/copy/seo";
@@ -45,6 +53,18 @@ export function generateForTool(
       return generateSeoBriefs(values);
     case "campaign-pack":
       return generateCampaignPack(values);
+    case "referral-ask":
+      return generateReferralAsks(values);
+    case "follow-up":
+      return generateFollowUps(values);
+    case "window-card":
+      return generateWindowCards(values);
+    case "phone-script":
+      return generatePhoneScripts(values);
+    case "neighbour-intro":
+      return generateNeighbourIntros(values);
+    case "customer-plan":
+      return generateCustomerPlan(values);
     default: {
       const exhaustive: never = slug;
       throw new Error(`Unknown tool: ${exhaustive}`);

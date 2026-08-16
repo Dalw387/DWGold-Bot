@@ -106,7 +106,13 @@ export type ToolSlug =
   | "review-reply"
   | "ads-copy"
   | "seo-brief"
-  | "campaign-pack";
+  | "campaign-pack"
+  | "referral-ask"
+  | "follow-up"
+  | "window-card"
+  | "phone-script"
+  | "neighbour-intro"
+  | "customer-plan";
 
 export interface GeneratorFormValues {
   businessName: string;

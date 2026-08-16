@@ -22,10 +22,19 @@ function sanitiseStripeUrl(raw: string): string | null {
   }
 }
 
-export function stripePaymentLink(): string | null {
+export function stripePaymentLink(email?: string): string | null {
   const raw =
     process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK?.trim() || STRIPE_PAYMENT_LINK;
-  return sanitiseStripeUrl(raw);
+  const sanitised = sanitiseStripeUrl(raw);
+  if (!sanitised) return null;
+  if (!email?.trim()) return sanitised;
+  try {
+    const url = new URL(sanitised);
+    url.searchParams.set("prefilled_email", email.trim());
+    return url.toString();
+  } catch {
+    return sanitised;
+  }
 }
 
 export function housePriceLabel(): string {

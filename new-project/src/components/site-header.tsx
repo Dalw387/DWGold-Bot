@@ -17,9 +17,10 @@ import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const publicLinks = [
   { href: "/#help", label: "How we help" },
+  { href: "/#value", label: "Value" },
   { href: "/#what-you-get", label: "What you get" },
+  { href: "/#email", label: "Email list" },
   { href: "/guide", label: "How it works" },
-  { href: "/#faq", label: "Questions" },
 ];
 
 const memberLinks = [

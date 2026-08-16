@@ -7,10 +7,10 @@ import { TOOLS } from "@/lib/tools";
 export const metadata: Metadata = {
   title: "Studio",
   description:
-    "Thirteen drafting rooms: Facebook, Instagram, listings, WhatsApp, email, website, SEO, ads copy, and a full campaign pack.",
+    "Nineteen drafting rooms: social, listings, SEO, ads, referrals, follow-ups, print, phone, and a 14-day customer plan.",
 };
 
-const categories = ["Growth", "Social", "Listings", "Planning", "Website"] as const;
+const categories = ["Customers", "Growth", "Social", "Listings", "Planning", "Website"] as const;
 
 export default function ToolsPage() {
   return (
@@ -21,7 +21,7 @@ export default function ToolsPage() {
             Studio
           </p>
           <h1 className="font-display mt-3 max-w-3xl text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
-            Thirteen drafting rooms. One set of facts.
+            Nineteen drafting rooms. One set of facts.
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
             Every tool uses the same details: templates, no paid AI, and no

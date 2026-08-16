@@ -6,7 +6,7 @@ export interface ToolDefinition {
   shortName: string;
   tagline: string;
   description: string;
-  category: "Social" | "Listings" | "Planning" | "Website" | "Growth";
+  category: "Social" | "Listings" | "Planning" | "Website" | "Growth" | "Customers";
   generateLabel: string;
   resultTitle: string;
   extraHint: string;
@@ -170,6 +170,78 @@ export const TOOLS: ToolDefinition[] = [
     generateLabel: "Build the full pack",
     resultTitle: "Campaign pack",
     extraHint: "This is a lot of text. Edit the lines you will actually use. Leave the rest.",
+  },
+  {
+    slug: "referral-ask",
+    name: "Referral ask",
+    shortName: "Referrals",
+    tagline: "Ask a happy customer to send one real neighbour.",
+    description:
+      "Private message, public note, and a short after-the-job line. Only send to people you actually helped. This is how local books fill: one name at a time.",
+    category: "Customers",
+    generateLabel: "Generate referral asks",
+    resultTitle: "Referral drafts",
+    extraHint: "Never pay for fake referrals or reviews.",
+  },
+  {
+    slug: "follow-up",
+    name: "Follow-up desk",
+    shortName: "Follow-up",
+    tagline: "Quiet follow-ups for enquiries, visits, and noes.",
+    description:
+      "People who asked and went quiet still become customers if you follow up once, calmly. These drafts do not chase, invent discounts, or guilt anyone.",
+    category: "Customers",
+    generateLabel: "Generate follow-ups",
+    resultTitle: "Follow-up drafts",
+    extraHint: "One follow-up is enough. Then stop.",
+  },
+  {
+    slug: "window-card",
+    name: "Window card and flyer",
+    shortName: "Print",
+    tagline: "Window, A5 flyer, and counter card from the same facts.",
+    description:
+      "Passers-by cannot click a post. Give them a true card in the window, on the counter, or on a small flyer. Add your own phone number or URL before you print.",
+    category: "Customers",
+    generateLabel: "Generate print copy",
+    resultTitle: "Print drafts",
+    extraHint: "Take printed notices down when they are no longer true.",
+  },
+  {
+    slug: "phone-script",
+    name: "Phone and voicemail",
+    shortName: "Phone",
+    tagline: "Pick-up line, voicemail, and missed-call text.",
+    description:
+      "The first voice a customer hears is still the business. These scripts keep it clear and human. Add your real number yourself.",
+    category: "Customers",
+    generateLabel: "Generate phone scripts",
+    resultTitle: "Phone drafts",
+    extraHint: "Only text a missed call if they rang you.",
+  },
+  {
+    slug: "neighbour-intro",
+    name: "Neighbour introduction",
+    shortName: "Neighbours",
+    tagline: "Introduce yourself to nearby businesses and local groups.",
+    description:
+      "Other local businesses already speak to your customers. A calm introduction can start genuine referrals. Do not spam groups you do not belong to.",
+    category: "Customers",
+    generateLabel: "Generate introductions",
+    resultTitle: "Introduction drafts",
+    extraHint: "One neighbouring business this week is enough.",
+  },
+  {
+    slug: "customer-plan",
+    name: "14-day customer plan",
+    shortName: "14 days",
+    tagline: "A fortnight of actions that can bring real enquiries.",
+    description:
+      "What to do for two weeks so strangers can find you, ask, and get a reply. It is a work plan, not a promise of a full diary.",
+    category: "Customers",
+    generateLabel: "Build the 14-day plan",
+    resultTitle: "Customer-getting plan",
+    extraHint: "Log real enquiries as you go. Zero is still a true week.",
   },
 ];
 

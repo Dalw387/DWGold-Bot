@@ -1,6 +1,6 @@
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
-export const OFFER_TAGLINE = `Pay ${HOUSE_PRICE_SHORT} once. Use the full LocalLaunch platform.`;
+export const OFFER_TAGLINE = `Pay ${HOUSE_PRICE_SHORT} once. Walk out with a full customer-getting desk.`;
 
 export const problems = [
   {
@@ -41,6 +41,10 @@ export const helpPoints = [
   {
     title: "Give strangers a page they can read",
     body: "Website copy includes a public homepage, an about paragraph, a footer line, and a locked-door check. If ads or Google send people to a member login, they will not enquire. Paste the public draft on a URL anyone can open.",
+  },
+  {
+    title: "Turn people who already know you into the next customer",
+    body: "Most new work for a local business comes from someone who already met you, or from a neighbour they told. The desk writes referral asks, calm follow-ups, window cards, phone and voicemail scripts, and introductions to nearby businesses — plus a 14-day plan of what to do so strangers can actually enquire.",
   },
   {
     title: "Count only real people",
@@ -101,6 +105,30 @@ export const rooms = [
     name: "Full campaign pack",
     help: "One draft from each room in a single download, so you can brief a week of work from the same facts.",
   },
+  {
+    name: "Referral ask",
+    help: "Ask a happy customer to send one real neighbour. Private message, public note, and a card line. This is how local books actually fill.",
+  },
+  {
+    name: "Follow-up desk",
+    help: "Quiet follow-ups for enquiries, visits, and people who chose someone else. One chase. No guilt.",
+  },
+  {
+    name: "Window card and flyer",
+    help: "Window, A5 flyer, and counter card. Passers-by cannot click a Facebook post.",
+  },
+  {
+    name: "Phone and voicemail",
+    help: "Pick-up line, voicemail, and missed-call text so the first voice sounds like a real business.",
+  },
+  {
+    name: "Neighbour introduction",
+    help: "Introduce yourself to a nearby business and a local group. Genuine referrals, not spam.",
+  },
+  {
+    name: "14-day customer plan",
+    help: "A fortnight of actions: public page, listing, posts, referrals, follow-ups, ads pointed at an open door, and a ledger of real people.",
+  },
 ];
 
 export const agents = [
@@ -123,6 +151,10 @@ export const agents = [
   {
     name: "Proof agent",
     help: "A measurement plan: what to log this week so you can show real enquiries instead of likes.",
+  },
+  {
+    name: "Customers agent",
+    help: "A 14-day plan and a daily habit for getting real enquiries, not likes. This is the work that turns drafts into customers.",
   },
 ];
 
@@ -150,7 +182,9 @@ export const weDo = [
   "Write a public homepage, about copy, and a locked-door check",
   "Write local SEO starting points and a Google Business checklist",
   "Write Facebook/Instagram and Google Ads drafts and a campaign structure",
-  "Queue five house agents in your browser, at no extra model cost",
+  "Write referral asks, follow-ups, window cards, phone scripts, and neighbour introductions",
+  "Write a 14-day customer-getting plan and a daily 20-minute habit",
+  "Queue six house agents in your browser, at no extra model cost",
   "Give you a concierge that reads a sentence and fills the studio",
   "Give you a proof ledger that only counts rows you type",
   "Let you copy, edit, preview, and download everything",
@@ -175,10 +209,26 @@ export const weNever = [
 ];
 
 export const includedAfterPay = [
-  "The full studio: all thirteen drafting rooms, copy, preview, and download",
+  "The full studio: nineteen drafting rooms, copy, preview, and download",
+  "Referral, follow-up, print, phone, neighbour, and 14-day customer-getting rooms",
   "The house concierge, in the browser",
-  "House Operations: five agents for SEO, Facebook/Instagram ads, Google Ads, social, and proof",
+  "House Operations: six agents including a Customers agent",
   "A public homepage draft so ads are not sent to a login wall",
   "The proof ledger for real enquiries only",
   "Use it on this browser after Stripe sends you back. Ad spend at Facebook or Google is extra and paid to them",
+];
+
+export const valuePoints = [
+  {
+    title: "One payment, not a monthly retainer",
+    body: "A typical local marketing retainer for copy and ‘content’ often runs into hundreds of pounds a month, and you still post the work yourself. LocalLaunch is £197 once. You keep using the desk.",
+  },
+  {
+    title: "Built to get you customers, not likes",
+    body: "Every room points at an enquiry: a public page, a listing, a post that asks, a referral, a follow-up, a window card, a phone greeting, a neighbour introduction, a 14-day plan, and a ledger of real people. Likes are not the product.",
+  },
+  {
+    title: "One new customer pays for the desk",
+    body: "If this desk helps you win a single extra job, visit, or booking that you would have missed, the £197 is already behind you. We will not invent that job. We will give you the words and the fortnight of actions that make it possible.",
+  },
 ];

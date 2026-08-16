@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { ButtonAnchor, ButtonLink } from "@/components/button";
+import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
+import { EmailCapture } from "@/components/landing/email-capture";
 import { OfferJsonLd } from "@/components/pay/offer-json-ld";
+import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import {
   HOUSE_PRICE_SHORT,
   HOUSE_PRODUCT_DESCRIPTION,
   HOUSE_PRODUCT_NAME,
 } from "@/lib/commerce";
 import { includedAfterPay } from "@/lib/offer";
-import { housePriceLabel, stripePaymentLink } from "@/lib/payments";
+import { housePriceLabel } from "@/lib/payments";
 
 export const metadata: Metadata = {
   title: `Pay ${HOUSE_PRICE_SHORT} to use LocalLaunch`,
@@ -16,7 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default function PayPage() {
-  const link = stripePaymentLink();
   const label = housePriceLabel();
 
   return (
@@ -27,7 +28,7 @@ export default function PayPage() {
           Stripe checkout
         </p>
         <h1 className="font-display mt-4 text-4xl font-medium tracking-tight text-[#f6f1e8] sm:text-5xl">
-          Happy with the offer? Pay {HOUSE_PRICE_SHORT} and come inside.
+          Pay {HOUSE_PRICE_SHORT}. Unlock the desk that is aimed at more customers.
         </h1>
         <p className="mt-5 text-base leading-7 text-[#e8dcc8]">
           You leave this site and pay on Stripe. Apple Pay, Google Pay, Link, or
@@ -44,12 +45,18 @@ export default function PayPage() {
             <li key={item}>{item}</li>
           ))}
         </ul>
+        <div className="mt-10 rounded-3xl border border-[rgba(176,137,79,0.3)] p-6">
+          <h2 className="font-display text-2xl text-[#f6f1e8]">Leave your email first</h2>
+          <p className="mt-2 text-sm leading-6 text-[#e8dcc8]">
+            Optional, but useful. We save it for later products, and Stripe can
+            open with it filled in.
+          </p>
+          <div className="mt-6">
+            <EmailCapture tone="ink" source="pay" />
+          </div>
+        </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-          {link ? (
-            <ButtonAnchor href={link} variant="gold" rel="noreferrer">
-              Continue to Stripe · {HOUSE_PRICE_SHORT}
-            </ButtonAnchor>
-          ) : null}
+          <StripePayLink>Continue to Stripe · {HOUSE_PRICE_SHORT}</StripePayLink>
           <ButtonLink href="/#help" variant="secondary" className="text-[#f6f1e8]">
             Read the full offer first
           </ButtonLink>
