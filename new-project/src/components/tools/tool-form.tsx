@@ -29,12 +29,12 @@ interface ToolFormProps {
 }
 
 const fieldClass =
-  "mt-2 w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-stone-900 shadow-sm outline-none transition placeholder:text-stone-400 focus:ring-2 focus:ring-indigo-600/20";
+  "mt-2 w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-stone-900 shadow-sm outline-none transition placeholder:text-stone-400 focus:ring-2 focus:ring-[rgba(176,137,79,0.25)]";
 
 function fieldBorder(error?: string): string {
   return error
     ? "border-red-400 focus:border-red-500"
-    : "border-stone-300 focus:border-indigo-600";
+    : "border-stone-300 focus:border-[#b0894f]";
 }
 
 export function ToolForm({
@@ -228,9 +228,9 @@ export function ToolForm({
               return (
                 <label
                   key={tone}
-                  className={`cursor-pointer rounded-xl border p-3 shadow-sm transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-indigo-600 ${
+                  className={`cursor-pointer rounded-xl border p-3 shadow-sm transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#b0894f] ${
                     selected
-                      ? "border-indigo-600 bg-indigo-50"
+                      ? "border-[#b0894f] bg-[#f7f1e6]"
                       : "border-stone-200 bg-white hover:border-stone-300"
                   }`}
                 >
@@ -269,9 +269,9 @@ export function ToolForm({
                   return (
                     <label
                       key={length}
-                      className={`cursor-pointer rounded-xl border px-4 py-3 text-sm font-semibold has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-indigo-600 ${
+                      className={`cursor-pointer rounded-xl border px-4 py-3 text-sm font-semibold has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#b0894f] ${
                         selected
-                          ? "border-indigo-600 bg-indigo-50 text-indigo-900"
+                          ? "border-[#b0894f] bg-[#f7f1e6] text-stone-900"
                           : "border-stone-200 bg-white text-stone-800"
                       }`}
                     >
@@ -303,9 +303,9 @@ export function ToolForm({
                   return (
                     <label
                       key={style}
-                      className={`cursor-pointer rounded-xl border p-4 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-indigo-600 ${
+                      className={`cursor-pointer rounded-xl border p-4 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#b0894f] ${
                         selected
-                          ? "border-indigo-600 bg-indigo-50"
+                          ? "border-[#b0894f] bg-[#f7f1e6]"
                           : "border-stone-200 bg-white"
                       }`}
                     >
@@ -340,7 +340,7 @@ export function ToolForm({
               type="checkbox"
               checked={values.includeHashtags}
               onChange={(event) => update("includeHashtags", event.target.checked)}
-              className="mt-1 h-4 w-4 rounded border-stone-300 text-indigo-700 focus:ring-indigo-600"
+              className="mt-1 h-4 w-4 rounded border-stone-300 text-[#b0894f] focus:ring-[#b0894f]"
             />
             <span>
               <span className="block text-sm font-semibold text-stone-900">

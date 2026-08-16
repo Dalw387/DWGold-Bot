@@ -5,8 +5,10 @@ import { TOOLS } from "@/lib/tools";
 
 const explore = [
   { href: "/tools", label: "All tools" },
-  { href: "/#features", label: "Features" },
-  { href: "/#how-it-works", label: "How it works" },
+  { href: "/operations", label: "House Operations" },
+  { href: "/concierge", label: "Concierge" },
+  { href: "/proof", label: "Proof ledger" },
+  { href: "/pay", label: "Pay with Stripe" },
   { href: "/#pricing", label: "Pricing" },
 ];
 
@@ -17,9 +19,11 @@ export function SiteFooter() {
         <div>
           <Logo compact />
           <p className="mt-4 max-w-md text-sm leading-6 text-stone-600">
-            LocalLaunch AI is an early free demo. It drafts marketing words from
-            templates in your browser. It does not call a paid AI service, and it
-            does not store your details on a server.
+            LocalLaunch AI is an early studio. The complimentary rooms draft
+            marketing words in your browser. House Operations adds SEO and ads
+            agents plus a proof ledger. Stripe takes House payments when a
+            Payment Link or Price is connected. Ad spend at Meta or Google is
+            separate.
           </p>
         </div>
         <nav aria-label="Footer">

@@ -101,7 +101,12 @@ export type ToolSlug =
   | "content-plan"
   | "review-request"
   | "website-blurb"
-  | "notice";
+  | "notice"
+  | "email-update"
+  | "review-reply"
+  | "ads-copy"
+  | "seo-brief"
+  | "campaign-pack";
 
 export interface GeneratorFormValues {
   businessName: string;

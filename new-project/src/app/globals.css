@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4efe6;
-  --foreground: #14110e;
+  --background: #f3eee4;
+  --foreground: #12100e;
   --muted: #5c534a;
   --accent: #b0894f;
   --card: #fffaf3;
@@ -26,13 +26,23 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    linear-gradient(180deg, rgb(18 16 14 / 0.03), transparent 18rem),
+    radial-gradient(circle at 1px 1px, rgb(18 16 14 / 0.04) 1px, transparent 0);
+  background-size: auto, 22px 22px;
   color: var(--foreground);
   font-family: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
 }
 
+::selection {
+  background: rgb(176 137 79 / 0.35);
+  color: #12100e;
+}
+
 .font-display {
   font-family: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  font-variation-settings: "SOFT" 40, "WONK" 0.7, "opsz" 72;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -43,21 +53,21 @@ body {
 
 .mesh {
   background:
-    radial-gradient(900px 480px at 0% 0%, rgb(176 137 79 / 0.18), transparent 55%),
+    radial-gradient(900px 480px at 0% 0%, rgb(176 137 79 / 0.2), transparent 55%),
     radial-gradient(700px 400px at 100% 10%, rgb(28 25 23 / 0.08), transparent 46%),
-    linear-gradient(180deg, #f7f2e9 0%, #f4efe6 100%);
+    linear-gradient(180deg, #f7f2e9 0%, #f3eee4 100%);
 }
 
 .ink-hero {
   background:
-    radial-gradient(800px 360px at 80% -10%, rgb(176 137 79 / 0.22), transparent 50%),
-    linear-gradient(165deg, #171410 0%, #12100e 48%, #1b1612 100%);
+    radial-gradient(800px 360px at 80% -10%, rgb(176 137 79 / 0.28), transparent 50%),
+    linear-gradient(165deg, #171410 0%, #0e0c0a 48%, #1b1612 100%);
 }
 
 .luxury-panel {
-  background: linear-gradient(180deg, rgb(255 250 243 / 0.04), rgb(255 250 243 / 0.02));
-  border: 1px solid rgb(176 137 79 / 0.28);
-  box-shadow: 0 30px 80px -48px rgb(0 0 0 / 0.8);
+  background: linear-gradient(180deg, rgb(255 250 243 / 0.05), rgb(255 250 243 / 0.02));
+  border: 1px solid rgb(176 137 79 / 0.32);
+  box-shadow: 0 30px 80px -48px rgb(0 0 0 / 0.85);
 }
 
 .paper-card {
@@ -70,6 +80,27 @@ body {
 .gold-rule {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgb(176 137 79 / 0.7), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 42s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media print {

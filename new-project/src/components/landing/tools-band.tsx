@@ -15,11 +15,12 @@ export function ToolsBand() {
               id="tools-heading"
               className="font-display mt-3 text-3xl font-medium tracking-tight text-stone-900 sm:text-5xl"
             >
-              Eight rooms. One set of facts.
+              Thirteen rooms. One set of facts.
             </h2>
             <p className="mt-4 text-base leading-7 text-stone-600">
-              Start with Facebook if that is your main channel. The assistant and
-              the other tools reuse the same details, kept only in this browser tab.
+              Start with Facebook if that is your main channel, or open House
+              Operations for SEO and ads. The assistant and the other tools reuse
+              the same details, kept only in this browser tab.
             </p>
           </div>
           <Link

@@ -1,9 +1,14 @@
+import { generateAdsCopy } from "@/lib/copy/ads";
+import { generateCampaignPack } from "@/lib/copy/campaign";
 import { generateContentPlan } from "@/lib/copy/content-plan";
+import { generateEmailUpdates } from "@/lib/copy/email-update";
 import { generateFacebookPosts } from "@/lib/copy/facebook";
 import { generateGoogleBusinessPosts } from "@/lib/copy/google-business";
 import { generateInstagramCaptions } from "@/lib/copy/instagram";
 import { generateNotices } from "@/lib/copy/notice";
+import { generateReviewReplies } from "@/lib/copy/review-reply";
 import { generateReviewRequests } from "@/lib/copy/review-request";
+import { generateSeoBriefs } from "@/lib/copy/seo";
 import { generateWebsiteBlurbs } from "@/lib/copy/website-blurb";
 import { generateWhatsAppMessages } from "@/lib/copy/whatsapp";
 import type { GeneratedPost, GeneratorFormValues, ToolSlug } from "@/lib/types";
@@ -29,6 +34,16 @@ export function generateForTool(
       return generateWebsiteBlurbs(values);
     case "notice":
       return generateNotices(values);
+    case "email-update":
+      return generateEmailUpdates(values);
+    case "review-reply":
+      return generateReviewReplies(values);
+    case "ads-copy":
+      return generateAdsCopy(values);
+    case "seo-brief":
+      return generateSeoBriefs(values);
+    case "campaign-pack":
+      return generateCampaignPack(values);
     default: {
       const exhaustive: never = slug;
       throw new Error(`Unknown tool: ${exhaustive}`);

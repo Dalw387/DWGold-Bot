@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/button";
 import { applyBrief } from "@/lib/agent/parse-brief";
 import { respondToMessage } from "@/lib/agent/respond";
@@ -25,20 +25,24 @@ export function openStudioAgent() {
   window.dispatchEvent(new Event(OPEN_EVENT));
 }
 
-export function StudioAgent() {
+export function StudioAgent({ variant = "dock" }: { variant?: "dock" | "page" }) {
   const router = useRouter();
+  const pathname = usePathname();
   const profile = useSyncExternalStore(
     subscribeProfile,
     getProfileSnapshot,
     getServerProfileSnapshot,
   );
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(variant === "page");
   const [draft, setDraft] = useState("");
   const [lines, setLines] = useState<ChatLine[]>([
     {
       id: "welcome",
       role: "agent",
-      text: "Studio assistant ready. I work in this browser only. Tell me the business in one sentence, or ask which tool to use.",
+      text:
+        variant === "page"
+          ? "House concierge ready. I work in this browser. Tell me the business, ask for SEO or ads drafts, or say “run the house agents”. I will not invent leads or rankings."
+          : "Studio assistant ready. I work in this browser only. Tell me the business in one sentence, or ask for SEO, ads, operations, or pay.",
     },
   ]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -57,13 +61,28 @@ export function StudioAgent() {
   }, []);
 
   useEffect(() => {
-    if (!open) return undefined;
+    if (variant === "page") return undefined;
     function onKey(event: KeyboardEvent) {
+      const target = event.target as HTMLElement | null;
+      const typing =
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setOpen((value) => !value);
+        return;
+      }
       if (event.key === "Escape") setOpen(false);
+      if (!typing && event.key === "/" && !open) {
+        event.preventDefault();
+        setOpen(true);
+      }
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [open, variant]);
 
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight });
@@ -87,6 +106,74 @@ export function StudioAgent() {
     if (turn.goTo) router.push(turn.goTo);
   }
 
+  const panel = (
+    <section
+      id={variant === "dock" ? "studio-agent-panel" : "house-concierge"}
+      className={
+        variant === "page"
+          ? "flex min-h-[32rem] flex-col overflow-hidden rounded-[2rem] border border-[rgba(176,137,79,0.35)] bg-[#fffaf3] shadow-2xl"
+          : "fixed right-4 bottom-20 z-50 flex h-[min(32rem,70vh)] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-[rgba(176,137,79,0.35)] bg-[#fffaf3] shadow-2xl"
+      }
+      aria-labelledby={titleId}
+    >
+      <header className="border-b border-[rgba(176,137,79,0.25)] bg-[#12100e] px-5 py-4 text-[#f6f1e8]">
+        <h2 id={titleId} className="font-display text-xl">
+          {variant === "page" ? "House concierge" : "Studio assistant"}
+        </h2>
+        <p className="mt-1 text-xs text-[#e8dcc8]">
+          Browser-only helper. No paid AI model is called. {variant === "dock" ? "Shortcut: Ctrl or Cmd + K." : ""}
+        </p>
+      </header>
+      <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+        {lines.map((line) => (
+          <p
+            key={line.id}
+            className={`whitespace-pre-wrap rounded-2xl px-3 py-2 text-sm leading-6 ${
+              line.role === "agent"
+                ? "bg-[#f3eee4] text-stone-800"
+                : "ml-6 bg-[#12100e] text-[#f6f1e8]"
+            }`}
+          >
+            {line.text}
+          </p>
+        ))}
+        {profile.businessName ? (
+          <p className="text-xs text-stone-500">
+            Current studio: {profile.businessName}
+            {profile.location ? ` · ${profile.location}` : ""}
+          </p>
+        ) : null}
+      </div>
+      <form
+        className="border-t border-stone-200 p-3"
+        onSubmit={(event) => {
+          event.preventDefault();
+          send(draft);
+        }}
+      >
+        <label htmlFor={variant === "page" ? "concierge-input" : "agent-input"} className="sr-only">
+          Message the assistant
+        </label>
+        <textarea
+          id={variant === "page" ? "concierge-input" : "agent-input"}
+          rows={3}
+          value={draft}
+          onChange={(event) => setDraft(event.target.value)}
+          placeholder="DW Gold Trading is gold trading education in Alfreton. Run the house agents."
+          className="w-full resize-none rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-[#b0894f] focus:ring-2 focus:ring-[rgba(176,137,79,0.25)]"
+        />
+        <div className="mt-2 flex justify-end">
+          <Button type="submit" className="px-4 py-2">
+            Send
+          </Button>
+        </div>
+      </form>
+    </section>
+  );
+
+  if (variant === "page") return panel;
+  if (pathname === "/concierge") return null;
+
   return (
     <div className="no-print">
       <button
@@ -98,66 +185,7 @@ export function StudioAgent() {
       >
         {open ? "Close assistant" : "Ask the studio assistant"}
       </button>
-      {open ? (
-        <section
-          id="studio-agent-panel"
-          className="fixed right-4 bottom-20 z-50 flex h-[min(32rem,70vh)] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-[rgba(176,137,79,0.35)] bg-[#fffaf3] shadow-2xl"
-          aria-labelledby={titleId}
-        >
-          <header className="border-b border-[rgba(176,137,79,0.25)] bg-[#12100e] px-5 py-4 text-[#f6f1e8]">
-            <h2 id={titleId} className="font-display text-xl">
-              Studio assistant
-            </h2>
-            <p className="mt-1 text-xs text-[#e8dcc8]">
-              Browser-only helper. No paid AI model is called.
-            </p>
-          </header>
-          <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
-            {lines.map((line) => (
-              <p
-                key={line.id}
-                className={`whitespace-pre-wrap rounded-2xl px-3 py-2 text-sm leading-6 ${
-                  line.role === "agent"
-                    ? "bg-[#f3eee4] text-stone-800"
-                    : "ml-6 bg-[#12100e] text-[#f6f1e8]"
-                }`}
-              >
-                {line.text}
-              </p>
-            ))}
-            {profile.businessName ? (
-              <p className="text-xs text-stone-500">
-                Current studio: {profile.businessName}
-                {profile.location ? ` · ${profile.location}` : ""}
-              </p>
-            ) : null}
-          </div>
-          <form
-            className="border-t border-stone-200 p-3"
-            onSubmit={(event) => {
-              event.preventDefault();
-              send(draft);
-            }}
-          >
-            <label htmlFor="agent-input" className="sr-only">
-              Message the studio assistant
-            </label>
-            <textarea
-              id="agent-input"
-              rows={3}
-              value={draft}
-              onChange={(event) => setDraft(event.target.value)}
-              placeholder="Harbour & Hearth is a cafe in Falmouth offering weekend brunch."
-              className="w-full resize-none rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-[#b0894f] focus:ring-2 focus:ring-[rgba(176,137,79,0.25)]"
-            />
-            <div className="mt-2 flex justify-end">
-              <Button type="submit" className="px-4 py-2">
-                Send
-              </Button>
-            </div>
-          </form>
-        </section>
-      ) : null}
+      {open ? panel : null}
     </div>
   );
 }

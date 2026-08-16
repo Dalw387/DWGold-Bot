@@ -52,14 +52,14 @@ export function ResultCard({
         <div className="flex rounded-lg border border-stone-200 p-0.5 text-xs font-semibold">
           <button
             type="button"
-            className={`rounded-md px-2 py-1 ${mode === "edit" ? "bg-indigo-700 text-white" : "text-stone-600"}`}
+            className={`rounded-md px-2 py-1 ${mode === "edit" ? "bg-[#12100e] text-[#f6f1e8]" : "text-stone-600"}`}
             onClick={() => setMode("edit")}
           >
             Edit
           </button>
           <button
             type="button"
-            className={`rounded-md px-2 py-1 ${mode === "preview" ? "bg-indigo-700 text-white" : "text-stone-600"}`}
+            className={`rounded-md px-2 py-1 ${mode === "preview" ? "bg-[#12100e] text-[#f6f1e8]" : "text-stone-600"}`}
             onClick={() => setMode("preview")}
           >
             Preview
@@ -81,14 +81,14 @@ export function ResultCard({
               setCopyError(false);
             }}
             rows={12}
-            className="mt-4 w-full flex-1 resize-y rounded-xl border border-stone-300 bg-white px-3.5 py-3 text-sm leading-6 text-stone-800 outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/20"
+            className="mt-4 w-full flex-1 resize-y rounded-xl border border-stone-300 bg-white px-3.5 py-3 text-sm leading-6 text-stone-800 outline-none focus:border-[#b0894f] focus:ring-2 focus:ring-[rgba(176,137,79,0.25)]"
           />
           <p className="mt-2 text-xs text-stone-500">{value.length} characters</p>
         </>
       ) : (
         <div className="mt-4 flex-1 rounded-2xl border border-stone-200 bg-white p-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-700 text-xs font-semibold text-white">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#12100e] text-xs font-semibold text-[#f6f1e8]">
               {initials || "LL"}
             </span>
             <div>

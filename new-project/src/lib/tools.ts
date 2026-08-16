@@ -6,7 +6,7 @@ export interface ToolDefinition {
   shortName: string;
   tagline: string;
   description: string;
-  category: "Social" | "Listings" | "Planning" | "Website";
+  category: "Social" | "Listings" | "Planning" | "Website" | "Growth";
   generateLabel: string;
   resultTitle: string;
   extraHint: string;
@@ -109,6 +109,67 @@ export const TOOLS: ToolDefinition[] = [
     generateLabel: "Generate notices",
     resultTitle: "Notice drafts",
     extraHint: "Take the notice down when it is no longer true.",
+  },
+  {
+    slug: "email-update",
+    name: "Customer email",
+    shortName: "Email",
+    tagline: "Updates for people who already asked to hear from you.",
+    description:
+      "Draft a customer email from the same facts as the rest of the studio. Use it only with people who expect to hear from you.",
+    category: "Social",
+    generateLabel: "Generate emails",
+    resultTitle: "Email drafts",
+    extraHint: "Do not paste this into a bought list.",
+  },
+  {
+    slug: "review-reply",
+    name: "Review replies",
+    shortName: "Replies",
+    tagline: "Thank-you, mixed, and concern replies.",
+    description:
+      "Public replies that stay calm and do not invent extra praise, excuses, or offers. Take the detail of a complaint into a private message.",
+    category: "Social",
+    generateLabel: "Generate replies",
+    resultTitle: "Review reply drafts",
+    extraHint: "Match the reply to the actual review. Do not argue in public.",
+  },
+  {
+    slug: "ads-copy",
+    name: "Ads copy desk",
+    shortName: "Ads",
+    tagline: "Facebook, Instagram, and Google Ads drafts.",
+    description:
+      "Headlines, primary text, and a campaign structure you can paste into Ads Manager or Google Ads. This does not spend money or publish ads.",
+    category: "Growth",
+    generateLabel: "Generate ads drafts",
+    resultTitle: "Ads drafts",
+    extraHint:
+      "Google AdSense is not the same as Google Ads. AdSense shows other people’s ads on your site. Google Ads is what you pay to reach customers.",
+  },
+  {
+    slug: "seo-brief",
+    name: "Local SEO brief",
+    shortName: "SEO",
+    tagline: "Titles, themes, listing checklist, page brief.",
+    description:
+      "A local search starting pack from your name, type, and town. It does not promise rankings and it does not log into Google for you.",
+    category: "Growth",
+    generateLabel: "Generate SEO brief",
+    resultTitle: "SEO drafts",
+    extraHint: "Publish the changes on your own site and listing, then wait. Do not buy fake links or reviews.",
+  },
+  {
+    slug: "campaign-pack",
+    name: "Full campaign pack",
+    shortName: "Pack",
+    tagline: "One draft from each room, in a single download.",
+    description:
+      "A house pack: social, listing, email, website, SEO, and ads starting points from the same facts. Use it to brief a week of work.",
+    category: "Growth",
+    generateLabel: "Build the full pack",
+    resultTitle: "Campaign pack",
+    extraHint: "This is a lot of text. Edit the lines you will actually use. Leave the rest.",
   },
 ];
 

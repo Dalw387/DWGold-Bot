@@ -2,6 +2,8 @@ import type { GeneratorFormValues, Tone } from "@/lib/types";
 import { compactText } from "@/lib/validation";
 
 const TYPES = [
+  "gold trading education",
+  "trading education",
   "cafe",
   "coffee shop",
   "bakery",

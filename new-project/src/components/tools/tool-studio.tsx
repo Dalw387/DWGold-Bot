@@ -145,7 +145,7 @@ export function ToolStudio({ tool }: { tool: ToolDefinition }) {
   return (
     <div className="border-b border-stone-200">
       <Container className="py-12 sm:py-16">
-        <p className="text-sm font-semibold uppercase tracking-wider text-indigo-800">
+        <p className="text-sm font-semibold uppercase tracking-wider text-[#8c6a38]">
           {tool.category} · free tool
         </p>
         <h1 className="font-display mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
@@ -216,7 +216,7 @@ export function ToolStudio({ tool }: { tool: ToolDefinition }) {
             className="mt-8 rounded-2xl border border-stone-200 bg-[#fffcf7] px-6 py-10 text-center"
             aria-busy="true"
           >
-            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-indigo-200 border-t-indigo-700" />
+            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-[#e6dccb] border-t-[#b0894f]" />
             <h2 className="mt-4 font-display text-2xl text-stone-900">Generating drafts</h2>
             <p className="mt-2 text-sm text-stone-600">
               Building template copy from the details you entered.
@@ -300,9 +300,9 @@ export function ToolStudio({ tool }: { tool: ToolDefinition }) {
               <li key={item.slug}>
                 <Link
                   href={`/tools/${item.slug}`}
-                  className="paper-card block rounded-2xl border border-stone-200 p-4 hover:border-indigo-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="paper-card block rounded-2xl border border-stone-200 p-4 hover:border-[#b0894f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-wider text-indigo-800">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#8c6a38]">
                     {item.category}
                   </p>
                   <p className="mt-1 font-display text-lg text-stone-900">{item.name}</p>

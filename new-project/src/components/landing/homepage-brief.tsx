@@ -82,9 +82,20 @@ export function HomepageBrief() {
           {preview?.text ?? "The sketch appears here when the sentence has enough detail."}
         </p>
       </div>
-      <div className="mt-5">
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <Button type="button" onClick={applyAndOpen}>
           Take this into the studio
+        </Button>
+        <Button
+          type="button"
+          variant="secondary"
+          className="text-[#f6f1e8]"
+          onClick={() => {
+            writeProfileStore(applyBrief(emptyGeneratorValues, parsed.patch));
+            router.push("/operations");
+          }}
+        >
+          Take this to House Operations
         </Button>
       </div>
     </div>

@@ -4,17 +4,17 @@ const steps = [
   {
     number: "01",
     title: "Speak or fill",
-    body: "Tell the assistant a sentence, type in the live studio, or use Fill example. Name, type, town, and offer are enough.",
+    body: "Tell the concierge a sentence, type in the live studio, or load the DW Gold Trading trial. Name, type, town, and offer are enough.",
   },
   {
     number: "02",
-    title: "Watch the sketch",
-    body: "Drafts appear as the details land. Choose styles, length, and tone. Nothing is sent to a paid model.",
+    title: "Let the house work",
+    body: "Run the studio rooms, or queue the SEO and ads agents. Nothing is sent to a paid model. Live ads still need your ads account.",
   },
   {
     number: "03",
-    title: "Edit, then publish",
-    body: "Copy or download. Check names, prices, and times. You remain the person who posts.",
+    title: "Publish, then prove",
+    body: "Edit and post. Log every real enquiry in the ledger. That is how we show the work is getting people through the door.",
   },
 ];
 
@@ -23,7 +23,7 @@ export function HowItWorks() {
     <section
       id="how-it-works"
       aria-labelledby="how-heading"
-      className="bg-[#f3eee4] py-16 sm:py-24"
+      className="bg-[#efe8db] py-16 sm:py-24"
     >
       <Container>
         <div className="max-w-2xl">
@@ -37,8 +37,9 @@ export function HowItWorks() {
             How it works
           </h2>
           <p className="mt-4 text-base leading-7 text-stone-600">
-            You stay in control. LocalLaunch AI drafts the words. You decide what
-            is accurate enough to publish.
+            You stay in control. LocalLaunch AI drafts the words and the ads.
+            You decide what is accurate enough to publish. The ledger only
+            believes what you type.
           </p>
         </div>
         <ol className="mt-12 grid gap-6 md:grid-cols-3">

@@ -2,28 +2,28 @@ import { Container } from "@/components/container";
 
 const features = [
   {
-    title: "Studio assistant",
-    body: "A browser agent that reads a sentence, fills the studio, and points you to the right tool. It does not call a paid AI API.",
+    title: "House concierge",
+    body: "A browser agent that reads a sentence, fills the studio, and can send you to SEO, ads, operations, or Stripe checkout.",
   },
   {
-    title: "Live sketch",
-    body: "Type a business in one line on the homepage, or complete the form, and a draft appears before you press generate.",
+    title: "House Operations",
+    body: "Five agents in a queue: local SEO, Meta ads, Google Ads, social, and a measurement plan. They draft. They do not spend.",
   },
   {
-    title: "Eight tools, one set of facts",
-    body: "Facebook, Instagram, Google listings, WhatsApp, a seven-day plan, review requests, website copy, and notices.",
+    title: "Proof ledger",
+    body: "Log real enquiries, calls, visits, and sales. Zero is an honest week. We will not invent a customer count.",
   },
   {
-    title: "Eight Facebook styles",
-    body: "Neighbourhood, offer, introduction, question, behind the scenes, reminder, explainer, and a short version.",
+    title: "Thirteen drafting rooms",
+    body: "Facebook, Instagram, listings, WhatsApp, email, website, notices, reviews, SEO, ads copy, and a full campaign pack.",
   },
   {
-    title: "Edit, copy, download",
-    body: "Each draft is editable. Copy one card, or download the whole pack as a text file.",
+    title: "Stripe wallets",
+    body: "When the Payment Link or Price is connected, Apple Pay, Google Pay, Link, and cards settle into your Stripe account.",
   },
   {
-    title: "Honest by default",
-    body: "The copy avoids fake reviews, awards, customer numbers, and guarantees you have not supplied.",
+    title: "Owner trial",
+    body: "DW Gold Trading can be loaded as an owner test: education in Alfreton, no profit promises, no fake leads.",
   },
 ];
 
@@ -42,9 +42,9 @@ export function Features() {
             Built to feel considered
           </h2>
           <p className="mt-4 text-base leading-7 text-stone-600">
-            The complimentary studio is meant to feel like a private room, not a
-            loud dashboard. It is still an early demo, and it still refuses to
-            invent a marketing story you did not provide.
+            The complimentary studio is meant to feel like a private room. House
+            Operations is the paid floor above it: still early, still unwilling
+            to invent a marketing story you did not provide.
           </p>
         </div>
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

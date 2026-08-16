@@ -10,8 +10,8 @@ import { Logo } from "@/components/logo";
 
 const links = [
   { href: "/tools", label: "Tools" },
-  { href: "/#features", label: "Features" },
-  { href: "/#how-it-works", label: "How it works" },
+  { href: "/operations", label: "Operations" },
+  { href: "/proof", label: "Proof" },
   { href: "/#pricing", label: "Pricing" },
 ];
 
@@ -48,7 +48,9 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {links.map((link) => {
             const active =
-              link.href === "/tools" ? pathname.startsWith("/tools") : false;
+              link.href.startsWith("/#")
+                ? false
+                : pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
               <Link
                 key={link.href}
@@ -71,8 +73,8 @@ export function SiteHeader() {
           >
             Assistant
           </Button>
-          <ButtonLink href="/tools/facebook-post-generator" variant="gold" className="ml-1 px-4 py-2">
-            Open studio
+          <ButtonLink href="/pay" variant="gold" className="ml-1 px-4 py-2">
+            Pay
           </ButtonLink>
         </nav>
         <button
@@ -120,12 +122,12 @@ export function SiteHeader() {
               Ask the assistant
             </Button>
             <ButtonLink
-              href="/tools/facebook-post-generator"
+              href="/pay"
               variant="gold"
               className="mt-1"
               onClick={() => setOpen(false)}
             >
-              Open studio
+              Pay with Stripe
             </ButtonLink>
           </Container>
         </div>

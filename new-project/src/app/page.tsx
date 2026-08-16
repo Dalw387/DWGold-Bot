@@ -6,11 +6,13 @@ import { HowItWorks } from "@/components/landing/how-it-works";
 import { Pricing } from "@/components/landing/pricing";
 import { ProductPreview } from "@/components/landing/product-preview";
 import { ToolsBand } from "@/components/landing/tools-band";
+import { ToolsMarquee } from "@/components/landing/tools-marquee";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <ToolsMarquee />
       <ToolsBand />
       <ProductPreview />
       <Features />

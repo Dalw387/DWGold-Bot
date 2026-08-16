@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Browse the LocalLaunch AI toolkit: Facebook posts, Instagram captions, Google listing updates, WhatsApp messages, a seven-day plan, and more.",
 };
 
-const categories = ["Social", "Listings", "Planning", "Website"] as const;
+const categories = ["Growth", "Social", "Listings", "Planning", "Website"] as const;
 
 export default function ToolsPage() {
   return (
@@ -19,12 +19,13 @@ export default function ToolsPage() {
           Toolkit
         </p>
         <h1 className="font-display mt-3 max-w-3xl text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl">
-          Eight free drafting tools for local businesses
+          Thirteen free drafting rooms for local businesses
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
           Every tool uses the same details and the same rules: templates, no paid
-          AI, no account, and no invented awards. Your form stays in this browser
-          tab so you can hop between them.
+          AI, and no invented awards. House Operations sits above this toolkit
+          when you want SEO, ads agents, and a proof ledger. Your form stays in
+          this browser tab so you can hop between rooms.
         </p>
         <div className="mt-12 space-y-12">
           {categories.map((category) => {
