@@ -62,7 +62,7 @@ export function respondToMessage(
   ) {
     return {
       reply:
-        "House Operations is paid in Stripe. When the Payment Link or Price is connected, Apple Pay, Google Pay, Link, and cards go straight to that Stripe account. I will take you to the pay page. The complimentary studio stays free.",
+        "House Operations is £197 one-off. You pay on Stripe with Apple Pay, Google Pay, Link, or a card. The money goes to the LocalLaunch Stripe account. The free studio stays free. I will take you to the pay page.",
       goTo: "/pay",
     };
   }

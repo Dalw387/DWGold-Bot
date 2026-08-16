@@ -1,31 +1,29 @@
 import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
 import { PayButton } from "@/components/pay-button";
-import { housePriceLabel } from "@/lib/payments";
+import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const complimentary = [
-  "House concierge in the browser",
-  "Live sketch as you type a sentence",
+  "Concierge in the browser",
+  "Type a sentence, watch a draft appear",
   "Thirteen rooms, including a full campaign pack",
   "Facebook, Instagram, Google listing, WhatsApp, email",
-  "SEO brief, ads copy, review replies, website copy",
+  "SEO, ads copy, review replies, public homepage copy",
   "Seven-day plan, notices, copy and download",
-  "No account required for the studio",
+  "No account needed",
 ];
 
 const house = [
-  "SEO agent, Meta ads agent, Google Ads agent",
-  "Social agent and a measurement plan",
+  "SEO, Meta ads, and Google Ads drafts",
+  "A public homepage so ads are not sent to a login wall",
+  "A week of social starting points",
   "Proof ledger for real enquiries only",
-  "DW Gold Trading owner trial on this desk",
-  "Pay in Stripe: Apple Pay, Google Pay, Link, card",
-  "Money goes to the connected Stripe account",
-  "Ad spend at Meta or Google stays separate",
+  "DW Gold Trading owner trial included to test the desk",
+  `Pay ${HOUSE_PRICE_SHORT} in Stripe: Apple Pay, Google Pay, Link, or card`,
+  "Facebook/Google ad spend is separate",
 ];
 
 export function Pricing() {
-  const label = housePriceLabel();
-
   return (
     <section id="pricing" aria-labelledby="pricing-heading" className="bg-[#fffaf3] py-16 sm:py-24">
       <Container>
@@ -37,13 +35,13 @@ export function Pricing() {
             id="pricing-heading"
             className="font-display mt-3 text-3xl font-medium tracking-tight text-stone-900 sm:text-5xl"
           >
-            Drafts free. Getting them noticed is House.
+            Free to try. {HOUSE_PRICE_SHORT} for the house desk.
           </h2>
           <p className="mt-4 text-base leading-7 text-stone-600">
-            The studio is still complimentary so a high-street business can leave
-            with a week of words. House Operations is the paid desk: agents for
-            SEO and ads, and a ledger so we can prove enquiries instead of
-            promising them. The live amount is set in Stripe, not invented here.
+            Use the studio at £0. Pay {HOUSE_PRICE_SHORT} once if you want House
+            Operations: the agents, the public-page draft, and the ledger. That
+            is not a promise of new customers. It is the desk that writes the
+            work, then asks you to write down who actually got in touch.
           </p>
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -54,7 +52,7 @@ export function Pricing() {
             <h3 className="font-display mt-3 text-4xl text-stone-900">Studio</h3>
             <p className="mt-2 text-4xl font-medium text-stone-900">£0</p>
             <p className="mt-3 text-sm leading-6 text-stone-600">
-              Use every drafting room. We are not metering this version.
+              Every drafting room. No card. No account.
             </p>
             <ul className="mt-8 grid gap-3 text-sm leading-6 sm:grid-cols-2">
               {complimentary.map((item) => (
@@ -72,14 +70,11 @@ export function Pricing() {
               Paid in Stripe
             </p>
             <h3 className="font-display mt-3 text-4xl">House Operations</h3>
-            <p className="mt-2 text-2xl font-medium text-[#f6f1e8]">
-              {label || "Amount set in Stripe Checkout"}
-            </p>
+            <p className="mt-2 text-4xl font-medium text-[#f6f1e8]">{HOUSE_PRICE_SHORT}</p>
+            <p className="mt-1 text-sm text-[#d7c4a1]">One-off</p>
             <p className="mt-3 text-sm text-[#e8dcc8]">
-              Apple Pay, Google Pay, Link, and cards, when you have enabled them
-              in Stripe and verified the domain. The premium is for the desk that
-              tries to get the business more customers — and then writes those
-              customers down.
+              Apple Pay, Google Pay, Link, or card. You pay on Stripe. We do not
+              store card numbers here.
             </p>
             <ul className="mt-8 grid gap-3 text-sm leading-6 sm:grid-cols-2">
               {house.map((item) => (
@@ -89,7 +84,7 @@ export function Pricing() {
               ))}
             </ul>
             <div className="mt-10">
-              <PayButton tone="ink">Pay with Apple Pay or card</PayButton>
+              <PayButton tone="ink">{`Pay ${HOUSE_PRICE_SHORT} with Apple Pay or card`}</PayButton>
             </div>
           </article>
         </div>

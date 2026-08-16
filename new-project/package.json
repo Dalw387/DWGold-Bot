@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "smoke": "npx --yes tsx --tsconfig tsconfig.json scripts/smoke-generate.ts"
   },
   "dependencies": {
     "next": "16.3.1",

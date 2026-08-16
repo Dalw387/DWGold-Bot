@@ -17,11 +17,12 @@ export default function PayThanksPage() {
         Stripe
       </p>
       <h1 className="font-display mt-3 text-4xl font-medium tracking-tight text-stone-900">
-        Back from checkout
+        If Stripe took the payment, start here
       </h1>
       <p className="mt-4 text-base leading-7 text-stone-600">
-        If Stripe took the payment, start the desk on the real business. This
-        page does not invent a lead count or a ranking.
+        Next: run the house agents on the real business, publish only what is
+        true, then log each real enquiry. This page does not invent a lead count
+        or a ranking.
       </p>
       <Suspense>
         <HouseReturnMarker />

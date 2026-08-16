@@ -7,8 +7,10 @@ import { openStudioAgent } from "@/components/agent/studio-agent";
 import { Container } from "@/components/container";
 import { Button, ButtonLink } from "@/components/button";
 import { Logo } from "@/components/logo";
+import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 
 const links = [
+  { href: "/guide", label: "How it works" },
   { href: "/tools", label: "Tools" },
   { href: "/operations", label: "Operations" },
   { href: "/proof", label: "Proof" },
@@ -74,7 +76,7 @@ export function SiteHeader() {
             Assistant
           </Button>
           <ButtonLink href="/pay" variant="gold" className="ml-1 px-4 py-2">
-            Pay
+            Pay {HOUSE_PRICE_SHORT}
           </ButtonLink>
         </nav>
         <button
@@ -127,7 +129,7 @@ export function SiteHeader() {
               className="mt-1"
               onClick={() => setOpen(false)}
             >
-              Pay with Stripe
+              Pay {HOUSE_PRICE_SHORT}
             </ButtonLink>
           </Container>
         </div>

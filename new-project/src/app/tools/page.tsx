@@ -23,9 +23,16 @@ export default function ToolsPage() {
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
           Every tool uses the same details and the same rules: templates, no paid
-          AI, and no invented awards. House Operations sits above this toolkit
-          when you want SEO, ads agents, and a proof ledger. Your form stays in
-          this browser tab so you can hop between rooms.
+          AI, and no invented awards. Start with the{" "}
+          <Link
+            href="/guide"
+            className="font-semibold text-[#8c6a38] underline-offset-2 hover:underline"
+          >
+            four-step guide
+          </Link>{" "}
+          if you are new. House Operations sits above this toolkit when you want
+          SEO, ads agents, and a proof ledger. Your form stays in this browser
+          tab so you can hop between rooms.
         </p>
         <div className="mt-12 space-y-12">
           {categories.map((category) => {

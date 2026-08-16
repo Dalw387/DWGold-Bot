@@ -1,20 +1,21 @@
+import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
 
 const steps = [
   {
     number: "01",
-    title: "Speak or fill",
-    body: "Tell the concierge a sentence, type in the live studio, or load the DW Gold Trading trial. Name, type, town, and offer are enough.",
+    title: "Try it free",
+    body: "Open a room, press Fill example, then generate. You get Facebook drafts, captions, emails, and more. Check every line before you post.",
   },
   {
     number: "02",
-    title: "Let the house work",
-    body: "Run the studio rooms, or queue the SEO and ads agents. Nothing is sent to a paid model. Live ads still need your ads account.",
+    title: "Run the house desk",
+    body: "House Operations writes SEO, ads drafts, a public homepage, and a week of social starting points. Press “Run DW Gold Trading trial” to see it on a real business.",
   },
   {
     number: "03",
     title: "Publish, then prove",
-    body: "Edit and post. Log every real enquiry in the ledger. That is how we show the work is getting people through the door.",
+    body: "You post the words. When someone actually enquires, log it on the proof page. Likes do not count. A quiet week with zero rows is still an honest week.",
   },
 ];
 
@@ -37,9 +38,9 @@ export function HowItWorks() {
             How it works
           </h2>
           <p className="mt-4 text-base leading-7 text-stone-600">
-            You stay in control. LocalLaunch AI drafts the words and the ads.
-            You decide what is accurate enough to publish. The ledger only
-            believes what you type.
+            You stay in control. LocalLaunch drafts the words. You decide what
+            is accurate enough to publish. The ledger only believes what you
+            type.
           </p>
         </div>
         <ol className="mt-12 grid gap-6 md:grid-cols-3">
@@ -56,6 +57,9 @@ export function HowItWorks() {
             </li>
           ))}
         </ol>
+        <ButtonLink href="/guide" className="mt-10">
+          See the four-step guide
+        </ButtonLink>
       </Container>
     </section>
   );

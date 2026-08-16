@@ -4,11 +4,12 @@ import { Logo } from "@/components/logo";
 import { TOOLS } from "@/lib/tools";
 
 const explore = [
+  { href: "/guide", label: "How it works" },
   { href: "/tools", label: "All tools" },
   { href: "/operations", label: "House Operations" },
   { href: "/concierge", label: "Concierge" },
   { href: "/proof", label: "Proof ledger" },
-  { href: "/pay", label: "Pay with Stripe" },
+  { href: "/pay", label: "Pay £197" },
   { href: "/#pricing", label: "Pricing" },
 ];
 
@@ -20,10 +21,9 @@ export function SiteFooter() {
           <Logo compact />
           <p className="mt-4 max-w-md text-sm leading-6 text-stone-600">
             LocalLaunch AI is an early studio. The complimentary rooms draft
-            marketing words in your browser. House Operations adds SEO and ads
-            agents plus a proof ledger. Stripe takes House payments when a
-            Payment Link or Price is connected. Ad spend at Meta or Google is
-            separate.
+            marketing words in your browser. House Operations is £197 one-off
+            on Stripe for SEO and ads drafts plus a proof ledger. Ad spend at
+            Meta or Google is separate and paid to them.
           </p>
         </div>
         <nav aria-label="Footer">

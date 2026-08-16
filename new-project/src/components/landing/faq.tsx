@@ -3,19 +3,19 @@ import { Container } from "@/components/container";
 const items = [
   {
     q: "Is this a real AI model?",
-    a: "The concierge and the drafts still run from templates in your browser so the studio can stay free. House Operations is the same honest engine, queued like a desk of agents. A connected model can be added later without changing how you enter facts.",
+    a: "The concierge and the drafts run from templates in your browser so the studio can stay free. Same facts in, same words out. A connected model can be added later without changing how you enter a name, town, and offer.",
   },
   {
     q: "Do I need to pay?",
-    a: "The studio is complimentary. House Operations is paid in Stripe. When checkout is connected, Apple Pay, Google Pay, Link, and cards go to that Stripe account. Until the Payment Link or Price is set on the deployment, the pay button will say so instead of pretending.",
+    a: "No. The thirteen rooms, the concierge, copy and download are £0. House Operations is £197 once, paid on Stripe with Apple Pay, Google Pay, Link, or a card. That is for the desk and the ledger, not for Facebook or Google ad spend.",
   },
   {
     q: "Will the agents actually run my Facebook ads?",
-    a: "They draft the ads and the campaign structure. They do not log into Ads Manager, spend money, or invent results. Live ads need the client’s Meta or Google account, and that spend is paid to those platforms.",
+    a: "They draft the ads and the campaign structure. They do not log into Ads Manager, spend money, or invent results. Live ads need your Meta or Google account, and that spend is paid to those platforms.",
   },
   {
     q: "Is Google AdSense part of this?",
-    a: "AdSense shows other people’s ads on your site. It is not how you advertise a local business. House Operations drafts Google Ads (search) and Meta ads. Use AdSense only if you have a content site that should display ads — it will not fill your diary.",
+    a: "AdSense shows other people’s ads on your site. It is not how you advertise a local business. House Operations drafts Google Ads (search) and Facebook/Instagram ads. AdSense will not fill your diary.",
   },
   {
     q: "How do you prove it?",

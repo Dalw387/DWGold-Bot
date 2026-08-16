@@ -43,10 +43,16 @@ export function parseBrief(input: string): BriefParse {
     summary.push(`Business name: ${patch.businessName}`);
   } else {
     const isA = text.match(
-      /^([A-Z][\w'&]*(?:\s+[A-Z&\w']+){0,4})\s+is\s+(?:a|an)\s+/ ,
+      /^([A-Z][\w'&]*(?:\s+[A-Z&\w']+){0,4})\s+is\s+(?:a|an)\s+/,
+    );
+    const titled = text.match(
+      /^([A-Z][\w'&]*(?:\s+[A-Z&\w']+){0,5})\s+is\s+/,
     );
     if (isA?.[1]) {
       patch.businessName = compactText(isA[1]);
+      summary.push(`Business name: ${patch.businessName}`);
+    } else if (titled?.[1]) {
+      patch.businessName = compactText(titled[1]);
       summary.push(`Business name: ${patch.businessName}`);
     } else {
       const quoted = text.match(/[“"]([^”"]{2,80})[”"]/);

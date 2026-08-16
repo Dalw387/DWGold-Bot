@@ -36,7 +36,7 @@ import {
   writeProfileStore,
 } from "@/lib/profile-storage";
 import { sanitiseFormValues, validateGeneratorForm, hasFieldErrors } from "@/lib/validation";
-import type { GeneratedPost, GeneratorFormValues } from "@/lib/types";
+import type { GeneratorFormValues } from "@/lib/types";
 
 type JobStatus = "idle" | "queued" | "working" | "done" | "error";
 

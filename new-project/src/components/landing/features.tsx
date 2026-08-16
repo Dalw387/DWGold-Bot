@@ -18,8 +18,8 @@ const features = [
     body: "Facebook, Instagram, listings, WhatsApp, email, website, notices, reviews, SEO, ads copy, and a full campaign pack.",
   },
   {
-    title: "Stripe wallets",
-    body: "When the Payment Link or Price is connected, Apple Pay, Google Pay, Link, and cards settle into your Stripe account.",
+    title: "Pay £197 on Stripe",
+    body: "Apple Pay, Google Pay, Link, or card. You leave this site and pay on Stripe. We never see your card number. Facebook and Google ad spend is extra.",
   },
   {
     title: "Owner trial",
@@ -39,7 +39,7 @@ export function Features() {
             id="features-heading"
             className="font-display mt-3 text-3xl font-medium tracking-tight text-stone-900 sm:text-5xl"
           >
-            Built to feel considered
+            Built to do the work, not the slogans
           </h2>
           <p className="mt-4 text-base leading-7 text-stone-600">
             The complimentary studio is meant to feel like a private room. House

@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteUrl();
   const paths = [
     "",
+    "/guide",
     "/tools",
     "/operations",
     "/concierge",

@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/button";
+import { Button, ButtonAnchor } from "@/components/button";
+import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import { housePriceLabel, stripePaymentLink } from "@/lib/payments";
 
 export function PayButton({
   className = "",
-  children = "Pay with Apple Pay or card",
+  children,
   tone = "light",
 }: {
   className?: string;
@@ -19,14 +20,11 @@ export function PayButton({
   const label = housePriceLabel();
   const muted = tone === "ink" ? "text-[#e8dcc8]" : "text-stone-600";
   const alert = tone === "ink" ? "text-[#f3c1c1]" : "text-red-800";
+  const text = children ?? `Pay ${HOUSE_PRICE_SHORT} with Apple Pay or card`;
 
   async function startCheckout() {
     if (busy) return;
     setError("");
-    if (link) {
-      window.location.href = link;
-      return;
-    }
     setBusy(true);
     try {
       const response = await fetch("/api/checkout", { method: "POST" });
@@ -35,45 +33,26 @@ export function PayButton({
         window.location.href = data.url;
         return;
       }
-      setError(
-        data.error ||
-          "Checkout is not connected yet. Add your Stripe Payment Link in the site environment.",
-      );
+      setError(data.error || "Checkout could not start. Try the Stripe button again.");
     } catch {
-      setError("Checkout could not start. Try again, or use the Payment Link once it is set.");
+      setError("Checkout could not start. Check your connection and try again.");
     } finally {
       setBusy(false);
     }
   }
 
-  if (!link) {
-    return (
-      <div className={className}>
-        <Button type="button" variant="gold" onClick={() => void startCheckout()} disabled={busy}>
-          {busy ? "Opening Stripe" : children}
-        </Button>
-        {label ? <p className={`mt-3 text-sm ${muted}`}>{label}</p> : null}
-        <p className={`mt-3 text-sm leading-6 ${muted}`}>
-          If Stripe is not connected yet, create a Payment Link with Apple Pay,
-          Google Pay, Link, and cards, then set NEXT_PUBLIC_STRIPE_PAYMENT_LINK
-          on Vercel. The button will also try a Checkout Session if a Price ID
-          is set on the server.
-        </p>
-        {error ? (
-          <p className={`mt-3 text-sm leading-6 ${alert}`} role="alert">
-            {error}
-          </p>
-        ) : null}
-      </div>
-    );
-  }
-
   return (
     <div className={className}>
-      <Button type="button" variant="gold" onClick={() => void startCheckout()} disabled={busy}>
-        {busy ? "Opening Stripe" : children}
-      </Button>
-      {label ? <p className={`mt-3 text-sm ${muted}`}>{label}</p> : null}
+      {link ? (
+        <ButtonAnchor href={link} variant="gold" rel="noreferrer">
+          {text}
+        </ButtonAnchor>
+      ) : (
+        <Button type="button" variant="gold" onClick={() => void startCheckout()} disabled={busy}>
+          {busy ? "Opening Stripe" : text}
+        </Button>
+      )}
+      <p className={`mt-3 text-sm ${muted}`}>{label} · paid in Stripe, not on this page</p>
       {error ? (
         <p className={`mt-3 text-sm leading-6 ${alert}`} role="alert">
           {error}

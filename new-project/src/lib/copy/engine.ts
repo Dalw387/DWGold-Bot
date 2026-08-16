@@ -50,7 +50,14 @@ export function pick<T>(items: readonly T[], seed: number, salt: number): T {
 
 export function joinParagraphs(...parts: string[]): string {
   return parts
-    .map((part) => part.replace(/\s+/g, " ").trim())
+    .map((part) =>
+      part
+        .split("\n")
+        .map((line) => line.replace(/[ \t]+/g, " ").trim())
+        .join("\n")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim(),
+    )
     .filter(Boolean)
     .join("\n\n");
 }

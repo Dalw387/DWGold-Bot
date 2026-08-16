@@ -34,3 +34,11 @@ export function ButtonLink({
 }: ComponentProps<typeof Link> & { variant?: Variant }) {
   return <Link className={`${base} ${variants[variant]} ${className}`} {...props} />;
 }
+
+export function ButtonAnchor({
+  variant = "primary",
+  className = "",
+  ...props
+}: ComponentProps<"a"> & { variant?: Variant }) {
+  return <a className={`${base} ${variants[variant]} ${className}`} {...props} />;
+}
