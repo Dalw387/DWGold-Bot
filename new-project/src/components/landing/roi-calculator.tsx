@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/button";
 import { Container } from "@/components/container";
 import { ViewportSignal } from "@/components/nano/viewport-signal";
@@ -13,6 +13,29 @@ function pounds(n: number): string {
     currency: "GBP",
     maximumFractionDigits: 0,
   }).format(n);
+}
+
+function useCount(value: number) {
+  const [shown, setShown] = useState(value);
+  const fromRef = useRef(value);
+
+  useEffect(() => {
+    const from = fromRef.current;
+    const start = performance.now();
+    const dur = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 700;
+    let raf = 0;
+    function tick(now: number) {
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - (1 - p) ** 3;
+      setShown(from + (value - from) * eased);
+      if (p < 1) raf = window.requestAnimationFrame(tick);
+      else fromRef.current = value;
+    }
+    raf = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(raf);
+  }, [value]);
+
+  return shown;
 }
 
 export function RoiCalculator() {
@@ -37,6 +60,10 @@ export function RoiCalculator() {
     return { monthlyLeads, missedLeads, recovered, opportunity, adSpend };
   }, [ads, leads, missed, rate, sale]);
 
+  const opportunity = useCount(result?.opportunity ?? 0);
+  const missedCount = useCount(result?.missedLeads ?? 0);
+  const recovered = useCount(result?.recovered ?? 0);
+
   return (
     <section id="calculator" aria-labelledby="roi-heading" className="py-20 sm:py-28">
       <ViewportSignal kind="calculator" />
@@ -44,22 +71,21 @@ export function RoiCalculator() {
         <div>
           <p className="kicker">
             <span className="kicker-dot" aria-hidden="true" />
-            Estimate
+            Missed-enquiry value
           </p>
           <h2 id="roi-heading" className="font-display display-2 mt-6 text-ice">
             What a missed enquiry is actually worth.
           </h2>
-          <p className="prose-narrow mt-5 text-base leading-7 text-slate">
-            Arithmetic from the numbers you type — not a forecast, not a
-            guarantee, and not a promise that the desk will recover every lead.
+          <p className="prose-narrow mt-5 text-sm leading-7 text-slate">
+            Arithmetic from the numbers you type — not a forecast and not a guarantee.
           </p>
           {result ? (
-            <p className="font-display mt-10 text-6xl tracking-tight text-cyan" role="status">
-              {pounds(result.opportunity)}
+            <p className="font-display mt-10 text-[clamp(3.4rem,8vw,6.2rem)] leading-none tracking-tight text-cyan" role="status">
+              {pounds(Math.round(opportunity))}
             </p>
           ) : null}
-          <p className="mt-3 max-w-sm text-sm leading-6 text-slate">
-            potential monthly enquiry value currently going unquoted
+          <p className="mt-3 max-w-sm text-sm font-semibold uppercase tracking-[0.14em] text-titanium">
+            Potential monthly opportunity currently going unquoted
           </p>
         </div>
         <div className="glass-lit rounded-[1.5rem] p-6 sm:p-8">
@@ -69,7 +95,7 @@ export function RoiCalculator() {
               { id: "sale", label: "Average job value (£)", value: sale, set: setSale },
               { id: "rate", label: "Conversion rate (%)", value: rate, set: setRate },
               { id: "missed", label: "Missed enquiries (%)", value: missed, set: setMissed },
-              { id: "ads", label: "Monthly ad spend (£)", value: ads, set: setAds },
+              { id: "ads", label: "Advertising spend (£)", value: ads, set: setAds },
             ].map((field) => (
               <label key={field.id} className="text-sm font-medium text-ice">
                 {field.label}
@@ -83,11 +109,19 @@ export function RoiCalculator() {
             ))}
           </div>
           {result ? (
-            <ol className="mt-10 space-y-3 text-sm leading-6 text-slate">
-              <li>{Math.round(result.monthlyLeads)} enquiries</li>
-              <li>↓ {Math.round(result.missedLeads)} missed</li>
-              <li>↓ {result.recovered.toFixed(1)} potential customers</li>
-              <li className="text-ice">{pounds(result.opportunity)} opportunity</li>
+            <ol className="mt-10 grid gap-3 sm:grid-cols-3">
+              <li className="rounded-2xl border border-white/10 p-3">
+                <p className="font-display text-2xl text-ice">{Math.round(missedCount)}</p>
+                <p className="mt-1 text-xs text-slate">missed enquiries</p>
+              </li>
+              <li className="rounded-2xl border border-white/10 p-3">
+                <p className="font-display text-2xl text-ice">{recovered.toFixed(1)}</p>
+                <p className="mt-1 text-xs text-slate">potential customers</p>
+              </li>
+              <li className="rounded-2xl border border-cyan/25 p-3">
+                <p className="font-display text-2xl text-cyan">{pounds(Math.round(opportunity))}</p>
+                <p className="mt-1 text-xs text-slate">opportunity</p>
+              </li>
             </ol>
           ) : (
             <p className="mt-8 text-sm text-slate">Enter real numbers from your business.</p>
@@ -95,14 +129,13 @@ export function RoiCalculator() {
           <Button
             type="button"
             className="mt-8"
-            variant="secondary"
             arrow
             onClick={() => {
               if (result) patchContext({ calculatorOpportunity: result.opportunity, problem: "missed calls" });
               openBuildTeam();
             }}
           >
-            Want Charlie to show missed-enquiry follow-up?
+            Show me how Charlie recovers this
           </Button>
         </div>
       </Container>

@@ -1,16 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/button";
 import { Container } from "@/components/container";
+import { WorkforceCore } from "@/components/landing/workforce-core";
 import { generateForTool } from "@/lib/copy";
+import { colourForAgent } from "@/lib/agent-identity";
 import { recordSignal } from "@/lib/nano-growth";
 import { ViewportSignal } from "@/components/nano/viewport-signal";
 import { DEFAULT_FACEBOOK_STYLES, type GeneratorFormValues } from "@/lib/types";
 
-const jobs: { prompt: string; values: GeneratorFormValues }[] = [
+const jobs: {
+  prompt: string;
+  agents: string[];
+  values: GeneratorFormValues;
+}[] = [
   {
-    prompt: "Find me potential roofing customers around Manchester.",
+    prompt: "Find potential roofing customers around Manchester.",
+    agents: ["Alex", "Charlie", "Scout"],
     values: {
       businessName: "Ridge & Rain",
       businessType: "roofing",
@@ -25,6 +32,7 @@ const jobs: { prompt: string; values: GeneratorFormValues }[] = [
   },
   {
     prompt: "Create a campaign for my dental practice.",
+    agents: ["Max", "Scout", "Sophie"],
     values: {
       businessName: "Elm Dental",
       businessType: "dental practice",
@@ -39,6 +47,7 @@ const jobs: { prompt: string; values: GeneratorFormValues }[] = [
   },
   {
     prompt: "Help my estate agency turn enquiries into viewings.",
+    agents: ["Charlie", "Alex", "Grace"],
     values: {
       businessName: "Harbour & Field",
       businessType: "estate agency",
@@ -51,41 +60,89 @@ const jobs: { prompt: string; values: GeneratorFormValues }[] = [
       facebookStyles: [...DEFAULT_FACEBOOK_STYLES],
     },
   },
-];
-
-const stages = [
-  "Understanding the objective…",
-  "Building the local audience picture…",
-  "Drafting the first reply and the ads lines…",
-  "Preparing the pack…",
+  {
+    prompt: "Create this week’s social media content.",
+    agents: ["Sophie", "Grace", "Scout"],
+    values: {
+      businessName: "Harbour & Hearth",
+      businessType: "cafe",
+      location: "Falmouth",
+      offer: "weekend brunch",
+      tone: "friendly",
+      callToAction: "Message us",
+      length: "standard",
+      includeHashtags: false,
+      facebookStyles: [...DEFAULT_FACEBOOK_STYLES],
+    },
+  },
+  {
+    prompt: "Build a follow-up sequence for yesterday’s leads.",
+    agents: ["Alex", "Charlie", "Grace"],
+    values: {
+      businessName: "Ridge & Rain",
+      businessType: "roofing",
+      location: "Manchester",
+      offer: "roof repairs",
+      tone: "professional",
+      callToAction: "Call or message for a quote",
+      length: "standard",
+      includeHashtags: false,
+      facebookStyles: [...DEFAULT_FACEBOOK_STYLES],
+    },
+  },
 ];
 
 export function JobDemo() {
   const [index, setIndex] = useState(0);
+  const [typed, setTyped] = useState(jobs[0]?.prompt ?? "");
+  const [running, setRunning] = useState(false);
   const [stage, setStage] = useState(-1);
-  const [output, setOutput] = useState<{ label: string; text: string }[]>([]);
+  const [output, setOutput] = useState<{ who: string; label: string; text: string }[]>([]);
+  const [highlight, setHighlight] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (running) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = window.setInterval(() => {
+      setIndex((current) => {
+        const next = (current + 1) % jobs.length;
+        const job = jobs[next];
+        if (job) setTyped(job.prompt);
+        return next;
+      });
+    }, 4200);
+    return () => window.clearInterval(id);
+  }, [running]);
 
   async function run(jobIndex: number) {
     const job = jobs[jobIndex];
     if (!job) return;
+    setRunning(true);
     setIndex(jobIndex);
+    setTyped(job.prompt);
     setOutput([]);
-    for (let i = 0; i < stages.length; i += 1) {
+    setStage(0);
+    for (let i = 0; i < job.agents.length; i += 1) {
+      setHighlight(job.agents[i] ?? null);
       setStage(i);
-      await new Promise((resolve) => window.setTimeout(resolve, 420));
+      await new Promise((resolve) => window.setTimeout(resolve, 520));
     }
     const reply = generateForTool("enquiry-reply", job.values)[0];
     const ads = generateForTool("ads-copy", job.values)[0];
-    const plan = generateForTool("customer-plan", job.values)[0];
+    const social = generateForTool("facebook-post-generator", job.values)[0];
+    const follow = generateForTool("follow-up", job.values)[0];
     recordSignal("demo", job.values.businessType);
     setOutput(
       [
-        reply ? { label: "Appointment Agent · first reply", text: reply.text } : null,
-        ads ? { label: "Ads Agent · opening lines", text: ads.text } : null,
-        plan ? { label: "Lead Agent · 14-day plan (opening)", text: plan.text } : null,
-      ].filter((item): item is { label: string; text: string } => Boolean(item)),
+        reply ? { who: "Charlie", label: "First reply", text: reply.text } : null,
+        follow ? { who: "Alex", label: "Follow-up", text: follow.text } : null,
+        ads ? { who: "Max", label: "Ads opening", text: ads.text } : null,
+        social ? { who: "Sophie", label: "Social draft", text: social.text } : null,
+      ].filter((item): item is { who: string; label: string; text: string } => Boolean(item)),
     );
     setStage(-1);
+    setHighlight(null);
+    setRunning(false);
   }
 
   const job = jobs[index] ?? jobs[0];
@@ -96,65 +153,75 @@ export function JobDemo() {
       <Container>
         <p className="kicker">
           <span className="kicker-dot" aria-hidden="true" />
-          Demonstration — real drafts from this desk
+          Command the workforce
         </p>
-        <h2
-          id="demo-heading"
-          className="font-display display-2 mt-6 max-w-3xl text-ice"
-        >
-          Give your AI agent a job.
+        <h2 id="demo-heading" className="font-display display-2 mt-6 max-w-3xl text-ice">
+          What would you like your AI team to do?
         </h2>
-        <p className="mt-5 max-w-xl text-base leading-7 text-slate">
-          These are example businesses, labelled as a demonstration. The words
-          come from the same desk you unlock after you pay — not a live scrape
-          of Manchester, and not a robot logging into ads accounts.
+        <p className="prose-narrow mt-4 text-sm leading-7 text-slate">
+          Demonstration jobs. The words come from the same desks you unlock after
+          you pay.
         </p>
-        <div className="mt-10 flex flex-col gap-3 lg:flex-row">
-          {jobs.map((item, i) => (
-            <button
-              key={item.prompt}
-              type="button"
-              onClick={() => void run(i)}
-              className={`rounded-2xl border px-4 py-4 text-left text-sm leading-6 transition duration-200 ${
-                index === i
-                  ? "border-magenta/40 bg-magenta/10 text-ice"
-                  : "border-white/10 bg-elevated text-slate hover:border-cyan/30"
-              }`}
-            >
-              {item.prompt}
-            </button>
-          ))}
-        </div>
-        <div className="glass-lit mt-8 rounded-[1.5rem] p-6 sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm text-slate">{job.prompt}</p>
-            <Button type="button" onClick={() => void run(index)} arrow>
-              Run this job
-            </Button>
+        <div className="glass-lit mt-10 overflow-hidden rounded-[1.6rem] p-4 sm:p-6">
+          <label className="block">
+            <span className="label">Command input</span>
+            <input
+              value={typed}
+              onChange={(event) => {
+                setTyped(event.target.value);
+                setRunning(true);
+              }}
+              className="field font-display text-lg"
+            />
+          </label>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {jobs.map((item, i) => (
+              <button
+                key={item.prompt}
+                type="button"
+                onClick={() => {
+                  setIndex(i);
+                  setTyped(item.prompt);
+                }}
+                className={`rounded-full px-3 py-1.5 text-xs ${
+                  index === i ? "bg-cyan/20 text-ice" : "border border-white/12 text-titanium hover:text-ice"
+                }`}
+              >
+                {item.prompt}
+              </button>
+            ))}
           </div>
-          {stage >= 0 ? (
-            <p className="mt-6 text-sm text-cyan" role="status">
-              {stages[stage]}
-            </p>
-          ) : null}
-          {output.length > 0 ? (
-            <div className="mt-8 grid gap-6">
-              {output.map((item) => (
-                <article key={item.label}>
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan">
-                    {item.label}
-                  </h3>
-                  <pre className="mt-3 max-h-56 overflow-auto whitespace-pre-wrap font-sans text-sm leading-7 text-ice">
-                    {item.text.length > 700 ? `${item.text.slice(0, 700).trim()}…` : item.text}
+          <Button type="button" className="mt-5" arrow disabled={running} onClick={() => void run(index)}>
+            {running ? "Team working…" : "Run job"}
+          </Button>
+        </div>
+        <div className="mt-8 grid items-center gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <WorkforceCore highlight={highlight} />
+          <div className="space-y-3">
+            {job ? (
+              <p className="text-sm text-titanium">
+                {running ? `${job.agents[Math.max(stage, 0)] ?? job.agents[0]} is on it.` : "The correct specialists light up, then write."}
+              </p>
+            ) : null}
+            {output.length ? (
+              output.map((item, i) => (
+                <article
+                  key={item.label}
+                  className="glass live-cascade rounded-2xl p-4"
+                  style={{ animationDelay: `${i * 90}ms`, boxShadow: `inset 3px 0 0 ${colourForAgent(item.who)}` }}
+                >
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em]" style={{ color: colourForAgent(item.who) }}>
+                    {item.who} · {item.label}
+                  </p>
+                  <pre className="mt-2 max-h-36 overflow-auto whitespace-pre-wrap font-sans text-sm leading-6 text-silver">
+                    {item.text.length > 360 ? `${item.text.slice(0, 360).trim()}…` : item.text}
                   </pre>
                 </article>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-6 text-sm text-slate">
-              Choose a job. The team writes in this tab.
-            </p>
-          )}
+              ))
+            ) : (
+              <p className="text-sm text-slate">Run a job. Watch the workforce activate.</p>
+            )}
+          </div>
         </div>
       </Container>
     </section>

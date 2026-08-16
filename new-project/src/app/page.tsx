@@ -6,6 +6,7 @@ import { Faq } from "@/components/landing/faq";
 import { HonestSplit } from "@/components/landing/honest-split";
 import { IndustryExplorer } from "@/components/landing/industry-explorer";
 import { JobDemo } from "@/components/landing/job-demo";
+import { MotionTicker } from "@/components/landing/motion-ticker";
 import { OutputPreviews } from "@/components/landing/output-previews";
 import { RoiCalculator } from "@/components/landing/roi-calculator";
 import { StarterPath } from "@/components/landing/starter-path";
@@ -21,13 +22,14 @@ export default function Home() {
       <OfferJsonLd />
       <SignalTracker kind="home" />
       <WorkforceHero />
+      <MotionTicker />
       <ControlCentre />
       <AgentShowroom />
+      <JobDemo />
       <IndustryExplorer />
       <StarterPath />
       <RoiCalculator />
       <OutputPreviews />
-      <JobDemo />
       <GrowthLayer />
       <HonestSplit />
       <TeamPricing />

@@ -74,8 +74,8 @@ export function Logo({
           LocalLaunch
         </span>
         {compact ? null : (
-          <span className="mt-1.5 hidden text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-cyan sm:block">
-            AI workforce
+          <span className="mt-1.5 hidden text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-cyan sm:block">
+            AI workforce for local business
           </span>
         )}
       </span>

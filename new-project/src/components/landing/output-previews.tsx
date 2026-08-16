@@ -137,10 +137,21 @@ export function OutputPreviews() {
             </div>
             {tab.incoming ? (
               <div className="border-b border-cyan/10 px-5 py-4">
-                <p className="text-[0.62rem] uppercase tracking-[0.14em] text-titanium">Incoming</p>
+                <p className="text-[0.62rem] uppercase tracking-[0.14em] text-titanium">Input</p>
                 <p className="mt-2 text-sm leading-7 text-ice">“{tab.incoming}”</p>
               </div>
-            ) : null}
+            ) : (
+              <div className="border-b border-cyan/10 px-5 py-4">
+                <p className="text-[0.62rem] uppercase tracking-[0.14em] text-titanium">Input</p>
+                <p className="mt-2 text-sm leading-7 text-ice">
+                  {DEMO_WORKSPACE.businessName} · {DEMO_WORKSPACE.location} · {DEMO_WORKSPACE.offer}
+                </p>
+              </div>
+            )}
+            <div className="border-b border-cyan/10 px-5 py-3">
+              <p className="text-[0.62rem] uppercase tracking-[0.14em] text-cyan">AI process</p>
+              <p className="mt-1 text-sm text-silver">Same business facts → named desk → finished draft you can copy.</p>
+            </div>
             <div className="document-surface m-4 rounded-2xl px-5 py-5 sm:m-6">
               <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-black/50">Draft</p>
               <pre className="mt-3 whitespace-pre-wrap font-sans text-sm leading-7 text-[#1b1a16]">{draft.text}</pre>

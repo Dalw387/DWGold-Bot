@@ -105,10 +105,10 @@ body {
 }
 
 .display-1 {
-  font-size: clamp(2.7rem, 6.4vw, 5.9rem);
+  font-size: clamp(2.9rem, 7.2vw, 6.4rem);
   font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
+  letter-spacing: -0.048em;
+  line-height: 0.96;
   padding-block: 0.1em;
 }
 
@@ -343,6 +343,42 @@ body {
   box-shadow: 0 0 24px rgb(73 230 255 / 0.12);
 }
 
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hud-scan {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgb(73 230 255 / 0.07) 48%, transparent 52%);
+  mix-blend-mode: screen;
+}
+
+.core-halo {
+  background:
+    radial-gradient(circle at 35% 30%, #fff 0, #49e6ff 14%, #5277ff 40%, #8b5cff 62%, transparent 72%);
+}
+
+.status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--scout);
+  box-shadow: 0 0 10px var(--scout);
+}
+
+.marquee-reverse {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -353,7 +389,11 @@ body {
   }
 
   .marquee-track {
-    animation: marquee 36s linear infinite;
+    animation: marquee 32s linear infinite;
+  }
+
+  .marquee-reverse {
+    animation: marquee-rev 38s linear infinite;
   }
 
   .logo-draw .path {
@@ -396,6 +436,42 @@ body {
   .signature-text {
     animation: sheen 8s ease-in-out infinite;
   }
+
+  .orbit {
+    animation: spin 48s linear infinite;
+  }
+
+  .orbit-rev {
+    animation: spin 64s linear infinite reverse;
+  }
+
+  .float-a {
+    animation: float-y 5.2s ease-in-out infinite;
+  }
+
+  .float-b {
+    animation: float-y 6.4s ease-in-out infinite reverse;
+  }
+
+  .float-c {
+    animation: float-y 4.6s ease-in-out infinite 0.6s;
+  }
+
+  .hud-scan {
+    animation: scan 5.5s linear infinite;
+  }
+
+  .feed-in {
+    animation: feed 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .status-dot {
+    animation: pulse-dot 1.8s ease-in-out infinite;
+  }
+
+  .live-cascade {
+    animation: cascade 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 }
 
 @keyframes marquee {
@@ -404,6 +480,62 @@ body {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-rev {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes feed {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cascade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -491,6 +623,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
+  .marquee-reverse,
   .logo-draw .path,
   .logo-draw .node,
   .kicker-dot,
@@ -499,7 +632,16 @@ body {
   .pulse-line,
   .signal-travel,
   .mesh-breathe,
-  .signature-text {
+  .signature-text,
+  .orbit,
+  .orbit-rev,
+  .float-a,
+  .float-b,
+  .float-c,
+  .hud-scan,
+  .feed-in,
+  .status-dot,
+  .live-cascade {
     animation: none !important;
   }
 

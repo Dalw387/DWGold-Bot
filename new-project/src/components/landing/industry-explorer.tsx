@@ -122,12 +122,15 @@ export function IndustryExplorer() {
                 Build this team for my {business.ctaNoun}
               </Button>
             </div>
-            <div className="space-y-3">
-              {scene.map((item) => (
+            <div className="space-y-3" key={business.id}>
+              {scene.map((item, index) => (
                 <article
                   key={item.who}
-                  className="glass rounded-2xl p-4"
-                  style={{ boxShadow: `inset 3px 0 0 ${item.colour}` }}
+                  className="glass live-cascade rounded-2xl p-4"
+                  style={{
+                    animationDelay: `${index * 110}ms`,
+                    boxShadow: `inset 3px 0 0 ${item.colour}`,
+                  }}
                 >
                   <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em]" style={{ color: item.colour }}>
                     {item.who} · {item.label}

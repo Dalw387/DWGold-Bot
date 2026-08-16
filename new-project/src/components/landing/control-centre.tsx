@@ -45,7 +45,7 @@ const activities: Activity[] = [
   {
     id: "enquiry",
     time: "09:14",
-    title: "New enquiry added",
+    title: "New enquiry detected",
     agent: "system",
     nav: "overview",
     note: DEMO_ENQUIRY,
@@ -53,7 +53,7 @@ const activities: Activity[] = [
   {
     id: "charlie",
     time: "09:15",
-    title: "First response drafted",
+    title: "Charlie prepared response",
     agent: "charlie",
     nav: "appointments",
     tool: "enquiry-reply",
@@ -61,7 +61,7 @@ const activities: Activity[] = [
   {
     id: "alex",
     time: "09:18",
-    title: "Follow-up sequence prepared",
+    title: "Alex created follow-up sequence",
     agent: "alex",
     nav: "leads",
     tool: "follow-up",
@@ -69,7 +69,7 @@ const activities: Activity[] = [
   {
     id: "max",
     time: "09:24",
-    title: "Google Ads headline set created",
+    title: "Max prepared Google Ads campaign",
     agent: "max",
     nav: "advertising",
     tool: "ads-copy",
@@ -77,7 +77,7 @@ const activities: Activity[] = [
   {
     id: "sophie",
     time: "09:31",
-    title: "Three social posts prepared",
+    title: "Sophie created social posts",
     agent: "sophie",
     nav: "social",
     tool: "facebook-post-generator",
@@ -85,7 +85,7 @@ const activities: Activity[] = [
   {
     id: "grace",
     time: "10:02",
-    title: "Review request drafted",
+    title: "Grace prepared review request",
     agent: "grace",
     nav: "reviews",
     tool: "google-review-desk",
@@ -93,7 +93,7 @@ const activities: Activity[] = [
   {
     id: "scout",
     time: "10:17",
-    title: "Local visibility checklist updated",
+    title: "Scout completed visibility check",
     agent: "scout",
     nav: "search",
     tool: "seo-brief",
@@ -150,7 +150,8 @@ export function ControlCentre() {
           from the same context.
         </p>
 
-        <div className="os-shell mt-12 overflow-hidden rounded-[1.6rem]">
+        <div className="os-shell relative mt-12 overflow-hidden rounded-[1.6rem]">
+          <div className="hud-scan" aria-hidden="true" />
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-cyan/10 px-4 py-3 sm:px-5">
             <div className="flex items-center gap-3">
               <BrandMark className="h-7 w-7" />
@@ -220,12 +221,12 @@ export function ControlCentre() {
                 </div>
               ) : (
                 <ul>
-                  {visible.map((item) => {
+                  {visible.map((item, index) => {
                     const on = item.id === selectedId;
                     const colour = item.agent === "system" ? AGENT_COLOURS.alex : colourForAgent(item.agent);
                     const who = item.agent === "system" ? "SYSTEM" : item.agent.toUpperCase();
                     return (
-                      <li key={item.id}>
+                      <li key={item.id} className="feed-in" style={{ animationDelay: `${index * 120}ms` }}>
                         <button
                           type="button"
                           onClick={() => setSelectedId(item.id)}
@@ -294,8 +295,8 @@ export function ControlCentre() {
                           <span className="text-[0.68rem] uppercase tracking-[0.12em] text-titanium">{agent.desk}</span>
                         </span>
                         <span className="flex items-center gap-1.5 text-[0.62rem] uppercase tracking-[0.12em] text-scout">
-                          <span className="h-1.5 w-1.5 rounded-full" style={{ background: agent.colour, boxShadow: `0 0 8px ${agent.colour}` }} />
-                          Ready
+                          <span className="status-dot" style={{ background: agent.colour, boxShadow: `0 0 10px ${agent.colour}` }} />
+                          Active
                         </span>
                       </button>
                     </li>

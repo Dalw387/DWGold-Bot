@@ -68,10 +68,10 @@ export function SiteHeader() {
   const links = access.unlocked ? memberLinks : publicLinks;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-cyan/10 bg-[#050611]/72 backdrop-blur-2xl">
-      <Container className="flex h-[4.75rem] items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 border-b border-white/8 bg-[#050611]/70 backdrop-blur-2xl">
+      <Container className="flex h-20 items-center justify-between gap-6">
         <Logo />
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {links.map((link) => {
             const active =
               link.href.startsWith("/#")
@@ -81,8 +81,8 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt ${
-                  active ? "text-ice" : "text-slate hover:text-ice"
+                className={`rounded-lg px-3.5 py-2 text-[0.82rem] tracking-wide focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan ${
+                  active ? "text-ice" : "text-titanium hover:text-ice"
                 }`}
               >
                 {link.label}
@@ -101,7 +101,7 @@ export function SiteHeader() {
         </nav>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/12 bg-elevated text-ice md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/12 bg-elevated text-ice lg:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
@@ -115,7 +115,7 @@ export function SiteHeader() {
         </button>
       </Container>
       {open ? (
-        <div id={menuId} className="border-t border-white/8 bg-void md:hidden">
+        <div id={menuId} className="border-t border-white/8 bg-void lg:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link

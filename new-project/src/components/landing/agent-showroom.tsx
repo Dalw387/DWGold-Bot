@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
 import { DEMO_ENQUIRY, DEMO_WORKSPACE } from "@/lib/agent-identity";
@@ -11,18 +11,28 @@ import { specialists, type SpecialistId } from "@/lib/sales";
 const workflow: {
   id: SpecialistId;
   verb: string;
-  tool: "enquiry-reply" | "follow-up" | "google-review-desk" | "facebook-post-generator";
+  tool: "enquiry-reply" | "follow-up" | "google-review-desk" | "facebook-post-generator" | "seo-brief" | "ads-copy";
   caption?: string;
 }[] = [
-  { id: "charlie", verb: "Qualifies", tool: "enquiry-reply" },
+  { id: "charlie", verb: "Responds", tool: "enquiry-reply" },
   { id: "alex", verb: "Follows up", tool: "follow-up", caption: "Day 1 · Day 3 · Day 7" },
-  { id: "grace", verb: "After the job", tool: "google-review-desk", caption: "Review request ready" },
-  { id: "sophie", verb: "Social proof", tool: "facebook-post-generator", caption: "Customer story draft ready" },
+  { id: "grace", verb: "Requests review", tool: "google-review-desk", caption: "After the job" },
+  { id: "sophie", verb: "Turns it into content", tool: "facebook-post-generator" },
+  { id: "scout", verb: "Strengthens visibility", tool: "seo-brief" },
+  { id: "max", verb: "Feeds advertising", tool: "ads-copy" },
 ];
 
 export function AgentShowroom() {
   const [active, setActive] = useState<SpecialistId>("charlie");
+  const [lit, setLit] = useState(0);
   const spec = specialists.find((s) => s.id === active) ?? specialists[0];
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = window.setInterval(() => {
+      setLit((current) => (current + 1) % (workflow.length + 1));
+    }, 1600);
+    return () => window.clearInterval(id);
+  }, []);
   const drafts = useMemo(
     () =>
       workflow.map((step) => ({
@@ -70,12 +80,20 @@ export function AgentShowroom() {
           <p className="mt-3 max-w-2xl font-serif text-2xl leading-snug text-ice sm:text-3xl">
             “{DEMO_ENQUIRY}”
           </p>
-          <ol className="mt-8 grid gap-4 lg:grid-cols-4">
-            {drafts.map((step) => (
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {drafts.map((step, index) => {
+              const on = index <= lit - 1;
+              return (
               <li
                 key={step.id}
-                className="rounded-2xl border border-white/8 bg-void/40 p-4"
-                style={{ boxShadow: `inset 3px 0 0 ${step.agent?.colour ?? "#49E6FF"}` }}
+                className="rounded-2xl border bg-void/40 p-4 transition"
+                style={{
+                  borderColor: on ? step.agent?.colour : "rgba(255,255,255,0.08)",
+                  boxShadow: on
+                    ? `inset 3px 0 0 ${step.agent?.colour ?? "#49E6FF"}, 0 0 24px ${step.agent?.colour ?? "#49E6FF"}33`
+                    : `inset 3px 0 0 ${step.agent?.colour ?? "#49E6FF"}`,
+                  opacity: on ? 1 : 0.55,
+                }}
               >
                 <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em]" style={{ color: step.agent?.colour }}>
                   {step.agent?.name} · {step.verb}
@@ -85,7 +103,8 @@ export function AgentShowroom() {
                   {step.draft?.text}
                 </p>
               </li>
-            ))}
+            );
+            })}
           </ol>
         </div>
 
