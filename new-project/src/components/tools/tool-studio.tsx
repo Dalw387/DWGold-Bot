@@ -156,7 +156,12 @@ export function ToolStudio({ tool }: { tool: ToolDefinition }) {
             onChange={setValues}
             onSubmit={handleSubmit}
             onReset={resetAll}
-            onExample={() => writeProfileStore(EXAMPLE_PROFILE)}
+            onExample={() =>
+              writeProfileStore({
+                ...EXAMPLE_PROFILE,
+                facebookStyles: [...EXAMPLE_PROFILE.facebookStyles],
+              })
+            }
           />
         </div>
 
