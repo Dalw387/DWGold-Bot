@@ -15,13 +15,15 @@ const links = [
 ];
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const menuId = useId();
+  const [open, setOpen] = useState(false);
+  const [menuPath, setMenuPath] = useState(pathname);
 
-  useEffect(() => {
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (!open) return undefined;
