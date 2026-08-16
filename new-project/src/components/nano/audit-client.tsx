@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Button } from "@/components/button";
 import { StripePayLink } from "@/components/pay/stripe-pay-link";
 import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
 import {
@@ -13,10 +14,13 @@ import {
   scoreAudit,
   shareBreakdown,
   type AuditAnswers,
+  type AuditChoice,
 } from "@/lib/nano-growth";
+import { openBuildTeam } from "@/lib/sales";
 
 export function AuditClient() {
   const search = useSearchParams();
+  const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<AuditAnswers>({});
   const [done, setDone] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -29,12 +33,19 @@ export function AuditClient() {
 
   const { total } = useMemo(() => scoreAudit(answers), [answers]);
   const parts = useMemo(() => shareBreakdown(answers), [answers]);
-  const complete = auditQuestions.every((q) => answers[q.id] !== undefined);
+  const question = auditQuestions[index];
 
-  function finish() {
-    if (!complete) return;
+  function choose(choice: AuditChoice) {
+    if (!question) return;
+    const nextAnswers = { ...answers, [question.id]: choice };
+    setAnswers(nextAnswers);
+    if (index + 1 < auditQuestions.length) {
+      setIndex(index + 1);
+      return;
+    }
+    const scored = scoreAudit(nextAnswers);
     setCode(makeReferralCode());
-    saveAudit(answers, total);
+    saveAudit(nextAnswers, scored.total);
     setDone(true);
   }
 
@@ -53,89 +64,86 @@ Run yours: ${origin}/audit?r=${code}`;
     window.setTimeout(() => setCopied(false), 2000);
   }
 
+  const leak =
+    parts.response <= parts.ads && parts.response <= parts.search
+      ? "Missed-call recovery"
+      : parts.ads <= parts.search
+        ? "Advertising landing"
+        : "Search visibility";
+
   return (
-    <div className="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-24">
-      <p className="font-display text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan/80">
-        Nano Growth · shareable score
+    <div className="mx-auto max-w-2xl px-5 py-16 md:px-8 md:py-24">
+      <p className="kicker">
+        <span className="kicker-dot" aria-hidden="true" />
+        AI marketing score
       </p>
-      <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-white md:text-5xl">
-        Your AI marketing score
+      <h1 className="font-display display-2 mt-6 text-ice">
+        How much business is slipping through the cracks?
       </h1>
-      <p className="mt-4 text-lg leading-relaxed text-slate">
-        Eight honest questions. No fake industry averages. The score is a prompt to share and a
-        brief for the desks after you pay {HOUSE_PRICE_SHORT} — not a ranking Google will see, and
-        not a promise that a post will go viral.
+      <p className="mt-4 text-base leading-7 text-slate">
+        Eight questions. About 60 seconds. No fake industry averages. Not a
+        ranking Google will see.
       </p>
 
-      <div className="mt-10 space-y-4">
-        {auditQuestions.map((q) => (
-          <div key={q.id} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <p className="text-sm font-medium text-white">{q.prompt}</p>
-            <div className="mt-3 flex gap-2">
-              {(["yes", "no"] as const).map((v) => (
-                <button
-                  key={v}
-                  type="button"
-                  onClick={() => setAnswers((a) => ({ ...a, [q.id]: v === "yes" }))}
-                  className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
-                    answers[q.id] === (v === "yes")
-                      ? "bg-white text-[#07040f]"
-                      : "border border-white/15 text-slate"
-                  }`}
-                >
-                  {v === "yes" ? "Yes" : "No"}
-                </button>
-              ))}
-            </div>
+      {!done && question ? (
+        <div className="mt-12">
+          <p className="label">
+            {String(index + 1).padStart(2, "0")} / {String(auditQuestions.length).padStart(2, "0")}
+          </p>
+          <p className="mt-4 font-display text-2xl leading-snug text-ice">{question.prompt}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button type="button" onClick={() => choose(true)}>
+              Yes
+            </Button>
+            <Button type="button" variant="secondary" onClick={() => choose("sometimes")}>
+              Sometimes
+            </Button>
+            <Button type="button" variant="ghost" onClick={() => choose(false)}>
+              No
+            </Button>
           </div>
-        ))}
-      </div>
-
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          disabled={!complete}
-          onClick={finish}
-          className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#07040f] disabled:opacity-40"
-        >
-          Calculate score
-        </button>
-        <p className="text-sm text-slate">{complete ? "Ready." : "Answer every question first."}</p>
-      </div>
+          {index > 0 ? (
+            <button type="button" className="mt-6 text-sm text-titanium" onClick={() => setIndex(index - 1)}>
+              Back
+            </button>
+          ) : null}
+        </div>
+      ) : null}
 
       {done ? (
-        <div className="mt-10 overflow-hidden rounded-[28px] border border-cyan/25 bg-gradient-to-br from-cyan/10 to-indigo/10 p-8">
-          <p className="font-display text-[11px] uppercase tracking-[0.28em] text-cyan/80">Share card</p>
-          <p className="mt-3 font-display text-6xl font-semibold text-white">{total}/100</p>
-          <p className="mt-1 font-serif text-xl text-slate">AI marketing readiness</p>
+        <div className="titanium mt-12 rounded-[1.5rem] p-8">
+          <p className="label">Your LocalLaunch score</p>
+          <p className="font-display mt-3 text-6xl text-ice">{total}/100</p>
           <dl className="mt-6 grid gap-2 text-sm text-slate">
             <div className="flex justify-between">
               <dt>Lead response</dt>
-              <dd className="text-white">{parts.response}/100</dd>
+              <dd className="text-ice">{parts.response}/100</dd>
             </div>
             <div className="flex justify-between">
-              <dt>Advertising efficiency</dt>
-              <dd className="text-white">{parts.ads}/100</dd>
+              <dt>Advertising</dt>
+              <dd className="text-ice">{parts.ads}/100</dd>
             </div>
             <div className="flex justify-between">
               <dt>Search visibility</dt>
-              <dd className="text-white">{parts.search}/100</dd>
+              <dd className="text-ice">{parts.search}/100</dd>
             </div>
           </dl>
-          <p className="mt-4 text-xs text-slate">
-            Your share link can include referral code {code}. If someone opens it on this site, that
-            visit is stored in their browser — not posted to LinkedIn for you.
+          <p className="mt-6 text-sm leading-6 text-slate">
+            Biggest leak: {leak}. That is a prompt for the desks — not a financial ROI claim.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={() => void copyShare()}
-              className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#07040f]"
+              className="rounded-[12px] border border-titanium/35 px-5 py-2.5 text-sm font-semibold text-ice"
             >
-              {copied ? "Copied" : "Copy share text"}
+              {copied ? "Copied" : "Share my score"}
             </button>
-            <StripePayLink variant="secondary">Unlock the desks · {HOUSE_PRICE_SHORT}</StripePayLink>
-            <Link href="/tools/customer-plan" className="rounded-full px-5 py-2.5 text-sm text-slate">
+            <StripePayLink>Build the team that fixes this · {HOUSE_PRICE_SHORT}</StripePayLink>
+            <Button type="button" variant="ghost" onClick={() => openBuildTeam()}>
+              Build My AI Team
+            </Button>
+            <Link href="/tools/customer-plan" className="text-sm text-slate">
               After pay: 14-day plan
             </Link>
           </div>

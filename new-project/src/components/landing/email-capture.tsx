@@ -5,7 +5,6 @@ import { Button } from "@/components/button";
 import { saveLeadEmail } from "@/lib/lead-email";
 
 export function EmailCapture({
-  tone = "paper",
   source = "homepage",
 }: {
   tone?: "paper" | "ink";
@@ -16,10 +15,6 @@ export function EmailCapture({
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
   const [message, setMessage] = useState("");
-  const ink = tone === "ink";
-  const field = ink
-    ? "mt-2 w-full rounded-sm border border-white/15 bg-[#161616] px-3.5 py-2.5 text-sm text-paper"
-    : "mt-2 w-full rounded-sm border border-border bg-card px-3.5 py-2.5 text-sm text-foreground";
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -45,11 +40,7 @@ export function EmailCapture({
       }
       saveLeadEmail(data.email || email);
       setStatus("done");
-      setMessage(
-        data.email
-          ? `Saved ${data.email}. We will use it for LocalLaunch updates, not a bought list.`
-          : "Saved. Thank you.",
-      );
+      setMessage("Saved. Useful updates only.");
     } catch {
       setStatus("error");
       setMessage("That email could not be saved. Check your connection and try again.");
@@ -58,18 +49,12 @@ export function EmailCapture({
 
   return (
     <form onSubmit={(event) => void onSubmit(event)} noValidate>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className={`text-sm font-medium ${ink ? "text-paper" : "text-foreground"}`}>
-          Name <span className={ink ? "text-[#a8a59e]" : "text-muted"}>(optional)</span>
-          <input
-            name="name"
-            autoComplete="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            className={field}
-          />
+      <div className="grid gap-4">
+        <label className="text-sm font-medium text-ice">
+          Name <span className="text-slate">(optional)</span>
+          <input name="name" autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} className="field" />
         </label>
-        <label className={`text-sm font-medium ${ink ? "text-paper" : "text-foreground"}`}>
+        <label className="text-sm font-medium text-ice">
           Email
           <input
             name="email"
@@ -78,38 +63,24 @@ export function EmailCapture({
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className={field}
+            className="field"
           />
         </label>
       </div>
-      <label className={`mt-4 flex items-start gap-3 text-sm leading-6 ${ink ? "text-[#cfcbc3]" : "text-muted"}`}>
+      <label className="mt-4 flex items-start gap-3 text-sm leading-6 text-slate">
         <input
           type="checkbox"
           checked={consent}
           onChange={(event) => setConsent(event.target.checked)}
-          className="mt-1 h-4 w-4 rounded border-stone-300"
+          className="mt-1 h-4 w-4 rounded border-titanium/40"
         />
-        <span>
-          Email me about LocalLaunch and later products. You can ask to be
-          removed. We do not sell addresses.
-        </span>
+        <span>Useful updates only. Unsubscribe whenever you like. We do not sell addresses.</span>
       </label>
-      <Button type="submit" variant={ink ? "gold" : "primary"} className="mt-6" disabled={status === "saving"}>
-        {status === "saving" ? "Saving" : "Keep me on the list"}
+      <Button type="submit" className="mt-6" disabled={status === "saving"} arrow>
+        {status === "saving" ? "Saving" : "Keep me updated"}
       </Button>
       {message ? (
-        <p
-          className={`mt-3 text-sm leading-6 ${
-            status === "error"
-              ? ink
-                ? "text-[#f3c1c1]"
-                : "text-red-800"
-              : ink
-                ? "text-[#b4b0a8]"
-                : "text-muted"
-          }`}
-          role="status"
-        >
+        <p className={`mt-3 text-sm leading-6 ${status === "error" ? "text-red-300" : "text-slate"}`} role="status">
           {message}
         </p>
       ) : null}

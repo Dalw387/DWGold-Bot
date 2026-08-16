@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter, Syne } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import { StudioAgent } from "@/components/agent/studio-agent";
 import { Atmosphere } from "@/components/landing/atmosphere";
 import { NanoBoot } from "@/components/nano/nano-boot";
+import { SalesGuide } from "@/components/sales/sales-guide";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StickyPayBar } from "@/components/landing/sticky-pay-bar";
@@ -14,16 +15,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const syne = Syne({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-});
-
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument",
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -51,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${syne.variable} ${instrument.variable} h-full antialiased`}
+      className={`${inter.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="relative flex min-h-full flex-col bg-background pb-24 font-sans text-foreground md:pb-0">
         <Atmosphere />
@@ -69,6 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <StickyPayBar />
+        <SalesGuide />
         <StudioAgent />
       </body>
     </html>

@@ -44,7 +44,7 @@ export default async function CommercialPage({
       .filter((item): item is NonNullable<typeof item> => Boolean(item)) ?? [];
 
   return (
-    <div className="hero-light border-b border-border">
+    <div className="border-b border-border">
       <SignalTracker kind="agent" detail={slug} />
       <Container className="max-w-3xl py-16 sm:py-24">
         <p className="kicker">
@@ -77,7 +77,7 @@ export default async function CommercialPage({
 
       {desk && drafts.length > 0 ? (
         <Container className="max-w-3xl pb-20">
-          <div className="product-frame rounded-[1.5rem] p-6 sm:p-8">
+          <div className="titanium rounded-[1.5rem] p-6 sm:p-8">
             <p className="font-display text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan/80">
               {desk.name} · {desk.title} · real draft
             </p>

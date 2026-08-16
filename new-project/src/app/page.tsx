@@ -1,12 +1,11 @@
 import { ClosePay } from "@/components/landing/close-pay";
-import { AgentBento } from "@/components/landing/agent-bento";
+import { AgentShowroom } from "@/components/landing/agent-showroom";
 import { Capability } from "@/components/landing/capability";
 import { EmailList } from "@/components/landing/email-list";
 import { Faq } from "@/components/landing/faq";
 import { HonestSplit } from "@/components/landing/honest-split";
-import { Industries } from "@/components/landing/industries";
+import { IndustryExplorer } from "@/components/landing/industry-explorer";
 import { JobDemo } from "@/components/landing/job-demo";
-import { MotionTicker } from "@/components/landing/motion-ticker";
 import { RoiCalculator } from "@/components/landing/roi-calculator";
 import { StarterPath } from "@/components/landing/starter-path";
 import { TeamPricing } from "@/components/landing/team-pricing";
@@ -21,14 +20,13 @@ export default function Home() {
       <OfferJsonLd />
       <SignalTracker kind="home" />
       <WorkforceHero />
-      <MotionTicker />
-      <GrowthLayer />
-      <AgentBento />
-      <Industries />
+      <AgentShowroom />
+      <IndustryExplorer />
       <StarterPath />
       <Capability />
       <RoiCalculator />
       <JobDemo />
+      <GrowthLayer />
       <HonestSplit />
       <TeamPricing />
       <EmailList />

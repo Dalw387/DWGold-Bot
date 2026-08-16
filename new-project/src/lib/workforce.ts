@@ -14,7 +14,7 @@ export const workforceAgents = [
     slug: "ai-lead-generation-agent",
     name: "Alex",
     title: "Lead Agent",
-    kicker: "Never stop prospecting.",
+    kicker: "Never stop following up.",
     size: "large" as const,
     does: "Writes the 14-day plan, referral asks, neighbour introductions and follow-ups so every lead you already have is worked.",
     doesNot: "Does not scrape the internet or invent a list of strangers.",

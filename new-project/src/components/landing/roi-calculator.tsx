@@ -1,9 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ButtonLink } from "@/components/button";
+import { Button } from "@/components/button";
 import { Container } from "@/components/container";
 import { ViewportSignal } from "@/components/nano/viewport-signal";
+import { patchContext } from "@/lib/nano-growth";
+import { openBuildTeam } from "@/lib/sales";
 
 function pounds(n: number): string {
   return new Intl.NumberFormat("en-GB", {
@@ -30,31 +32,37 @@ export function RoiCalculator() {
       return null;
     }
     const missedLeads = monthlyLeads * miss;
-    const opportunity = missedLeads * conversion * averageSale;
-    return { missedLeads, opportunity, adSpend };
+    const recovered = missedLeads * conversion;
+    const opportunity = recovered * averageSale;
+    return { monthlyLeads, missedLeads, recovered, opportunity, adSpend };
   }, [ads, leads, missed, rate, sale]);
 
   return (
-    <section id="calculator" aria-labelledby="roi-heading" className="border-b border-border py-20 sm:py-28">
+    <section id="calculator" aria-labelledby="roi-heading" className="py-24 sm:py-32">
       <ViewportSignal kind="calculator" />
-      <Container className="grid items-start gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <Container className="grid items-start gap-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div>
           <p className="kicker">
             <span className="kicker-dot" aria-hidden="true" />
-            The money
+            Estimate
           </p>
-          <h2
-            id="roi-heading"
-            className="font-display mt-6 text-4xl font-medium leading-[1.02] text-ice sm:text-5xl"
-          >
+          <h2 id="roi-heading" className="font-display display-2 mt-6 text-ice">
             What a missed enquiry is actually worth.
           </h2>
           <p className="mt-5 max-w-md text-base leading-7 text-slate">
-            This is arithmetic from the numbers you type — not a forecast, not a
+            Arithmetic from the numbers you type — not a forecast, not a
             guarantee, and not a promise that the desk will recover every lead.
           </p>
+          {result ? (
+            <p className="font-display mt-10 text-6xl tracking-tight text-ice" role="status">
+              {pounds(result.opportunity)}
+            </p>
+          ) : null}
+          <p className="mt-3 max-w-sm text-sm leading-6 text-slate">
+            potential monthly enquiry value currently going unquoted
+          </p>
         </div>
-        <div className="surface rounded-2xl p-6 sm:p-8">
+        <div>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               { id: "leads", label: "Monthly enquiries", value: leads, set: setLeads },
@@ -69,19 +77,33 @@ export function RoiCalculator() {
                   inputMode="decimal"
                   value={field.value}
                   onChange={(event) => field.set(event.target.value)}
-                  className="mt-2 w-full rounded-lg border border-white/12 bg-midnight px-3 py-2.5 text-base text-ice outline-none focus:border-cobalt focus:ring-2 focus:ring-cobalt/30"
+                  className="field"
                 />
               </label>
             ))}
           </div>
-          <p className="mt-8 font-display text-2xl leading-snug text-ice" role="status">
-            {result
-              ? `Your business may be leaving approximately ${pounds(result.opportunity)} of opportunity unquoted each month, across about ${Math.round(result.missedLeads)} missed enquiries. Ad spend of ${pounds(result.adSpend)} still needs an open page and a first reply.`
-              : "Enter real numbers from your business."}
-          </p>
-          <ButtonLink href="#how" className="mt-8" variant="secondary" arrow>
-            See what your AI team could write
-          </ButtonLink>
+          {result ? (
+            <ol className="mt-10 space-y-3 text-sm leading-6 text-slate">
+              <li>{Math.round(result.monthlyLeads)} enquiries</li>
+              <li>↓ {Math.round(result.missedLeads)} missed</li>
+              <li>↓ {result.recovered.toFixed(1)} potential customers</li>
+              <li className="text-ice">{pounds(result.opportunity)} opportunity</li>
+            </ol>
+          ) : (
+            <p className="mt-8 text-sm text-slate">Enter real numbers from your business.</p>
+          )}
+          <Button
+            type="button"
+            className="mt-8"
+            variant="secondary"
+            arrow
+            onClick={() => {
+              if (result) patchContext({ calculatorOpportunity: result.opportunity, problem: "missed calls" });
+              openBuildTeam();
+            }}
+          >
+            Want Charlie to show missed-enquiry follow-up?
+          </Button>
         </div>
       </Container>
     </section>

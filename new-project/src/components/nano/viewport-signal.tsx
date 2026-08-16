@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { recordSignal, type SignalKind } from "@/lib/nano-growth";
+import { notePricingView, recordSignal, type SignalKind } from "@/lib/nano-growth";
 
 export function ViewportSignal({ kind, detail }: { kind: SignalKind; detail?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -15,6 +15,7 @@ export function ViewportSignal({ kind, detail }: { kind: SignalKind; detail?: st
         if (entry?.isIntersecting && !sent.current) {
           sent.current = true;
           recordSignal(kind, detail);
+          if (kind === "pricing") notePricingView();
         }
       },
       { threshold: 0.35 },

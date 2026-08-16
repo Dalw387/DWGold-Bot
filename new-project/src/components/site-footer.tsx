@@ -34,10 +34,10 @@ export function SiteFooter() {
         LocalLaunch
       </p>
       <Container className="relative py-16 sm:py-24">
-        <p className="font-display max-w-3xl text-4xl font-medium leading-[1.05] text-ice sm:text-6xl">
-          Your competition isn’t going to wait for AI.
+          <p className="font-display max-w-3xl display-2 text-ice">
+          Your competition isn’t waiting for AI.
         </p>
-        <p className="mt-4 max-w-xl text-lg text-slate">Neither should you.</p>
+        <p className="mt-4 max-w-xl text-lg text-slate">Build the capability before it becomes the expectation.</p>
         {access.unlocked ? (
           <Link
             href="/operations"
@@ -46,8 +46,8 @@ export function SiteFooter() {
             Open House Operations →
           </Link>
         ) : (
-          <StripePayLink className="mt-8" arrow>
-            Build my AI team · {HOUSE_PRICE_SHORT}
+            <StripePayLink className="mt-8" arrow>
+            Build My AI Team
           </StripePayLink>
         )}
         <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">

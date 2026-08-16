@@ -100,7 +100,7 @@ export function JobDemo() {
         </p>
         <h2
           id="demo-heading"
-          className="font-display mt-6 max-w-3xl text-4xl font-medium leading-[1.02] text-ice sm:text-5xl"
+          className="font-display display-2 mt-6 max-w-3xl text-ice"
         >
           Give your AI agent a job.
         </h2>
@@ -125,7 +125,7 @@ export function JobDemo() {
             </button>
           ))}
         </div>
-        <div className="surface mt-8 rounded-2xl p-6 sm:p-8">
+        <div className="titanium mt-8 rounded-[1.5rem] p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-slate">{job.prompt}</p>
             <Button type="button" onClick={() => void run(index)} arrow>

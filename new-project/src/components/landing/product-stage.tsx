@@ -2,7 +2,7 @@ import { deskTeam } from "@/lib/desk-team";
 
 export function ProductStage() {
   return (
-    <figure className="product-frame rounded-sm p-5 sm:p-6" aria-label="Preview of the LocalLaunch house desk">
+    <figure className="titanium rounded-[1.5rem] p-5 sm:p-6" aria-label="Preview of the LocalLaunch house desk">
       <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
         <div>
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#a8a59e]">

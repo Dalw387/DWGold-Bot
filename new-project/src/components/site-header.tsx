@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { openStudioAgent } from "@/components/agent/studio-agent";
 import { Container } from "@/components/container";
-import { Button, ButtonLink } from "@/components/button";
+import { Button } from "@/components/button";
 import { Logo } from "@/components/logo";
 import {
   getAccessSnapshot,
@@ -13,12 +13,12 @@ import {
   hydrateAccessStore,
   subscribeAccess,
 } from "@/lib/access-storage";
-import { HOUSE_PRICE_SHORT } from "@/lib/commerce";
+import { openBuildTeam } from "@/lib/sales";
 
 const publicLinks = [
   { href: "/#nano", label: "Nano Growth" },
-  { href: "/#agents", label: "Agents" },
-  { href: "/#solutions", label: "Solutions" },
+  { href: "/#agents", label: "AI Team" },
+  { href: "/#solutions", label: "Industries" },
   { href: "/audit", label: "Score" },
   { href: "/#pricing", label: "Pricing" },
 ];
@@ -68,7 +68,7 @@ export function SiteHeader() {
   const links = access.unlocked ? memberLinks : publicLinks;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#03010a]/70 backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-titanium/15 bg-[#050812]/80 backdrop-blur-xl">
       <Container className="flex h-[4.25rem] items-center justify-between gap-4">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
@@ -94,9 +94,9 @@ export function SiteHeader() {
               Assistant
             </Button>
           ) : (
-            <ButtonLink href="/pay" variant="gold" className="ml-2 px-4 py-2" arrow>
-              Build my AI team
-            </ButtonLink>
+            <Button type="button" variant="gold" className="ml-2 px-4 py-2" arrow onClick={() => openBuildTeam()}>
+              Build My AI Team
+            </Button>
           )}
         </nav>
         <button
@@ -139,9 +139,18 @@ export function SiteHeader() {
                 Ask the assistant
               </Button>
             ) : (
-              <ButtonLink href="/pay" variant="gold" className="mt-1" arrow onClick={() => setOpen(false)}>
-                Build my AI team · {HOUSE_PRICE_SHORT}
-              </ButtonLink>
+              <Button
+                type="button"
+                variant="gold"
+                className="mt-1"
+                arrow
+                onClick={() => {
+                  setOpen(false);
+                  openBuildTeam();
+                }}
+              >
+                Build My AI Team
+              </Button>
             )}
           </Container>
         </div>

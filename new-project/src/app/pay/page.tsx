@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
-import { EmailCapture } from "@/components/landing/email-capture";
 import { OfferJsonLd } from "@/components/pay/offer-json-ld";
 import { StripePayLink } from "@/components/pay/stripe-pay-link";
-import {
-  HOUSE_PRICE_SHORT,
-  HOUSE_PRODUCT_DESCRIPTION,
-  HOUSE_PRODUCT_NAME,
-} from "@/lib/commerce";
-import { includedAfterPay } from "@/lib/offer";
+import { HOUSE_PRICE_SHORT, HOUSE_PRODUCT_NAME } from "@/lib/commerce";
 import { housePriceLabel } from "@/lib/payments";
 
 export const metadata: Metadata = {
@@ -23,44 +17,35 @@ export default function PayPage() {
   return (
     <div className="border-b border-border">
       <OfferJsonLd />
-      <Container className="max-w-3xl py-16 sm:py-24">
+      <Container className="max-w-2xl py-16 sm:py-24">
         <p className="kicker">
           <span className="kicker-dot" aria-hidden="true" />
-          Stripe checkout
+          Ready to put the team to work?
         </p>
-        <h1 className="font-display mt-6 text-4xl font-medium tracking-tight text-ice sm:text-6xl">
-          Build your AI team. {HOUSE_PRICE_SHORT} once.
+        <h1 className="font-display display-2 mt-6 text-ice">
+          {HOUSE_PRICE_SHORT} once.
         </h1>
         <p className="mt-5 text-base leading-7 text-slate">
-          You leave this site and pay on Stripe. Apple Pay, Google Pay, Link, or
-          a card. We never see your card number. After payment, Stripe should
-          send you back here and this browser unlocks the desk.
+          Secure checkout through Stripe. Apple Pay, Google Pay, Link or a card.
+          We never see your card number. After payment, Stripe should send you
+          back and this browser unlocks the desk.
         </p>
-        <p className="mt-4 text-lg">{label}</p>
-        <p className="mt-3 text-sm leading-6 text-slate">
-          {HOUSE_PRODUCT_DESCRIPTION}
-        </p>
-        <ul className="mt-8 list-disc space-y-3 pl-5 text-sm leading-6 text-foreground">
-          {includedAfterPay.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        <div className="surface mt-10 rounded-2xl p-6">
-          <h2 className="font-display text-2xl text-ice">Leave your email first</h2>
-          <p className="mt-2 text-sm leading-6 text-slate">
-            Optional. We save it for later products, and Stripe can open with it
-            filled in.
-          </p>
-          <div className="mt-6">
-            <EmailCapture source="pay" />
-          </div>
-        </div>
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <StripePayLink arrow>Build my AI team · {HOUSE_PRICE_SHORT}</StripePayLink>
-          <ButtonLink href="/#value" variant="secondary">
-            Read why it is worth {HOUSE_PRICE_SHORT}
+        <p className="mt-4 text-sm text-slate">{label}</p>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <StripePayLink arrow>Build my AI team — {HOUSE_PRICE_SHORT}</StripePayLink>
+          <ButtonLink href="/#pricing" variant="secondary">
+            See what’s included
           </ButtonLink>
         </div>
+        <details className="mt-12 border-t border-white/10 pt-6">
+          <summary className="cursor-pointer text-sm font-medium text-ice">What happens after payment?</summary>
+          <ol className="mt-4 space-y-3 text-sm leading-6 text-slate">
+            <li>01 Complete secure checkout.</li>
+            <li>02 Return to LocalLaunch.</li>
+            <li>03 This browser unlocks the workspace.</li>
+            <li>04 Start building customer-getting drafts.</li>
+          </ol>
+        </details>
       </Container>
     </div>
   );

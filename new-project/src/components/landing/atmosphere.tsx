@@ -13,15 +13,14 @@ export function Atmosphere() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return undefined;
 
-    const dots = Array.from({ length: 70 }, () => ({
+    const dots = Array.from({ length: 42 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.4 + 0.3,
-      s: Math.random() * 0.12 + 0.03,
-      a: Math.random() * 0.45 + 0.12,
+      r: Math.random() * 1.1 + 0.25,
+      s: Math.random() * 0.08 + 0.02,
+      a: Math.random() * 0.28 + 0.08,
     }));
 
-    let frame = 0;
     let raf = 0;
 
     function resize() {
@@ -37,33 +36,13 @@ export function Atmosphere() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const w = canvas.width;
       const h = canvas.height;
-      for (let i = 0; i < dots.length; i += 1) {
-        const a = dots[i];
-        if (!a) continue;
-        a.y -= a.s / 1200;
-        if (a.y < 0) a.y = 1;
-        for (let j = i + 1; j < dots.length; j += 1) {
-          const b = dots[j];
-          if (!b) continue;
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist > 0.12) continue;
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(125, 211, 252, ${0.09 - dist * 0.45})`;
-          ctx.lineWidth = 0.7 * window.devicePixelRatio;
-          ctx.moveTo(a.x * w, a.y * h);
-          ctx.lineTo(b.x * w, b.y * h);
-          ctx.stroke();
-        }
+      for (const dot of dots) {
+        dot.y -= dot.s / 1400;
+        if (dot.y < 0) dot.y = 1;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(180, 160, 255, ${a.a})`;
-        ctx.arc(a.x * w, a.y * h, a.r * window.devicePixelRatio, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(174, 185, 200, ${dot.a})`;
+        ctx.arc(dot.x * w, dot.y * h, dot.r * window.devicePixelRatio, 0, Math.PI * 2);
         ctx.fill();
-      }
-      frame += 1;
-      if (frame % 2 === 0) {
-        /* keep it light */
       }
       raf = window.requestAnimationFrame(draw);
     }
@@ -79,11 +58,10 @@ export function Atmosphere() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
-      <div className="aurora absolute -left-1/4 -top-1/4 h-[70vw] w-[70vw] rounded-full bg-[#6d3bff]/35 blur-[120px]" />
-      <div className="aurora-2 absolute -right-1/5 top-0 h-[55vw] w-[55vw] rounded-full bg-[#4d6fff]/28 blur-[130px]" />
-      <div className="aurora absolute bottom-[-20%] left-[20%] h-[40vw] w-[50vw] rounded-full bg-[#ff5ad9]/18 blur-[140px]" />
-      <div className="aurora-2 absolute right-[10%] top-[40%] h-[30vw] w-[30vw] rounded-full bg-[#4df0ff]/16 blur-[110px]" />
-      <canvas ref={ref} className="absolute inset-0 opacity-80" />
+      <div className="absolute -left-1/4 top-[-18%] h-[58vw] w-[58vw] rounded-full bg-[#3475ff]/18 blur-[140px]" />
+      <div className="absolute right-[-12%] top-[8%] h-[36vw] w-[36vw] rounded-full bg-[#36d8ff]/10 blur-[130px]" />
+      <div className="absolute bottom-[-22%] left-[28%] h-[32vw] w-[40vw] rounded-full bg-[#725cff]/8 blur-[150px]" />
+      <canvas ref={ref} className="absolute inset-0 opacity-70" />
     </div>
   );
 }

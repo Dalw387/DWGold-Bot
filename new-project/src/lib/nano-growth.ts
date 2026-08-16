@@ -12,16 +12,45 @@ export type GrowthSignal =
 
 export type SignalKind = GrowthSignal;
 
-export type AuditAnswers = Record<string, boolean>;
+export type BuyingStage = "discovery" | "interest" | "evaluation" | "high-intent" | "customer";
+
+export type AuditChoice = boolean | "sometimes";
+export type AuditAnswers = Record<string, AuditChoice>;
+
+export interface VisitorContext {
+  industry?: string;
+  region?: string;
+  problem?: string;
+  sources: string[];
+  volume?: string;
+  ads?: string;
+  recommended: string[];
+  dismissedGuide?: boolean;
+  pricingViews: number;
+  calculatorOpportunity?: number;
+}
 
 export interface NanoState {
   signals: { kind: GrowthSignal; at: string; detail?: string }[];
   agents: string[];
   audits: { at: string; total: number; answers: AuditAnswers }[];
   referrals: string[];
+  context: VisitorContext;
 }
 
-const empty: NanoState = { signals: [], agents: [], audits: [], referrals: [] };
+const emptyContext: VisitorContext = {
+  sources: [],
+  recommended: [],
+  pricingViews: 0,
+};
+
+const empty: NanoState = {
+  signals: [],
+  agents: [],
+  audits: [],
+  referrals: [],
+  context: emptyContext,
+};
 
 type Listener = () => void;
 const listeners = new Set<Listener>();
@@ -46,6 +75,13 @@ function normalise(raw: Partial<NanoState> | null): NanoState {
     agents: Array.isArray(raw?.agents) ? raw.agents : [],
     audits: Array.isArray(raw?.audits) ? raw.audits.slice(-12) : [],
     referrals: Array.isArray(raw?.referrals) ? raw.referrals.slice(-24) : [],
+    context: {
+      ...emptyContext,
+      ...(raw?.context ?? {}),
+      sources: Array.isArray(raw?.context?.sources) ? raw.context.sources : [],
+      recommended: Array.isArray(raw?.context?.recommended) ? raw.context.recommended : [],
+      pricingViews: Number(raw?.context?.pricingViews) || 0,
+    },
   };
 }
 
@@ -104,6 +140,43 @@ export function saveAudit(answers: AuditAnswers, total: number): void {
   persist();
   emit();
   recordSignal("audit", `score:${total}`);
+}
+
+export function patchContext(partial: Partial<VisitorContext>): void {
+  if (typeof window === "undefined") return;
+  hydrateNano();
+  snapshot = {
+    ...snapshot,
+    context: {
+      ...snapshot.context,
+      ...partial,
+      sources: partial.sources ?? snapshot.context.sources,
+      recommended: partial.recommended ?? snapshot.context.recommended,
+    },
+  };
+  persist();
+  emit();
+}
+
+export function notePricingView(): void {
+  if (typeof window === "undefined") return;
+  hydrateNano();
+  snapshot = {
+    ...snapshot,
+    context: { ...snapshot.context, pricingViews: snapshot.context.pricingViews + 1 },
+  };
+  persist();
+  emit();
+}
+
+export function buyingStage(state: NanoState): BuyingStage {
+  const kinds = state.signals.map((s) => s.kind);
+  if (kinds.includes("cta")) return "high-intent";
+  const pricing = kinds.filter((k) => k === "pricing").length + state.context.pricingViews;
+  if (pricing >= 2 || kinds.includes("calculator") || kinds.includes("audit")) return "high-intent";
+  if (pricing >= 1 || kinds.includes("demo")) return "evaluation";
+  if (state.agents.length >= 1 || kinds.includes("sample")) return "interest";
+  return "discovery";
 }
 
 export function recordReferral(code: string): void {
@@ -203,8 +276,9 @@ export function scoreAudit(answers: AuditAnswers): {
 } {
   let total = 0;
   const parts = auditQuestions.map((q) => {
-    const yes = Boolean(answers[q.id]);
-    const score = yes ? q.weight : Math.round(q.weight * 0.22);
+    const choice = answers[q.id];
+    const factor = choice === true ? 1 : choice === "sometimes" ? 0.55 : 0.22;
+    const score = Math.round(q.weight * factor);
     total += score;
     return { id: q.id, label: q.prompt, score };
   });
@@ -216,8 +290,9 @@ function partScore(answers: AuditAnswers, ids: string[]): number {
   const max = qs.reduce((sum, q) => sum + q.weight, 0);
   if (!max) return 0;
   const got = qs.reduce((sum, q) => {
-    const yes = Boolean(answers[q.id]);
-    return sum + (yes ? q.weight : Math.round(q.weight * 0.22));
+    const choice = answers[q.id];
+    const factor = choice === true ? 1 : choice === "sometimes" ? 0.55 : 0.22;
+    return sum + Math.round(q.weight * factor);
   }, 0);
   return Math.min(100, Math.round((got / max) * 100));
 }
