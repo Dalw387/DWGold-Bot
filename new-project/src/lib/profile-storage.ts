@@ -89,7 +89,11 @@ export function hydrateProfileStore(): void {
 
 export function writeProfileStore(values: GeneratorFormValues): void {
   snapshot = values;
-  saveProfile(values);
+  try {
+    saveProfile(values);
+  } catch {
+    // Private mode and blocked storage should not stop the studio updating.
+  }
   emit();
 }
 

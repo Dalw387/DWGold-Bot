@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   useEffect,
   useId,
+  useMemo,
   useRef,
   useState,
   useSyncExternalStore,
@@ -51,6 +52,14 @@ export function ToolStudio({ tool }: { tool: ToolDefinition }) {
   const remembered = Boolean(
     values.businessName || values.businessType || values.location || values.offer,
   );
+  const liveSketch = useMemo(() => {
+    if (hasFieldErrors(validateGeneratorForm(values, tool.slug))) return null;
+    try {
+      return generateForTool(tool.slug, sanitiseFormValues(values))[0] ?? null;
+    } catch {
+      return null;
+    }
+  }, [tool.slug, values]);
 
   useEffect(() => {
     hydrateProfileStore();
@@ -164,6 +173,19 @@ export function ToolStudio({ tool }: { tool: ToolDefinition }) {
             }
           />
         </div>
+
+        {liveSketch ? (
+          <aside className="paper-card mt-8 rounded-3xl border border-[rgba(176,137,79,0.35)] p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8c6a38]">
+              Live sketch
+            </p>
+            <h2 className="font-display mt-2 text-2xl text-stone-900">{liveSketch.label}</h2>
+            <p className="mt-1 text-sm text-stone-600">{liveSketch.summary}</p>
+            <p className="mt-4 whitespace-pre-wrap text-sm leading-7 text-stone-800">
+              {liveSketch.text}
+            </p>
+          </aside>
+        ) : null}
 
         <div id={statusId} className="sr-only" aria-live="polite">
           {status === "loading" ? "Generating drafts" : null}

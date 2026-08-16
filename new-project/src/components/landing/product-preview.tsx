@@ -26,7 +26,7 @@ export function ProductPreview() {
             <p className="text-xs font-medium text-stone-500">
               Example preview — Harbour & Hearth is not a live listing
             </p>
-            <p className="text-xs text-indigo-700">Friendly · Standard length</p>
+            <p className="text-xs text-[#8c6a38]">Friendly · Standard length</p>
           </div>
           <div className="grid lg:grid-cols-2">
             <div className="border-b border-stone-200 p-6 lg:border-r lg:border-b-0">
@@ -52,7 +52,7 @@ export function ProductPreview() {
             <div className="p-6">
               <div className="rounded-2xl border border-stone-200 bg-white p-4">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-700 text-sm font-semibold text-white">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#12100e] text-sm font-semibold text-[#f6f1e8]">
                     HH
                   </span>
                   <div>

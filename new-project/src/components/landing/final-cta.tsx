@@ -3,28 +3,24 @@ import { Container } from "@/components/container";
 
 export function FinalCta() {
   return (
-    <section className="bg-indigo-800 py-16 sm:py-20">
+    <section className="ink-hero py-20 sm:py-24">
       <Container className="text-center">
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Make this week’s posts from one set of facts
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-indigo-100">
-          Open Facebook Post Studio, or start with the seven-day plan if you want
-          a week of starting points. Check every draft, then publish yourself.
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d7c4a1]">
+          Ready when you are
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <ButtonLink
-            href="/tools/facebook-post-generator"
-            className="bg-white text-indigo-800 hover:bg-indigo-50 focus-visible:outline-white"
-          >
-            Open Facebook Post Studio
+        <h2 className="font-display mt-4 text-3xl font-medium tracking-tight text-[#f6f1e8] sm:text-5xl">
+          Open the studio. Keep the receipts honest.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#e8dcc8]">
+          Use the assistant, fill a sentence, and take a pack of drafts into
+          Facebook, Instagram, or your listing. You stay the publisher.
+        </p>
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <ButtonLink href="/tools/facebook-post-generator" variant="gold">
+            Enter Facebook Post Studio
           </ButtonLink>
-          <ButtonLink
-            href="/tools/content-plan"
-            variant="secondary"
-            className="border-indigo-400 bg-transparent text-white hover:bg-indigo-700 focus-visible:outline-white"
-          >
-            Build a seven-day plan
+          <ButtonLink href="/tools/content-plan" variant="secondary" className="text-[#f6f1e8]">
+            Open the seven-day plan
           </ButtonLink>
         </div>
       </Container>

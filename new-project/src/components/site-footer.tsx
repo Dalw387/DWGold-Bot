@@ -12,7 +12,7 @@ const explore = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-stone-200 bg-[#fffcf7]">
+    <footer className="border-t border-[rgba(176,137,79,0.25)] bg-[#fffaf3]">
       <Container className="grid gap-10 py-12 md:grid-cols-[1.1fr_1fr_1fr]">
         <div>
           <Logo compact />
@@ -29,7 +29,7 @@ export function SiteFooter() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm text-stone-600 hover:text-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="text-sm text-stone-600 hover:text-[#8c6a38] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
                 >
                   {link.label}
                 </Link>
@@ -44,7 +44,7 @@ export function SiteFooter() {
               <li key={tool.slug}>
                 <Link
                   href={`/tools/${tool.slug}`}
-                  className="text-sm text-stone-600 hover:text-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="text-sm text-stone-600 hover:text-[#8c6a38] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
                 >
                   {tool.shortName}
                 </Link>

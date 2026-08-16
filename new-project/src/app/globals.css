@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f3efe6;
-  --foreground: #1c1917;
-  --muted: #57534e;
-  --accent: #4338ca;
-  --card: #fffcf7;
-  --border: #e7e0d3;
+  --background: #f4efe6;
+  --foreground: #14110e;
+  --muted: #5c534a;
+  --accent: #b0894f;
+  --card: #fffaf3;
+  --border: #e6dccb;
+  --ink: #12100e;
+  --ivory: #f6f1e8;
+  --gold: #b0894f;
 }
 
 @theme inline {
@@ -40,16 +43,33 @@ body {
 
 .mesh {
   background:
-    radial-gradient(900px 420px at 8% -8%, rgb(199 210 254 / 0.7), transparent 55%),
-    radial-gradient(700px 360px at 100% 0%, rgb(253 230 138 / 0.28), transparent 46%),
-    linear-gradient(180deg, #f7f3ea 0%, #f3efe6 100%);
+    radial-gradient(900px 480px at 0% 0%, rgb(176 137 79 / 0.18), transparent 55%),
+    radial-gradient(700px 400px at 100% 10%, rgb(28 25 23 / 0.08), transparent 46%),
+    linear-gradient(180deg, #f7f2e9 0%, #f4efe6 100%);
+}
+
+.ink-hero {
+  background:
+    radial-gradient(800px 360px at 80% -10%, rgb(176 137 79 / 0.22), transparent 50%),
+    linear-gradient(165deg, #171410 0%, #12100e 48%, #1b1612 100%);
+}
+
+.luxury-panel {
+  background: linear-gradient(180deg, rgb(255 250 243 / 0.04), rgb(255 250 243 / 0.02));
+  border: 1px solid rgb(176 137 79 / 0.28);
+  box-shadow: 0 30px 80px -48px rgb(0 0 0 / 0.8);
 }
 
 .paper-card {
   background: var(--card);
   box-shadow:
-    0 1px 0 rgb(255 255 255 / 0.8) inset,
-    0 12px 32px -18px rgb(28 25 23 / 0.18);
+    0 1px 0 rgb(255 255 255 / 0.75) inset,
+    0 18px 40px -28px rgb(20 17 14 / 0.28);
+}
+
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(176 137 79 / 0.7), transparent);
 }
 
 @media print {

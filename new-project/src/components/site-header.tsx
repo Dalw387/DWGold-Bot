@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
+import { openStudioAgent } from "@/components/agent/studio-agent";
 import { Container } from "@/components/container";
-import { ButtonLink } from "@/components/button";
+import { Button, ButtonLink } from "@/components/button";
 import { Logo } from "@/components/logo";
 
 const links = [
@@ -41,36 +42,42 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-[#fffcf7]/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[rgba(176,137,79,0.28)] bg-[#fffaf3]/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {links.map((link) => {
             const active =
-              link.href === "/tools"
-                ? pathname.startsWith("/tools")
-                : false;
+              link.href === "/tools" ? pathname.startsWith("/tools") : false;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+                className={`rounded-full px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f] ${
                   active
-                    ? "bg-indigo-50 text-indigo-800"
-                    : "text-stone-600 hover:bg-stone-100 hover:text-stone-900"
+                    ? "bg-[#12100e] text-[#f6f1e8]"
+                    : "text-stone-600 hover:text-stone-900"
                 }`}
               >
                 {link.label}
               </Link>
             );
           })}
-          <ButtonLink href="/tools/facebook-post-generator" className="ml-2 px-4 py-2">
+          <Button
+            type="button"
+            variant="ghost"
+            className="px-3 py-2"
+            onClick={() => openStudioAgent()}
+          >
+            Assistant
+          </Button>
+          <ButtonLink href="/tools/facebook-post-generator" variant="gold" className="ml-1 px-4 py-2">
             Open studio
           </ButtonLink>
         </nav>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-700 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
@@ -90,24 +97,35 @@ export function SiteHeader() {
         </button>
       </Container>
       {open ? (
-        <div id={menuId} className="border-t border-stone-200 bg-[#fffcf7] md:hidden">
+        <div id={menuId} className="border-t border-stone-200 bg-[#fffaf3] md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-3 text-base font-medium text-stone-800 hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-xl px-3 py-3 text-base font-medium text-stone-800 hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b0894f]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => {
+                setOpen(false);
+                openStudioAgent();
+              }}
+            >
+              Ask the assistant
+            </Button>
             <ButtonLink
               href="/tools/facebook-post-generator"
-              className="mt-2"
+              variant="gold"
+              className="mt-1"
               onClick={() => setOpen(false)}
             >
-              Open Facebook studio
+              Open studio
             </ButtonLink>
           </Container>
         </div>
