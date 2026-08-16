@@ -4,17 +4,17 @@ const steps = [
   {
     number: "1",
     title: "Enter a few business facts",
-    body: "Add your name, type of business, area, and the product or service you already offer. Choose a tone.",
+    body: "Name, type, area, and what you already offer. Fill the example if you only want to see how a tool behaves.",
   },
   {
     number: "2",
-    title: "Generate three local drafts",
-    body: "The generator builds three different Facebook posts in your browser. The same details always return the same wording.",
+    title: "Choose a tool and a style",
+    body: "Facebook Post Studio can build a pack of styles. Other tools turn the same facts into captions, notices, or a week of prompts.",
   },
   {
     number: "3",
     title: "Copy, edit, and publish yourself",
-    body: "Use the copy button, adjust anything that needs a human check, then paste the post into Facebook when you are ready.",
+    body: "Check names, prices, and times. Then paste into Facebook, Instagram, Google, WhatsApp, or your website.",
   },
 ];
 
@@ -23,17 +23,17 @@ export function HowItWorks() {
     <section
       id="how-it-works"
       aria-labelledby="how-heading"
-      className="bg-slate-50 py-16 sm:py-20"
+      className="bg-stone-100/70 py-16 sm:py-20"
     >
       <Container>
         <div className="max-w-2xl">
           <h2
             id="how-heading"
-            className="text-3xl font-semibold tracking-tight text-slate-900"
+            className="font-display text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl"
           >
             How it works
           </h2>
-          <p className="mt-4 text-base leading-7 text-slate-600">
+          <p className="mt-4 text-base leading-7 text-stone-600">
             You stay in control. LocalLaunch AI drafts the words. You decide what
             is accurate enough to publish.
           </p>
@@ -42,13 +42,13 @@ export function HowItWorks() {
           {steps.map((step) => (
             <li
               key={step.number}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+              className="paper-card rounded-2xl border border-stone-200 p-6"
             >
-              <p className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white">
+              <p className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-700 text-sm font-semibold text-white">
                 {step.number}
               </p>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">{step.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{step.body}</p>
+              <h3 className="mt-4 font-display text-xl text-stone-900">{step.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-stone-600">{step.body}</p>
             </li>
           ))}
         </ol>

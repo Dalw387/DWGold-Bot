@@ -3,22 +3,28 @@ import { Container } from "@/components/container";
 
 export function FinalCta() {
   return (
-    <section className="bg-indigo-700 py-16 sm:py-20">
+    <section className="bg-indigo-800 py-16 sm:py-20">
       <Container className="text-center">
-        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Draft your next Facebook post in a few minutes
+        <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Make this week’s posts from one set of facts
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-indigo-100">
-          Open the free generator, add the facts you already know, and take three
-          editable drafts away with you. Check them, then publish on Facebook
-          when the wording is right.
+          Open Facebook Post Studio, or start with the seven-day plan if you want
+          a week of starting points. Check every draft, then publish yourself.
         </p>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <ButtonLink
             href="/tools/facebook-post-generator"
-            className="bg-white text-indigo-700 hover:bg-indigo-50 focus-visible:outline-white"
+            className="bg-white text-indigo-800 hover:bg-indigo-50 focus-visible:outline-white"
           >
-            Start the Facebook Post Generator
+            Open Facebook Post Studio
+          </ButtonLink>
+          <ButtonLink
+            href="/tools/content-plan"
+            variant="secondary"
+            className="border-indigo-400 bg-transparent text-white hover:bg-indigo-700 focus-visible:outline-white"
+          >
+            Build a seven-day plan
           </ButtonLink>
         </div>
       </Container>

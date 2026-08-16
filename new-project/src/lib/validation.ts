@@ -1,4 +1,11 @@
-import { TONES, type FieldErrors, type GeneratorFormValues, type Tone } from "./types";
+import {
+  TONES,
+  emptyGeneratorValues,
+  type FieldErrors,
+  type GeneratorFormValues,
+  type Tone,
+  type ToolSlug,
+} from "@/lib/types";
 
 const LIMITS = {
   businessName: { min: 2, max: 80 },
@@ -31,7 +38,10 @@ function lengthError(
   return undefined;
 }
 
-export function validateGeneratorForm(values: GeneratorFormValues): FieldErrors {
+export function validateGeneratorForm(
+  values: GeneratorFormValues,
+  slug: ToolSlug,
+): FieldErrors {
   const errors: FieldErrors = {};
   const businessName = compactText(values.businessName);
   const businessType = compactText(values.businessType);
@@ -76,7 +86,10 @@ export function validateGeneratorForm(values: GeneratorFormValues): FieldErrors 
   }
 
   if (!offer) {
-    errors.offer = "Enter a product, service, offer, or promotion.";
+    errors.offer =
+      slug === "notice"
+        ? "Enter the notice, change, or reminder."
+        : "Enter a product, service, offer, or promotion.";
   } else {
     const error = lengthError("This field", offer, LIMITS.offer.min, LIMITS.offer.max);
     if (error) errors.offer = error;
@@ -96,6 +109,10 @@ export function validateGeneratorForm(values: GeneratorFormValues): FieldErrors 
     if (error) errors.callToAction = error;
   }
 
+  if (slug === "facebook-post-generator" && values.facebookStyles.length === 0) {
+    errors.facebookStyles = "Choose at least one post style.";
+  }
+
   return errors;
 }
 
@@ -105,11 +122,14 @@ export function hasFieldErrors(errors: FieldErrors): boolean {
 
 export function sanitiseFormValues(values: GeneratorFormValues): GeneratorFormValues {
   return {
+    ...values,
     businessName: compactText(values.businessName),
     businessType: compactText(values.businessType),
     location: compactText(values.location),
     offer: compactText(values.offer),
-    tone: values.tone,
     callToAction: compactText(values.callToAction),
+    facebookStyles: [...values.facebookStyles],
   };
 }
+
+export { emptyGeneratorValues };

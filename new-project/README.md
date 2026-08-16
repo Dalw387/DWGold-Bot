@@ -1,12 +1,12 @@
 # LocalLaunch AI
 
-Free early demo of a marketing-content tool for small businesses.
+Free early demo of a marketing-content toolkit for small businesses.
 
 This version includes:
 
 - A public landing page
-- A Facebook Post Generator at `/tools/facebook-post-generator`
-- Template-based drafts that run in the browser
+- Eight template tools, including Facebook Post Studio with extra styles
+- Drafts that run in the browser
 - No accounts, database, payments, or paid AI services
 
 ## Run locally

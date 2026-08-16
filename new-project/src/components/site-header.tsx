@@ -8,10 +8,10 @@ import { ButtonLink } from "@/components/button";
 import { Logo } from "@/components/logo";
 
 const links = [
+  { href: "/tools", label: "Tools" },
   { href: "/#features", label: "Features" },
   { href: "/#how-it-works", label: "How it works" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/tools/facebook-post-generator", label: "Generator" },
 ];
 
 export function SiteHeader() {
@@ -41,29 +41,36 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-[#fffcf7]/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <ButtonLink
-            href="/tools/facebook-post-generator"
-            className="ml-2 px-4 py-2"
-          >
-            Try it free
+          {links.map((link) => {
+            const active =
+              link.href === "/tools"
+                ? pathname.startsWith("/tools")
+                : false;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-lg px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+                  active
+                    ? "bg-indigo-50 text-indigo-800"
+                    : "text-stone-600 hover:bg-stone-100 hover:text-stone-900"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <ButtonLink href="/tools/facebook-post-generator" className="ml-2 px-4 py-2">
+            Open studio
           </ButtonLink>
         </nav>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
@@ -83,16 +90,13 @@ export function SiteHeader() {
         </button>
       </Container>
       {open ? (
-        <div
-          id={menuId}
-          className="border-t border-slate-200 bg-white md:hidden"
-        >
+        <div id={menuId} className="border-t border-stone-200 bg-[#fffcf7] md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-3 text-base font-medium text-slate-800 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-xl px-3 py-3 text-base font-medium text-stone-800 hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -103,7 +107,7 @@ export function SiteHeader() {
               className="mt-2"
               onClick={() => setOpen(false)}
             >
-              Try the generator
+              Open Facebook studio
             </ButtonLink>
           </Container>
         </div>
